@@ -1,0 +1,237 @@
+[
+  {
+    "domain": "www.thepearlsource.com",
+    "pages_fetched": 10,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "raw_count": 20
+      },
+      {
+        "page": 2,
+        "raw_count": 20
+      },
+      {
+        "page": 3,
+        "raw_count": 20
+      },
+      {
+        "page": 4,
+        "raw_count": 20
+      },
+      {
+        "page": 5,
+        "raw_count": 20
+      },
+      {
+        "page": 6,
+        "raw_count": 20
+      },
+      {
+        "page": 7,
+        "raw_count": 20
+      },
+      {
+        "page": 8,
+        "raw_count": 20
+      },
+      {
+        "page": 9,
+        "raw_count": 20
+      },
+      {
+        "page": 10,
+        "raw_count": 20
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "www.shein.com",
+    "pages_fetched": 10,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "raw_count": 20
+      },
+      {
+        "page": 2,
+        "raw_count": 20
+      },
+      {
+        "page": 3,
+        "raw_count": 20
+      },
+      {
+        "page": 4,
+        "raw_count": 20
+      },
+      {
+        "page": 5,
+        "raw_count": 20
+      },
+      {
+        "page": 6,
+        "raw_count": 20
+      },
+      {
+        "page": 7,
+        "raw_count": 20
+      },
+      {
+        "page": 8,
+        "raw_count": 20
+      },
+      {
+        "page": 9,
+        "raw_count": 20
+      },
+      {
+        "page": 10,
+        "raw_count": 20
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "temu.com",
+    "pages_fetched": 10,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "raw_count": 20
+      },
+      {
+        "page": 2,
+        "raw_count": 20
+      },
+      {
+        "page": 3,
+        "raw_count": 20
+      },
+      {
+        "page": 4,
+        "raw_count": 20
+      },
+      {
+        "page": 5,
+        "raw_count": 20
+      },
+      {
+        "page": 6,
+        "raw_count": 20
+      },
+      {
+        "page": 7,
+        "raw_count": 20
+      },
+      {
+        "page": 8,
+        "raw_count": 20
+      },
+      {
+        "page": 9,
+        "raw_count": 20
+      },
+      {
+        "page": 10,
+        "raw_count": 20
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "www.aliexpress.com",
+    "pages_fetched": 10,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "raw_count": 20
+      },
+      {
+        "page": 2,
+        "raw_count": 20
+      },
+      {
+        "page": 3,
+        "raw_count": 20
+      },
+      {
+        "page": 4,
+        "raw_count": 20
+      },
+      {
+        "page": 5,
+        "raw_count": 20
+      },
+      {
+        "page": 6,
+        "raw_count": 20
+      },
+      {
+        "page": 7,
+        "raw_count": 20
+      },
+      {
+        "page": 8,
+        "raw_count": 20
+      },
+      {
+        "page": 9,
+        "raw_count": 20
+      },
+      {
+        "page": 10,
+        "raw_count": 20
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "thehalara.com",
+    "pages_fetched": 10,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "raw_count": 20
+      },
+      {
+        "page": 2,
+        "raw_count": 20
+      },
+      {
+        "page": 3,
+        "raw_count": 20
+      },
+      {
+        "page": 4,
+        "raw_count": 20
+      },
+      {
+        "page": 5,
+        "raw_count": 20
+      },
+      {
+        "page": 6,
+        "raw_count": 20
+      },
+      {
+        "page": 7,
+        "raw_count": 20
+      },
+      {
+        "page": 8,
+        "raw_count": 20
+      },
+      {
+        "page": 9,
+        "raw_count": 20
+      },
+      {
+        "page": 10,
+        "raw_count": 20
+      }
+    ],
+    "stop_reason": "target_reached"
+  }
+]

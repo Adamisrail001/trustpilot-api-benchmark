@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-07-22T11:06:47.684Z",
+  "base_url": "https://api.apify.com/v2",
+  "actor_id": "automation-lab~trustpilot",
+  "auth_header": "Authorization: Bearer <APIFY_API_TOKEN> (value never logged)",
+  "input": {
+    "companyUrls": [
+      "www.thepearlsource.com",
+      "www.shein.com",
+      "temu.com",
+      "www.aliexpress.com",
+      "thehalara.com"
+    ],
+    "maxReviewsPerCompany": 200,
+    "sort": "recency",
+    "includeCompanyInfo": true
+  },
+  "workflow": [
+    "start ONE run for all 5 domains",
+    "poll same run id to terminal",
+    "wait 5s, refetch final run for settled usage",
+    "paginate dataset items to exhaustion",
+    "dedupe + validate + report"
+  ],
+  "estimated_cost_usd": {
+    "per_review_free_tier": 0.000575,
+    "run_start_fee": 0.005,
+    "estimated_for_1000_reviews": 0.58
+  }
+}

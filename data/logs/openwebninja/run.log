@@ -1,0 +1,59 @@
+OpenWeb Ninja Trustpilot Reviews benchmark - fresh live run (2026-07-29)
+Script executed: scripts/openwebninja_benchmark.py (unmodified)
+Command: CONFIRM_PAID_RUN=yes OPENWEBNINJA_QUOTA_REMAINING=1000 python -u scripts/openwebninja_benchmark.py run
+(OPENWEBNINJA_QUOTA_REMAINING supplied by the user after confirming their
+app.openwebninja.com dashboard shows quota "definitely very high (1000+)" -
+this script has no API-based quota check, so this figure is human-supplied
+per the script's own design, not fabricated.)
+
+Full detail for attempts 1 and 2 (identical outcome to attempt 3) is
+preserved at data/logs/openwebninja/archive-full-copy/2026-07-29-failed-rate-limited/run.log
+- summarized here, not repeated in full.
+
+=== ATTEMPT 1 === (08:20:31 - 08:21:31 UTC)
+All 5 domains: HTTP 429 on page 1, 4 attempts each, fetch_failed. 0/1000 reviews.
+
+=== COOLDOWN === 100s wait (08:23:04 - 08:24:44 UTC)
+
+=== ATTEMPT 2 === (08:24:44 - 08:25:45 UTC)
+Identical outcome: all 5 domains HTTP 429 x4 attempts, fetch_failed. 0/1000 reviews.
+
+=== ATTEMPT 3 (this run - user-requested retry, ~31 min after attempt 2) ===
+run_start_utc=2026-07-29T08:56:50.189Z
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 0,
+  "valid_records": 0,
+  "unique_valid_reviews": 0,
+  "duplicate_records": 0,
+  "domains_with_shortfall": ["www.thepearlsource.com","www.shein.com","temu.com","www.aliexpress.com","thehalara.com"],
+  "overall_success_rate_percent": 0,
+  "total_requests_made": 5,
+  "outcome": "partial"
+}
+run_end_utc=2026-07-29T08:57:59.065Z
+
+Identical outcome a third time: all 5 domains hit HTTP 429 on page 1,
+exhausted all 4 attempts, gave up. All 20 real HTTP attempts this round
+returned 429 (event types observed: rate_limited, non_retryable_http_error,
+page_fetch_failed - statuses: {429} exclusively). Full event log for this
+attempt (and attempts 1-2) is in data/logs/openwebninja/errors/event-log.jsonl
+(75 events total across all 3 attempts) plus the archived copy for
+attempts 1-2 at .../archive-full-copy/2026-07-29-failed-rate-limited/errors/event-log.jsonl.
+
+=== CONCLUSION (after 3 attempts) ===
+3 independent live attempts across roughly 38 minutes (08:20, 08:24-08:25,
+08:56-08:57), all resulted in 100% HTTP 429 across all 5 domains, every
+single time. Total real HTTP attempts across all 3 runs: 60 (5 domains x 4
+attempts x 3 invocations), all rejected with HTTP 429. data/raw/openwebninja/results/
+is empty after all 3 attempts - not one successful response was ever
+received.
+
+No further retries were attempted after attempt 3 - three consecutive
+identical failures spanning over half an hour rules out a short transient
+burst limit, and further blind retries would only spend more (possibly
+billed) requests without new diagnostic information. Resolving this
+requires either contacting OpenWeb Ninja support directly or checking the
+dashboard for a rate-limit-specific status (separate from the general
+"quota remaining" figure already checked before this session).

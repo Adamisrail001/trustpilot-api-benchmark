@@ -1,0 +1,56 @@
+[run] started ONE paid Actor run: AL74CUwNDfUDkRINC
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=RUNNING
+[poll] run AL74CUwNDfUDkRINC: status=SUCCEEDED
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 800,
+  "unattributed_records": 0,
+  "valid_records": 800,
+  "unique_valid_reviews": 798,
+  "duplicate_records": 2,
+  "domains_with_shortfall": [
+    "www.shein.com",
+    "www.aliexpress.com",
+    "thehalara.com"
+  ],
+  "overall_success_rate_percent": 79.8,
+  "run_id": "AL74CUwNDfUDkRINC",
+  "dataset_id": "6C7upbw3gTTxze0Wd",
+  "run_status": "SUCCEEDED",
+  "outcome": "partial"
+}

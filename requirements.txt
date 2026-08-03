@@ -1,0 +1,13 @@
+# No third-party dependencies.
+#
+# Every script in scripts/ is Python 3, using only the standard library
+# (urllib.request/urllib.error for HTTP, json, pathlib, time, hashlib, base64,
+# re). This mirrors the project's original Node.js scripts, which likewise
+# used zero npm packages (native fetch + fs/path/crypto only) — the same
+# zero-dependency design was carried over in the JS -> Python conversion.
+#
+# Requires Python >= 3.8 (f-strings, pathlib — no version-specific feature
+# above that was intentionally used). This is an inferred minimum from the
+# code, not a tested one — no Python interpreter was available on the machine
+# this conversion was performed on to verify it end-to-end; see
+# MISSING_AND_GAPS.md for what to check before trusting a fresh run.

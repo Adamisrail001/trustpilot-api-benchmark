@@ -1,0 +1,15 @@
+{
+  "domain": "www.shein.com",
+  "page": 1,
+  "skip": 0,
+  "limit": 200,
+  "requested_at": "2026-07-21T13:22:11.804Z",
+  "request_url": "https://api.outscraper.com/trustpilot-reviews?query=www.shein.com&limit=200&skip=0&languages=all&sort=recency&async=true",
+  "latency_ms": 2591,
+  "attempts": 1,
+  "response": {
+    "status": "Pending",
+    "id": "a-e471bb92-8fe0-45c2-8eaf-db9d3e2f0429",
+    "results_location": "https://api.outscraper.cloud/requests/a-e471bb92-8fe0-45c2-8eaf-db9d3e2f0429"
+  }
+}

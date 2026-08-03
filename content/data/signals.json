@@ -1,0 +1,716 @@
+{
+  "mode": "full",
+  "skip_dimensions": [],
+  "equivalence_level": "B",
+  "target": "Trustpilot reviews - 5 e-commerce domains benchmarked (www.thepearlsource.com, www.shein.com, temu.com, www.aliexpress.com, thehalara.com), ~200 reviews/domain requested per provider (~1,000 target per provider); pooled per-provider corpus compared as one dataset",
+  "baseline_scraper": "apify",
+  "baseline_auto_selected": true,
+  "datasets": {
+    "overlap_set_size": 28,
+    "common_record_id": "6a5c542a7653275b3e2ec634"
+  },
+  "records_expected": 800,
+  "timing": {
+    "gap_hours": 191.1,
+    "tier": "large",
+    "accuracy_stable_only": true,
+    "cardinality_dropped": true,
+    "demote_to_na": [
+      "completeness",
+      "freshness"
+    ],
+    "volatile_fields": [
+      "author_review_count",
+      "helpful_votes",
+      "owner_reply_date",
+      "owner_reply_text"
+    ]
+  },
+  "field_map_provided": true,
+  "scrapers": [
+    {
+      "name": "apify",
+      "is_api": false,
+      "is_baseline": true,
+      "completeness": {
+        "records_returned": 800,
+        "records_expected": 800,
+        "ratio": 1.0,
+        "score": 10.0
+      },
+      "breadth_cardinality": {
+        "breadth_ratio": 1.0,
+        "cardinality_ratio": null,
+        "breadth_score": 10.0,
+        "cardinality_score": null,
+        "combined": 10.0,
+        "cardinality_detail": {},
+        "cardinality_note": "cardinality dropped: large capture gap makes element counts incomparable (accrual over time)"
+      },
+      "fill_rate": {
+        "mean_fill": 0.9955,
+        "score": 10.0,
+        "fields_measured": 16,
+        "per_field": {
+          "rating": 1.0,
+          "review_title": 1.0,
+          "review_text": 1.0,
+          "review_date": 1.0,
+          "experience_date": 1.0,
+          "review_url": 1.0,
+          "language": 1.0,
+          "review_verified": 1.0,
+          "author_name": 1.0,
+          "author_id": 1.0,
+          "author_country": 1.0,
+          "author_review_count": 1.0,
+          "helpful_votes": 1.0,
+          "review_source": 1.0,
+          "owner_reply_text": 0.9643,
+          "owner_reply_date": 0.9643
+        }
+      },
+      "consistency": {
+        "score": null,
+        "note": "N/A - need >=2 rerun files",
+        "available": false
+      },
+      "normalization_prechecks": {
+        "numeric_as_string": [],
+        "non_iso_dates": [],
+        "currency_glued": [],
+        "html_in_text": [],
+        "whitespace_junk": [],
+        "na_strings": []
+      },
+      "csv_check": {
+        "csv_columns": 21,
+        "json_leaf_paths": 22,
+        "nested_paths_at_risk": [],
+        "likely_lost_in_csv": [],
+        "nested_data_lost": false,
+        "note": "CSV is an export round-trip check only (model §10); dropped nested data = usability ding, not a schema score"
+      }
+    },
+    {
+      "name": "lobstr",
+      "is_api": false,
+      "is_baseline": false,
+      "completeness": {
+        "records_returned": 1000,
+        "records_expected": 800,
+        "ratio": 1.25,
+        "score": 10.0
+      },
+      "breadth_cardinality": {
+        "breadth_ratio": 0.75,
+        "cardinality_ratio": null,
+        "breadth_score": 7.5,
+        "cardinality_score": null,
+        "combined": 7.5,
+        "cardinality_detail": {},
+        "cardinality_note": "cardinality dropped: large capture gap makes element counts incomparable (accrual over time)"
+      },
+      "fill_rate": {
+        "mean_fill": 0.7455,
+        "score": 7.5,
+        "fields_measured": 16,
+        "per_field": {
+          "rating": 1.0,
+          "review_title": 1.0,
+          "review_text": 1.0,
+          "review_date": 1.0,
+          "experience_date": 0.0,
+          "review_url": 1.0,
+          "language": 0.0,
+          "review_verified": 1.0,
+          "author_name": 1.0,
+          "author_id": 1.0,
+          "author_country": 1.0,
+          "author_review_count": 1.0,
+          "helpful_votes": 0.0,
+          "review_source": 0.0,
+          "owner_reply_text": 0.9643,
+          "owner_reply_date": 0.9643
+        }
+      },
+      "consistency": {
+        "score": null,
+        "note": "N/A - need >=2 rerun files",
+        "available": false
+      },
+      "normalization_prechecks": {
+        "numeric_as_string": [],
+        "non_iso_dates": [],
+        "currency_glued": [],
+        "html_in_text": [],
+        "whitespace_junk": [],
+        "na_strings": []
+      },
+      "accuracy_diffs": {
+        "sampled_records": 28,
+        "overlap_available": 28,
+        "fields_compared": 252,
+        "mismatches": 56,
+        "raw_match_ratio": 0.7778,
+        "mismatch_by_field": {
+          "review_date": 28,
+          "review_url": 28
+        },
+        "stable_only": true,
+        "skipped_volatile_fields": [
+          "author_review_count",
+          "owner_reply_date",
+          "owner_reply_text"
+        ],
+        "diffs": [
+          {
+            "id": "6a5a8aaa04f6affba941cc58",
+            "field": "review_date",
+            "baseline": "2026-07-17T22:03:54.000Z",
+            "lobstr": "2026-07-17T20:03:54Z"
+          },
+          {
+            "id": "6a5a8aaa04f6affba941cc58",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5a8aaa04f6affba941cc58",
+            "lobstr": "6a5a8aaa04f6affba941cc58"
+          },
+          {
+            "id": "6a5aea75cd762c01d79a175e",
+            "field": "review_date",
+            "baseline": "2026-07-18T04:52:37.000Z",
+            "lobstr": "2026-07-18T02:52:37Z"
+          },
+          {
+            "id": "6a5aea75cd762c01d79a175e",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5aea75cd762c01d79a175e",
+            "lobstr": "6a5aea75cd762c01d79a175e"
+          },
+          {
+            "id": "6a5b16cd55b1863edba2fdc1",
+            "field": "review_date",
+            "baseline": "2026-07-18T08:02:01.000Z",
+            "lobstr": "2026-07-18T06:02:01Z"
+          },
+          {
+            "id": "6a5b16cd55b1863edba2fdc1",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5b16cd55b1863edba2fdc1",
+            "lobstr": "6a5b16cd55b1863edba2fdc1"
+          },
+          {
+            "id": "6a5b58ceeaa7e439f8b7c545",
+            "field": "review_date",
+            "baseline": "2026-07-18T12:43:26.000Z",
+            "lobstr": "2026-07-18T10:43:26Z"
+          },
+          {
+            "id": "6a5b58ceeaa7e439f8b7c545",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5b58ceeaa7e439f8b7c545",
+            "lobstr": "6a5b58ceeaa7e439f8b7c545"
+          },
+          {
+            "id": "6a5b7fb46719bb274ce36754",
+            "field": "review_date",
+            "baseline": "2026-07-18T15:29:24.000Z",
+            "lobstr": "2026-07-18T13:29:24Z"
+          },
+          {
+            "id": "6a5b7fb46719bb274ce36754",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5b7fb46719bb274ce36754",
+            "lobstr": "6a5b7fb46719bb274ce36754"
+          },
+          {
+            "id": "6a5b91da3e2a32658e6e3bc3",
+            "field": "review_date",
+            "baseline": "2026-07-18T16:46:50.000Z",
+            "lobstr": "2026-07-18T14:46:50Z"
+          },
+          {
+            "id": "6a5b91da3e2a32658e6e3bc3",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5b91da3e2a32658e6e3bc3",
+            "lobstr": "6a5b91da3e2a32658e6e3bc3"
+          },
+          {
+            "id": "6a5b94f2c2b8497973543950",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:00:03.000Z",
+            "lobstr": "2026-07-18T15:00:03Z"
+          },
+          {
+            "id": "6a5b94f2c2b8497973543950",
+            "field": "review_url",
+            "baseline": "https://www.trustpilot.com/reviews/6a5b94f2c2b8497973543950",
+            "lobstr": "6a5b94f2c2b8497973543950"
+          },
+          {
+            "id": "6a5b9cb4141a4917a3e06ba4",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:33:08.000Z",
+            "lobstr": "2026-07-18T15:33:08Z"
+          }
+        ],
+        "note": "Claude judges which diffs are true errors vs legitimate; raw_match_ratio is plain string inequality across the sample, NOT the final accuracy score."
+      },
+      "csv_check": {
+        "csv_columns": 17,
+        "json_leaf_paths": 17,
+        "nested_paths_at_risk": [],
+        "likely_lost_in_csv": [],
+        "nested_data_lost": false,
+        "note": "CSV is an export round-trip check only (model §10); dropped nested data = usability ding, not a schema score"
+      }
+    },
+    {
+      "name": "outscraper",
+      "is_api": false,
+      "is_baseline": false,
+      "completeness": {
+        "records_returned": 1000,
+        "records_expected": 800,
+        "ratio": 1.25,
+        "score": 10.0
+      },
+      "breadth_cardinality": {
+        "breadth_ratio": 0.6875,
+        "cardinality_ratio": null,
+        "breadth_score": 6.9,
+        "cardinality_score": null,
+        "combined": 6.9,
+        "cardinality_detail": {},
+        "cardinality_note": "cardinality dropped: large capture gap makes element counts incomparable (accrual over time)"
+      },
+      "fill_rate": {
+        "mean_fill": 0.683,
+        "score": 6.8,
+        "fields_measured": 16,
+        "per_field": {
+          "rating": 1.0,
+          "review_title": 1.0,
+          "review_text": 1.0,
+          "review_date": 1.0,
+          "experience_date": 0.0,
+          "review_url": 0.0,
+          "language": 0.0,
+          "review_verified": 1.0,
+          "author_name": 1.0,
+          "author_id": 1.0,
+          "author_country": 1.0,
+          "author_review_count": 1.0,
+          "helpful_votes": 0.0,
+          "review_source": 0.0,
+          "owner_reply_text": 0.9643,
+          "owner_reply_date": 0.9643
+        }
+      },
+      "consistency": {
+        "score": null,
+        "note": "N/A - need >=2 rerun files",
+        "available": false
+      },
+      "normalization_prechecks": {
+        "numeric_as_string": [],
+        "non_iso_dates": [
+          "review_datetime_utc=07/19/2026 06:35:54"
+        ],
+        "currency_glued": [],
+        "html_in_text": [],
+        "whitespace_junk": [],
+        "na_strings": []
+      },
+      "accuracy_diffs": {
+        "sampled_records": 28,
+        "overlap_available": 28,
+        "fields_compared": 224,
+        "mismatches": 28,
+        "raw_match_ratio": 0.875,
+        "mismatch_by_field": {
+          "review_date": 28
+        },
+        "stable_only": true,
+        "skipped_volatile_fields": [
+          "author_review_count",
+          "owner_reply_date",
+          "owner_reply_text"
+        ],
+        "diffs": [
+          {
+            "id": "6a5a8aaa04f6affba941cc58",
+            "field": "review_date",
+            "baseline": "2026-07-17T22:03:54.000Z",
+            "outscraper": "07/17/2026 22:03:54"
+          },
+          {
+            "id": "6a5aea75cd762c01d79a175e",
+            "field": "review_date",
+            "baseline": "2026-07-18T04:52:37.000Z",
+            "outscraper": "07/18/2026 04:52:37"
+          },
+          {
+            "id": "6a5b16cd55b1863edba2fdc1",
+            "field": "review_date",
+            "baseline": "2026-07-18T08:02:01.000Z",
+            "outscraper": "07/18/2026 08:02:01"
+          },
+          {
+            "id": "6a5b58ceeaa7e439f8b7c545",
+            "field": "review_date",
+            "baseline": "2026-07-18T12:43:26.000Z",
+            "outscraper": "07/18/2026 12:43:26"
+          },
+          {
+            "id": "6a5b7fb46719bb274ce36754",
+            "field": "review_date",
+            "baseline": "2026-07-18T15:29:24.000Z",
+            "outscraper": "07/18/2026 15:29:24"
+          },
+          {
+            "id": "6a5b91da3e2a32658e6e3bc3",
+            "field": "review_date",
+            "baseline": "2026-07-18T16:46:50.000Z",
+            "outscraper": "07/18/2026 16:46:50"
+          },
+          {
+            "id": "6a5b94f2c2b8497973543950",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:00:03.000Z",
+            "outscraper": "07/18/2026 17:00:03"
+          },
+          {
+            "id": "6a5b9cb4141a4917a3e06ba4",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:33:08.000Z",
+            "outscraper": "07/18/2026 17:33:08"
+          },
+          {
+            "id": "6a5bdea27c34abb97d16c700",
+            "field": "review_date",
+            "baseline": "2026-07-18T22:14:26.000Z",
+            "outscraper": "07/18/2026 22:14:26"
+          },
+          {
+            "id": "6a5beffa42a77a9273150c12",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:28:26.000Z",
+            "outscraper": "07/18/2026 23:28:26"
+          },
+          {
+            "id": "6a5bf05ec5b78d69f38175db",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:30:06.000Z",
+            "outscraper": "07/18/2026 23:30:06"
+          },
+          {
+            "id": "6a5bf3ead6591756106bc0a1",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:45:14.000Z",
+            "outscraper": "07/18/2026 23:45:14"
+          },
+          {
+            "id": "6a5c542a7653275b3e2ec634",
+            "field": "review_date",
+            "baseline": "2026-07-19T06:35:54.000Z",
+            "outscraper": "07/19/2026 06:35:54"
+          },
+          {
+            "id": "6a5cab8d85e642126e019333",
+            "field": "review_date",
+            "baseline": "2026-07-19T12:48:45.000Z",
+            "outscraper": "07/19/2026 12:48:45"
+          },
+          {
+            "id": "6a5d1869846f790c24081132",
+            "field": "review_date",
+            "baseline": "2026-07-19T20:33:13.000Z",
+            "outscraper": "07/19/2026 20:33:13"
+          }
+        ],
+        "note": "Claude judges which diffs are true errors vs legitimate; raw_match_ratio is plain string inequality across the sample, NOT the final accuracy score."
+      },
+      "csv_check": {
+        "csv_columns": 16,
+        "json_leaf_paths": 17,
+        "nested_paths_at_risk": [],
+        "likely_lost_in_csv": [],
+        "nested_data_lost": false,
+        "note": "CSV is an export round-trip check only (model §10); dropped nested data = usability ding, not a schema score"
+      }
+    },
+    {
+      "name": "dataforseo",
+      "is_api": false,
+      "is_baseline": false,
+      "completeness": {
+        "records_returned": 999,
+        "records_expected": 800,
+        "ratio": 1.2488,
+        "score": 10.0
+      },
+      "breadth_cardinality": {
+        "breadth_ratio": 0.625,
+        "cardinality_ratio": null,
+        "breadth_score": 6.2,
+        "cardinality_score": null,
+        "combined": 6.2,
+        "cardinality_detail": {},
+        "cardinality_note": "cardinality dropped: large capture gap makes element counts incomparable (accrual over time)"
+      },
+      "fill_rate": {
+        "mean_fill": 0.6116,
+        "score": 6.1,
+        "fields_measured": 16,
+        "per_field": {
+          "rating": 1.0,
+          "review_title": 1.0,
+          "review_text": 1.0,
+          "review_date": 1.0,
+          "experience_date": 0.0,
+          "review_url": 1.0,
+          "language": 1.0,
+          "review_verified": 1.0,
+          "author_name": 1.0,
+          "author_id": 0.0,
+          "author_country": 0.0,
+          "author_review_count": 0.0,
+          "helpful_votes": 0.0,
+          "review_source": 0.0,
+          "owner_reply_text": 0.8929,
+          "owner_reply_date": 0.8929
+        }
+      },
+      "consistency": {
+        "score": null,
+        "note": "N/A - need >=2 rerun files",
+        "available": false
+      },
+      "normalization_prechecks": {
+        "numeric_as_string": [],
+        "non_iso_dates": [],
+        "currency_glued": [],
+        "html_in_text": [],
+        "whitespace_junk": [],
+        "na_strings": []
+      },
+      "accuracy_diffs": {
+        "sampled_records": 28,
+        "overlap_available": 28,
+        "fields_compared": 224,
+        "mismatches": 29,
+        "raw_match_ratio": 0.8705,
+        "mismatch_by_field": {
+          "review_date": 28,
+          "review_text": 1
+        },
+        "stable_only": true,
+        "skipped_volatile_fields": [
+          "owner_reply_date",
+          "owner_reply_text"
+        ],
+        "diffs": [
+          {
+            "id": "6a5a8aaa04f6affba941cc58",
+            "field": "review_date",
+            "baseline": "2026-07-17T22:03:54.000Z",
+            "dataforseo": "2026-07-17 22:03:54 +00:00"
+          },
+          {
+            "id": "6a5aea75cd762c01d79a175e",
+            "field": "review_date",
+            "baseline": "2026-07-18T04:52:37.000Z",
+            "dataforseo": "2026-07-18 04:52:37 +00:00"
+          },
+          {
+            "id": "6a5b16cd55b1863edba2fdc1",
+            "field": "review_date",
+            "baseline": "2026-07-18T08:02:01.000Z",
+            "dataforseo": "2026-07-18 08:02:01 +00:00"
+          },
+          {
+            "id": "6a5b58ceeaa7e439f8b7c545",
+            "field": "review_date",
+            "baseline": "2026-07-18T12:43:26.000Z",
+            "dataforseo": "2026-07-18 12:43:26 +00:00"
+          },
+          {
+            "id": "6a5b7fb46719bb274ce36754",
+            "field": "review_date",
+            "baseline": "2026-07-18T15:29:24.000Z",
+            "dataforseo": "2026-07-18 15:29:24 +00:00"
+          },
+          {
+            "id": "6a5b91da3e2a32658e6e3bc3",
+            "field": "review_date",
+            "baseline": "2026-07-18T16:46:50.000Z",
+            "dataforseo": "2026-07-18 16:46:50 +00:00"
+          },
+          {
+            "id": "6a5b94f2c2b8497973543950",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:00:03.000Z",
+            "dataforseo": "2026-07-18 17:00:03 +00:00"
+          },
+          {
+            "id": "6a5b9cb4141a4917a3e06ba4",
+            "field": "review_date",
+            "baseline": "2026-07-18T17:33:08.000Z",
+            "dataforseo": "2026-07-18 17:33:08 +00:00"
+          },
+          {
+            "id": "6a5bdea27c34abb97d16c700",
+            "field": "review_date",
+            "baseline": "2026-07-18T22:14:26.000Z",
+            "dataforseo": "2026-07-18 22:14:26 +00:00"
+          },
+          {
+            "id": "6a5beffa42a77a9273150c12",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:28:26.000Z",
+            "dataforseo": "2026-07-18 23:28:26 +00:00"
+          },
+          {
+            "id": "6a5bf05ec5b78d69f38175db",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:30:06.000Z",
+            "dataforseo": "2026-07-18 23:30:06 +00:00"
+          },
+          {
+            "id": "6a5bf3ead6591756106bc0a1",
+            "field": "review_date",
+            "baseline": "2026-07-18T23:45:14.000Z",
+            "dataforseo": "2026-07-18 23:45:14 +00:00"
+          },
+          {
+            "id": "6a5c542a7653275b3e2ec634",
+            "field": "review_date",
+            "baseline": "2026-07-19T06:35:54.000Z",
+            "dataforseo": "2026-07-19 06:35:54 +00:00"
+          },
+          {
+            "id": "6a5cab8d85e642126e019333",
+            "field": "review_date",
+            "baseline": "2026-07-19T12:48:45.000Z",
+            "dataforseo": "2026-07-19 12:48:45 +00:00"
+          },
+          {
+            "id": "6a5d1869846f790c24081132",
+            "field": "review_date",
+            "baseline": "2026-07-19T20:33:13.000Z",
+            "dataforseo": "2026-07-19 20:33:13 +00:00"
+          }
+        ],
+        "note": "Claude judges which diffs are true errors vs legitimate; raw_match_ratio is plain string inequality across the sample, NOT the final accuracy score."
+      },
+      "csv_check": {
+        "csv_columns": 15,
+        "json_leaf_paths": 18,
+        "nested_paths_at_risk": [
+          "responses[].text",
+          "responses[].timestamp",
+          "responses[].title"
+        ],
+        "likely_lost_in_csv": [],
+        "nested_data_lost": false,
+        "note": "CSV is an export round-trip check only (model §10); dropped nested data = usability ding, not a schema score"
+      }
+    },
+    {
+      "name": "openwebninja",
+      "is_api": false,
+      "is_baseline": false,
+      "completeness": {
+        "records_returned": 1000,
+        "records_expected": 800,
+        "ratio": 1.25,
+        "score": 10.0
+      },
+      "breadth_cardinality": {
+        "breadth_ratio": 0.75,
+        "cardinality_ratio": null,
+        "breadth_score": 7.5,
+        "cardinality_score": null,
+        "combined": 7.5,
+        "cardinality_detail": {},
+        "cardinality_note": "cardinality dropped: large capture gap makes element counts incomparable (accrual over time)"
+      },
+      "fill_rate": {
+        "mean_fill": 0.7478,
+        "score": 7.5,
+        "fields_measured": 16,
+        "per_field": {
+          "rating": 1.0,
+          "review_title": 1.0,
+          "review_text": 1.0,
+          "review_date": 1.0,
+          "experience_date": 1.0,
+          "review_url": 0.0,
+          "language": 0.0,
+          "review_verified": 1.0,
+          "author_name": 1.0,
+          "author_id": 1.0,
+          "author_country": 1.0,
+          "author_review_count": 1.0,
+          "helpful_votes": 1.0,
+          "review_source": 0.0,
+          "owner_reply_text": 0.9643,
+          "owner_reply_date": 0.0
+        }
+      },
+      "consistency": {
+        "score": null,
+        "note": "N/A - need >=2 rerun files",
+        "available": false
+      },
+      "normalization_prechecks": {
+        "numeric_as_string": [],
+        "non_iso_dates": [],
+        "currency_glued": [],
+        "html_in_text": [],
+        "whitespace_junk": [],
+        "na_strings": []
+      },
+      "accuracy_diffs": {
+        "sampled_records": 28,
+        "overlap_available": 28,
+        "fields_compared": 252,
+        "mismatches": 1,
+        "raw_match_ratio": 0.996,
+        "mismatch_by_field": {
+          "review_text": 1
+        },
+        "stable_only": true,
+        "skipped_volatile_fields": [
+          "author_review_count",
+          "helpful_votes",
+          "owner_reply_text"
+        ],
+        "diffs": [
+          {
+            "id": "6a5dff5005787bcb0a46270e",
+            "field": "review_text",
+            "baseline": "Once again I have tried to get an answer regarding my withdrawal that shien have",
+            "openwebninja": "Once again I have tried to get an answer regarding my withdrawal that shien have"
+          }
+        ],
+        "note": "Claude judges which diffs are true errors vs legitimate; raw_match_ratio is plain string inequality across the sample, NOT the final accuracy score."
+      },
+      "csv_check": {
+        "csv_columns": 17,
+        "json_leaf_paths": 18,
+        "nested_paths_at_risk": [],
+        "likely_lost_in_csv": [],
+        "nested_data_lost": false,
+        "note": "CSV is an export round-trip check only (model §10); dropped nested data = usability ding, not a schema score"
+      }
+    }
+  ],
+  "suggested_field_map": null,
+  "warnings": [
+    "capture gap 191.1h (LARGE): accuracy scoped to stable fields; completeness, cardinality and freshness demoted to N/A and reweighted. The later scraper is favored by data accrual -- verify the baseline was NOT chosen on record count, and consider reconstructing the overlap set on records that existed at the earlier capture (model §3b).",
+    "baseline auto-selected: 'apify' (most fields). Disclose + spot-check it before publishing."
+  ]
+}

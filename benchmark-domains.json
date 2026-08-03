@@ -1,0 +1,32 @@
+[
+  {
+    "business_name": "The Pearl Source",
+    "domain": "www.thepearlsource.com",
+    "target_reviews": 200,
+    "ground_truth_file": "ground-truth/thepearlsource-sample.json"
+  },
+  {
+    "business_name": "SHEIN",
+    "domain": "www.shein.com",
+    "target_reviews": 200,
+    "ground_truth_file": null
+  },
+  {
+    "business_name": "Temu",
+    "domain": "temu.com",
+    "target_reviews": 200,
+    "ground_truth_file": null
+  },
+  {
+    "business_name": "AliExpress",
+    "domain": "www.aliexpress.com",
+    "target_reviews": 200,
+    "ground_truth_file": null
+  },
+  {
+    "business_name": "Halara",
+    "domain": "thehalara.com",
+    "target_reviews": 200,
+    "ground_truth_file": null
+  }
+]

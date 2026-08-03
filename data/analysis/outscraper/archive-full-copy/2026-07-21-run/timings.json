@@ -1,0 +1,632 @@
+{
+  "benchmark_start": "2026-07-21T13:19:19.051Z",
+  "benchmark_end": "2026-07-21T13:27:51.648Z",
+  "wall_clock_ms": 512595,
+  "per_request": [
+    {
+      "phase": "submit",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 4124,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 883,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1944,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 960,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 905,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1468,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1225,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1202,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1136,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1116,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1909,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1275,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1103,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1946,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1086,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 959,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1509,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 2141,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1200,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 908,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1395,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1853,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 843,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 924,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1088,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1169,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1838,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1626,
+      "attempts": 1
+    },
+    {
+      "phase": "submit",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 2591,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 399,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1040,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1946,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 878,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 894,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 942,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1848,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 891,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 877,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1338,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1943,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1217,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1194,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1920,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1882,
+      "attempts": 1
+    },
+    {
+      "phase": "submit",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1792,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 220,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1823,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1875,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 944,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 817,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1982,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 896,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 888,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 975,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1279,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1021,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1874,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1538,
+      "attempts": 1
+    },
+    {
+      "phase": "submit",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1524,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 200,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1439,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1271,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1244,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1850,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 862,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 895,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1097,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 822,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 996,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 938,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1180,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1096,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1157,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 1513,
+      "attempts": 1
+    },
+    {
+      "phase": "submit",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 2067,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 280,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 881,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 830,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 816,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1140,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1227,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1328,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1937,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 944,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1938,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 915,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 922,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1958,
+      "attempts": 1
+    },
+    {
+      "phase": "poll",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 1119,
+      "attempts": 1
+    }
+  ],
+  "median_latency_ms": 1169,
+  "p95_latency_ms": 1982
+}

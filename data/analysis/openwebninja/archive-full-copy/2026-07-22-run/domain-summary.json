@@ -1,0 +1,282 @@
+{
+  "generated_at": "2026-07-22T08:32:34.171Z",
+  "label": "full",
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 1000,
+    "valid_records": 1000,
+    "unique_valid_reviews": 1000,
+    "duplicate_records": 0,
+    "domains_with_shortfall": [],
+    "overall_success_rate_percent": 100,
+    "total_requests_made": 50,
+    "outcome": "completed"
+  },
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "pages_fetched": 10,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "raw_count": 20
+        },
+        {
+          "page": 2,
+          "raw_count": 20
+        },
+        {
+          "page": 3,
+          "raw_count": 20
+        },
+        {
+          "page": 4,
+          "raw_count": 20
+        },
+        {
+          "page": 5,
+          "raw_count": 20
+        },
+        {
+          "page": 6,
+          "raw_count": 20
+        },
+        {
+          "page": 7,
+          "raw_count": 20
+        },
+        {
+          "page": 8,
+          "raw_count": 20
+        },
+        {
+          "page": 9,
+          "raw_count": 20
+        },
+        {
+          "page": 10,
+          "raw_count": 20
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "pages_fetched": 10,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "raw_count": 20
+        },
+        {
+          "page": 2,
+          "raw_count": 20
+        },
+        {
+          "page": 3,
+          "raw_count": 20
+        },
+        {
+          "page": 4,
+          "raw_count": 20
+        },
+        {
+          "page": 5,
+          "raw_count": 20
+        },
+        {
+          "page": 6,
+          "raw_count": 20
+        },
+        {
+          "page": 7,
+          "raw_count": 20
+        },
+        {
+          "page": 8,
+          "raw_count": 20
+        },
+        {
+          "page": 9,
+          "raw_count": 20
+        },
+        {
+          "page": 10,
+          "raw_count": 20
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "pages_fetched": 10,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "raw_count": 20
+        },
+        {
+          "page": 2,
+          "raw_count": 20
+        },
+        {
+          "page": 3,
+          "raw_count": 20
+        },
+        {
+          "page": 4,
+          "raw_count": 20
+        },
+        {
+          "page": 5,
+          "raw_count": 20
+        },
+        {
+          "page": 6,
+          "raw_count": 20
+        },
+        {
+          "page": 7,
+          "raw_count": 20
+        },
+        {
+          "page": 8,
+          "raw_count": 20
+        },
+        {
+          "page": 9,
+          "raw_count": 20
+        },
+        {
+          "page": 10,
+          "raw_count": 20
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "pages_fetched": 10,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "raw_count": 20
+        },
+        {
+          "page": 2,
+          "raw_count": 20
+        },
+        {
+          "page": 3,
+          "raw_count": 20
+        },
+        {
+          "page": 4,
+          "raw_count": 20
+        },
+        {
+          "page": 5,
+          "raw_count": 20
+        },
+        {
+          "page": 6,
+          "raw_count": 20
+        },
+        {
+          "page": 7,
+          "raw_count": 20
+        },
+        {
+          "page": 8,
+          "raw_count": 20
+        },
+        {
+          "page": 9,
+          "raw_count": 20
+        },
+        {
+          "page": 10,
+          "raw_count": 20
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "pages_fetched": 10,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "raw_count": 20
+        },
+        {
+          "page": 2,
+          "raw_count": 20
+        },
+        {
+          "page": 3,
+          "raw_count": 20
+        },
+        {
+          "page": 4,
+          "raw_count": 20
+        },
+        {
+          "page": 5,
+          "raw_count": 20
+        },
+        {
+          "page": 6,
+          "raw_count": 20
+        },
+        {
+          "page": 7,
+          "raw_count": 20
+        },
+        {
+          "page": 8,
+          "raw_count": 20
+        },
+        {
+          "page": 9,
+          "raw_count": 20
+        },
+        {
+          "page": 10,
+          "raw_count": 20
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "__doc__": "Annotated example for datacompare.py / the /datacompare command. Copy this into content/{articlefolder}/data/datacompare.config.json, drop each scraper's JSON (and optional CSV) beside it, then run: signals -> (judge) -> rollup -> docs. Strip these __doc__ / __*__ keys - they are ignored by the engine but keep the real file clean.",
+
+  "__outputs__": "signals.json / judgments.json / datacompare.json / datacompare_scores.md are the machine layer. docs then writes the vault files: {scraper}-data.txt, {scraper}-meaningful-data.txt, gaps.txt (factual skeleton), comparison.md (reference this from knowledge.md). Generated files carry a marker and are never clobbered if you hand-edit them; use docs --force to override.",
+
+  "target": "Platform + the exact listing/query used, per scraper. E.g. 'Yelp reviews - Sisterita, San Francisco (biz/sisterita-san-francisco)'.",
+
+  "platform": "Short label for the doc-file headers, e.g. 'Yelp reviews'. Optional; defaults to target.",
+
+  "mode": "full",
+  "skip_dimensions": [],
+  "__skip_dimensions__": "Optional. Dimensions to DROP from scoring entirely by choice (e.g. ['normalization']) - distinct from N/A (couldn't measure). Skipped dims don't appear in the scores table and their weight is renormalized over the survivors, exactly like an N/A dim. Use when a dimension is deemed irrelevant for a given comparison.",
+
+  "__mode__": "'full' = keys AND values (all 7 dimensions; needs alignable records + value verification). 'lite' = structure only (4 dimensions: fill, completeness, breadth+cardinality, consistency; drops accuracy/normalization/freshness). Pick ONE mode for the whole comparison. Never cross-rank full vs lite composites.",
+
+  "equivalence_level": "B",
+  "__equivalence_level__": "A = identical input, records align 1:1. B = same target, different input handle, records align on a stable id (note the difference). C = outputs can't be value-aligned -> use lite. D = no overlap set at all -> not a valid comparison, no scores.",
+
+  "baseline": "auto",
+  "__baseline__": "The de facto oracle = the most complete response. 'auto' picks the scraper with the most field paths. Disclose it and spot-check it (full mode) before publishing. Its fill rate + breadth are ~10 by definition.",
+
+  "verdict": "Optional one-line editorial conclusion rendered as a blockquote at the top of comparison.md. Use it when the composite ranking needs human framing (e.g. a near-tie the numbers alone don't convey, or when neither tool is a strict superset). Omit to leave comparison.md numbers-only.",
+
+  "id_field": "review_id",
+  "__id_field__": "Default stable id used to align records into the overlap set. Override per scraper below when the key name differs.",
+
+  "common_record_id": "2jnsqL0OK2Qa6Egktjzwog",
+  "__common_record_id__": "The id (in id_field terms) of ONE record present in all outputs, deliberately chosen to be data-rich (many reviews/images/variants). A sparse record hides the differences. Carries breadth + cardinality (+ normalization in full mode). Accuracy does NOT score here - it runs on a sample of overlap records (model §8.4). A scraper missing this record is excluded from the depth dimensions, never silently swapped to a different record.",
+
+  "accuracy_sample_size": 40,
+  "__accuracy_sample_size__": "Full mode: how many matched overlap records the accuracy diff samples (engine default 40, model §8.4). Deterministic - the first N of the sorted overlap ids, so reruns reproduce.",
+
+  "volatile_fields": [],
+  "__volatile_fields__": "Canonical field names whose values move over time (helpful votes, aggregate rating, price, availability). Under a capture-time gap (model §3b) these are excluded from accuracy - a mismatch there may just be the world changing between captures. Also settable per-field with 'volatile': true in the fields map; the two sources are unioned.",
+
+  "records_expected": null,
+  "__records_expected__": "Denominator for completeness. null = use the baseline's record count.",
+
+  "exclude_paths": ["id", "object", "squid", "run", "functions", "native_id", "scraping_time"],
+  "__exclude_paths__": "Plumbing stripped from breadth + fill: internal IDs, run/job metadata, listing data duplicated onto every row. Matched by leaf name (case/underscore/space-insensitive). Raw column counts lie - strip the plumbing.",
+
+  "genuine_null_fields": [],
+  "__genuine_null_fields__": "Canonical fields that are null in ALL scrapers AND absent on the live record -> dropped from fill/completeness denominators (model §10). A field null in one scraper but present in another is a real miss - do NOT list it here.",
+
+  "scrapers": [
+    {
+      "name": "lobstr",
+      "json": "lobstr.json",
+      "records_path": "data",
+      "id_field": "review_id",
+      "csv": "lobstr.csv",
+      "reruns": ["lobstr.run1.json", "lobstr.run2.json", "lobstr.run3.json"],
+      "is_api": false,
+      "captured_at": "2026-06-06T14:30:00Z",
+      "__records_path__": "Dotted path to the records array when the JSON wraps it (e.g. 'data'). Omit if the file is already a top-level array; the engine auto-detects common wrappers.",
+      "__csv__": "Optional. Used ONLY for the export round-trip check (does the CSV reproduce the JSON without dropping nested data).",
+      "__reruns__": "Optional. 3x outputs of the SAME request, for the consistency dimension. Omit -> consistency is N/A and reweighted out.",
+      "__is_api__": "Set true for a scraper-vs-official-API comparison to mark the API output.",
+      "__captured_at__": "Optional, ISO 8601 run time - set it whenever runs were staggered, on >=2 scrapers or the gap counts as unknown. The gap picks the timing tier (model §3b): <=1h negligible / <=48h moderate (accuracy scoped to stable fields) / >48h large (completeness, cardinality, freshness demoted to N/A and reweighted - the later run accrues data)."
+    },
+    { "name": "outscraper", "json": "outscraper.json", "id_field": "review_id" },
+    { "name": "apify", "json": "apify.json", "id_field": "id" }
+  ],
+
+  "fields": [
+    {
+      "canonical": "review_text",
+      "paths": { "lobstr": "text", "outscraper": "review_text", "apify": "text" },
+      "__paths__": "Each scraper's key path for this one logical field (null if the scraper lacks it -> counts against its breadth + fill). Use [] for arrays and dots for nesting, e.g. 'ratingDetail.overall' or 'photoUrls[]'. Required for full-mode fill rate / accuracy / normalization because field names differ across scrapers."
+    },
+    { "canonical": "rating", "paths": { "lobstr": "rating", "outscraper": "review_rating", "apify": "rating" } },
+    { "canonical": "user_name", "paths": { "lobstr": "user_name", "outscraper": "author_title", "apify": "reviewerName" } },
+    { "canonical": "business_address", "paths": { "lobstr": null, "outscraper": null, "apify": "businessAddress" } },
+    {
+      "canonical": "photos",
+      "collection": true,
+      "paths": { "lobstr": "photos[]", "outscraper": "review_photos[]", "apify": "photoUrls[]" },
+      "__collection__": "Mark repeated collections true so they feed the cardinality metric (how many elements per record), not just breadth."
+    }
+  ],
+  "__fields__": "The canonical field universe = your field-audit matrix, as config. Omit this block to run structure-only + get an auto-suggested map in signals.json that you review and paste back here. Mark a field 'volatile': true when its value moves over time - equivalent to listing its canonical name in volatile_fields."
+}

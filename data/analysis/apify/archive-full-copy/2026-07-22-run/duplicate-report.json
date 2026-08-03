@@ -1,0 +1,28 @@
+{
+  "total_duplicates": 2,
+  "by_domain": {
+    "thehalara.com": 1,
+    "www.aliexpress.com": 1
+  },
+  "by_key_type": {
+    "native_id": 2
+  },
+  "entries": [
+    {
+      "domain": "thehalara.com",
+      "key": "id:6a6035c10a3d5590d5848282",
+      "keyType": "native_id",
+      "firstSeenDomain": "thehalara.com",
+      "review_title": "I find the website not exactly user…",
+      "timestamp": "2026-07-22T05:15:13.000Z"
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "key": "id:6a5f14a6214fc8a68da1b69b",
+      "keyType": "native_id",
+      "firstSeenDomain": "www.aliexpress.com",
+      "review_title": "They are protecting their scammer…",
+      "timestamp": "2026-07-21T08:41:42.000Z"
+    }
+  ]
+}

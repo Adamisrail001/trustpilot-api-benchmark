@@ -1,0 +1,32 @@
+[
+  {
+    "domain": "www.thepearlsource.com",
+    "pages_fetched": 0,
+    "pagination_detail": [],
+    "stop_reason": "fetch_failed"
+  },
+  {
+    "domain": "www.shein.com",
+    "pages_fetched": 0,
+    "pagination_detail": [],
+    "stop_reason": "fetch_failed"
+  },
+  {
+    "domain": "temu.com",
+    "pages_fetched": 0,
+    "pagination_detail": [],
+    "stop_reason": "fetch_failed"
+  },
+  {
+    "domain": "www.aliexpress.com",
+    "pages_fetched": 0,
+    "pagination_detail": [],
+    "stop_reason": "fetch_failed"
+  },
+  {
+    "domain": "thehalara.com",
+    "pages_fetched": 0,
+    "pagination_detail": [],
+    "stop_reason": "fetch_failed"
+  }
+]

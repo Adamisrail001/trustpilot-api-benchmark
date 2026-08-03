@@ -1,0 +1,7 @@
+{
+  "total_duplicates": 0,
+  "by_domain": {},
+  "by_key_type": {},
+  "entries": [],
+  "note": "No reviews were retrieved this run (blocked before task/Run creation), so there is nothing to deduplicate. This is not a data-quality finding."
+}

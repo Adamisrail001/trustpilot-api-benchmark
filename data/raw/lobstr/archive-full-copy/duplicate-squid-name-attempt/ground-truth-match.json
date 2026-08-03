@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "generated_at": "2026-07-22T12:09:00.000Z",
+    "ground_truth_rows": 20,
+    "matched_rows": 0,
+    "unmatched_rows": 20,
+    "api_items_available": 0,
+    "field_accuracy": [],
+    "note": "Ground-truth comparison could not be performed - zero reviews were retrieved for www.thepearlsource.com this attempt (blocked at squid configuration before any task or Run was created)."
+  },
+  "rows": []
+}

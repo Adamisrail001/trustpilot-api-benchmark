@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-07-22T08:32:34.172Z",
+  "label": "full",
+  "total_requests_made": 50,
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "stop_reason": "target_reached",
+      "pages_fetched": 10
+    },
+    {
+      "domain": "www.shein.com",
+      "stop_reason": "target_reached",
+      "pages_fetched": 10
+    },
+    {
+      "domain": "temu.com",
+      "stop_reason": "target_reached",
+      "pages_fetched": 10
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "stop_reason": "target_reached",
+      "pages_fetched": 10
+    },
+    {
+      "domain": "thehalara.com",
+      "stop_reason": "target_reached",
+      "pages_fetched": 10
+    }
+  ]
+}

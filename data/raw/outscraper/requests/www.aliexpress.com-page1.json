@@ -1,0 +1,15 @@
+{
+  "domain": "www.aliexpress.com",
+  "page": 1,
+  "skip": 0,
+  "limit": 200,
+  "requested_at": "2026-07-29T08:02:55.065Z",
+  "request_url": "https://api.outscraper.com/trustpilot-reviews?query=www.aliexpress.com&limit=200&skip=0&languages=all&sort=recency&async=true",
+  "latency_ms": 1156,
+  "attempts": 1,
+  "response": {
+    "status": "Pending",
+    "id": "a-61914e71-07b2-4a5f-ac61-b395f9b4f0e3",
+    "results_location": "https://api.outscraper.cloud/requests/a-61914e71-07b2-4a5f-ac61-b395f9b4f0e3"
+  }
+}

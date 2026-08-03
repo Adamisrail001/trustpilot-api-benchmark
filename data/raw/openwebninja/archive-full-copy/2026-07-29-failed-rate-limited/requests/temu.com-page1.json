@@ -1,0 +1,10 @@
+{
+  "domain": "temu.com",
+  "page": 1,
+  "requested_at": "2026-07-29T08:25:20.970Z",
+  "request_url": "https://api.openwebninja.com/trustpilot-company-and-reviews/company-reviews?company_domain=temu.com&page=1&sort=recency",
+  "latency_ms": 1202,
+  "attempts": 4,
+  "ok": false,
+  "status": 429
+}

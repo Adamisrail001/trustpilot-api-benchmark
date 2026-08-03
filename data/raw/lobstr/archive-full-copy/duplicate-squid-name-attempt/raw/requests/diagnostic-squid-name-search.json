@@ -1,0 +1,196 @@
+{
+  "checked_at": "2026-07-22T12:06:11.263Z",
+  "purpose": "diagnose DuplicateSquid 400 error - find which squid holds the conflicting name",
+  "response": {
+    "total_results": 2,
+    "limit": 20,
+    "page": 1,
+    "total_pages": 1,
+    "result_from": 1,
+    "result_to": 3,
+    "data": [
+      {
+        "id": "8d9e0b80d6d2481283c138104caf022d",
+        "created_at": "2026-07-22T06:55:16Z",
+        "name": "Trustpilot API Benchmark - Lobstr (dedicated)",
+        "is_ready": true,
+        "is_active": true,
+        "concurrency": 1,
+        "params": {
+          "stars": "all",
+          "search": null,
+          "topics": null,
+          "replies": false,
+          "language": "All languages",
+          "verified": false,
+          "hours_back": null,
+          "start_page": 1,
+          "fetch_since": null,
+          "max_results": 200,
+          "fetch_since_timezone": null,
+          "max_unique_results_per_run": 1000
+        },
+        "ui_state": {},
+        "ip_strategy": null,
+        "email": null,
+        "schedule_time": null,
+        "no_line_breaks": false,
+        "export_runs": true,
+        "export_unique_results": false,
+        "notifications_activation_date": "2026-07-22T06:55:16Z",
+        "notifications": false,
+        "notifications_params": {
+          "run_notify": null
+        },
+        "to_complete": true,
+        "external_launch": false,
+        "auto_verify_emails": false,
+        "deactivation_reason": null,
+        "message": null,
+        "google_sheet_fields": {
+          "url": null,
+          "append": false,
+          "is_active": false
+        },
+        "ftp_fields": {
+          "host": null,
+          "port": null,
+          "password": null,
+          "username": null,
+          "directory": null,
+          "is_active": false
+        },
+        "slack_fields": {
+          "token": null,
+          "is_active": false,
+          "channel_id": null
+        },
+        "webhook_fields": {
+          "url": null,
+          "retry": false,
+          "events": {
+            "run.done": true,
+            "run.error": false,
+            "run.paused": false,
+            "run.running": false
+          },
+          "is_active": false
+        },
+        "s3_fields": {
+          "bucket": null,
+          "is_active": false,
+          "target_path": null,
+          "aws_access_key": null,
+          "aws_secret_key": null
+        },
+        "schedule": null,
+        "icon": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj4NCiAgPGcgaWQ9Imljb25fdHJ1c3RwaWxvdF9yZXZpZXdzX3NjcmFwZXIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03MjggLTM3MzEpIj4NCiAgICA8cmVjdCBpZD0i0J/RgNGP0LzQvtGD0LPQvtC70YzQvdC40LpfOTMwMiIgZGF0YS1uYW1lPSLQn9GA0Y/QvNC+0YPQs9C+0LvRjNC90LjQuiA5MzAyIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MjggMzczMSkiIGZpbGw9IiMwYmRiOTAiLz4NCiAgICA8ZyBpZD0icG9pbnRlZC1zdGFyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MzYgMzcyOS43MTEpIj4NCiAgICAgIDxwYXRoIGlkPSLQmtC+0L3RgtGD0YBfNzE2MzgiIGRhdGEtbmFtZT0i0JrQvtC90YLRg9GAIDcxNjM4IiBkPSJNMTUuMzcyLDE4LjUwN2EuNy43LDAsMCwxLS42MjktLjQ1N2wtMi42LTcuOTg3Yy0uMDgyLS4yNTItLjIxNS0uMjUyLS4zLDBMOS4yNTcsMTguMDVhLjcuNywwLDAsMS0uNjI5LjQ1N0guMjI5Yy0uMjY1LDAtLjMwNi4xMjYtLjA5Mi4yODJsNi43OTQsNC45MzZhLjcuNywwLDAsMSwuMjQuNzM5TDQuNTc3LDMyLjQ1MWMtLjA4Mi4yNTIuMDI1LjMzLjI0LjE3NGw2Ljc5NC00LjkzNmEuNy43LDAsMCwxLC43NzcsMGw2Ljc5NCw0LjkzNmMuMjE1LjE1Ni4zMjIuMDc4LjI0LS4xNzRsLTIuNTk1LTcuOTg3YS43LjcsMCwwLDEsLjI0LS43MzlsNi43OTQtNC45MzZjLjIxNS0uMTU2LjE3My0uMjgyLS4wOTItLjI4MmgtOC40WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSIgZmlsbD0iIzA5MzAyMyIvPg0KICAgIDwvZz4NCiAgPC9nPg0KPC9zdmc+DQo=",
+        "crawler": "b3362ab52c6fab3d8897af79cbba380e",
+        "module_has_issues": false,
+        "last_run_status": null,
+        "crawler_name": "Trustpilot Reviews Scraper",
+        "total_runs": 0,
+        "next_launch_at": null,
+        "last_run": null,
+        "last_run_at": null,
+        "last_run_done_reason": null,
+        "last_run_done_reason_desc": null,
+        "last_run_is_done": null,
+        "last_run_limited_accounts": [],
+        "is_public": true
+      },
+      {
+        "id": "5644e83e28ce412c9370da2bc46fcd31",
+        "created_at": "2026-07-17T12:06:35Z",
+        "name": "Trustpilot API Benchmark - Lobstr",
+        "is_ready": true,
+        "is_active": true,
+        "concurrency": 1,
+        "params": {
+          "stars": "all",
+          "search": null,
+          "topics": null,
+          "replies": false,
+          "language": "All languages",
+          "verified": false,
+          "hours_back": null,
+          "start_page": 1,
+          "fetch_since": null,
+          "max_results": 200,
+          "fetch_since_timezone": null,
+          "max_unique_results_per_run": 20
+        },
+        "ui_state": {},
+        "ip_strategy": null,
+        "email": null,
+        "schedule_time": null,
+        "no_line_breaks": false,
+        "export_runs": true,
+        "export_unique_results": false,
+        "notifications_activation_date": "2026-07-17T12:06:35Z",
+        "notifications": false,
+        "notifications_params": {
+          "run_notify": null
+        },
+        "to_complete": true,
+        "external_launch": false,
+        "auto_verify_emails": false,
+        "deactivation_reason": null,
+        "message": "Task execution complete",
+        "google_sheet_fields": {
+          "url": null,
+          "append": false,
+          "is_active": false
+        },
+        "ftp_fields": {
+          "host": null,
+          "port": null,
+          "password": null,
+          "username": null,
+          "directory": null,
+          "is_active": false
+        },
+        "slack_fields": {
+          "token": null,
+          "is_active": false,
+          "channel_id": null
+        },
+        "webhook_fields": {
+          "url": null,
+          "retry": false,
+          "events": {
+            "run.done": true,
+            "run.error": false,
+            "run.paused": false,
+            "run.running": false
+          },
+          "is_active": false
+        },
+        "s3_fields": {
+          "bucket": null,
+          "is_active": false,
+          "target_path": null,
+          "aws_access_key": null,
+          "aws_secret_key": null
+        },
+        "schedule": null,
+        "icon": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj4NCiAgPGcgaWQ9Imljb25fdHJ1c3RwaWxvdF9yZXZpZXdzX3NjcmFwZXIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03MjggLTM3MzEpIj4NCiAgICA8cmVjdCBpZD0i0J/RgNGP0LzQvtGD0LPQvtC70YzQvdC40LpfOTMwMiIgZGF0YS1uYW1lPSLQn9GA0Y/QvNC+0YPQs9C+0LvRjNC90LjQuiA5MzAyIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MjggMzczMSkiIGZpbGw9IiMwYmRiOTAiLz4NCiAgICA8ZyBpZD0icG9pbnRlZC1zdGFyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3MzYgMzcyOS43MTEpIj4NCiAgICAgIDxwYXRoIGlkPSLQmtC+0L3RgtGD0YBfNzE2MzgiIGRhdGEtbmFtZT0i0JrQvtC90YLRg9GAIDcxNjM4IiBkPSJNMTUuMzcyLDE4LjUwN2EuNy43LDAsMCwxLS42MjktLjQ1N2wtMi42LTcuOTg3Yy0uMDgyLS4yNTItLjIxNS0uMjUyLS4zLDBMOS4yNTcsMTguMDVhLjcuNywwLDAsMS0uNjI5LjQ1N0guMjI5Yy0uMjY1LDAtLjMwNi4xMjYtLjA5Mi4yODJsNi43OTQsNC45MzZhLjcuNywwLDAsMSwuMjQuNzM5TDQuNTc3LDMyLjQ1MWMtLjA4Mi4yNTIuMDI1LjMzLjI0LjE3NGw2Ljc5NC00LjkzNmEuNy43LDAsMCwxLC43NzcsMGw2Ljc5NCw0LjkzNmMuMjE1LjE1Ni4zMjIuMDc4LjI0LS4xNzRsLTIuNTk1LTcuOTg3YS43LjcsMCwwLDEsLjI0LS43MzlsNi43OTQtNC45MzZjLjIxNS0uMTU2LjE3My0uMjgyLS4wOTItLjI4MmgtOC40WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSIgZmlsbD0iIzA5MzAyMyIvPg0KICAgIDwvZz4NCiAgPC9nPg0KPC9zdmc+DQo=",
+        "crawler": "b3362ab52c6fab3d8897af79cbba380e",
+        "module_has_issues": false,
+        "last_run_status": "DONE",
+        "crawler_name": "Trustpilot Reviews Scraper",
+        "total_runs": 3,
+        "next_launch_at": null,
+        "last_run": "4ce3f4de36c84ff3a850361c0d2f4df6",
+        "last_run_at": "2026-07-22T06:36:26.466823",
+        "last_run_done_reason": "tasks_done",
+        "last_run_done_reason_desc": null,
+        "last_run_is_done": true,
+        "last_run_limited_accounts": [],
+        "is_public": true
+      }
+    ],
+    "next": null,
+    "previous": null
+  }
+}

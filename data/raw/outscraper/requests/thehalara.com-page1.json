@@ -1,0 +1,15 @@
+{
+  "domain": "thehalara.com",
+  "page": 1,
+  "skip": 0,
+  "limit": 200,
+  "requested_at": "2026-07-29T08:04:23.952Z",
+  "request_url": "https://api.outscraper.com/trustpilot-reviews?query=thehalara.com&limit=200&skip=0&languages=all&sort=recency&async=true",
+  "latency_ms": 2078,
+  "attempts": 1,
+  "response": {
+    "status": "Pending",
+    "id": "a-bf5d33ca-a854-4ea9-ba9f-68140d22945a",
+    "results_location": "https://api.outscraper.cloud/requests/a-bf5d33ca-a854-4ea9-ba9f-68140d22945a"
+  }
+}

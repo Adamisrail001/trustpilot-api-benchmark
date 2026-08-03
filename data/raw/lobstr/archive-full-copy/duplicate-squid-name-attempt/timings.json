@@ -1,0 +1,15 @@
+{
+  "benchmark_start": "2026-07-22T12:04:44.000Z",
+  "benchmark_end": "2026-07-22T12:04:45.157Z",
+  "wall_clock_ms": 1157,
+  "per_request": [
+    { "phase": "update_squid", "ms": 238, "attempts": 1, "status": 400, "note": "the only call with directly measured/saved latency this run" }
+  ],
+  "min_latency_ms": 238,
+  "max_latency_ms": 238,
+  "avg_latency_ms": 238,
+  "median_latency_ms": 238,
+  "p95_latency_ms": 238,
+  "reviews_per_minute": 0,
+  "note": "Only one API call (the failed update_squid) had its latency captured and saved by the orchestrator before the run aborted. The crawler-reuse check (env-only, no network call), the squid-details GET, and the two post-failure diagnostic calls (listSquids name search, getBalance) were not instrumented for latency in this run - their timing is Pending, not invented as an average/median across a data set of one real measurement would be misleading to imply."
+}

@@ -1,0 +1,1472 @@
+[
+  {
+    "loggedAt": "2026-07-29T08:20:33.412Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 1671,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "5e9ee9c0-0548-4645-bac8-542aeb7cf61d",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:35.205Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 781,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "461e9a82-6fd7-49e4-b199-031340a50728",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:38.086Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 875,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "8d9f3e5f-b762-4991-92ff-cca589366df4",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:42.856Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 765,
+    "body": {
+      "status": "ERROR",
+      "request_id": "be5d48b6-84a6-4453-85ac-967fa9482956",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:42.857Z",
+    "type": "page_fetch_failed",
+    "domain": "www.thepearlsource.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "be5d48b6-84a6-4453-85ac-967fa9482956",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:44.569Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 1359,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "c8a67c2b-fb09-42ed-9196-e13f24945c00",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:46.228Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "52df3f15-7621-4d83-b42c-35d86b24b028",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:49.368Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1140,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "10b22db8-b10b-4afd-8188-1675a2f44eb6",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:54.373Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1000,
+    "body": {
+      "status": "ERROR",
+      "request_id": "b1da9503-f6f4-4a59-9315-735e7a64f3e9",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:54.380Z",
+    "type": "page_fetch_failed",
+    "domain": "www.shein.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "b1da9503-f6f4-4a59-9315-735e7a64f3e9",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:55.747Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 1015,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "f4c4eff9-950f-4cbe-8089-c4900ebdbce1",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:20:57.447Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 686,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "daf668b8-3fbd-41e8-aa0d-b75fc1d49dcc",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:00.500Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1047,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "405f1cd6-c493-4dd9-a0ee-44f859e8f5b5",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:06.744Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 2234,
+    "body": {
+      "status": "ERROR",
+      "request_id": "80e8e26d-d02d-414b-93bc-066fbce4f4ae",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:06.746Z",
+    "type": "page_fetch_failed",
+    "domain": "temu.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "80e8e26d-d02d-414b-93bc-066fbce4f4ae",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:07.750Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 640,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "8fc280ab-6d55-412f-81fa-501ace3d683d",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:09.388Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 640,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "6e7233a2-a545-45e6-9d8b-06462594649c",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:13.264Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1875,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "7dfd3c0a-7085-4890-af2e-27f628582c4e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:18.584Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1327,
+    "body": {
+      "status": "ERROR",
+      "request_id": "418933e0-8243-48f3-9334-5fecc5159177",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:18.586Z",
+    "type": "page_fetch_failed",
+    "domain": "www.aliexpress.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "418933e0-8243-48f3-9334-5fecc5159177",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:19.589Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 655,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "1de78a12-4586-40bc-85f4-277d05d21d5b",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:21.261Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 672,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "6a7baa93-0f05-4844-9ed9-7e876f8cc8f0",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:24.144Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 890,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "dded6d2f-e17e-487e-971c-7670b4cdfc27",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:29.712Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1561,
+    "body": {
+      "status": "ERROR",
+      "request_id": "6bb051e2-57d9-41e0-92e6-d78d3798e96a",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:21:29.720Z",
+    "type": "page_fetch_failed",
+    "domain": "thehalara.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "6bb051e2-57d9-41e0-92e6-d78d3798e96a",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:47.910Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 2531,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "1f4e8f8e-bf99-4a98-b38e-8a2093efc7a3",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:49.557Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 641,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "9d0bd57c-76fa-49b2-9c17-f9d1f2f5c26e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:52.499Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 922,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "5afdba1f-ce5f-4de5-8076-afcbf6893e7d",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:57.533Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1031,
+    "body": {
+      "status": "ERROR",
+      "request_id": "34b06e39-fa1b-40fc-b7a8-8fd7b8f56e9e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:57.535Z",
+    "type": "page_fetch_failed",
+    "domain": "www.thepearlsource.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "34b06e39-fa1b-40fc-b7a8-8fd7b8f56e9e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:24:58.838Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 952,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "84c94325-2a99-41a3-ad73-14c996aaf6d7",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:00.504Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "47b37704-a21f-4a21-9814-9ed4a6b68d87",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:03.634Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1125,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "382042ed-8d16-4ec9-90bb-9e90838fd39d",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:08.787Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1155,
+    "body": {
+      "status": "ERROR",
+      "request_id": "3132d6d8-cbff-4d8b-b999-3b5f6bb4dd16",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:08.787Z",
+    "type": "page_fetch_failed",
+    "domain": "www.shein.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "3132d6d8-cbff-4d8b-b999-3b5f6bb4dd16",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:10.188Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 1031,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "b7c048a0-d16e-4ed7-9260-365181b98fc2",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:11.850Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "79dd052d-8ece-43df-bb2f-54315676ba69",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:15.761Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1906,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "e4b39290-c259-44ad-b739-ca9d682d0dfb",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:20.970Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1202,
+    "body": {
+      "status": "ERROR",
+      "request_id": "20101c9a-7f4b-4d7d-b381-98847c74fed0",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:20.971Z",
+    "type": "page_fetch_failed",
+    "domain": "temu.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "20101c9a-7f4b-4d7d-b381-98847c74fed0",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:22.301Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 985,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "7b1c883d-f950-4fa6-b345-b2fded98c334",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:23.989Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 686,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "c467d014-aa3d-4b9f-9ca2-7f1b29757af7",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:27.109Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1109,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "b24c1cd8-1a71-4502-bdb2-70c1a7604a3e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:31.870Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 750,
+    "body": {
+      "status": "ERROR",
+      "request_id": "10057fce-0183-4e3e-981a-3b6c29098d5c",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:31.870Z",
+    "type": "page_fetch_failed",
+    "domain": "www.aliexpress.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "10057fce-0183-4e3e-981a-3b6c29098d5c",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:33.692Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 1453,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "5d382a0e-ecee-43e4-b004-61ef9e380835",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:35.358Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "664ab0c8-9dd1-4185-9167-1a318111be74",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:38.400Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1031,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "398ec391-cb49-4d81-ae63-815b2d9de6fe",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:44.663Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 2250,
+    "body": {
+      "status": "ERROR",
+      "request_id": "70ecc2e1-0721-4c08-9358-cfab8f2dab3a",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:25:44.665Z",
+    "type": "page_fetch_failed",
+    "domain": "thehalara.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "70ecc2e1-0721-4c08-9358-cfab8f2dab3a",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:56:53.675Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 2750,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "0360d0b9-ed4d-44d9-9093-06e666cfdec2",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:56:55.334Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 655,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "393d0abd-1af4-4ffc-9ab2-6c315654aeee",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:56:58.793Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1452,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "0dfe3197-35d2-438b-97c5-495efccd599a",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:04.541Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1750,
+    "body": {
+      "status": "ERROR",
+      "request_id": "bd3b9806-e6b6-47df-837e-9d3272121f01",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:04.543Z",
+    "type": "page_fetch_failed",
+    "domain": "www.thepearlsource.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "bd3b9806-e6b6-47df-837e-9d3272121f01",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:05.574Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 671,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "fce37c87-8c14-4b54-8abe-fbb0f5111b0e",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:07.236Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "c56b4439-bda0-4b78-b173-f06331f038ac",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:13.025Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 3781,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "7b4f05af-0791-4999-9522-5d70c715e1f2",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:20.731Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 3702,
+    "body": {
+      "status": "ERROR",
+      "request_id": "b251a6b2-3f89-4f63-a177-5fd5e2e41b60",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:20.732Z",
+    "type": "page_fetch_failed",
+    "domain": "www.shein.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "b251a6b2-3f89-4f63-a177-5fd5e2e41b60",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:21.808Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 719,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "eb9b6ed7-b39d-42ff-86ed-55c7ad3e0249",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:24.031Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 1218,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "460f9a95-f679-4ad2-92ae-ebbb8d0b7627",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:28.189Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 2156,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "894833ed-2cfc-46a6-836e-2aa9c699e6dc",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:33.970Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1781,
+    "body": {
+      "status": "ERROR",
+      "request_id": "c24424d4-4e99-4779-a7ce-28247e5faca8",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:33.971Z",
+    "type": "page_fetch_failed",
+    "domain": "temu.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "c24424d4-4e99-4779-a7ce-28247e5faca8",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:34.987Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 672,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "09e15949-1127-4af4-899c-80bc875a1a7f",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:36.652Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "046f4d3a-a82e-4b57-88dd-94ebd076aa93",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:39.588Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 936,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "eccf432f-90c9-407e-9301-47b6c3a908ae",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:45.498Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1906,
+    "body": {
+      "status": "ERROR",
+      "request_id": "e42289fc-e730-4a93-afac-a24371597c14",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:45.499Z",
+    "type": "page_fetch_failed",
+    "domain": "www.aliexpress.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "e42289fc-e730-4a93-afac-a24371597c14",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:46.493Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 1,
+    "latencyMs": 640,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "34212232-4ee2-42e2-a49f-d704eaf2bfef",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:48.154Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 2,
+    "latencyMs": 656,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "b55e4d09-1caa-42c1-b60c-f05338909114",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:52.118Z",
+    "label": "full",
+    "type": "rate_limited",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 3,
+    "latencyMs": 1968,
+    "rateLimitHeaders": {
+      "limit": null,
+      "remaining": null,
+      "retryAfter": null
+    },
+    "body": {
+      "status": "ERROR",
+      "request_id": "7110ba86-d39a-4b76-9239-89e5d192abba",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:57.591Z",
+    "label": "full",
+    "type": "non_retryable_http_error",
+    "context": "company-reviews",
+    "status": 429,
+    "attempt": 4,
+    "latencyMs": 1468,
+    "body": {
+      "status": "ERROR",
+      "request_id": "19381d10-d92c-4714-89b5-d6b4901a9f47",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  },
+  {
+    "loggedAt": "2026-07-29T08:57:57.593Z",
+    "type": "page_fetch_failed",
+    "domain": "thehalara.com",
+    "page": 1,
+    "status": 429,
+    "body": {
+      "status": "ERROR",
+      "request_id": "19381d10-d92c-4714-89b5-d6b4901a9f47",
+      "error": {
+        "message": "Too Many Requests",
+        "code": 429
+      }
+    }
+  }
+]

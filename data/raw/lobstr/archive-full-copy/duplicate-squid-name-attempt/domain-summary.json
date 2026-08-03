@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-07-22T12:08:35.000Z",
+  "label": "full",
+  "run_id": null,
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 0,
+    "valid_records": 0,
+    "unique_valid_reviews": 0,
+    "duplicate_records": 0,
+    "domains_with_shortfall": ["www.thepearlsource.com", "www.shein.com", "temu.com", "www.aliexpress.com", "thehalara.com"],
+    "overall_success_rate_percent": 0,
+    "run_status": null,
+    "run_succeeded": false,
+    "outcome": "blocked_before_task_or_run_creation"
+  },
+  "domains": [
+    { "domain": "www.thepearlsource.com", "business_name": "The Pearl Source", "task_id": null, "raw_items": 0, "valid_items": 0, "unique_valid_reviews": 0, "shortfall": 200 },
+    { "domain": "www.shein.com", "business_name": "SHEIN", "task_id": null, "raw_items": 0, "valid_items": 0, "unique_valid_reviews": 0, "shortfall": 200 },
+    { "domain": "temu.com", "business_name": "Temu", "task_id": null, "raw_items": 0, "valid_items": 0, "unique_valid_reviews": 0, "shortfall": 200 },
+    { "domain": "www.aliexpress.com", "business_name": "AliExpress", "task_id": null, "raw_items": 0, "valid_items": 0, "unique_valid_reviews": 0, "shortfall": 200 },
+    { "domain": "thehalara.com", "business_name": "Halara", "task_id": null, "raw_items": 0, "valid_items": 0, "unique_valid_reviews": 0, "shortfall": 200 }
+  ],
+  "missing_field_counts": {},
+  "note": "The run was blocked at the squid-configuration stage (HTTP 400 DuplicateSquid) before any task or Run was created. No domain was processed. This is not a credit/billing issue - see reports/lobstr/error-investigation.md."
+}

@@ -1,0 +1,19 @@
+{
+  "total_duplicates": 1,
+  "by_domain": {
+    "temu.com": 1
+  },
+  "by_key_type": {
+    "url": 1
+  },
+  "entries": [
+    {
+      "domain": "temu.com",
+      "key": "url:https://www.trustpilot.com/reviews/6a5bc3e8ba35c9f26c69aa78",
+      "keyType": "url",
+      "firstSeenDomain": "temu.com",
+      "review_title": "Let down",
+      "timestamp": "2026-07-18 20:20:24 +00:00"
+    }
+  ]
+}

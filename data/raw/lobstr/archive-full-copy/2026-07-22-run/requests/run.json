@@ -1,0 +1,30 @@
+{
+  "run_id": "4524c3ce2ad848739b5f2aea4902657b",
+  "recovered": false,
+  "requested_at": "2026-07-22T12:24:49.690Z",
+  "raw": {
+    "id": "4524c3ce2ad848739b5f2aea4902657b",
+    "object": "run",
+    "squid": "8d9e0b80d6d2481283c138104caf022d",
+    "is_done": false,
+    "started_at": "2026-07-22T12:24:47Z",
+    "total_results": 0,
+    "total_unique_results": 0,
+    "next_launch_at": null,
+    "ended_at": null,
+    "duration": 0,
+    "credit_used": 0,
+    "origin": "user",
+    "force_launch": false,
+    "status": "pending",
+    "export_done": null,
+    "export_count": 0,
+    "export_time": null,
+    "email_done": null,
+    "email_time": null,
+    "created_at": "2026-07-22T12:24:47Z",
+    "done_reason": null,
+    "done_reason_desc": null,
+    "email_verification": null
+  }
+}

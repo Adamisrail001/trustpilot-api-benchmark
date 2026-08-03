@@ -1,0 +1,94 @@
+OpenWeb Ninja Trustpilot Reviews benchmark - fresh live run
+Run date: 2026-07-29
+Script executed: scripts/openwebninja_benchmark.py (unmodified)
+Command: CONFIRM_PAID_RUN=yes OPENWEBNINJA_QUOTA_REMAINING=1000 python -u scripts/openwebninja_benchmark.py run
+(OPENWEBNINJA_QUOTA_REMAINING supplied by the user after confirming their
+app.openwebninja.com dashboard shows quota "definitely very high (1000+)" -
+this script has no API-based quota check, so this figure is human-supplied
+per the script's own design, not fabricated.)
+
+=== ATTEMPT 1 ===
+run_start_utc=2026-07-29T08:20:31.012Z
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 0,
+  "valid_records": 0,
+  "unique_valid_reviews": 0,
+  "duplicate_records": 0,
+  "domains_with_shortfall": ["www.thepearlsource.com","www.shein.com","temu.com","www.aliexpress.com","thehalara.com"],
+  "overall_success_rate_percent": 0,
+  "total_requests_made": 5,
+  "outcome": "partial"
+}
+run_end_utc=2026-07-29T08:21:31.078Z
+
+Every one of the 5 domains hit HTTP 429 "Too Many Requests" on page 1,
+exhausted all 4 attempts (1 initial + 3 retries, exponential backoff
+1s/2s/4s per scripts/lib/openwebninja_client.py), then gave up with
+stop_reason "fetch_failed". 0 reviews retrieved for any domain. Full event
+log: data/logs/openwebninja/errors/event-log.jsonl (events timestamped
+08:20:33 - 08:21:29).
+
+=== COOLDOWN ===
+cooldown_wait_start_utc=2026-07-29T08:23:04.387Z
+cooldown_wait_end_utc=2026-07-29T08:24:44.628Z
+(100 second real wait, to rule out a brief burst-limit before concluding
+this is a persistent block)
+
+=== ATTEMPT 2 (retry after cooldown) ===
+run_start_utc=2026-07-29T08:24:44.692Z
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 0,
+  "valid_records": 0,
+  "unique_valid_reviews": 0,
+  "duplicate_records": 0,
+  "domains_with_shortfall": ["www.thepearlsource.com","www.shein.com","temu.com","www.aliexpress.com","thehalara.com"],
+  "overall_success_rate_percent": 0,
+  "total_requests_made": 5,
+  "outcome": "partial"
+}
+run_end_utc=2026-07-29T08:25:45.998Z
+
+Identical outcome: all 5 domains hit HTTP 429 on page 1, exhausted all 4
+attempts, gave up. Events timestamped 08:24:47 - 08:25:44 (appended to the
+same event-log.jsonl as attempt 1).
+
+=== CONCLUSION ===
+2 independent live attempts, 100 seconds apart, both resulted in 100%
+HTTP 429 across all 5 domains on the very first request/page for every
+domain - 0 of 1,000 requested reviews retrieved either time. This is not a
+one-off blip: the rate limit did not clear in the 100s window, and every
+single request across both attempts (10 requests total, 5 domains x 2
+attempts) was rejected identically.
+
+data/raw/openwebninja/results/ is empty - not a single successful response
+was received in either attempt. Every data/raw/openwebninja/requests/
+<domain>-page1.json file records {"ok": false, "status": 429, "attempts": 4}
+- this is the actual final (attempt 2) request state; attempt 1's request
+files were overwritten in place by attempt 2 since write_json() in
+fetch_domain_reviews() unconditionally overwrites the request file on
+every non-cached attempt (only the result file is gated by an
+if res_file.exists() check, which never became true here).
+
+Possible causes (not confirmed - OpenWeb Ninja has no diagnostic/quota
+endpoint to check directly):
+1. The account's actual per-second/per-minute rate limit is stricter than
+   the 350ms (~2.8 req/sec) spacing REQUEST_SPACING_MS assumes safe -
+   the module comment in scripts/openwebninja_benchmark.py claims this is
+   "safely under every documented plan's rate limit," but that assumption
+   is not holding for this account today.
+2. A broader, possibly temporary, service-side rate-limit/throttle on
+   OpenWeb Ninja's API unrelated to this specific key.
+3. Monthly quota exhaustion surfaced as HTTP 429 instead of a
+   quota-specific status/message - possible but NOT confirmed; the user's
+   own dashboard check reported quota as "definitely very high (1000+)"
+   before this run, which argues against this explanation, though monthly
+   quota and per-second rate limit are two different things and a
+   dashboard's headline "quota remaining" figure may not surface a
+   separate rate-limit tier.
+No further live attempts were made after attempt 2, to avoid additional
+metered/possibly-billed requests against a condition that had already
+failed to clear once.

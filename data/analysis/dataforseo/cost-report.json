@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-07-24T00:00:00.000Z",
+  "note_on_generation": "This file did not exist when the DataForSEO benchmark ran (2026-07-21) - it is the only provider of the five without one. Generated 2026-07-24 by summing the 'cost' field already present in each of the 5 raw task_post responses (dataforseo/raw/task-post/*.json). No new measurement was taken; this is a re-packaging of existing measured data into the same schema the other 4 providers use, for tooling consistency.",
+  "measured_at": "2026-07-21T11:50:13.555Z",
+  "billing_model": "pay-per-task, priced per 20-review depth block",
+  "tasks_billed": 5,
+  "cost_per_task_usd": 0.0075,
+  "measured_total_cost_usd": 0.0375,
+  "measured_cost_source": "response.cost and response.tasks[0].cost fields in each raw task_post response - a direct per-call billing field, not an estimate",
+  "unique_successful_reviews": 999,
+  "cost_per_1000_successful_reviews_usd": 0.03754,
+  "calculation": "measured_total_cost_usd / unique_successful_reviews * 1000 = 0.0375 / 999 * 1000 = 0.03754",
+  "evidence_files": [
+    "dataforseo/raw/task-post/temu.com.json",
+    "dataforseo/raw/task-post/thehalara.com.json",
+    "dataforseo/raw/task-post/www.aliexpress.com.json",
+    "dataforseo/raw/task-post/www.shein.com.json",
+    "dataforseo/raw/task-post/www.thepearlsource.com.json"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-07-22T12:32:18.070Z",
+  "advertised_rate_usd_per_1000_reviews": 0.5,
+  "estimated_cost_usd_for_1000": 0.5,
+  "run_reported_credit_used": 1000,
+  "balance_before": {
+    "id": "price_1RjenoAFM6jPN0aflzQwtH5H",
+    "object": "plan",
+    "available": 0,
+    "consumed": 1020,
+    "bonus_credit": 0,
+    "rollover_credit": 0,
+    "rollover_credit_expires_at": null,
+    "interval": "daily",
+    "name": "free",
+    "used_slots": 220,
+    "has_unpaid_bill": {},
+    "total_available_slots": 1,
+    "reset_time": "2026-07-23T00:00:00"
+  },
+  "balance_after": {
+    "id": "price_1RjenoAFM6jPN0aflzQwtH5H",
+    "object": "plan",
+    "available": 0,
+    "consumed": 1020,
+    "bonus_credit": 0,
+    "rollover_credit": 0,
+    "rollover_credit_expires_at": null,
+    "interval": "daily",
+    "name": "free",
+    "used_slots": 220,
+    "has_unpaid_bill": {},
+    "total_available_slots": 1,
+    "reset_time": "2026-07-23T00:00:00"
+  },
+  "credits_consumed_measured": 0,
+  "measured_cost_usd": null,
+  "note": "measured_cost_usd is intentionally null - converting consumed credits to a dollar figure requires the account's effective credit value (monthly subscription price / included credits), which is account-plan-specific and was not available via any documented API field. credits_consumed_measured and run_reported_credit_used are the real measured figures; advertised_rate is the published marketing rate, not a per-account bill."
+}

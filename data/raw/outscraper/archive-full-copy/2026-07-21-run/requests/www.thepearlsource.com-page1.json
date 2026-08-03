@@ -1,0 +1,15 @@
+{
+  "domain": "www.thepearlsource.com",
+  "page": 1,
+  "skip": 0,
+  "limit": 200,
+  "requested_at": "2026-07-21T13:19:23.196Z",
+  "request_url": "https://api.outscraper.com/trustpilot-reviews?query=www.thepearlsource.com&limit=200&skip=0&languages=all&sort=recency&async=true",
+  "latency_ms": 4124,
+  "attempts": 1,
+  "response": {
+    "status": "Pending",
+    "id": "a-6409d8a8-7bd0-4ca7-8c4b-680198015cb7",
+    "results_location": "https://api.outscraper.cloud/requests/a-6409d8a8-7bd0-4ca7-8c4b-680198015cb7"
+  }
+}

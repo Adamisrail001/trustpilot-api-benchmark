@@ -1,0 +1,10 @@
+{
+  "domain": "thehalara.com",
+  "page": 1,
+  "requested_at": "2026-07-29T08:57:57.591Z",
+  "request_url": "https://api.openwebninja.com/trustpilot-company-and-reviews/company-reviews?company_domain=thehalara.com&page=1&sort=recency",
+  "latency_ms": 1468,
+  "attempts": 4,
+  "ok": false,
+  "status": 429
+}

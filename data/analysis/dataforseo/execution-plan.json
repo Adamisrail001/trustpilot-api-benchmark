@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-07-21T11:49:51.620Z",
+  "endpoint_task_post": "POST https://api.dataforseo.com/v3/business_data/trustpilot/reviews/task_post",
+  "endpoint_tasks_ready": "GET https://api.dataforseo.com/v3/business_data/trustpilot/reviews/tasks_ready",
+  "endpoint_task_get": "GET https://api.dataforseo.com/v3/business_data/trustpilot/reviews/task_get/{id}",
+  "request_config_per_domain": {
+    "depth": 200,
+    "sort_by": "recency",
+    "priority": 1,
+    "tag_pattern": "benchmark-{safe_domain}-{run_id}"
+  },
+  "domains": [
+    {
+      "business_name": "The Pearl Source",
+      "domain": "www.thepearlsource.com",
+      "target_reviews": 200,
+      "ground_truth_file": "ground-truth/thepearlsource-sample.json"
+    },
+    {
+      "business_name": "SHEIN",
+      "domain": "www.shein.com",
+      "target_reviews": 200,
+      "ground_truth_file": null
+    },
+    {
+      "business_name": "Temu",
+      "domain": "temu.com",
+      "target_reviews": 200,
+      "ground_truth_file": null
+    },
+    {
+      "business_name": "AliExpress",
+      "domain": "www.aliexpress.com",
+      "target_reviews": 200,
+      "ground_truth_file": null
+    },
+    {
+      "business_name": "Halara",
+      "domain": "thehalara.com",
+      "target_reviews": 200,
+      "ground_truth_file": null
+    }
+  ],
+  "documented_limits": {
+    "max_depth_per_task": 200,
+    "max_post_calls_per_minute": 30,
+    "max_tasks_per_post_request": 100,
+    "tasks_ready_calls_per_minute": 20,
+    "pagination_parameters_available": [],
+    "pagination_confirmed": false,
+    "note": "No page/offset/skip/cursor/date-range/older-review parameter exists in official docs. 1,000 unique reviews is reached via 5 distinct business domains x 200 reviews, not pagination."
+  },
+  "polling_strategy": {
+    "endpoint": "tasks_ready",
+    "interval_ms": 30000,
+    "max_wait_ms": 3600000,
+    "creates_new_paid_tasks": false
+  },
+  "dedupe_strategy": {
+    "primary_key": "review url (items[].url)",
+    "fallback_key": "sha256(domain+author+timestamp+title+review_text)",
+    "scope": "within-domain and cross-domain, single pass"
+  },
+  "shortfall_policy": "If a domain returns fewer than 200 unique valid reviews, the run reports the exact shortfall and stops without re-running that domain or silently substituting another business.",
+  "estimated_cost": {
+    "priority": "standard",
+    "price_per_20_reviews_usd": 0.00075,
+    "billable_blocks_per_domain": 10,
+    "estimated_cost_per_domain_usd": 0.0075,
+    "domain_count": 5,
+    "estimated_max_total_usd": 0.0375,
+    "note": "This is the documented-pricing ceiling assuming every task returns the full requested depth of 200 reviews. Actual DataForSEO-reported cost is captured per task in task-post responses and reconciled in reports/dataforseo-cost-report.md."
+  },
+  "output_files": [
+    "outputs/dataforseo/raw/task-post/<domain>.json",
+    "outputs/dataforseo/raw/task-get/<domain>.json",
+    "outputs/dataforseo/errors/event-log.jsonl",
+    "outputs/dataforseo/timings.json",
+    "outputs/dataforseo/all-reviews.json",
+    "outputs/dataforseo/all-reviews.csv",
+    "outputs/dataforseo/duplicate-report.json",
+    "outputs/dataforseo/domain-summary.json"
+  ]
+}

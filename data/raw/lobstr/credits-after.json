@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-07-29T10:59:54.991Z",
+  "response": {
+    "id": "price_1RjenoAFM6jPN0aflzQwtH5H",
+    "object": "plan",
+    "available": 0,
+    "consumed": 1000,
+    "bonus_credit": 0,
+    "rollover_credit": 0,
+    "rollover_credit_expires_at": null,
+    "interval": "daily",
+    "name": "free",
+    "used_slots": 220,
+    "has_unpaid_bill": {},
+    "total_available_slots": 1,
+    "reset_time": "2026-07-30T00:00:00"
+  }
+}

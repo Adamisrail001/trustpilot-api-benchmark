@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-07-22T11:14:11.119Z",
+  "run_id": "AL74CUwNDfUDkRINC",
+  "usage": null,
+  "usageUsd": null,
+  "usageTotalUsd": 0.46499999999999997,
+  "note": "usage/usageUsd/usageTotalUsd are copied verbatim from the settled Run object (fetched after a 5s wait per Apify docs guidance). Absent fields are Pending, not invented."
+}

@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-07-27T07:26:48.413Z",
+  "endpoint_submit": "GET https://api.outscraper.com/trustpilot-reviews",
+  "endpoint_poll": "GET <exact results_location from submit response> (host may differ, e.g. api.outscraper.cloud - never reconstructed)",
+  "auth_header": "X-API-KEY: <OUTSCRAPER_API_KEY> (value never logged)",
+  "request_config_per_page": {
+    "limit": 200,
+    "skip": "starts at 0, advances by multiples of 20 as pages accumulate",
+    "languages": "all",
+    "sort": "recency",
+    "async": true,
+    "fields": "omitted (requests all fields, per docs default) to measure full field coverage"
+  },
+  "domains": [
+    {
+      "business_name": "The Pearl Source",
+      "domain": "www.thepearlsource.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "SHEIN",
+      "domain": "www.shein.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Temu",
+      "domain": "temu.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "AliExpress",
+      "domain": "www.aliexpress.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Halara",
+      "domain": "thehalara.com",
+      "target_reviews": 200
+    }
+  ],
+  "pagination_strategy": {
+    "per_domain_target": 200,
+    "max_pages_per_domain": 5,
+    "skip_increment": "multiple of 20, derived from total raw items already fetched for that domain",
+    "stop_conditions": [
+      "target_reached",
+      "empty_page",
+      "repeated_page (zero new unique keys)",
+      "partial_last_page (raw < limit)",
+      "max_pages_cap",
+      "submission_failed",
+      "task_failure",
+      "poll_timeout"
+    ],
+    "idempotent_resume": "a page already saved to raw/requests or raw/results is never resubmitted or re-polled"
+  },
+  "documented_limits": {
+    "skip_must_be_multiple_of_20": true,
+    "result_availability_after_completion": "~4 hours - raw result is saved to disk immediately on Success",
+    "polling_sla": "not documented - this benchmark uses an operational choice (5s interval, 10 min max wait/page), not a confirmed SLA figure"
+  },
+  "dedupe_strategy": {
+    "primary_key": "native review_id",
+    "secondary_key": "review URL (not confirmed present in Outscraper's documented field list - included for forward compatibility)",
+    "fallback_key": "sha256(domain+author_title+timestamp+review_rating+review_title+review_text)",
+    "scope": "within-domain (live, during pagination) and cross-domain (final pass over all collected reviews)"
+  },
+  "estimated_cost": {
+    "pricing_basis": "docs/outscraper-pricing.md - published tiers, not measured",
+    "scenario_fresh_account": {
+      "billable_usage": 900,
+      "usd": 2.7
+    },
+    "scenario_free_tier_already_used": {
+      "billable_usage": 1000,
+      "usd": 3
+    },
+    "expected_range_usd": [
+      2.7,
+      3
+    ],
+    "note": "This is a calculated estimate from the published rate card, not a measured/billed cost. True measured cost requires manual account-balance evidence - Outscraper does not document an endpoint that returns per-request cost or account balance."
+  },
+  "output_files": [
+    "outputs/outscraper/raw/requests/<domain>-page<N>.json",
+    "outputs/outscraper/raw/results/<domain>-page<N>.json",
+    "outputs/outscraper/errors/event-log.jsonl",
+    "outputs/outscraper/timings.json",
+    "outputs/outscraper/all-reviews.json",
+    "outputs/outscraper/all-reviews.csv",
+    "outputs/outscraper/duplicate-report.json",
+    "outputs/outscraper/pagination-report.json",
+    "outputs/outscraper/domain-summary.json",
+    "outputs/outscraper/cost-report.json"
+  ]
+}

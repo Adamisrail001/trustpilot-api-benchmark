@@ -1,0 +1,47 @@
+{
+  "requested_at": "2026-07-22T12:30:40.714Z",
+  "request_body": {
+    "is_active": true,
+    "to_complete": true,
+    "export_unique_results": false,
+    "no_line_breaks": false,
+    "params": {
+      "stars": "all",
+      "search": null,
+      "topics": null,
+      "replies": false,
+      "language": "All languages",
+      "verified": false,
+      "hours_back": null,
+      "start_page": 1,
+      "fetch_since": null,
+      "max_results": 200,
+      "fetch_since_timezone": null,
+      "max_unique_results_per_run": 1000
+    }
+  },
+  "notes": [
+    "max_results confirmed present in squid params - set to 200.",
+    "max_unique_results_per_run confirmed present in squid params - set to 1000.",
+    "No sort-like param key found in this squid's params - recency behavior relies on crawler default (Pending confirmation)."
+  ],
+  "response": {
+    "no_line_breaks": false,
+    "params": {
+      "stars": "all",
+      "search": null,
+      "topics": null,
+      "replies": false,
+      "language": "All languages",
+      "verified": false,
+      "hours_back": null,
+      "start_page": 1,
+      "fetch_since": null,
+      "max_results": 200,
+      "fetch_since_timezone": null,
+      "max_unique_results_per_run": 1000
+    },
+    "to_complete": true,
+    "export_unique_results": false
+  }
+}

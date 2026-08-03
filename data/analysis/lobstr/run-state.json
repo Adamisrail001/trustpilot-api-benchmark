@@ -1,0 +1,189 @@
+{
+  "run_id": "4c2e07bd3b9b4c9386661edb8ef58174",
+  "poll_history": [
+    {
+      "polled_at": "2026-07-29T10:56:19.453Z",
+      "status": "pending",
+      "is_done": null,
+      "total_results": 0,
+      "total_unique_results": 0,
+      "credit_used": 0
+    },
+    {
+      "polled_at": "2026-07-29T10:56:28.452Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 20,
+      "total_unique_results": 20,
+      "credit_used": 20
+    },
+    {
+      "polled_at": "2026-07-29T10:56:38.376Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 135,
+      "total_unique_results": 135,
+      "credit_used": 135
+    },
+    {
+      "polled_at": "2026-07-29T10:56:47.316Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 197,
+      "total_unique_results": 198,
+      "credit_used": 197
+    },
+    {
+      "polled_at": "2026-07-29T10:56:57.255Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 305,
+      "total_unique_results": 306,
+      "credit_used": 305
+    },
+    {
+      "polled_at": "2026-07-29T10:57:06.286Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 369,
+      "total_unique_results": 369,
+      "credit_used": 369
+    },
+    {
+      "polled_at": "2026-07-29T10:57:16.249Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 440,
+      "total_unique_results": 440,
+      "credit_used": 440
+    },
+    {
+      "polled_at": "2026-07-29T10:57:25.201Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 530,
+      "total_unique_results": 531,
+      "credit_used": 531
+    },
+    {
+      "polled_at": "2026-07-29T10:57:35.235Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 639,
+      "total_unique_results": 640,
+      "credit_used": 640
+    },
+    {
+      "polled_at": "2026-07-29T10:57:44.202Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 729,
+      "total_unique_results": 729,
+      "credit_used": 729
+    },
+    {
+      "polled_at": "2026-07-29T10:57:54.141Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 800,
+      "total_unique_results": 801,
+      "credit_used": 801
+    },
+    {
+      "polled_at": "2026-07-29T10:58:03.082Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 860,
+      "total_unique_results": 860,
+      "credit_used": 860
+    },
+    {
+      "polled_at": "2026-07-29T10:58:12.800Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 938,
+      "total_unique_results": 938,
+      "credit_used": 938
+    },
+    {
+      "polled_at": "2026-07-29T10:58:22.794Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1000,
+      "total_unique_results": 1000,
+      "credit_used": 1000
+    },
+    {
+      "polled_at": "2026-07-29T10:58:32.793Z",
+      "status": "done",
+      "is_done": null,
+      "total_results": 1000,
+      "total_unique_results": 1000,
+      "credit_used": 1000
+    }
+  ],
+  "final": {
+    "id": "4c2e07bd3b9b4c9386661edb8ef58174",
+    "object": "run",
+    "created_at": "2026-07-29T10:58:18.464105",
+    "started_at": "2026-07-29T10:56:14.947613",
+    "next_launch_at": null,
+    "ended_at": "2026-07-29T10:58:18.850492",
+    "duration": 103.42019999999998,
+    "credit_used": 1000,
+    "origin": "user",
+    "status": "done",
+    "export_time": "2026-07-29T10:58:20.215471",
+    "export_done": true,
+    "email_verification": null,
+    "mail_done": null,
+    "mail_time": null,
+    "total_emails": 0,
+    "total_results": 1000,
+    "total_unique_results": 1000,
+    "crawler_id": "b3362ab52c6fab3d8897af79cbba380e",
+    "done_reason": "tasks_done",
+    "done_reason_desc": null,
+    "shared": false,
+    "squid": "8d9e0b80d6d2481283c138104caf022d",
+    "functions": {},
+    "attributes": [
+      "review_url",
+      "author_name",
+      "author_id",
+      "author_image",
+      "date_published",
+      "review_headline",
+      "review_body",
+      "review_language",
+      "rating_value",
+      "verification_level",
+      "number_of_reviews",
+      "consumer_country_code",
+      "experience_date",
+      "likes",
+      "report",
+      "review_source",
+      "is_author_verified",
+      "is_review_verified",
+      "owner_reply",
+      "owner_reply_date",
+      "updated_date",
+      "consumer_reviews_on_domain",
+      "reviews_count",
+      "trust_score",
+      "stars",
+      "review_link",
+      "business_unit_id",
+      "review_verification_source",
+      "review_sentiment",
+      "owner_reply_updated_date",
+      "company_name",
+      "company_category",
+      "company_page_url",
+      "page_number",
+      "scraping_time"
+    ],
+    "accounts": []
+  }
+}

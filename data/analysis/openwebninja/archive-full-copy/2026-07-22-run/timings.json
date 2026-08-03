@@ -1,0 +1,359 @@
+{
+  "benchmark_start": "2026-07-22T08:29:33.331Z",
+  "benchmark_end": "2026-07-22T08:32:34.082Z",
+  "wall_clock_ms": 180749,
+  "per_request": [
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 24036,
+      "attempts": 2
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 2,
+      "ms": 2794,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 3,
+      "ms": 1688,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 4,
+      "ms": 2210,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 5,
+      "ms": 1929,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 6,
+      "ms": 1685,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 7,
+      "ms": 2456,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 8,
+      "ms": 1895,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 9,
+      "ms": 2772,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 10,
+      "ms": 1816,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1928,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 2,
+      "ms": 3035,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 3,
+      "ms": 1337,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 4,
+      "ms": 1069,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 5,
+      "ms": 1255,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 6,
+      "ms": 1611,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 7,
+      "ms": 1142,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 8,
+      "ms": 1437,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 9,
+      "ms": 1468,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 10,
+      "ms": 1317,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1846,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 2,
+      "ms": 1696,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 3,
+      "ms": 1632,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 4,
+      "ms": 28436,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 5,
+      "ms": 2365,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 6,
+      "ms": 1239,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 7,
+      "ms": 1423,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 8,
+      "ms": 1285,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 9,
+      "ms": 1903,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 10,
+      "ms": 1795,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 3321,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 2,
+      "ms": 2016,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 3,
+      "ms": 1614,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 4,
+      "ms": 1196,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 5,
+      "ms": 2157,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 6,
+      "ms": 2368,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 7,
+      "ms": 1773,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 8,
+      "ms": 1279,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 9,
+      "ms": 3123,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 10,
+      "ms": 1489,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 2041,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 2,
+      "ms": 1870,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 3,
+      "ms": 2320,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 4,
+      "ms": 1977,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 5,
+      "ms": 2446,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 6,
+      "ms": 3033,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 7,
+      "ms": 1540,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 8,
+      "ms": 3684,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 9,
+      "ms": 1848,
+      "attempts": 1
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 10,
+      "ms": 2377,
+      "attempts": 1
+    }
+  ],
+  "median_latency_ms": 1870,
+  "p95_latency_ms": 3684
+}

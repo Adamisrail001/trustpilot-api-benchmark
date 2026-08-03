@@ -1,0 +1,68 @@
+Apify Trustpilot Reviews benchmark - fresh live run
+Run date: 2026-07-29
+Script executed: scripts/apify_benchmark.py run (unmodified, CONFIRM_PAID_RUN=yes)
+Actor: automation-lab/trustpilot (REST id automation-lab~trustpilot) - same
+actor as the 2026-07-21/22 historical runs; access confirmed live (run
+started and completed successfully).
+
+run_start_utc=2026-07-29T10:29:04.475Z (benchmark_start per timings.json)
+[poll] run vGkarueu1qSVSVbBV: status=RUNNING  (x21, every ~11-13s per POLL_INTERVAL_MS=10000 plus request latency)
+  first poll: 2026-07-29T10:31:26.889Z
+  last RUNNING poll: 2026-07-29T10:35:25.494Z
+[poll] run vGkarueu1qSVSVbBV: status=SUCCEEDED  2026-07-29T10:35:37.706Z
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 800,
+  "unattributed_records": 0,
+  "valid_records": 800,
+  "unique_valid_reviews": 800,
+  "duplicate_records": 0,
+  "domains_with_shortfall": ["www.thepearlsource.com"],
+  "overall_success_rate_percent": 80,
+  "run_id": "vGkarueu1qSVSVbBV",
+  "dataset_id": "qZlB8BBUHfRWuiv0o",
+  "run_status": "SUCCEEDED",
+  "outcome": "partial"
+}
+run_end_utc=2026-07-29T10:35:47.795Z
+
+No error events were logged at all this run (data/analysis/apify/error-log.json
+is an empty array - confirmed, not just absent). The Actor run itself
+reported SUCCEEDED with zero errors, yet returned 0 of 200 requested
+reviews for www.thepearlsource.com while all other 4 domains (shein, temu,
+aliexpress, halara) returned a clean 200/200 each with 0 duplicates.
+Verified directly against the raw dataset (data/raw/apify/datasets/page1-offset0.json,
+800 items total): the distinct companyDomain values present are
+{www.shein.com, temu.com, www.aliexpress.com, thehalara.com} - www.thepearlsource.com
+does not appear even once across all 800 raw items. This is not an
+attribution/normalization bug (unattributed_records: 0) - the domain
+simply has zero rows in the Actor's own output.
+
+=== NOTABLE: reproduces a known anomaly pattern, different domain ===
+The 2026-07-21/22 historical run had this exact same signature - one
+domain (that time: www.shein.com) returned 0/200 with zero error signal,
+while the other 4 succeeded cleanly - documented in MISSING_AND_GAPS.md
+item A.6 as unresolved and "never reproduced with a second run." This
+fresh run IS that second reproduction, and it confirms the failure is not
+specific to shein.com - it affected a different domain (thepearlsource)
+this time, with all other conditions identical (same actor, same input
+shape, same 5 domains, same maxReviewsPerCompany=200). This strongly
+suggests a per-run, effectively random single-domain silent-failure mode
+in the automation-lab/trustpilot Actor itself, occurring in both of the
+only two live runs ever made against it (2/2 runs affected, always exactly
+1 of 5 domains, never surfaced as an error/warning anywhere in the Apify
+run object or dataset).
+
+Timing: actor_run_duration_ms=391603 (~6.5 min), dataset_retrieval_ms=2164,
+wall_clock_ms=402134 (~6.7 min). 1 single dataset page (800 items, under
+the 1000-per-page limit) - no pagination beyond page 1 was needed.
+No retries, no rate-limit events, no HTTP errors of any kind this run -
+every get_run poll and the single get_dataset_items call succeeded on the
+first attempt.
+
+Measured cost: usageTotalUsd = $0.465 (from the settled Run object,
+fetched after the 5s settle-wait per Apify's own documented guidance) -
+identical to the historical run's measured cost, consistent with both
+runs producing exactly 800 billable unique reviews (4 domains x 200) and
+Apify's per-event billing not distinguishing which domain produced them.

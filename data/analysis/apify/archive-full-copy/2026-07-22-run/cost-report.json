@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-22T11:14:11.120Z",
+  "published_estimate_usd": {
+    "per_review_free_tier": 0.000575,
+    "run_start_fee": 0.005,
+    "estimated_for_1000_reviews": 0.58
+  },
+  "estimated_cost_for_measured_unique_usd": 0.4638,
+  "measured_actor_event_cost_usd": null,
+  "measured_total_cost_usd": 0.46499999999999997,
+  "cost_per_1000_successful_reviews_usd": 0.5827,
+  "note": "measured_* fields are null/Pending if the settled Run object did not return them - never invented."
+}

@@ -1,0 +1,175 @@
+{
+  "run_id": "vGkarueu1qSVSVbBV",
+  "poll_history": [
+    {
+      "polled_at": "2026-07-29T10:29:06.870Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:29:19.004Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:29:30.309Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:29:42.437Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:29:54.611Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:30:05.942Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:30:17.186Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:30:28.413Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:30:40.540Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:30:52.675Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:31:03.728Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:31:14.549Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:31:26.829Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:31:39.643Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:31:50.806Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:32:03.595Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:32:16.451Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:32:28.748Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:32:39.566Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:32:51.144Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:33:02.969Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:33:15.084Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:33:26.217Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:33:39.106Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:33:50.306Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:34:01.102Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:34:13.903Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:34:24.687Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:34:36.000Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:34:48.840Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:35:01.847Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:35:12.630Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:35:25.434Z",
+      "status": "RUNNING",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    },
+    {
+      "polled_at": "2026-07-29T10:35:37.641Z",
+      "status": "SUCCEEDED",
+      "defaultDatasetId": "qZlB8BBUHfRWuiv0o"
+    }
+  ]
+}

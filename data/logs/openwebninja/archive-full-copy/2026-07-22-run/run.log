@@ -1,0 +1,12 @@
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 1000,
+  "valid_records": 1000,
+  "unique_valid_reviews": 1000,
+  "duplicate_records": 0,
+  "domains_with_shortfall": [],
+  "overall_success_rate_percent": 100,
+  "total_requests_made": 50,
+  "outcome": "completed"
+}

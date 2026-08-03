@@ -1,0 +1,44 @@
+{
+  "benchmark_start": "2026-07-29T08:24:44.999Z",
+  "benchmark_end": "2026-07-29T08:25:44.665Z",
+  "wall_clock_ms": 59665,
+  "per_request": [
+    {
+      "phase": "company-reviews",
+      "domain": "www.thepearlsource.com",
+      "page": 1,
+      "ms": 1031,
+      "attempts": 4
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.shein.com",
+      "page": 1,
+      "ms": 1155,
+      "attempts": 4
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "temu.com",
+      "page": 1,
+      "ms": 1202,
+      "attempts": 4
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "www.aliexpress.com",
+      "page": 1,
+      "ms": 750,
+      "attempts": 4
+    },
+    {
+      "phase": "company-reviews",
+      "domain": "thehalara.com",
+      "page": 1,
+      "ms": 2250,
+      "attempts": 4
+    }
+  ],
+  "median_latency_ms": 1155,
+  "p95_latency_ms": 2250
+}

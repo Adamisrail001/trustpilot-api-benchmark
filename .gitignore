@@ -1,0 +1,13 @@
+# Never commit real credentials.
+.env
+
+# Scratch space for your own reruns of the benchmark scripts (see README).
+# The committed, citable evidence from the original benchmark run lives in
+# data/ instead and is intentionally NOT ignored.
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

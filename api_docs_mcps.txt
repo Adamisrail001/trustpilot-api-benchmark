@@ -1,0 +1,5461 @@
+================================================================================
+API DOCUMENTATION & PRICING REFERENCE — Trustpilot Reviews API Benchmark
+================================================================================
+
+Consolidated verbatim from trustpilot-api-benchmark/docs/ (5 providers x
+documentation + pricing = 10 source files). No MCP server configs were found
+in either audited source project (trustpilot-api-benchmark, trustpilot review)
+- see MISSING_AND_GAPS.md. Each section below is reproduced in full, unedited,
+from its original source file (path noted in each header).
+
+Table of contents:
+  1. Apify - Documentation
+  2. Apify - Pricing
+  3. DataForSEO - Documentation
+  4. DataForSEO - Pricing
+  5. Lobstr - Documentation
+  6. Lobstr - Pricing
+  7. OpenWeb Ninja - Documentation
+  8. OpenWeb Ninja - Pricing
+  9. Outscraper - Documentation
+  10. Outscraper - Pricing
+
+================================================================================
+1. APIFY - DOCUMENTATION
+Source: docs/apify/apify-documentation.md (original project)
+================================================================================
+
+# Apify Trustpilot Reviews Scraper Documentation
+
+## Overview
+
+This benchmark uses the following Apify Actor:
+
+```text
+Actor name: Trustpilot Reviews Scraper
+Actor developer: automation-lab
+Actor ID for Apify Client: automation-lab/trustpilot
+Actor ID for REST URL: automation-lab~trustpilot
+Current build reviewed: 0.1.44 / latest
+Pricing model: Pay per event
+```
+
+The Actor extracts Trustpilot reviews, reviewer information, verification data, company replies, ratings, and company metadata.
+
+It supports:
+
+- multiple companies in one run
+- company domains
+- complete Trustpilot profile URLs
+- automatic pagination
+- more than 200 reviews per company
+- recency or relevance sorting
+- rating filters
+- language filters
+- date filters
+- verification filters
+- company-reply filters
+- JSON, CSV, XML, and Excel output
+
+---
+
+## Official Sources
+
+```text
+Actor page:
+https://apify.com/automation-lab/trustpilot
+
+Apify API documentation:
+https://docs.apify.com/api/v2
+
+Run Actor endpoint:
+https://docs.apify.com/api/v2/act-runs-post
+
+Get Actor Run:
+https://docs.apify.com/api/v2/actor-run-get
+
+Get Dataset Items:
+https://docs.apify.com/api/v2/dataset-items-get
+
+API integration:
+https://docs.apify.com/integrations/api
+```
+
+---
+
+## Environment Variables
+
+Store the Apify API token and selected Actor ID in `.env`:
+
+```env
+APIFY_API_TOKEN=your_actual_apify_token
+APIFY_ACTOR_ID=automation-lab/trustpilot
+```
+
+Rules:
+
+- Never hardcode the API token.
+- Never print the token.
+- Never save the token in raw request files.
+- Never include the token in reports.
+- Never commit `.env` to Git.
+- Use the `Authorization` header rather than a URL token parameter.
+
+---
+
+## Authentication
+
+Apify uses Bearer-token authentication:
+
+```http
+Authorization: Bearer YOUR_APIFY_API_TOKEN
+```
+
+Example:
+
+```bash
+curl \
+  --request POST \
+  --url "https://api.apify.com/v2/acts/automation-lab~trustpilot/runs" \
+  --header "Authorization: Bearer $APIFY_API_TOKEN" \
+  --header "Content-Type: application/json"
+```
+
+---
+
+## Actor Run Endpoint
+
+Start an asynchronous Actor run:
+
+```http
+POST https://api.apify.com/v2/acts/automation-lab~trustpilot/runs
+```
+
+The endpoint immediately returns an Actor Run object.
+
+Important response fields include:
+
+- `id`
+- `actId`
+- `status`
+- `startedAt`
+- `finishedAt`
+- `defaultDatasetId`
+- `defaultKeyValueStoreId`
+- `defaultRequestQueueId`
+- `stats`
+- `usage`
+- `usageUsd`
+- `usageTotalUsd`
+
+The benchmark must save the Run ID immediately after creation.
+
+---
+
+## Benchmark Actor Input
+
+Use one Actor run for all five approved companies:
+
+```json
+{
+  "companyUrls": [
+    "www.thepearlsource.com",
+    "www.shein.com",
+    "temu.com",
+    "www.aliexpress.com",
+    "thehalara.com"
+  ],
+  "maxReviewsPerCompany": 200,
+  "sort": "recency",
+  "includeCompanyInfo": true
+}
+```
+
+Target:
+
+```text
+5 companies × 200 reviews = 1,000 reviews
+```
+
+The script must use `benchmark-domains.json` as the source of truth.
+
+It must not automatically add, replace, or remove domains.
+
+---
+
+## Input Parameters
+
+### `companyUrls`
+
+```text
+Type: array of strings
+Required: yes
+```
+
+Accepts:
+
+- company domains
+- full Trustpilot company-profile URLs
+
+Examples:
+
+```json
+{
+  "companyUrls": [
+    "pipedrive.com",
+    "https://www.trustpilot.com/review/pipedrive.com"
+  ]
+}
+```
+
+Multiple companies may be supplied in a single Actor run.
+
+---
+
+### `maxReviewsPerCompany`
+
+```text
+Type: integer
+Default: 0
+```
+
+Defines the maximum reviews collected for each company.
+
+Examples:
+
+```text
+20 = maximum 20 reviews per company
+200 = maximum 200 reviews per company
+0 = no configured review limit
+```
+
+For the standard benchmark, use:
+
+```json
+{
+  "maxReviewsPerCompany": 200
+}
+```
+
+The Actor documentation states that pagination is automatic and that setting this value to `0` allows all available reviews to be collected.
+
+Therefore, this Actor does not advertise a fixed 200-review-per-business limitation.
+
+---
+
+### `sort`
+
+```text
+Type: string
+Default: recency
+```
+
+Supported documented values:
+
+```text
+recency
+relevance
+```
+
+For the benchmark, use:
+
+```json
+{
+  "sort": "recency"
+}
+```
+
+---
+
+### `stars`
+
+```text
+Type: array
+Default: all ratings
+```
+
+Supported values:
+
+```text
+1
+2
+3
+4
+5
+```
+
+The benchmark should leave this empty so all ratings are included.
+
+---
+
+### `languages`
+
+```text
+Type: array
+Default: company/default language
+```
+
+Example:
+
+```json
+{
+  "languages": ["en", "fr", "de"]
+}
+```
+
+The standard benchmark should not apply a language restriction unless required by the live Actor input schema.
+
+---
+
+### `date`
+
+```text
+Type: string
+Default: all time
+```
+
+Documented values:
+
+```text
+last30days
+last3months
+last6months
+last12months
+```
+
+The benchmark should leave this unset so it can retrieve the latest 200 reviews without applying a date-range restriction.
+
+---
+
+### `verified`
+
+```text
+Type: boolean
+Default: false
+```
+
+When enabled, only verified reviews are returned.
+
+For the benchmark, keep it disabled so verified and unverified reviews are both included.
+
+---
+
+### `withReplies`
+
+```text
+Type: boolean
+Default: false
+```
+
+When enabled, only reviews with company replies are returned.
+
+For the benchmark, keep it disabled.
+
+---
+
+### `includeCompanyInfo`
+
+```text
+Type: boolean
+Default: true
+```
+
+When enabled, company metadata is added to review records.
+
+For the benchmark, use:
+
+```json
+{
+  "includeCompanyInfo": true
+}
+```
+
+---
+
+## Asynchronous Run Workflow
+
+The benchmark should use this workflow:
+
+1. Validate `.env`.
+2. Validate the Actor ID.
+3. Save the sanitized Actor input.
+4. Start one Actor run.
+5. Save the returned Run ID.
+6. Poll the same Run ID.
+7. Wait for a terminal status.
+8. Save the final Run object.
+9. Obtain `defaultDatasetId`.
+10. Retrieve all dataset items.
+11. Save raw dataset responses.
+12. Normalize and deduplicate reviews.
+13. Generate final reports.
+
+The script must never poll by creating another Actor run.
+
+---
+
+## Run Status Endpoint
+
+Retrieve the existing Actor run:
+
+```http
+GET https://api.apify.com/v2/actor-runs/{runId}
+```
+
+Example:
+
+```bash
+curl \
+  --request GET \
+  --url "https://api.apify.com/v2/actor-runs/RUN_ID" \
+  --header "Authorization: Bearer $APIFY_API_TOKEN"
+```
+
+Possible terminal statuses include:
+
+```text
+SUCCEEDED
+FAILED
+ABORTED
+TIMED-OUT
+```
+
+Possible non-terminal statuses include:
+
+```text
+READY
+RUNNING
+```
+
+The live API response is the source of truth for exact status values.
+
+---
+
+## Polling Rules
+
+The benchmark must:
+
+- poll the same Run ID
+- wait between polling requests
+- save every status check
+- stop on a successful terminal status
+- record failed, aborted, or timed-out runs
+- not start another run automatically
+- not silently accept incomplete results
+
+After completion, wait briefly and retrieve the final Run object again so finalized usage and cost information can be captured.
+
+---
+
+## Dataset Retrieval
+
+Actor results are stored in the Run’s default dataset.
+
+Use the `defaultDatasetId` returned by the Run:
+
+```http
+GET https://api.apify.com/v2/datasets/{datasetId}/items
+```
+
+Recommended request:
+
+```http
+GET /v2/datasets/{datasetId}/items?format=json&clean=true&offset=0&limit=1000
+```
+
+Example:
+
+```bash
+curl \
+  --request GET \
+  --url "https://api.apify.com/v2/datasets/DATASET_ID/items?format=json&clean=true&offset=0&limit=1000" \
+  --header "Authorization: Bearer $APIFY_API_TOKEN"
+```
+
+---
+
+## Dataset Pagination
+
+Dataset items support:
+
+- `offset`
+- `limit`
+- `format`
+- `clean`
+- `fields`
+- `desc`
+
+Useful response headers include:
+
+- `X-Apify-Pagination-Offset`
+- `X-Apify-Pagination-Limit`
+- `X-Apify-Pagination-Count`
+- `X-Apify-Pagination-Total`
+
+The benchmark should:
+
+1. Request dataset items.
+2. Save the raw response.
+3. Read the pagination headers.
+4. Compare returned count with the total.
+5. Continue with a larger offset when required.
+6. Detect repeated offsets or repeated items.
+7. Stop when all items have been downloaded.
+
+Dataset retrieval must not create another paid Actor run.
+
+---
+
+## Expected Review Fields
+
+The Actor documents up to approximately 30 fields per review.
+
+Important fields include:
+
+- `reviewId`
+- `reviewUrl`
+- `title`
+- `text`
+- `rating`
+- `publishedDate`
+- `experienceDate`
+- `updatedDate`
+- `language`
+- `likes`
+- `verificationLevel`
+- `isVerified`
+- `source`
+- `authorName`
+- `authorId`
+- `authorImage`
+- `authorReviewCount`
+- `country`
+- `replyMessage`
+- `replyPublishedDate`
+- `replyUpdatedDate`
+- `companyName`
+- `companyDomain`
+- `companyTrustScore`
+- `companyStars`
+- `companyTotalReviews`
+- `companyCategories`
+- `companyUrl`
+
+Optional fields may be null when the source review does not contain them.
+
+For example, company-reply fields may be null when the company has not replied.
+
+---
+
+## Example Review Record
+
+```json
+{
+  "reviewId": "697f69d898b1919e835668fe",
+  "reviewUrl": "https://www.trustpilot.com/reviews/697f69d898b1919e835668fe",
+  "title": "The perfect CRM",
+  "text": "Full review text",
+  "rating": 5,
+  "publishedDate": "2026-02-01T16:57:28.000Z",
+  "experienceDate": "2026-01-26T00:00:00.000Z",
+  "updatedDate": null,
+  "language": "en",
+  "likes": 0,
+  "verificationLevel": "invited",
+  "isVerified": false,
+  "source": "BasicLink",
+  "authorName": "Reviewer name",
+  "authorId": "reviewer-id",
+  "authorReviewCount": 1,
+  "country": "FR",
+  "replyMessage": null,
+  "replyPublishedDate": null,
+  "companyName": "Company name",
+  "companyDomain": "example.com",
+  "companyTrustScore": 4.5,
+  "companyStars": 4.5,
+  "companyTotalReviews": 3212,
+  "companyCategories": ["Category"],
+  "companyUrl": "https://www.trustpilot.com/review/example.com"
+}
+```
+
+---
+
+## Successful Review Definition
+
+A successful review must contain:
+
+- `reviewId` or `reviewUrl`
+- `rating`
+- `publishedDate`
+- `title` or `text`
+- `authorName` or `authorId`
+- `companyDomain`
+- non-empty review data
+- no error object
+- no duplicate
+
+Only valid unique reviews count toward the 1,000-review target.
+
+---
+
+## Duplicate Detection
+
+Use this priority:
+
+1. `reviewId`
+2. `reviewUrl`
+3. stable Actor-provided source ID, if verified
+4. deterministic SHA-256 hash using:
+
+```text
+companyDomain
+authorName
+publishedDate
+rating
+title
+text
+```
+
+Detect:
+
+- duplicates within one company
+- duplicates across companies
+- duplicates across dataset pages
+- duplicates caused by retries
+- duplicates caused by repeated Actor runs
+
+Duplicates must not count toward the final successful-review total.
+
+---
+
+## Multi-Company Behaviour
+
+The Actor supports multiple company domains in one run.
+
+Each result contains company fields such as:
+
+- `companyDomain`
+- `companyName`
+- `companyUrl`
+
+The benchmark must group records by the normalized company domain and verify:
+
+```text
+www.thepearlsource.com — target 200
+www.shein.com — target 200
+temu.com — target 200
+www.aliexpress.com — target 200
+thehalara.com — target 200
+```
+
+Domain normalization may need to handle cases where Trustpilot uses a domain without the `www` prefix.
+
+Do not treat a harmless `www` normalization difference as another business.
+
+---
+
+## Review-Limit Capability
+
+The Actor documentation states:
+
+```text
+maxReviewsPerCompany = 0 means unlimited
+```
+
+It also states that pagination handles companies with thousands or tens of thousands of reviews.
+
+Therefore, a separate capability test may later be used to verify whether the Actor can retrieve more than 200 reviews from one business.
+
+This capability test must remain separate from the standard five-domain benchmark.
+
+---
+
+## Performance Claims
+
+The Actor documentation advertises approximately:
+
+```text
+50–100 reviews per minute
+```
+
+It estimates that approximately 200 reviews from one company may take around:
+
+```text
+2–4 minutes
+```
+
+These are provider claims.
+
+The benchmark must independently record:
+
+- Actor run duration
+- total wall-clock time
+- polling duration
+- dataset-retrieval latency
+- median request latency
+- p95 request latency
+- reviews per minute
+
+---
+
+## Pricing Overview
+
+The Actor uses pay-per-event pricing.
+
+Current reviewed pricing includes:
+
+```text
+Run start fee: $0.005
+Free-plan result rate: $0.000575 per review
+Displayed rounded rate: approximately $0.58 per 1,000 reviews
+Platform usage: included
+```
+
+Estimated standard benchmark cost:
+
+```text
+1,000 reviews × $0.000575 = $0.575
+Run start fee = $0.005
+
+Estimated total = $0.580
+```
+
+The exact measured cost must come from the completed Run’s usage and charging metadata.
+
+Detailed pricing belongs in:
+
+```text
+docs/apify-pricing.md
+```
+
+---
+
+## Cost and Usage Evidence
+
+After the Run finishes, save:
+
+- Run usage fields
+- Run event charges
+- `usageUsd`
+- `usageTotalUsd`
+- number of scraped reviews
+- run-start event charge
+- per-result event charge
+- platform compute usage
+- dataset usage
+- proxy usage
+- final account usage difference, when available
+
+Wait briefly after completion and fetch the Run object again because final usage values may take a few seconds to settle.
+
+---
+
+## Retry Policy
+
+Retry only:
+
+- temporary network failures
+- HTTP 429
+- HTTP 500–599
+- temporary Run-status retrieval failures
+- temporary dataset-download failures
+
+Do not automatically retry:
+
+- HTTP 400
+- HTTP 401
+- HTTP 402
+- HTTP 403
+- invalid Actor ID
+- invalid Actor input
+- a completed paid Actor run
+- a failed run by starting another paid run
+- permanent permission errors
+
+Maximum request retries:
+
+```text
+3
+```
+
+Use exponential backoff and save every retry.
+
+---
+
+## Safety and Idempotency
+
+The benchmark must prevent:
+
+- duplicate Actor runs
+- duplicate paid events
+- polling by starting a new run
+- repeated dataset downloads
+- repeated dataset offsets
+- infinite pagination loops
+- automatic domain substitution
+- automatic Actor substitution
+- automatic paid reruns
+- credentials in logs
+- counting duplicate or invalid records
+- silent domain shortfalls
+
+Save these values immediately:
+
+- Actor ID
+- sanitized input
+- Run ID
+- Run status
+- default Dataset ID
+- completed dataset offsets
+- raw response paths
+
+On resume, reuse saved Run and Dataset IDs.
+
+---
+
+## Ground-Truth Comparison
+
+Compare The Pearl Source records against:
+
+```text
+ground-truth/thepearlsource-sample.json
+```
+
+Compare common fields:
+
+- review ID
+- title
+- review text
+- rating
+- published date
+- experience date
+- reviewer name
+- reviewer country
+- reviewer review count
+- likes
+- verification or invitation status
+- source
+- company reply
+- company reply date
+
+Fields unavailable in either source must be marked:
+
+```text
+Pending
+```
+
+---
+
+## Required Benchmark Evidence
+
+Save:
+
+- Actor ID
+- Actor input
+- Run-creation response
+- Run ID
+- polling history
+- final Run object
+- Dataset ID
+- raw dataset responses
+- normalized JSON
+- normalized CSV
+- per-domain counts
+- duplicate report
+- pagination report
+- error and retry logs
+- timing report
+- event and usage charges
+- measured cost
+- field-coverage report
+- ground-truth comparison
+- E1–E6 assessment
+- provisional score
+- missing-evidence report
+
+---
+
+## Expected Output Files
+
+```text
+outputs/apify/raw/requests/
+outputs/apify/raw/runs/
+outputs/apify/raw/datasets/
+outputs/apify/all-reviews.json
+outputs/apify/all-reviews.csv
+outputs/apify/domain-summary.json
+outputs/apify/duplicate-report.json
+outputs/apify/pagination-report.json
+outputs/apify/timings.json
+outputs/apify/error-log.json
+outputs/apify/execution-plan.json
+outputs/apify/run-state.json
+outputs/apify/cost-report.json
+outputs/apify/usage-report.json
+outputs/apify/ground-truth-match.json
+```
+
+Reports:
+
+```text
+reports/apify/benchmark-report.md
+reports/apify/cost-report.md
+reports/apify/field-coverage.md
+reports/apify/ground-truth-comparison.md
+reports/apify/elimination-assessment.md
+reports/apify/scorecard.md
+reports/apify/final-verdict.md
+reports/apify/missing-evidence.md
+```
+
+---
+
+## Current Documentation Status
+
+| Requirement | Status |
+|---|---|
+| Selected Actor | Confirmed |
+| Actor ID | `automation-lab/trustpilot` |
+| REST Actor ID | `automation-lab~trustpilot` |
+| API base URL | Confirmed |
+| Bearer authentication | Confirmed |
+| Asynchronous Run endpoint | Confirmed |
+| Run polling endpoint | Confirmed |
+| Dataset retrieval endpoint | Confirmed |
+| Multiple companies per run | Confirmed |
+| Domain input | Confirmed |
+| Full Trustpilot URL input | Confirmed |
+| 200 reviews per company | Confirmed |
+| Unlimited configuration | Documented through value `0` |
+| Automatic pagination | Confirmed by Actor documentation |
+| Recency sorting | Confirmed |
+| Review fields | Confirmed |
+| Dataset pagination | Confirmed |
+| Pay-per-event pricing | Confirmed |
+| Exact measured benchmark cost | Pending benchmark |
+| Actual 1,000-review success | Pending benchmark |
+| More-than-200 live capability | Pending separate capability test |
+| Ground-truth accuracy | Pending benchmark |
+```
+
+---
+
+## Pre-Run Rules
+
+Before starting the final paid benchmark:
+
+1. Validate `APIFY_API_TOKEN`.
+2. Validate `APIFY_ACTOR_ID`.
+3. Confirm the Actor remains available.
+4. Confirm current input schema.
+5. Confirm current event pricing.
+6. Confirm account has sufficient usage balance.
+7. Use the five approved domains only.
+8. Set `maxReviewsPerCompany` to 200.
+9. Set `sort` to `recency`.
+10. Start exactly one Actor run.
+11. Save the Run ID immediately.
+12. Never expose the API token.
+13. Do not automatically rerun after a shortfall.
+
+================================================================================
+2. APIFY - PRICING
+Source: docs/apify/apify-pricing.md (original project)
+================================================================================
+
+# Apify Trustpilot Reviews Scraper Pricing
+
+## Overview
+
+This benchmark uses the Apify Actor:
+
+```text
+Actor: automation-lab/trustpilot
+Pricing model: Pay per event
+```
+
+The Actor charges for:
+
+1. Starting an Actor run
+2. Every review successfully scraped
+
+The Actor documentation states that platform usage costs, including compute, proxy, and storage, are included in the event pricing. :contentReference[oaicite:0]{index=0}
+
+---
+
+## Official Actor
+
+```text
+https://apify.com/automation-lab/trustpilot
+```
+
+Selected Actor ID:
+
+```text
+automation-lab/trustpilot
+```
+
+REST API Actor ID:
+
+```text
+automation-lab~trustpilot
+```
+
+---
+
+## Run Start Fee
+
+Each Actor run has a one-time start fee:
+
+```text
+$0.005 per run
+```
+
+The benchmark should use one run for all five companies to avoid unnecessary repeated start fees.
+
+---
+
+## Per-Review Pricing
+
+The per-review price depends on the user’s Apify subscription tier.
+
+| Apify Tier | Price per Review | Price per 1,000 Reviews |
+|---|---:|---:|
+| Free | $0.000575 | $0.575 |
+| Bronze | $0.000500 | $0.500 |
+| Silver | $0.000390 | $0.390 |
+| Gold | $0.000300 | $0.300 |
+| Platinum | $0.000200 | $0.200 |
+| Diamond | $0.000140 | $0.140 |
+
+A one-time `$0.005` run start fee must be added to these result charges. :contentReference[oaicite:1]{index=1}
+
+---
+
+## Current Free-Tier Pricing
+
+For an account using the Free pricing tier:
+
+```text
+Per-review price: $0.000575
+1,000 reviews: $0.575
+Run start fee: $0.005
+```
+
+Estimated total:
+
+```text
+$0.575 + $0.005 = $0.580
+```
+
+Therefore, the estimated benchmark cost is:
+
+```text
+$0.58 for 1,000 reviews
+```
+
+The Apify interface may display the rounded result rate as:
+
+```text
+$0.58 per 1,000 reviews
+```
+
+However, the detailed Actor documentation shows the underlying result charge as `$0.575`, before the run start fee.
+
+---
+
+## Benchmark Cost Estimate
+
+The approved benchmark uses:
+
+```text
+5 companies
+200 reviews per company
+1,000 reviews total
+1 Actor run
+```
+
+Calculation on the Free tier:
+
+```text
+1,000 × $0.000575 = $0.575
+1 run × $0.005 = $0.005
+
+Estimated total = $0.580
+```
+
+---
+
+## Per-Domain Cost Estimate
+
+For 200 reviews from one company:
+
+```text
+200 × $0.000575 = $0.115
+```
+
+When all five companies are included in one run, the run start fee is shared across the complete benchmark.
+
+Allocated run-start cost per company:
+
+```text
+$0.005 ÷ 5 = $0.001
+```
+
+Estimated allocated cost per company:
+
+```text
+$0.115 + $0.001 = $0.116
+```
+
+---
+
+## Pricing by Subscription Tier
+
+### Free Tier
+
+```text
+1,000 review charge: $0.575
+Run fee: $0.005
+Estimated total: $0.580
+```
+
+### Bronze Tier
+
+```text
+1,000 review charge: $0.500
+Run fee: $0.005
+Estimated total: $0.505
+```
+
+### Silver Tier
+
+```text
+1,000 review charge: $0.390
+Run fee: $0.005
+Estimated total: $0.395
+```
+
+### Gold Tier
+
+```text
+1,000 review charge: $0.300
+Run fee: $0.005
+Estimated total: $0.305
+```
+
+### Platinum Tier
+
+```text
+1,000 review charge: $0.200
+Run fee: $0.005
+Estimated total: $0.205
+```
+
+### Diamond Tier
+
+```text
+1,000 review charge: $0.140
+Run fee: $0.005
+Estimated total: $0.145
+```
+
+---
+
+## Cost for More Than 200 Reviews From One Business
+
+The Actor documentation states that:
+
+```text
+maxReviewsPerCompany = 0
+```
+
+removes the configured result limit and allows automatic pagination through all available reviews. :contentReference[oaicite:2]{index=2}
+
+Estimated Free-tier examples:
+
+| Reviews | Result Cost | Run Fee | Estimated Total |
+|---:|---:|---:|---:|
+| 200 | $0.115 | $0.005 | $0.120 |
+| 500 | $0.2875 | $0.005 | $0.2925 |
+| 1,000 | $0.575 | $0.005 | $0.580 |
+| 2,000 | $1.150 | $0.005 | $1.155 |
+| 10,000 | $5.750 | $0.005 | $5.755 |
+
+The Actor’s documentation also provides examples of scraping thousands of reviews and states that there is no fixed review-count limit. :contentReference[oaicite:3]{index=3} :contentReference[oaicite:4]{index=4}
+
+---
+
+## One Run vs Multiple Runs
+
+The benchmark should process all five companies in one Actor run.
+
+### One combined run
+
+```text
+Review charges: $0.575
+Run start fees: $0.005
+Total: $0.580
+```
+
+### Five separate runs
+
+```text
+Review charges: $0.575
+Run start fees: 5 × $0.005 = $0.025
+Total: $0.600
+```
+
+Using one multi-company run saves:
+
+```text
+$0.020
+```
+
+It also reduces duplicate-run risk and simplifies benchmark evidence.
+
+---
+
+## Platform Usage Costs
+
+The Actor states that platform usage is included in the pay-per-event price.
+
+Included costs are described as covering:
+
+- Actor compute
+- proxy usage
+- dataset storage
+- standard platform execution costs
+
+The final benchmark must still inspect the completed Run object for:
+
+- `usage`
+- `usageUsd`
+- `usageTotalUsd`
+- event charges
+- compute-unit usage
+- proxy usage
+- storage usage
+
+This is required to confirm that no separate platform charges were added.
+
+---
+
+## Estimated vs Measured Cost
+
+The final report must separate:
+
+### Published pricing
+
+The Actor’s documented per-review and run-start rates.
+
+### Estimated benchmark cost
+
+The expected cost calculated before the benchmark:
+
+```text
+$0.580
+```
+
+### Measured Actor charge
+
+The actual event charge recorded for the completed run.
+
+### Measured total cost
+
+The final value returned by Apify after all usage information has settled.
+
+No estimated value should be presented as a confirmed charge.
+
+---
+
+## Measured Cost Formula
+
+```text
+Measured benchmark cost
+=
+Run start event charge
++
+Review result event charges
++
+Any separately billed platform usage
+```
+
+Expected calculation:
+
+```text
+$0.005
++
+(successful charged reviews × applicable per-review rate)
+```
+
+---
+
+## Cost Per 1,000 Successful Reviews
+
+Use:
+
+```text
+Cost per 1,000 successful reviews
+=
+Measured benchmark cost
+÷ successful unique reviews
+× 1,000
+```
+
+Example with full success:
+
+```text
+Measured cost: $0.580
+Unique successful reviews: 1,000
+
+$0.580 ÷ 1,000 × 1,000
+= $0.580 per 1,000 successful reviews
+```
+
+Example with a shortfall:
+
+```text
+Measured cost: $0.580
+Unique successful reviews: 990
+
+$0.580 ÷ 990 × 1,000
+= approximately $0.586 per 1,000 successful reviews
+```
+
+---
+
+## Duplicate Billing
+
+The Actor uses pay-per-result pricing.
+
+The documentation does not fully confirm whether duplicate dataset records would be charged as separate result events.
+
+The benchmark must record:
+
+- raw results
+- unique results
+- duplicate results
+- charged result events
+- difference between charged and unique result counts
+
+Status:
+
+```text
+Duplicate billing: Pending live verification
+```
+
+---
+
+## Failed Run Billing
+
+The benchmark must verify whether charges occur when:
+
+- the Actor run fails
+- the Actor times out
+- a company returns no reviews
+- a company URL is invalid
+- only partial results are produced
+- a run is aborted
+
+Status:
+
+```text
+Failed-run billing: Pending live verification
+Empty-result billing: Pending live verification
+Partial-run billing: Pending live verification
+```
+
+The script must not automatically start another paid run after failure.
+
+---
+
+## Cost Evidence Required
+
+Save the following evidence:
+
+- Apify account pricing tier
+- Actor pricing screenshot or documentation
+- run start fee
+- per-review event rate
+- sanitized Actor input
+- Run ID
+- final Run object
+- default Dataset ID
+- raw dataset result count
+- valid result count
+- unique result count
+- duplicate count
+- Actor event charges
+- `usage`
+- `usageUsd`
+- `usageTotalUsd`
+- platform usage charges
+- estimated cost
+- measured cost
+- normalized cost per 1,000 reviews
+
+---
+
+## Current Pricing Status
+
+| Requirement | Status |
+|---|---|
+| Pricing model | Pay per event |
+| Run start fee | $0.005 |
+| Free-tier price per review | $0.000575 |
+| Free-tier result cost per 1K | $0.575 |
+| Estimated Free-tier total per 1K | $0.580 |
+| Business/Gold displayed price per 1K | $0.300 plus run fee |
+| Platform usage | Advertised as included |
+| Multiple companies in one run | Supported |
+| More than 200 reviews per company | Documented as supported |
+| Actual account tier | Pending preflight verification |
+| Measured review events | Pending benchmark |
+| Measured run cost | Pending benchmark |
+| Duplicate billing | Pending verification |
+| Failed-run billing | Pending verification |
+| Cost per 1,000 successful reviews | Pending benchmark |
+
+================================================================================
+3. DATAFORSEO - DOCUMENTATION
+Source: docs/dataforseo/dataforseo-documentation.md (original project)
+================================================================================
+
+# DataForSEO Trustpilot Reviews API Documentation
+
+## Overview
+
+The DataForSEO Trustpilot Reviews API retrieves reviews published on Trustpilot for a business specified through its domain.
+
+For example:
+
+```text
+Trustpilot URL:
+https://www.trustpilot.com/review/thepearlsource.com
+
+Business domain:
+thepearlsource.com
+```
+
+The domain must belong to an existing Trustpilot business profile.
+
+---
+
+## Official Documentation
+
+- Trustpilot Reviews Task POST:  
+  https://docs.dataforseo.com/v3/business_data-trustpilot-reviews-task_post/
+
+- DataForSEO API Authentication:  
+  https://docs.dataforseo.com/v3/auth/
+
+- DataForSEO API Access:  
+  https://app.dataforseo.com/api-access
+
+- Trustpilot Reviews Pricing:  
+  https://dataforseo.com/pricing/business-data/business-data-api-trustpilot-reviews-pricing
+
+---
+
+## Authentication
+
+DataForSEO uses Basic Authentication.
+
+The API login and API password must be obtained from the DataForSEO API Access dashboard. The API password may be different from the normal account password.
+
+Credentials must be stored in environment variables:
+
+```env
+DATAFORSEO_LOGIN=your_api_login
+DATAFORSEO_PASSWORD=your_api_password
+```
+
+Credentials must not be:
+
+- hardcoded in benchmark scripts
+- printed in terminal logs
+- included in raw API responses
+- committed to GitHub
+- added to reports or screenshots
+
+---
+
+## Task Creation Endpoint
+
+```http
+POST https://api.dataforseo.com/v3/business_data/trustpilot/reviews/task_post
+```
+
+All request data must be sent as UTF-8 JSON.
+
+The request body must contain an array of tasks.
+
+Example:
+
+```json
+[
+  {
+    "domain": "thepearlsource.com",
+    "depth": 200,
+    "sort_by": "recency",
+    "priority": 1,
+    "tag": "happen-dataforseo-benchmark"
+  }
+]
+```
+
+---
+
+## Request Parameters
+
+### `domain`
+
+- Type: string
+- Required: yes
+
+The Trustpilot business domain.
+
+Example:
+
+```json
+"domain": "thepearlsource.com"
+```
+
+The value should match the domain shown in the Trustpilot business profile URL.
+
+---
+
+### `sort_by`
+
+- Type: string
+- Required: no
+- Default: `relevance`
+
+Supported values:
+
+- `recency` — returns the most recent reviews first
+- `relevance` — returns the most relevant reviews first
+
+For the benchmark, use:
+
+```json
+"sort_by": "recency"
+```
+
+---
+
+### `priority`
+
+- Type: integer
+- Required: no
+- Default: `1`
+
+Supported values:
+
+- `1` — normal execution priority
+- `2` — high execution priority
+
+High-priority tasks have an additional cost.
+
+For the standard benchmark, use:
+
+```json
+"priority": 1
+```
+
+---
+
+### `depth`
+
+- Type: integer
+- Required: no
+- Default: `20`
+- Maximum: `200`
+
+The `depth` field defines the requested number of reviews.
+
+DataForSEO recommends using multiples of 20 because the platform processes reviews in groups of 20.
+
+Examples:
+
+```json
+"depth": 20
+```
+
+```json
+"depth": 200
+```
+
+The account is billed for each block of up to 20 returned reviews.
+
+For example:
+
+```text
+Requested depth: 21
+Billable review quantity: 40
+```
+
+---
+
+### `tag`
+
+- Type: string
+- Required: no
+- Maximum length: 255 characters
+
+A user-defined identifier that helps match a task with its results.
+
+Example:
+
+```json
+"tag": "happen-dataforseo-benchmark"
+```
+
+---
+
+### `postback_url`
+
+- Type: string
+- Required: no
+
+DataForSEO can send completed task results to this URL through a POST request.
+
+The returned data may be compressed using gzip.
+
+This option requires a publicly accessible server endpoint.
+
+---
+
+### `pingback_url`
+
+- Type: string
+- Required: no
+
+DataForSEO sends a GET request to this URL when the task is complete.
+
+The task results must still be retrieved separately.
+
+---
+
+## API Limits
+
+The documented limits are:
+
+- Maximum 30 POST API calls per minute
+- Maximum 100 tasks in one POST request
+- Requests containing more than 100 tasks may return error `40006`
+- Maximum Trustpilot review depth per task is 200
+
+The benchmark script must respect these limits and avoid unnecessary duplicate tasks.
+
+---
+
+## Asynchronous Task Workflow
+
+The Trustpilot Reviews API uses an asynchronous task process.
+
+### Step 1: Create the task
+
+Send a POST request to:
+
+```http
+POST /v3/business_data/trustpilot/reviews/task_post
+```
+
+Save the returned task ID.
+
+---
+
+### Step 2: Wait for completion
+
+The task may not return review data immediately.
+
+The task creation response normally contains:
+
+```json
+"result": null
+```
+
+This means the task was created but its final results are not ready yet.
+
+---
+
+### Step 3: Check completed tasks
+
+Completed task IDs can be checked through the Trustpilot Reviews `tasks_ready` endpoint.
+
+---
+
+### Step 4: Retrieve the result
+
+Use the completed task ID with the relevant Trustpilot Reviews `task_get` endpoint.
+
+The final result response should contain the business information and the returned reviews inside the result structure.
+
+---
+
+## Important Response Fields
+
+The task creation response may include:
+
+| Field | Description |
+|---|---|
+| `version` | Current API version |
+| `status_code` | General API status code |
+| `status_message` | General status description |
+| `time` | API response execution time |
+| `cost` | Total task cost in USD |
+| `tasks_count` | Number of submitted tasks |
+| `tasks_error` | Number of tasks containing errors |
+| `tasks[].id` | Unique task identifier |
+| `tasks[].status_code` | Individual task status code |
+| `tasks[].status_message` | Individual task status description |
+| `tasks[].time` | Individual task processing time |
+| `tasks[].cost` | Individual task cost |
+| `tasks[].result_count` | Number of result elements |
+| `tasks[].data` | Original task parameters |
+| `tasks[].result` | Task result, normally null during task creation |
+
+The benchmark must record both the top-level status and the individual task status.
+
+---
+
+## Example cURL Request
+
+```bash
+curl --request POST \
+  "https://api.dataforseo.com/v3/business_data/trustpilot/reviews/task_post" \
+  --user "$DATAFORSEO_LOGIN:$DATAFORSEO_PASSWORD" \
+  --header "Content-Type: application/json" \
+  --data '[
+    {
+      "domain": "thepearlsource.com",
+      "depth": 200,
+      "sort_by": "recency",
+      "priority": 1,
+      "tag": "happen-dataforseo-benchmark"
+    }
+  ]'
+```
+
+---
+
+## Billing Behaviour
+
+The account may be charged for:
+
+- creating the task
+- the number of returned reviews
+- each group of up to 20 reviews
+- high-priority execution
+
+The benchmark must separately record:
+
+- estimated cost from the pricing documentation
+- task creation response cost
+- final task cost
+- billing dashboard cost
+- normalized cost per 1,000 successful records
+
+Estimated and measured costs must not be presented as the same value.
+
+---
+
+## Benchmark Configuration
+
+The DataForSEO benchmark will use:
+
+```text
+Target business: thepearlsource.com
+Target platform: Trustpilot
+Sort order: Most recent
+Priority: Normal
+Required benchmark size: 1,000 unique reviews
+Output formats: JSON and CSV
+```
+
+A successful review should contain:
+
+- unique review identifier
+- rating
+- review date
+- review title or text
+- reviewer information
+- valid review data rather than an error or empty object
+
+---
+
+## Important 1,000-Review Limitation
+
+The documented maximum value of `depth` is:
+
+```text
+200 reviews per task
+```
+
+The Task POST documentation does not show an `offset`, `skip`, `page`, or cursor parameter for retrieving the next group of reviews.
+
+Therefore, the ability to retrieve 1,000 unique reviews is currently:
+
+```text
+Pending verification
+```
+
+Five identical tasks with:
+
+```json
+"depth": 200
+```
+
+must not automatically be counted as 1,000 reviews because they may return the same 200 recent reviews repeatedly.
+
+Before running the full benchmark, the following must be confirmed:
+
+- whether DataForSEO supports pagination for Trustpilot reviews
+- whether another endpoint or parameter returns older reviews
+- whether multiple tasks can retrieve different review ranges
+- whether 1,000 unique review IDs can be collected
+- whether duplicate tasks create additional charges
+
+If the API cannot return more than 200 unique reviews, the 1,000-review benchmark cannot be completed through this endpoint.
+
+Under the testing methodology, this may affect the benchmark success-rate and scalability evaluation. It must not be marked as a confirmed failure until the pagination capability is fully verified.
+
+---
+
+## Evidence Required
+
+The following evidence must be saved during testing:
+
+- sanitized Task POST request
+- task creation response
+- task ID
+- Tasks Ready response
+- Task GET response
+- raw review output
+- normalized JSON output
+- normalized CSV output
+- returned review count
+- unique review count
+- duplicate review count
+- empty or partial response count
+- task execution timings
+- total wall-clock benchmark time
+- task cost
+- billing evidence
+- rate-limit or error responses
+- pagination verification
+- field coverage comparison
+- ground-truth accuracy comparison
+
+---
+
+## Current Documentation Status
+
+| Requirement | Status |
+|---|---|
+| Official endpoint identified | Confirmed |
+| Basic Authentication identified | Confirmed |
+| Domain input supported | Confirmed |
+| Recent-review sorting supported | Confirmed |
+| Maximum depth identified | Confirmed — 200 |
+| API rate limit identified | Confirmed |
+| Task creation workflow identified | Confirmed |
+| Asynchronous result workflow identified | Confirmed |
+| Cost returned in API response | Confirmed |
+| Pagination beyond 200 reviews | Pending verification |
+| Ability to retrieve 1,000 unique reviews | Pending verification |
+| Exact measured cost per 1,000 reviews | Pending benchmark |
+| Full benchmark execution time | Pending benchmark |
+
+================================================================================
+4. DATAFORSEO - PRICING
+Source: docs/dataforseo/dataforseo-pricing.md (original project)
+================================================================================
+
+# DataForSEO Trustpilot Reviews API Pricing
+
+## Overview
+
+The DataForSEO Business Data API provides Trustpilot review data for businesses listed on Trustpilot.
+
+Billing is based on the number of reviews returned.
+
+The account is charged for every block of up to 20 reviews.
+
+For example:
+
+```text
+1–20 reviews   = charged as 20 reviews
+21–40 reviews  = charged as 40 reviews
+41–60 reviews  = charged as 60 reviews
+```
+
+This means that requesting 21 reviews costs the same as requesting 40 reviews.
+
+---
+
+## Standard Priority
+
+Standard priority uses the normal POST and GET task queue.
+
+```text
+Turnaround time: Up to 45 minutes
+Price per 20 reviews: $0.00075
+Price per 1,000 reviews: $0.0375
+Price per 1,000,000 reviews: $37.50
+```
+
+### Cost calculation
+
+```text
+1,000 ÷ 20 = 50 billable blocks
+
+50 × $0.00075 = $0.0375
+```
+
+---
+
+## High Priority
+
+High priority uses the priority POST and GET task queue.
+
+```text
+Turnaround time: Up to 1 minute
+Price per 20 reviews: $0.0015
+Price per 1,000 reviews: $0.075
+Price per 1,000,000 reviews: $75.00
+```
+
+### Cost calculation
+
+```text
+1,000 ÷ 20 = 50 billable blocks
+
+50 × $0.0015 = $0.075
+```
+
+---
+
+## Cost Per Maximum 200-Review Task
+
+The Trustpilot Reviews Task POST endpoint supports a maximum depth of 200 reviews per task.
+
+### Standard priority
+
+```text
+200 ÷ 20 = 10 billable blocks
+
+10 × $0.00075 = $0.0075
+```
+
+### High priority
+
+```text
+200 ÷ 20 = 10 billable blocks
+
+10 × $0.0015 = $0.015
+```
+
+---
+
+## Estimated Benchmark Cost
+
+The benchmark target is 1,000 unique Trustpilot reviews.
+
+| Priority | Estimated cost per 1,000 reviews |
+|---|---:|
+| Standard | $0.0375 |
+| High | $0.075 |
+
+These values are theoretical pricing estimates based on the published price per 20 returned reviews.
+
+They must not be presented as measured benchmark costs until the following evidence is collected:
+
+- API task response `cost`
+- billing dashboard charge
+- balance before the benchmark
+- balance after the benchmark
+- number of successful unique reviews returned
+- failed or duplicate tasks charged
+- any trial credits applied
+
+---
+
+## Important Limitation
+
+The maximum documented task depth is 200 reviews.
+
+The official Task POST documentation does not currently confirm pagination beyond 200 reviews.
+
+Therefore, the estimated cost for 1,000 reviews assumes that five distinct sets of 200 unique reviews can be retrieved.
+
+```text
+5 tasks × 200 reviews = 1,000 reviews
+```
+
+This assumption must be verified.
+
+Running five identical tasks that return the same 200 reviews would not count as a successful 1,000-review benchmark and could create unnecessary charges.
+
+---
+
+## Cost Per 1,000 Successful Records
+
+The final benchmark cost must be normalized using successful unique records rather than requested records.
+
+```text
+Cost per 1,000 successful records
+=
+Total measured benchmark cost
+÷ Successful unique records
+× 1,000
+```
+
+Example:
+
+```text
+Measured cost: $0.0375
+Successful unique records: 1,000
+
+$0.0375 ÷ 1,000 × 1,000 = $0.0375
+```
+
+If only 200 unique records are returned:
+
+```text
+Measured cost: $0.0075
+Successful unique records: 200
+
+$0.0075 ÷ 200 × 1,000 = $0.0375
+```
+
+This normalized calculation shows cost efficiency, but it does not mean the 1,000-record benchmark was completed.
+
+---
+
+## Billing Evidence to Record
+
+During testing, save:
+
+- pricing page reference
+- selected priority
+- requested depth
+- returned review count
+- billable review blocks
+- task-level API cost
+- top-level API cost
+- account balance before testing
+- account balance after testing
+- billing history screenshot or export
+- failed requests and whether they were charged
+- duplicate tasks and whether they were charged
+- trial or promotional credits
+
+---
+
+## Current Pricing Status
+
+| Requirement | Status |
+|---|---|
+| Standard price per 20 reviews | Confirmed — $0.00075 |
+| High-priority price per 20 reviews | Confirmed — $0.0015 |
+| Standard estimated cost per 1K | Confirmed calculation — $0.0375 |
+| High-priority estimated cost per 1K | Confirmed calculation — $0.075 |
+| Standard turnaround time | Up to 45 minutes |
+| High-priority turnaround time | Up to 1 minute |
+| Exact measured benchmark cost | Pending |
+| Failed-request billing behavior | Pending verification |
+| Cost of 1,000 unique reviews | Pending pagination and benchmark verification |
+
+================================================================================
+5. LOBSTR - DOCUMENTATION
+Source: docs/lobster/lobstr-documentation.md (original project; folder named 'lobster' is a typo for 'lobstr' in the source project)
+================================================================================
+
+# Lobstr.io Trustpilot Reviews API Documentation
+
+## Overview
+
+Lobstr.io provides a REST API and a ready-made Trustpilot Reviews Scraper for extracting structured review data from Trustpilot business pages.
+
+The API workflow is based on three main objects:
+
+- **Squid** — a configured scraper workspace connected to a crawler
+- **Task** — a Trustpilot business URL or domain to scrape
+- **Run** — one execution of the squid against its tasks
+
+The standard workflow is:
+
+1. Authenticate with the Lobstr.io API
+2. Find the Trustpilot Reviews crawler
+3. Create or reuse a Squid
+4. Configure the Squid
+5. Add Trustpilot business URLs as Tasks
+6. Start a Run
+7. Poll the Run until completion
+8. Retrieve all paginated results
+9. Save and normalize the output
+
+---
+
+## Official Sources
+
+```text
+API documentation:
+https://docs.lobstr.io/
+
+Trustpilot Reviews Scraper example:
+https://docs.lobstr.io/examples/trustpilot-reviews-scraper/get-results
+
+General Results endpoint:
+https://docs.lobstr.io/docs/get-results
+
+Create Squid:
+https://docs.lobstr.io/docs/create-squid
+
+Update Squid:
+https://docs.lobstr.io/docs/update-squid
+
+Rate limits:
+https://docs.lobstr.io/docs/rate-limiting
+
+Documentation index:
+https://docs.lobstr.io/llms.txt
+```
+
+---
+
+## API Base URL
+
+```text
+https://api.lobstr.io
+```
+
+API version used by the documented endpoints:
+
+```text
+/v1
+```
+
+---
+
+## Authentication
+
+Lobstr.io uses token authentication.
+
+Every authenticated request must include:
+
+```http
+Authorization: Token YOUR_API_KEY
+```
+
+The API key must be stored locally in `.env`:
+
+```env
+LOBSTR_API_KEY=your_actual_api_key
+```
+
+The API key must never be:
+
+- hardcoded in scripts
+- printed in terminal output
+- written to logs
+- saved in raw responses
+- added to reports
+- committed to GitHub
+- shown in screenshots
+
+Example authenticated request:
+
+```bash
+curl --request GET \
+  --url "https://api.lobstr.io/v1/crawlers" \
+  --header "Authorization: Token $LOBSTR_API_KEY"
+```
+
+---
+
+## Required Environment Variables
+
+```env
+LOBSTR_API_KEY=your_actual_api_key
+LOBSTR_CRAWLER_ID=
+LOBSTR_SQUID_ID=
+```
+
+Only `LOBSTR_API_KEY` is a credential.
+
+`LOBSTR_CRAWLER_ID` and `LOBSTR_SQUID_ID` may be populated after discovering or creating the required resources.
+
+Claude must not invent either ID.
+
+---
+
+## Trustpilot Reviews Crawler
+
+Crawler name:
+
+```text
+Trustpilot Reviews Scraper
+```
+
+Expected crawler slug:
+
+```text
+trustpilot-reviews-scraper
+```
+
+The actual crawler hash must be identified through the live API.
+
+Suggested discovery process:
+
+```http
+GET /v1/crawlers
+```
+
+The script must:
+
+1. list available crawlers
+2. find the crawler whose name or slug matches Trustpilot Reviews Scraper
+3. save its actual crawler ID
+4. inspect its supported parameters and attributes
+5. stop if no matching crawler is available
+
+Crawler details and parameters should be checked through the appropriate crawler endpoints before creating a Squid.
+
+The benchmark must not use a crawler ID copied from an unrelated example.
+
+---
+
+## Create a Squid
+
+Endpoint:
+
+```http
+POST https://api.lobstr.io/v1/squids
+```
+
+A Squid is a reusable scraper workspace tied to a specific crawler.
+
+Example request:
+
+```json
+{
+  "crawler": "ACTUAL_TRUSTPILOT_CRAWLER_ID",
+  "name": "Trustpilot API Benchmark — Lobstr"
+}
+```
+
+Example cURL:
+
+```bash
+curl --request POST \
+  --url "https://api.lobstr.io/v1/squids" \
+  --header "Authorization: Token $LOBSTR_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "crawler": "ACTUAL_TRUSTPILOT_CRAWLER_ID",
+    "name": "Trustpilot API Benchmark — Lobstr"
+  }'
+```
+
+Important response fields include:
+
+- `id`
+- `name`
+- `crawler`
+- `is_active`
+- `concurrency`
+- `params`
+- `schedule`
+- `to_complete`
+
+The returned Squid ID must be saved and reused.
+
+The benchmark must not create a new paid Squid or duplicate configuration on every script execution.
+
+---
+
+## Reuse an Existing Squid
+
+Before creating a new Squid, the benchmark should check whether a suitable Trustpilot Squid already exists.
+
+If an existing Squid is reused, verify:
+
+- it uses the correct Trustpilot crawler
+- no unrelated tasks are active
+- its previous results will not be mixed with the benchmark
+- its configuration matches the benchmark requirements
+- the current run can be isolated by Run ID
+
+Results should preferably be retrieved by the specific Run ID rather than by the complete Squid history.
+
+---
+
+## Squid Configuration
+
+Squid settings can be updated using:
+
+```http
+POST https://api.lobstr.io/v1/squids/{squid_hash}
+```
+
+General documented Squid settings include:
+
+- `name`
+- `is_active`
+- `concurrency`
+- `to_complete`
+- `export_unique_results`
+- `no_line_breaks`
+- `run_notify`
+- crawler-specific `params`
+
+Recommended general benchmark settings:
+
+```json
+{
+  "name": "Trustpilot API Benchmark — Lobstr",
+  "is_active": true,
+  "to_complete": true,
+  "export_unique_results": false,
+  "no_line_breaks": false
+}
+```
+
+`export_unique_results` should remain false during raw evidence collection so the benchmark can independently detect and report duplicates.
+
+The exact Trustpilot crawler parameters must be obtained from the live crawler-details or crawler-parameters endpoint.
+
+Do not assume parameter names such as:
+
+- `max_results`
+- `max_pages`
+- `language`
+- `ratings`
+- `fetch_since`
+
+until the actual Trustpilot crawler schema confirms them.
+
+---
+
+## Benchmark Dataset
+
+The same fixed five-domain dataset used for the previous tools must be used:
+
+```text
+www.thepearlsource.com — 200 reviews
+www.shein.com — 200 reviews
+temu.com — 200 reviews
+www.aliexpress.com — 200 reviews
+thehalara.com — 200 reviews
+```
+
+Total benchmark target:
+
+```text
+5 domains × 200 reviews = 1,000 unique Trustpilot reviews
+```
+
+Preferred task URLs:
+
+```text
+https://www.trustpilot.com/review/www.thepearlsource.com
+https://www.trustpilot.com/review/www.shein.com
+https://www.trustpilot.com/review/temu.com
+https://www.trustpilot.com/review/www.aliexpress.com
+https://www.trustpilot.com/review/thehalara.com
+```
+
+The same domains are required to keep the DataForSEO, Outscraper and Lobstr.io comparison fair.
+
+---
+
+## Add Tasks
+
+Tasks are added to a Squid through:
+
+```http
+POST https://api.lobstr.io/v1/tasks
+```
+
+General request structure:
+
+```json
+{
+  "squid": "ACTUAL_SQUID_ID",
+  "tasks": [
+    {
+      "url": "https://www.trustpilot.com/review/www.thepearlsource.com"
+    }
+  ]
+}
+```
+
+Five-domain example:
+
+```json
+{
+  "squid": "ACTUAL_SQUID_ID",
+  "tasks": [
+    {
+      "url": "https://www.trustpilot.com/review/www.thepearlsource.com"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/www.shein.com"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/temu.com"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/www.aliexpress.com"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/thehalara.com"
+    }
+  ]
+}
+```
+
+Before submitting tasks, the benchmark must verify the actual task input field expected by the Trustpilot crawler.
+
+If the crawler expects a field other than `url`, the live crawler parameter schema is the source of truth.
+
+Important task evidence:
+
+- Squid ID
+- task ID
+- submitted URL
+- task creation timestamp
+- duplicated task count
+- active status
+- sanitized request and response
+
+The script must not submit the same five tasks repeatedly on resume.
+
+---
+
+## Existing Task Protection
+
+Before adding tasks, the script should inspect existing tasks for the Squid.
+
+It must prevent:
+
+- duplicate domain tasks
+- accidental mixing with old benchmark tasks
+- duplicate paid runs
+- automatic task recreation after partial failure
+
+If a benchmark task already exists, reuse its saved ID where safe.
+
+Do not delete old tasks or results without explicit approval.
+
+---
+
+## Start a Run
+
+After the tasks and settings are verified, start one benchmark Run for the approved Squid.
+
+The exact Run-start endpoint and request body must be verified from the current official API documentation or discovered through the API documentation index before execution.
+
+The implementation must save:
+
+- Run ID
+- Squid ID
+- task IDs
+- creation timestamp
+- initial status
+- sanitized request
+- initial response
+
+Do not launch another Run while the existing benchmark Run is active.
+
+Do not poll by creating another Run.
+
+---
+
+## Run Status Polling
+
+The benchmark must poll the existing Run until it reaches a terminal state.
+
+Expected status concepts may include:
+
+```text
+pending
+running
+done
+failed
+stopped
+```
+
+The live API response is the source of truth for exact status names.
+
+Polling rules:
+
+- poll the existing Run ID
+- do not launch another Run
+- wait between checks
+- respect API rate limits
+- record every polling attempt
+- stop after a documented safety timeout
+- report failed or stopped runs
+- do not silently accept an incomplete run
+
+A run should be treated as complete only when the API reports a successful terminal status.
+
+---
+
+## Get Results
+
+Results endpoint:
+
+```http
+GET https://api.lobstr.io/v1/results
+```
+
+Results can be requested using either:
+
+- `squid`
+- `run`
+
+The general API documentation states that the request should supply either the Squid ID or the Run ID, not both.
+
+For benchmark isolation, use the specific Run ID:
+
+```http
+GET /v1/results?run=ACTUAL_RUN_ID&page=1&limit=100
+```
+
+Example:
+
+```bash
+curl --request GET \
+  --url "https://api.lobstr.io/v1/results?run=ACTUAL_RUN_ID&page=1&limit=100" \
+  --header "Authorization: Token $LOBSTR_API_KEY"
+```
+
+General response metadata includes:
+
+- `total_results`
+- `limit`
+- `page`
+- `total_pages`
+- `result_from`
+- `result_to`
+- `next`
+- `previous`
+- `data`
+
+---
+
+## Result Pagination
+
+The `/v1/results` endpoint is paginated.
+
+Documented pagination fields include:
+
+- `page`
+- `limit`
+- `total_pages`
+- `next`
+- `previous`
+
+The maximum documented results-page limit is:
+
+```text
+100
+```
+
+For 1,000 reviews, approximately 10 results pages may be required:
+
+```text
+1,000 ÷ 100 = 10 result pages
+```
+
+The benchmark should:
+
+1. request the first result page
+2. save the raw response
+3. process the `data` array
+4. follow the exact `next` URL
+5. continue until `next` is null
+6. verify that all reported pages were retrieved
+7. compare collected records with `total_results`
+8. detect repeated pages
+9. detect gaps in pagination
+10. prevent infinite loops
+
+Important distinction:
+
+Result pagination retrieves already-scraped Run results.
+
+It must not create another Squid, Task or Run.
+
+---
+
+## Trustpilot Result Fields
+
+The official Trustpilot Reviews Scraper documentation lists fields including:
+
+- `review_url`
+- `author_name`
+- `author_id`
+- `author_image`
+- `date_published`
+- `review_headline`
+- `review_body`
+- `review_language`
+- `rating_value`
+- `verification_level`
+- `number_of_reviews`
+- `consumer_country_code`
+- `experience_date`
+- `likes`
+- `report`
+- `review_source`
+- `is_author_verified`
+- `is_review_verified`
+- `owner_reply`
+- `owner_reply_date`
+- `updated_date`
+- `consumer_reviews_on_domain`
+- `reviews_count`
+- `trust_score`
+- `stars`
+- `scraping_time`
+
+Generic API metadata may also include:
+
+- `id`
+- `object`
+- `squid`
+- `run`
+- `task`
+
+The live response must be inspected before finalizing the normalizer.
+
+Missing optional fields should not automatically make a review invalid.
+
+---
+
+## Successful Review Definition
+
+A valid benchmark review should contain:
+
+- a stable review identifier or review URL
+- a rating
+- a publication date
+- a review headline or review body
+- reviewer information
+- a source business/domain
+- actual review data rather than an error object
+
+The final successful count must use unique, valid reviews only.
+
+---
+
+## Duplicate Detection
+
+Use this priority:
+
+1. Native Trustpilot review identifier extracted from `review_url`
+2. Complete `review_url`
+3. Lobstr result ID, only when it is stable for the source record
+4. Deterministic SHA-256 fallback based on:
+
+```text
+domain
+author_name
+date_published
+rating_value
+review_headline
+review_body
+```
+
+Duplicates must not count toward the 1,000-review target.
+
+Duplicate analysis should cover:
+
+- duplicates within one task
+- duplicates between tasks
+- duplicates across results pages
+- duplicate results from an accidental repeated run
+- cross-domain duplicate keys
+
+---
+
+## Ground-Truth Comparison
+
+The Pearl Source results must be compared with:
+
+```text
+ground-truth/thepearlsource-sample.json
+```
+
+Compare all commonly available fields:
+
+- author name
+- country
+- reviewer review count
+- rating
+- headline
+- review body
+- publication date
+- verification status
+- source/invited status
+- likes
+- owner reply
+- owner reply date
+
+Unverifiable fields must be marked:
+
+```text
+Pending
+```
+
+Do not assume that similar-looking values are exact matches.
+
+---
+
+## Rate Limits
+
+The official API documentation lists these endpoint limits:
+
+```text
+/v1/squids   — 120 requests per minute
+/v1/tasks    — 90 requests per minute
+/v1/runtasks — 90 requests per minute
+/v1/runs     — 120 requests per minute
+/v1/results  — 2 requests per second
+```
+
+API responses may include:
+
+```text
+X-RateLimit-Limit
+X-RateLimit-Remaining
+X-RateLimit-Reset
+Retry-After
+```
+
+When a rate limit is exceeded, the API may return:
+
+```http
+429 Too Many Requests
+```
+
+The benchmark must:
+
+- monitor rate-limit headers
+- respect `Retry-After`
+- use exponential backoff
+- keep results requests at or below two requests per second
+- record every 429 response
+- avoid repeated rate-limit violations
+
+---
+
+## Retry Rules
+
+Retry only:
+
+- temporary network failures
+- HTTP 429
+- HTTP 5xx
+
+Do not automatically retry:
+
+- HTTP 400
+- HTTP 401
+- HTTP 403
+- HTTP 402 or billing failure
+- invalid Squid ID
+- invalid crawler ID
+- invalid task structure
+- completed paid runs
+- permanent crawler errors
+
+Maximum automatic retries:
+
+```text
+3 attempts
+```
+
+Use exponential backoff and record every attempt.
+
+---
+
+## Safety and Idempotency
+
+The benchmark implementation must prevent:
+
+- duplicate Squid creation
+- duplicate Task creation
+- duplicate paid Run launches
+- polling by starting a new Run
+- mixing old Squid results with the current Run
+- repeated results pages
+- infinite pagination loops
+- counting duplicates
+- silent shortfalls
+- credentials in logs
+- automatic domain substitution
+- automatic paid reruns
+
+Each stage must save its IDs and response before continuing.
+
+On resume, the script should reuse saved IDs rather than create new paid resources.
+
+---
+
+## Required Evidence
+
+Save:
+
+- crawler discovery response
+- crawler ID
+- crawler parameters
+- Squid creation or reuse evidence
+- Squid configuration
+- task requests and responses
+- task IDs
+- duplicated-task count
+- Run request and response
+- Run ID
+- polling history
+- raw results pages
+- final normalized JSON
+- final CSV
+- total reported results
+- valid-review count
+- unique-review count
+- duplicate report
+- domain summary
+- empty and partial response report
+- timing logs
+- rate-limit headers
+- retry and error logs
+- credit or billing evidence
+- ground-truth comparison
+- elimination assessment
+- provisional scorecard
+- missing-evidence report
+
+---
+
+## Benchmark Outputs
+
+Expected files:
+
+```text
+outputs/lobstr/raw/requests/
+outputs/lobstr/raw/results/
+outputs/lobstr/all-reviews.json
+outputs/lobstr/all-reviews.csv
+outputs/lobstr/domain-summary.json
+outputs/lobstr/duplicate-report.json
+outputs/lobstr/pagination-report.json
+outputs/lobstr/timings.json
+outputs/lobstr/error-log.json
+outputs/lobstr/run-state.json
+outputs/lobstr/execution-plan.json
+```
+
+Expected reports:
+
+```text
+reports/lobstr/benchmark-report.md
+reports/lobstr/cost-report.md
+reports/lobstr/field-coverage.md
+reports/lobstr/ground-truth-comparison.md
+reports/lobstr/elimination-assessment.md
+reports/lobstr/scorecard.md
+reports/lobstr/missing-evidence.md
+```
+
+---
+
+## Current Documentation Status
+
+| Requirement | Status |
+|---|---|
+| API base URL | Confirmed |
+| Token authentication | Confirmed |
+| Trustpilot Reviews crawler exists | Confirmed |
+| Squid workflow | Confirmed |
+| Task workflow | Confirmed generally |
+| Trustpilot task input field | Must be verified from live crawler schema |
+| Create Squid endpoint | Confirmed |
+| Update Squid endpoint | Confirmed |
+| Run workflow | Confirmed conceptually |
+| Exact Run-start request | Pending live documentation verification |
+| Results endpoint | Confirmed |
+| Result pagination | Confirmed |
+| Maximum results page size | Confirmed — 100 |
+| Trustpilot result fields | Confirmed |
+| Endpoint-specific rate limits | Confirmed |
+| Actual Trustpilot crawler ID | Pending account/API discovery |
+| Existing Squid ID | Pending account/API discovery |
+| Maximum reviews per business | Pending crawler-parameter verification |
+| Credit consumption | Pending pricing and live-run verification |
+| 1,000-review benchmark capability | Pending paid benchmark |
+```
+
+---
+
+## Important Rules Before Testing
+
+Before any paid Run:
+
+1. Confirm the actual Trustpilot crawler ID.
+2. Confirm the task input schema.
+3. Confirm the crawler’s review-limit setting.
+4. Confirm the exact Run-start endpoint and payload.
+5. Confirm the account has enough credits.
+6. Confirm the five approved domains.
+7. Run plan mode with zero network charges where possible.
+8. Save account balance before the benchmark.
+9. Do not start the paid Run without explicit approval.
+
+================================================================================
+6. LOBSTR - PRICING
+Source: docs/lobster/lobstr-pricing.md (original project)
+================================================================================
+
+# Lobstr.io Trustpilot Reviews Scraper Pricing
+
+## Overview
+
+Lobstr.io uses a monthly subscription and credit-based pricing model.
+
+The Trustpilot Reviews Scraper consumes credits according to the number of unique review results collected.
+
+The official pricing model defines:
+
+```text
+1 credit = 1 unique result
+```
+
+Duplicate results should not consume additional credits.
+
+The final benchmark must verify actual credit consumption through the Lobstr.io account dashboard and API balance data.
+
+---
+
+## Official Sources
+
+```text
+General pricing:
+https://www.lobstr.io/pricing
+
+Trustpilot Reviews Scraper:
+https://www.lobstr.io/store/trustpilot-reviews-scraper
+
+API documentation:
+https://docs.lobstr.io/
+```
+
+---
+
+## Trustpilot Scraper Advertised Rate
+
+The official Trustpilot Reviews Scraper page advertises:
+
+```text
+$0.50 per 1,000 reviews
+```
+
+Equivalent advertised unit rate:
+
+```text
+$0.50 ÷ 1,000
+= $0.0005 per review
+```
+
+This is an advertised normalized rate and may represent the most cost-efficient available plan.
+
+It must not automatically be treated as the actual benchmark charge without verifying:
+
+- the active account plan
+- the account's monthly subscription cost
+- included monthly credits
+- credits available before the run
+- credits remaining after the run
+- add-on credits purchased
+- actual unique results collected
+
+---
+
+## Credit Model
+
+The official Lobstr.io pricing documentation states:
+
+```text
+1 credit = 1 unique result
+```
+
+Expected credit consumption:
+
+| Unique results | Expected credits |
+|---:|---:|
+| 20 | 20 |
+| 100 | 100 |
+| 200 | 200 |
+| 1,000 | 1,000 |
+
+The benchmark should verify whether the Trustpilot crawler uses exactly one credit per unique review or applies a crawler-specific multiplier.
+
+Do not assume the general credit rule until the live Squid pricing or credit-consumption details are inspected.
+
+---
+
+## Duplicate Billing
+
+Lobstr.io states that credits are charged for unique results rather than duplicates.
+
+Therefore:
+
+```text
+Duplicate review returned
+= should not consume another result credit
+```
+
+The benchmark must independently record:
+
+- raw result count
+- unique result count
+- duplicate count
+- credits consumed
+- whether duplicate records affected the account balance
+
+A marketing statement must not replace live billing evidence.
+
+---
+
+## Estimated Cost for 1,000 Reviews
+
+Using the advertised Trustpilot rate:
+
+```text
+1,000 reviews × $0.0005
+= $0.50
+```
+
+Estimated normalized cost:
+
+```text
+$0.50 per 1,000 unique reviews
+```
+
+This is an estimated pricing figure, not yet a measured benchmark cost.
+
+---
+
+## Estimated Five-Domain Benchmark
+
+The approved benchmark dataset is:
+
+```text
+www.thepearlsource.com — 200 reviews
+www.shein.com — 200 reviews
+temu.com — 200 reviews
+www.aliexpress.com — 200 reviews
+thehalara.com — 200 reviews
+```
+
+Total:
+
+```text
+5 domains × 200 reviews
+= 1,000 unique-review target
+```
+
+At the advertised rate:
+
+```text
+Estimated credits: 1,000
+Estimated normalized cost: $0.50
+```
+
+If fewer unique reviews are returned, the normalized estimate is:
+
+```text
+Unique reviews × $0.0005
+```
+
+Example for 999 unique reviews:
+
+```text
+999 × $0.0005
+= $0.4995
+```
+
+---
+
+## Subscription Cost vs Benchmark Cost
+
+Lobstr.io uses subscriptions that include monthly credits.
+
+The complete monthly subscription price must not automatically be counted as the cost of one benchmark.
+
+The report should separately show:
+
+### Subscription price
+
+```text
+Total monthly amount paid for the active plan
+```
+
+### Included credits
+
+```text
+Total monthly credits included in that plan
+```
+
+### Effective credit value
+
+```text
+Monthly subscription cost
+÷ Monthly included credits
+```
+
+### Measured benchmark cost
+
+```text
+Credits consumed by benchmark
+× Effective credit value
+```
+
+This produces a more accurate cost-per-1,000 comparison.
+
+---
+
+## Credits Before and After Testing
+
+Before starting the paid benchmark, save:
+
+```text
+Account balance before run
+Active plan
+Included monthly credits
+Current used credits
+Add-on credits
+Billing-cycle date
+```
+
+After the benchmark, save:
+
+```text
+Account balance after run
+Credits consumed
+Unique results generated
+Run-level credit consumption
+Any additional functions charged
+```
+
+Measured credit usage:
+
+```text
+Credits before run - credits after run
+```
+
+---
+
+## API Balance Verification
+
+Lobstr.io provides a user or balance API endpoint.
+
+The benchmark implementation should retrieve and save the sanitized balance response:
+
+- before creating the paid Run
+- after the Run completes
+
+The response must not expose the API token.
+
+The exact balance endpoint and response fields must be verified from the current official API documentation before execution.
+
+---
+
+## Free Plan Considerations
+
+The official pricing page indicates that a free plan is available.
+
+Current documented free-plan limitations include:
+
+- exports limited to 30 rows per request
+- scheduling unavailable
+- Premium scrapers unavailable
+- shorter result-retention period
+- approximately seven days of data retention
+
+Before testing, verify whether:
+
+- the Trustpilot Reviews Scraper is available on the free plan
+- API access is available
+- enough credits exist for the 1,000-review benchmark
+- export limitations affect API result retrieval
+- a paid-plan upgrade is required
+
+---
+
+## Credit Refresh and Rollover
+
+Credits are tied to the account's billing cycle.
+
+The current pricing documentation states that credits refresh according to the subscribed plan.
+
+Before calculating cost, record:
+
+- billing-cycle start date
+- billing-cycle end date
+- whether unused credits roll over
+- whether promotional credits are active
+- whether add-ons are separate from monthly credits
+
+The benchmark report must not count promotional or free credits as a zero economic cost without clearly disclosing them.
+
+---
+
+## Failed Run Billing
+
+The published pricing page does not fully establish whether credits are consumed for:
+
+- failed Squid runs
+- crawler-level failures
+- empty tasks
+- stopped runs
+- partially completed tasks
+- invalid URLs
+- temporary platform errors
+
+Status:
+
+```text
+Failed-run billing: Pending live verification
+```
+
+The benchmark must record failed or empty tasks and compare them with actual credit consumption.
+
+---
+
+## Additional Function Charges
+
+Some Lobstr.io crawlers may support additional paid functions or enrichment options.
+
+Before the benchmark, inspect the Trustpilot crawler configuration for:
+
+- paid enrichment fields
+- crawler-specific credit multipliers
+- proxy-related charges
+- export charges
+- automation charges
+- scheduling charges
+- additional functions
+
+The benchmark should use only the standard Trustpilot review extraction functionality unless extra features are intentionally part of the test.
+
+---
+
+## Result Retention
+
+Result retention depends on the account plan.
+
+The general pricing page indicates:
+
+```text
+Free plan: approximately 7 days
+Advanced plans: up to approximately 28 days
+```
+
+All benchmark evidence should therefore be downloaded and saved immediately after completion.
+
+Save:
+
+- raw API result pages
+- normalized JSON
+- normalized CSV
+- Run and Task metadata
+- timing logs
+- credit evidence
+- cost reports
+
+---
+
+## Cost Per 1,000 Successful Reviews
+
+The final normalized metric must use successful unique reviews:
+
+```text
+Cost per 1,000 successful reviews
+=
+Measured benchmark cost
+÷ Successful unique reviews
+× 1,000
+```
+
+Example:
+
+```text
+Measured cost: $0.50
+Successful unique reviews: 1,000
+
+$0.50 ÷ 1,000 × 1,000
+= $0.50
+```
+
+Example with a shortfall:
+
+```text
+Measured cost: $0.50
+Successful unique reviews: 990
+
+$0.50 ÷ 990 × 1,000
+= approximately $0.5051
+```
+
+---
+
+## Estimated vs Measured Cost
+
+The final report must clearly separate:
+
+### Advertised rate
+
+```text
+$0.50 per 1,000 Trustpilot reviews
+```
+
+### Estimated benchmark cost
+
+Calculated from the advertised rate before testing.
+
+### Measured credit consumption
+
+Confirmed through balance or run-level credit evidence.
+
+### Measured benchmark cost
+
+Calculated from the consumed credits and the account's effective credit value.
+
+These values must not be mixed.
+
+---
+
+## Pricing Evidence Required
+
+Save the following evidence:
+
+- active subscription plan
+- monthly subscription price
+- included monthly credits
+- advertised Trustpilot rate
+- account credit balance before testing
+- account credit balance after testing
+- Run-level credit consumption
+- unique review count
+- duplicate review count
+- failed and empty task count
+- paid additional functions
+- add-on credit purchases
+- billing-cycle information
+- invoice or billing screenshot
+- normalized cost calculation
+
+---
+
+## Current Pricing Status
+
+| Requirement | Status |
+|---|---|
+| Credit-based pricing | Confirmed |
+| One credit equals one unique result | Confirmed generally |
+| Duplicates should not be charged | Confirmed generally |
+| Advertised Trustpilot price per 1K | $0.50 |
+| Estimated 1K cost | $0.50 |
+| Active account plan | Pending account verification |
+| Monthly subscription cost | Pending account verification |
+| Included credits | Pending account verification |
+| Trustpilot crawler credit multiplier | Pending live verification |
+| Credits before benchmark | Pending |
+| Credits after benchmark | Pending |
+| Measured benchmark cost | Pending |
+| Failed-run billing | Pending verification |
+| Empty-task billing | Pending verification |
+| Additional function charges | Pending crawler inspection |
+| Cost per 1K successful reviews | Pending benchmark |
+
+================================================================================
+7. OPENWEB NINJA - DOCUMENTATION
+Source: docs/openwebninja/openwebninja-documentation.md (original project)
+================================================================================
+
+# OpenWeb Ninja Trustpilot API Documentation
+
+## Overview
+
+OpenWeb Ninja provides an unofficial Trustpilot Company and Reviews Data API for retrieving real-time Trustpilot company profiles, reviews, categories, consumer details, ratings, and review statistics.
+
+Official product page:
+
+```text
+https://www.openwebninja.com/api/trustpilot-company-and-reviews-data
+```
+
+Official API documentation:
+
+```text
+https://www.openwebninja.com/api/trustpilot-company-and-reviews-data/docs
+```
+
+Developer dashboard:
+
+```text
+https://app.openwebninja.com
+```
+
+---
+
+## API Base URL
+
+```text
+https://api.openwebninja.com
+```
+
+Trustpilot API base path:
+
+```text
+/trustpilot-company-and-reviews
+```
+
+---
+
+## Authentication
+
+OpenWeb Ninja authenticates requests through the `x-api-key` header.
+
+```http
+x-api-key: YOUR_API_KEY
+```
+
+Store the API key in `.env`:
+
+```env
+OPENWEBNINJA_API_KEY=your_actual_api_key
+```
+
+The API key must never be:
+
+- hardcoded in source files
+- printed in logs
+- included in reports
+- committed to Git
+- saved inside raw request files
+
+Example:
+
+```bash
+curl --request GET \
+  "https://api.openwebninja.com/trustpilot-company-and-reviews/company-search?query=bestbuy" \
+  --header "x-api-key: $OPENWEBNINJA_API_KEY"
+```
+
+---
+
+## Confirmed Company Search Endpoint
+
+```http
+GET https://api.openwebninja.com/trustpilot-company-and-reviews/company-search
+```
+
+Required parameter:
+
+```text
+query
+```
+
+The query may contain:
+
+- company name
+- exact business domain
+
+Example:
+
+```text
+query=www.thepearlsource.com
+```
+
+Using the exact domain is preferred because it reduces company-matching ambiguity.
+
+---
+
+## Company Reviews Endpoint
+
+The benchmark requires the company-reviews endpoint shown in the authenticated OpenWeb Ninja documentation or playground.
+
+Before running the benchmark, Claude must verify and save:
+
+- exact endpoint path
+- required company identifier
+- supported domain input
+- `page` parameter
+- `cookie` parameter
+- any sorting or language parameters
+- response structure
+
+Do not guess the endpoint path from naming conventions.
+
+Status:
+
+```text
+Exact company-reviews endpoint: Pending live documentation verification
+```
+
+---
+
+## Review Pagination
+
+OpenWeb Ninja states that Trustpilot reviews are returned:
+
+```text
+20 reviews per page
+```
+
+Pagination uses:
+
+```text
+page
+```
+
+Without a logged-in Trustpilot session, review pagination is available through page 10:
+
+```text
+20 reviews × 10 pages = approximately 200 reviews per company
+```
+
+To retrieve reviews beyond page 10, the API supports passing a logged-in Trustpilot user session through a:
+
+```text
+cookie
+```
+
+parameter.
+
+For this benchmark, no Trustpilot cookie should be required because the target is 200 reviews per domain.
+
+Recommended request plan per domain:
+
+```text
+page=1
+page=2
+page=3
+...
+page=10
+```
+
+Expected target:
+
+```text
+10 pages × 20 reviews = 200 reviews per domain
+```
+
+Across five domains:
+
+```text
+5 domains × 10 pages = 50 API requests
+5 domains × 200 reviews = 1,000 reviews
+```
+
+---
+
+## Fixed Benchmark Dataset
+
+Use exactly these five domains:
+
+```text
+www.thepearlsource.com — 200 reviews
+www.shein.com — 200 reviews
+temu.com — 200 reviews
+www.aliexpress.com — 200 reviews
+thehalara.com — 200 reviews
+```
+
+Total target:
+
+```text
+1,000 unique Trustpilot reviews
+```
+
+Use:
+
+```text
+benchmark-domains.json
+```
+
+as the source of truth.
+
+---
+
+## Real-Time Behaviour
+
+OpenWeb Ninja states that Trustpilot information is fetched in real time for each request.
+
+The benchmark must therefore record:
+
+- request timestamp
+- response timestamp
+- review publication time
+- page number
+- domain
+- response latency
+
+No caching assumption should be made unless demonstrated during testing.
+
+---
+
+## Typical Response Time
+
+The official product page states a typical response time of approximately:
+
+```text
+1 to 5 seconds
+```
+
+This is a published claim.
+
+The benchmark must independently measure:
+
+- latency for every page
+- median latency
+- p95 latency
+- total wall-clock execution time
+
+---
+
+## Company Review Response
+
+The documented response contains a `reviews` array.
+
+Example structure:
+
+```json
+{
+  "reviews": [
+    {
+      "review_id": "6762e32c3bafe0730ae05b9a",
+      "review_title": "Pleasantly surprised",
+      "review_text": "Review body",
+      "review_rating": 5,
+      "review_is_verified": false,
+      "review_is_pending": false,
+      "review_likes": 0,
+      "review_language": "en",
+      "review_time": "2024-12-18T16:58:52.000Z",
+      "review_experienced_time": "2024-12-02T00:00:00.000Z",
+      "consumer_id": "595e5e6a0000ff000aac4122",
+      "consumer_name": "Reviewer name",
+      "consumer_review_count": 5,
+      "consumer_country": "US",
+      "consumer_is_verified": false,
+      "consumer_review_count_same_domain": 1
+    }
+  ],
+  "total_reviews": 35903,
+  "rating_distribution": {},
+  "review_language_distribution": {}
+}
+```
+
+---
+
+## Confirmed Review Fields
+
+Documented review fields include:
+
+- `review_id`
+- `review_title`
+- `review_text`
+- `review_rating`
+- `review_is_verified`
+- `review_is_pending`
+- `review_likes`
+- `review_language`
+- `review_time`
+- `review_experienced_time`
+- `reply_text`
+- `consumer_id`
+- `consumer_name`
+- `consumer_image`
+- `consumer_review_count`
+- `consumer_country`
+- `consumer_is_verified`
+- `consumer_review_count_same_domain`
+- `company_id`
+- `company_domain`
+- `company_name`
+
+Aggregate response fields may include:
+
+- `total_reviews`
+- `rating_distribution`
+- `review_language_distribution`
+
+Optional fields must not be expected in every review.
+
+---
+
+## Successful Review Definition
+
+A successful benchmark review must contain:
+
+- `review_id`
+- `review_rating`
+- `review_time`
+- `consumer_name` or `consumer_id`
+- `review_title` or `review_text`
+- associated company domain
+- no API error object
+- no duplicate record
+
+Only valid unique reviews count toward the 1,000-review target.
+
+---
+
+## Duplicate Detection
+
+Use this priority:
+
+1. `review_id`
+2. stable review URL, when returned
+3. deterministic SHA-256 hash based on:
+
+```text
+company_domain
+consumer_name
+review_time
+review_rating
+review_title
+review_text
+```
+
+Detect:
+
+- duplicates within one page
+- duplicates across pages
+- repeated page responses
+- duplicates between domains
+- duplicates created by retries
+
+---
+
+## Pagination Safety
+
+For every domain, the script must:
+
+1. start at page 1
+2. request pages sequentially
+3. save every raw page
+4. extract the `reviews` array
+5. stop after page 10
+6. stop early if an empty page is returned
+7. detect repeated review IDs
+8. detect repeated complete pages
+9. prevent pagination loops
+10. avoid repeating completed requests on resume
+11. report the exact shortfall when fewer than 200 unique reviews are returned
+
+A successful HTTP response must not automatically be counted as 20 successful reviews.
+
+---
+
+## Request Model
+
+The API is synchronous.
+
+Expected workflow:
+
+```text
+Send GET request
+→ receive review response
+→ save raw response
+→ normalize reviews
+→ continue to next page
+```
+
+No async task creation or polling workflow is currently documented for this API.
+
+Status:
+
+```text
+Async workflow: Not required based on current documentation
+```
+
+---
+
+## Rate Limits
+
+Published plan-specific limits include:
+
+```text
+Free: 10 requests per second
+Pro: 5 requests per second
+Ultra: 10 requests per second
+Mega: 20 requests per second
+Pay As You Go: 5 requests per second
+```
+
+The benchmark must use a conservative request rate until the active plan is confirmed.
+
+Recommended safe default:
+
+```text
+Maximum 4 requests per second
+```
+
+The script must:
+
+- respect HTTP 429 responses
+- check `Retry-After`, when returned
+- use exponential backoff
+- record retries
+- avoid concurrent requests beyond the active plan limit
+
+---
+
+## Retry Policy
+
+Retry only:
+
+- temporary network errors
+- HTTP 429
+- HTTP 500–599
+
+Do not automatically retry:
+
+- HTTP 400
+- HTTP 401
+- HTTP 403
+- invalid domain
+- invalid page
+- subscription or quota errors
+- successful completed pages
+
+Maximum retries:
+
+```text
+3
+```
+
+---
+
+## Free Plan Capability
+
+The official free plan provides:
+
+```text
+100 requests per month
+```
+
+The planned benchmark requires approximately:
+
+```text
+50 review-page requests
+```
+
+Additional requests may be required for:
+
+- company search
+- quota checking
+- retries
+- validation
+
+Therefore, the 1,000-review benchmark may fit inside a fresh free-plan allowance, provided enough monthly requests remain.
+
+Before execution, check:
+
+- active plan
+- monthly quota
+- requests already used
+- requests remaining
+- renewal date
+
+---
+
+## Quota Verification
+
+OpenWeb Ninja provides account quota information through its dashboard and a quota API feature.
+
+Before and after the benchmark, record:
+
+- active plan
+- quota limit
+- quota used
+- quota remaining
+- billing period
+- renewal date
+
+The exact quota endpoint and required API identifier must be verified from the current authenticated documentation before using it.
+
+Status:
+
+```text
+Exact quota endpoint: Pending live verification
+```
+
+---
+
+## Ground-Truth Comparison
+
+Compare The Pearl Source results against:
+
+```text
+ground-truth/thepearlsource-sample.json
+```
+
+Compare all common fields:
+
+- review ID
+- title
+- body
+- rating
+- review date
+- experience date
+- likes
+- reviewer name
+- reviewer country
+- reviewer review count
+- verification status
+- company reply
+
+Unavailable fields must be marked:
+
+```text
+Pending
+```
+
+---
+
+## Required Benchmark Evidence
+
+Save:
+
+- sanitized request URL and parameters
+- page number
+- domain
+- HTTP status
+- rate-limit headers
+- raw response
+- normalized reviews
+- retries
+- errors
+- request latency
+- total execution time
+- duplicate report
+- pagination report
+- field-coverage report
+- quota before and after
+- estimated and measured cost
+- ground-truth comparison
+- E1–E6 assessment
+- provisional score
+
+---
+
+## Expected Output Files
+
+```text
+outputs/openwebninja/raw/requests/
+outputs/openwebninja/raw/results/
+outputs/openwebninja/all-reviews.json
+outputs/openwebninja/all-reviews.csv
+outputs/openwebninja/domain-summary.json
+outputs/openwebninja/duplicate-report.json
+outputs/openwebninja/pagination-report.json
+outputs/openwebninja/timings.json
+outputs/openwebninja/error-log.json
+outputs/openwebninja/execution-plan.json
+outputs/openwebninja/run-state.json
+outputs/openwebninja/cost-report.json
+```
+
+Reports:
+
+```text
+reports/openwebninja/benchmark-report.md
+reports/openwebninja/cost-report.md
+reports/openwebninja/field-coverage.md
+reports/openwebninja/ground-truth-comparison.md
+reports/openwebninja/elimination-assessment.md
+reports/openwebninja/scorecard.md
+reports/openwebninja/final-verdict.md
+reports/openwebninja/missing-evidence.md
+```
+
+---
+
+## Current Documentation Status
+
+| Requirement | Status |
+|---|---|
+| Product availability | Confirmed |
+| API base URL | Confirmed |
+| Authentication header | Confirmed |
+| Company search endpoint | Confirmed |
+| Domain search support | Confirmed |
+| Real-time review retrieval | Confirmed |
+| Reviews per page | Confirmed — 20 |
+| Page parameter | Confirmed |
+| Unauthenticated pagination | Confirmed — up to page 10 |
+| Approximate reviews per company | Confirmed — 200 |
+| Cookie support beyond page 10 | Confirmed |
+| Review response fields | Confirmed |
+| Typical response time | Published as 1–5 seconds |
+| Active account plan | Pending verification |
+| Exact reviews endpoint path | Pending live documentation verification |
+| Exact reviews request parameters | Pending live documentation verification |
+| Quota endpoint | Pending live verification |
+| Actual benchmark success | Pending |
+```
+
+---
+
+## Pre-Run Rules
+
+Before running the final benchmark:
+
+1. Verify the exact company-reviews endpoint in the authenticated docs.
+2. Verify the required company identifier or domain parameter.
+3. Verify `page` and `cookie` parameters.
+4. Check the remaining monthly request quota.
+5. Confirm at least 50 requests remain.
+6. Do not supply a Trustpilot session cookie unless required.
+7. Run exactly five domains and pages 1–10.
+8. Do not exceed the active plan’s rate limit.
+9. Do not automatically rerun paid or quota-consuming pages.
+10. Never expose `OPENWEBNINJA_API_KEY`.
+
+================================================================================
+8. OPENWEB NINJA - PRICING
+Source: docs/openwebninja/openwebninja-pricing.md (original project)
+================================================================================
+
+# OpenWeb Ninja Trustpilot API Pricing
+
+## Overview
+
+OpenWeb Ninja charges for the Trustpilot Company and Reviews Data API by API request rather than by individual review.
+
+Each review page returns approximately:
+
+```text
+20 reviews per request
+```
+
+Therefore, collecting 1,000 reviews from five domains requires approximately:
+
+```text
+5 domains × 10 review pages = 50 review requests
+```
+
+Company-search requests may also be required before retrieving reviews, which would increase the expected total to approximately:
+
+```text
+50 review requests + 5 company-search requests = 55 requests
+```
+
+Retries, failed requests, quota checks, and validation requests may increase the final request count.
+
+---
+
+## Official Source
+
+```text
+https://www.openwebninja.com/api/trustpilot-company-and-reviews-data
+```
+
+---
+
+## Pricing Model
+
+The Trustpilot API uses request-based monthly plans.
+
+Published plans:
+
+| Plan | Monthly Price | Included Requests | Overage Price | Rate Limit |
+|---|---:|---:|---:|---:|
+| Free | $0/month | 100/month | No overage; hard limit | 10 requests/second |
+| Pro | $25/month | 10,000/month | $0.003/additional request | 5 requests/second |
+| Ultra | $75/month | 50,000/month | $0.002/additional request | 10 requests/second |
+| Mega | $150/month | 200,000/month | $0.001/additional request | 20 requests/second |
+| Pay As You Go | No monthly fixed price | Per-use | $0.005/request | 5 requests/second |
+
+The provider also offers custom plans for higher volume, custom request limits, higher rate limits, and hard spending caps.
+
+---
+
+## Free Plan
+
+```text
+Monthly cost: $0
+Included requests: 100
+Overage: Not available
+Limit type: Hard limit
+Rate limit: 10 requests per second
+```
+
+The planned benchmark requires approximately 50–55 requests.
+
+Therefore, the full 1,000-review benchmark may fit within the Free plan when:
+
+- the monthly quota is fresh
+- at least 55 requests remain
+- no excessive retries occur
+- each requested review page successfully returns 20 reviews
+
+If fewer than the required requests remain, the benchmark may stop before reaching 1,000 reviews.
+
+---
+
+## Pro Plan
+
+```text
+Monthly price: $25
+Included requests: 10,000
+Overage: $0.003 per additional request
+Rate limit: 5 requests per second
+```
+
+Effective included-request value:
+
+```text
+$25 ÷ 10,000
+= $0.0025 per request
+```
+
+Estimated allocated benchmark cost:
+
+```text
+50 requests × $0.0025 = $0.125
+55 requests × $0.0025 = $0.1375
+```
+
+Estimated range:
+
+```text
+$0.125–$0.1375
+```
+
+---
+
+## Ultra Plan
+
+```text
+Monthly price: $75
+Included requests: 50,000
+Overage: $0.002 per additional request
+Rate limit: 10 requests per second
+```
+
+Effective included-request value:
+
+```text
+$75 ÷ 50,000
+= $0.0015 per request
+```
+
+Estimated allocated benchmark cost:
+
+```text
+50 requests × $0.0015 = $0.075
+55 requests × $0.0015 = $0.0825
+```
+
+Estimated range:
+
+```text
+$0.075–$0.0825
+```
+
+---
+
+## Mega Plan
+
+```text
+Monthly price: $150
+Included requests: 200,000
+Overage: $0.001 per additional request
+Rate limit: 20 requests per second
+```
+
+Effective included-request value:
+
+```text
+$150 ÷ 200,000
+= $0.00075 per request
+```
+
+Estimated allocated benchmark cost:
+
+```text
+50 requests × $0.00075 = $0.0375
+55 requests × $0.00075 = $0.04125
+```
+
+Estimated range:
+
+```text
+$0.0375–$0.04125
+```
+
+---
+
+## Pay-As-You-Go Plan
+
+```text
+Price: $0.005 per request
+Rate limit: 5 requests per second
+```
+
+Estimated benchmark cost:
+
+```text
+50 requests × $0.005 = $0.25
+55 requests × $0.005 = $0.275
+```
+
+Estimated range:
+
+```text
+$0.25–$0.275
+```
+
+---
+
+## Overage Cost
+
+When included monthly requests have already been consumed:
+
+### Pro
+
+```text
+50 × $0.003 = $0.15
+55 × $0.003 = $0.165
+```
+
+### Ultra
+
+```text
+50 × $0.002 = $0.10
+55 × $0.002 = $0.11
+```
+
+### Mega
+
+```text
+50 × $0.001 = $0.05
+55 × $0.001 = $0.055
+```
+
+These calculations exclude retries and additional validation requests.
+
+---
+
+## Benchmark Request Estimate
+
+The approved dataset contains:
+
+```text
+www.thepearlsource.com — 200 reviews
+www.shein.com — 200 reviews
+temu.com — 200 reviews
+www.aliexpress.com — 200 reviews
+thehalara.com — 200 reviews
+```
+
+Review pagination:
+
+```text
+20 reviews per page
+10 pages per domain
+5 domains
+```
+
+Calculation:
+
+```text
+10 pages × 5 domains
+= 50 review requests
+```
+
+Possible company lookup requests:
+
+```text
+1 company-search request × 5 domains
+= 5 company-search requests
+```
+
+Expected total:
+
+```text
+50–55 requests
+```
+
+A larger total must be explained through retries, failed requests, quota checks, or other necessary endpoint calls.
+
+---
+
+## Estimated Cost per 1,000 Reviews
+
+Assuming all 1,000 unique reviews are returned:
+
+| Plan | Estimated Cost per 1,000 Reviews |
+|---|---:|
+| Free | $0 marginal charge |
+| Pro, allocated included cost | $0.125–$0.1375 |
+| Ultra, allocated included cost | $0.075–$0.0825 |
+| Mega, allocated included cost | $0.0375–$0.04125 |
+| Pay As You Go | $0.25–$0.275 |
+| Pro overage | $0.15–$0.165 |
+| Ultra overage | $0.10–$0.11 |
+| Mega overage | $0.05–$0.055 |
+
+These are estimates, not measured benchmark charges.
+
+---
+
+## Free Cost vs Economic Cost
+
+When the benchmark runs on the Free plan, the direct marginal charge may be:
+
+```text
+$0
+```
+
+However, the final report must still record:
+
+- requests consumed
+- quota before the run
+- quota after the run
+- successful unique reviews
+- cost per 1,000 reviews
+- whether free credits were used
+
+The report should label this as:
+
+```text
+Measured direct charge: $0
+Free monthly quota consumed: actual request count
+```
+
+It should not imply that unlimited production usage is free.
+
+---
+
+## Measured Benchmark Cost
+
+The final measured cost must be based on actual request usage.
+
+Record before the run:
+
+- active plan
+- monthly quota
+- quota already used
+- quota remaining
+- current billing period
+- overage status
+
+Record after the run:
+
+- total requests consumed
+- review-page requests
+- company-search requests
+- retries
+- failed requests
+- quota remaining
+- overage requests
+- actual billed amount
+
+---
+
+## Cost Formula
+
+For request-based plans:
+
+```text
+Measured benchmark cost
+=
+Actual billable requests
+× applicable request price
+```
+
+Normalized cost:
+
+```text
+Cost per 1,000 successful reviews
+=
+Measured benchmark cost
+÷ successful unique reviews
+× 1,000
+```
+
+Example:
+
+```text
+Actual cost: $0.25
+Successful unique reviews: 1,000
+
+$0.25 ÷ 1,000 × 1,000
+= $0.25 per 1,000 reviews
+```
+
+Example with a shortfall:
+
+```text
+Actual cost: $0.25
+Successful unique reviews: 950
+
+$0.25 ÷ 950 × 1,000
+= approximately $0.2632 per 1,000 successful reviews
+```
+
+---
+
+## Failed and Retried Requests
+
+The official pricing page does not fully clarify whether every failed API request consumes quota.
+
+Therefore, the benchmark must separately record:
+
+- successful requests
+- HTTP 4xx responses
+- HTTP 429 responses
+- HTTP 5xx responses
+- network failures
+- retries
+- quota difference before and after the run
+
+Status:
+
+```text
+Failed-request billing: Pending live verification
+Retry billing: Pending live verification
+```
+
+---
+
+## Hard-Limit Behaviour
+
+The Free plan has a hard limit of 100 monthly requests.
+
+Once the limit is reached:
+
+- additional requests should not be expected to succeed
+- overage requests are not available
+- the benchmark may stop incomplete
+- automatic repeated requests must be prevented
+
+The final run should start only when sufficient quota remains.
+
+Recommended minimum:
+
+```text
+At least 60 requests remaining
+```
+
+This provides limited room for five company searches and a small number of retries beyond the 50 required review-page requests.
+
+---
+
+## Pricing Evidence Required
+
+Save:
+
+- official Trustpilot API pricing page
+- active plan
+- monthly request allowance
+- quota used before testing
+- quota remaining before testing
+- quota used after testing
+- quota remaining after testing
+- total requests consumed
+- requests per endpoint
+- retries
+- failed requests
+- overage charges
+- billing screenshot, when available
+- final measured cost calculation
+
+---
+
+## Estimated vs Measured Values
+
+The final benchmark report must distinguish:
+
+### Published pricing
+
+The current plan prices and request allowances shown by OpenWeb Ninja.
+
+### Estimated benchmark cost
+
+Calculated before testing using 50–55 expected requests.
+
+### Measured request consumption
+
+The actual number of quota requests deducted.
+
+### Measured billed cost
+
+The actual direct charge or allocated plan cost.
+
+No estimated value should be presented as a confirmed charge.
+
+---
+
+## Current Pricing Status
+
+| Requirement | Status |
+|---|---|
+| Request-based pricing | Confirmed |
+| Free plan | 100 requests/month |
+| Free-plan rate limit | 10 requests/second |
+| Pro plan | $25 for 10,000 requests |
+| Pro overage | $0.003/request |
+| Ultra plan | $75 for 50,000 requests |
+| Ultra overage | $0.002/request |
+| Mega plan | $150 for 200,000 requests |
+| Mega overage | $0.001/request |
+| Pay As You Go | $0.005/request |
+| Expected review requests | 50 |
+| Expected total requests | Approximately 50–55 |
+| Active account plan | Pending account verification |
+| Remaining account quota | Pending |
+| Measured requests consumed | Pending benchmark |
+| Measured cost | Pending benchmark |
+| Failed-request billing | Pending verification |
+| Cost per 1,000 successful reviews | Pending benchmark |
+
+================================================================================
+9. OUTSCRAPER - DOCUMENTATION
+Source: docs/outscraper/outscraper-documentation.md (original project)
+================================================================================
+
+# Outscraper Trustpilot Reviews API Documentation
+
+## Overview
+
+The Outscraper Trustpilot Reviews API retrieves reviews from businesses listed on Trustpilot.
+
+It accepts either:
+
+- a business domain
+- a complete Trustpilot business profile URL
+
+Examples:
+
+```text
+www.thepearlsource.com
+https://www.trustpilot.com/review/www.thepearlsource.com
+```
+
+---
+
+## Official Sources
+
+```text
+Trustpilot Reviews API documentation:
+https://docs.outscraper.com/endpoints/trustpilot-reviews/
+
+Request Results documentation:
+https://docs.outscraper.com/endpoints/requests-requestid/
+
+Trustpilot Reviews product page:
+https://outscraper.com/trustpilot-reviews-api/
+```
+
+---
+
+## Authentication
+
+Outscraper uses an API key sent through the request header:
+
+```http
+X-API-KEY: YOUR_API_KEY
+```
+
+The API key must be stored in `.env`:
+
+```env
+OUTSCRAPER_API_KEY=your_actual_api_key
+```
+
+The API key must never be:
+
+- hardcoded in scripts
+- printed in logs
+- included in screenshots
+- saved in reports
+- committed to GitHub
+
+---
+
+## Main Endpoint
+
+```http
+GET https://api.outscraper.com/trustpilot-reviews
+```
+
+Official code examples may also use:
+
+```text
+https://api.outscraper.cloud/trustpilot-reviews
+```
+
+The benchmark should use one host consistently for task creation and must use the exact `results_location` URL returned by Outscraper for async result polling.
+
+---
+
+## Request Parameters
+
+### `query`
+
+- Type: array of strings
+- Required: yes
+
+The query can be a domain or Trustpilot profile URL.
+
+Example:
+
+```text
+query=www.thepearlsource.com
+```
+
+Multiple queries can be included in one request.
+
+The documentation supports batching up to 1,000 queries.
+
+Example:
+
+```text
+query=www.thepearlsource.com
+query=www.shein.com
+query=temu.com
+```
+
+---
+
+### `limit`
+
+- Type: integer
+- Required: no
+- Default: 100
+
+Defines the maximum number of reviews requested for each query.
+
+Example:
+
+```text
+limit=200
+```
+
+The actual number returned must be verified from the response.
+
+A requested limit must not automatically be treated as a successful record count.
+
+---
+
+### `skip`
+
+- Type: integer
+- Required: no
+- Default: 0
+
+Used for review pagination.
+
+The value must be a multiple of 20.
+
+Valid examples:
+
+```text
+skip=0
+skip=20
+skip=200
+skip=400
+skip=600
+skip=800
+```
+
+Invalid example:
+
+```text
+skip=25
+```
+
+---
+
+### `languages`
+
+- Type: string
+- Required: no
+- Default: `default`
+
+Supported documented values include:
+
+```text
+default
+all
+en
+es
+de
+```
+
+For the benchmark, use:
+
+```text
+languages=all
+```
+
+This prevents reviews from being excluded only because of their language.
+
+---
+
+### `sort`
+
+- Type: string
+- Required: no
+
+Supported value:
+
+```text
+recency
+```
+
+For the benchmark, use:
+
+```text
+sort=recency
+```
+
+This requests the newest reviews first.
+
+---
+
+### `cutoff`
+
+- Type: integer timestamp
+- Required: no
+
+Defines the oldest timestamp that may be returned.
+
+Using `cutoff` overrides the `sort` parameter and returns the newest matching records first.
+
+The benchmark should not use `cutoff` unless date-based filtering is intentionally being tested.
+
+---
+
+### `fields`
+
+- Type: string
+- Required: no
+
+Defines which response fields should be returned.
+
+By default, Outscraper returns all available fields.
+
+Example:
+
+```text
+fields=query,review_id,review_rating,review_title,review_text
+```
+
+The benchmark should initially request all fields to measure complete field coverage.
+
+---
+
+### `async`
+
+- Type: boolean
+- Required: yes
+- Default: true
+
+Supported values:
+
+```text
+async=true
+async=false
+```
+
+`async=true` submits the scraping request and returns a request ID.
+
+`async=false` keeps the HTTP connection open until the task finishes and may be more vulnerable to timeout.
+
+The benchmark should use:
+
+```text
+async=true
+```
+
+---
+
+### `ui`
+
+- Type: boolean
+- Required: no
+- Default: false
+
+When enabled, the request is executed as a platform UI task.
+
+Using `ui=true` forces asynchronous execution.
+
+The benchmark does not require UI mode.
+
+---
+
+## Example Benchmark Request
+
+```bash
+curl --request GET \
+  "https://api.outscraper.com/trustpilot-reviews?query=www.thepearlsource.com&limit=200&skip=0&languages=all&sort=recency&async=true" \
+  --header "X-API-KEY: $OUTSCRAPER_API_KEY"
+```
+
+---
+
+## Asynchronous Workflow
+
+### Step 1 — Create the task
+
+Send a request to:
+
+```http
+GET /trustpilot-reviews
+```
+
+A successful async submission normally returns:
+
+```json
+{
+  "id": "request-id",
+  "status": "Pending",
+  "results_location": "https://api.outscraper.cloud/requests/request-id"
+}
+```
+
+The task creation response must be saved immediately.
+
+---
+
+### Step 2 — Save request information
+
+Save:
+
+- request ID
+- results location
+- query
+- limit
+- skip
+- task creation timestamp
+- HTTP status
+- sanitized request parameters
+
+---
+
+### Step 3 — Poll the returned results URL
+
+Poll the exact `results_location` returned by the task creation response.
+
+Do not create another `/trustpilot-reviews` task while waiting.
+
+Example:
+
+```http
+GET https://api.outscraper.cloud/requests/REQUEST_ID
+```
+
+---
+
+### Step 4 — Handle task status
+
+Possible statuses include:
+
+```text
+Pending
+Success
+Failure
+```
+
+#### Pending
+
+The task is still running.
+
+Wait before checking the same result URL again.
+
+#### Success
+
+The result is ready and should be saved immediately.
+
+#### Failure
+
+Record the failure, error details, timing and request ID.
+
+Do not silently discard it.
+
+---
+
+## Request Results Endpoint
+
+```http
+GET https://api.outscraper.com/requests/{requestId}
+```
+
+Optional parameter:
+
+```text
+flat=true
+```
+
+When `flat=true` is used, results from multiple queries may be combined into one array.
+
+The benchmark should preserve domain information even when using a flat result.
+
+---
+
+## Result Expiration
+
+Completed async responses remain available for approximately four hours.
+
+The benchmark must therefore:
+
+1. poll the task until completion
+2. save the full raw response immediately
+3. not depend on retrieving it again after expiration
+
+An expired response may no longer return the completed result.
+
+---
+
+## Pagination Strategy
+
+For a 1,000-review single-domain test, use separate pages:
+
+```text
+Page 1: limit=200, skip=0
+Page 2: limit=200, skip=200
+Page 3: limit=200, skip=400
+Page 4: limit=200, skip=600
+Page 5: limit=200, skip=800
+```
+
+Each page must be treated as a separate scraping request.
+
+The benchmark must verify that:
+
+- each page contains different review IDs
+- older reviews appear as `skip` increases
+- the same page is not returned repeatedly
+- duplicate reviews are not counted twice
+- empty pages are logged
+- pagination loops are detected
+- total successful unique records are calculated after deduplication
+
+A request with:
+
+```text
+limit=1000
+```
+
+must not be assumed to return 1,000 reviews without verification.
+
+---
+
+## Multi-Domain Benchmark Strategy
+
+For fair comparison with the DataForSEO benchmark, the approved dataset is:
+
+```text
+www.thepearlsource.com — 200 reviews
+www.shein.com — 200 reviews
+temu.com — 200 reviews
+www.aliexpress.com — 200 reviews
+thehalara.com — 200 reviews
+```
+
+Total target:
+
+```text
+5 domains × 200 reviews = 1,000 reviews
+```
+
+The same domains and target allocation should be used for every API benchmark.
+
+---
+
+## Duplicate Detection
+
+The benchmark should use this priority:
+
+1. native `review_id`
+2. review URL, when available
+3. deterministic SHA-256 hash using:
+
+```text
+domain
+author
+review timestamp
+rating
+review title
+review text
+```
+
+Duplicates must not count toward the successful-review total.
+
+---
+
+## Expected Review Fields
+
+The live response should be inspected for fields such as:
+
+- `query`
+- `total_reviews`
+- `review_rating`
+- `review_title`
+- `review_text`
+- `review_likes`
+- `review_timestamp`
+- `review_datetime_utc`
+- `review_id`
+- `review_verified`
+- `author_title`
+- `author_id`
+- `author_image`
+- `author_reviews_number`
+- `author_reviews_number_same_domain`
+- `author_country_code`
+- `owner_answer`
+- `owner_answer_date`
+
+Optional fields must not be assumed to exist in every record.
+
+---
+
+## Usage Behaviour
+
+If no reviews are found for a search request, Outscraper may still count usage equivalent to one review.
+
+Empty searches must therefore be logged separately.
+
+---
+
+## Error Handling
+
+### HTTP 401
+
+Meaning:
+
+```text
+Missing or invalid API key
+```
+
+Action:
+
+- stop the benchmark
+- save a sanitized error
+- do not retry with the same credentials repeatedly
+
+### HTTP 402
+
+Meaning:
+
+```text
+Payment method, invoice or account billing problem
+```
+
+Action:
+
+- stop paid execution
+- record it as an access or billing blocker
+
+### HTTP 422
+
+Meaning:
+
+```text
+Invalid or unsupported query parameters
+```
+
+Action:
+
+- inspect the request
+- do not retry without correcting the parameters
+
+### Retryable errors
+
+Retry only:
+
+- network failures
+- HTTP 429
+- HTTP 5xx
+
+Use limited retries with exponential backoff.
+
+---
+
+## Required Benchmark Evidence
+
+Save:
+
+- sanitized request parameters
+- request IDs
+- results locations
+- polling attempts
+- raw responses
+- normalized JSON
+- normalized CSV
+- returned record count
+- valid record count
+- unique record count
+- duplicate report
+- pagination report
+- empty and partial responses
+- retry and error logs
+- request-level timing
+- median latency
+- p95 latency
+- total wall-clock time
+- usage and billing evidence
+- ground-truth comparison
+- elimination assessment
+- scorecard
+
+---
+
+## Current Documentation Status
+
+| Requirement | Status |
+|---|---|
+| Trustpilot Reviews endpoint | Confirmed |
+| API-key authentication | Confirmed |
+| Domain and URL input | Confirmed |
+| Multiple-query batching | Confirmed |
+| Limit parameter | Confirmed |
+| Skip pagination | Confirmed |
+| Skip must be multiple of 20 | Confirmed |
+| Recency sorting | Confirmed |
+| Language filtering | Confirmed |
+| Async task workflow | Confirmed |
+| Request Results endpoint | Confirmed |
+| Completed-result availability | Approximately 4 hours |
+| Single-domain 1,000-review capability | Pending live pagination test |
+| Exact rate limits | Pending verification |
+| Actual response field coverage | Pending benchmark |
+| Actual billing cost | Pending benchmark |
+
+================================================================================
+10. OUTSCRAPER - PRICING
+Source: docs/outscraper/outscraper-pricing.md (original project)
+================================================================================
+
+# Outscraper Trustpilot Reviews API Pricing
+
+## Overview
+
+Outscraper uses pay-as-you-go monthly metered usage billing for the Trustpilot Reviews API.
+
+Billing is based on the number of reviews processed or returned according to the account's monthly usage tier.
+
+---
+
+## Official Source
+
+```text
+https://outscraper.com/trustpilot-reviews-api/
+```
+
+The Trustpilot-specific pricing page should be used as the primary published pricing reference for this benchmark.
+
+---
+
+## Free Tier
+
+```text
+Usage: First 100 reviews
+Price: $0
+```
+
+Included features:
+
+- API access
+- sorting
+- CSV/XLSX export
+
+The free tier applies to the first 100 reviews in the relevant billing period, subject to the account's existing usage.
+
+---
+
+## Medium Tier
+
+```text
+Usage: Reviews 101 through 50,000
+Price: $3 per 1,000 reviews
+```
+
+Equivalent unit rate:
+
+```text
+$3 ÷ 1,000 = $0.003 per review
+```
+
+---
+
+## Business Tier
+
+```text
+Usage: Above 50,000 reviews
+Price: $1 per 1,000 reviews
+```
+
+Equivalent unit rate:
+
+```text
+$1 ÷ 1,000 = $0.001 per review
+```
+
+---
+
+## Estimated Cost for a Fresh 1,000-Review Run
+
+Assuming:
+
+- the account has not already used its first 100 free reviews
+- the pricing is applied progressively
+- exactly 1,000 reviews are counted as usage
+
+Calculation:
+
+```text
+First 100 reviews = free
+
+Remaining reviews:
+1,000 - 100 = 900 billable reviews
+
+900 × $0.003 = $2.70
+```
+
+Estimated cost:
+
+```text
+$2.70
+```
+
+This is an estimate, not a measured benchmark charge.
+
+---
+
+## Estimated Cost if the Free Tier Has Already Been Used
+
+If the account has already consumed the first 100 free reviews during the current billing period:
+
+```text
+1,000 × $0.003 = $3.00
+```
+
+Estimated maximum medium-tier cost for the new 1,000-review run:
+
+```text
+$3.00
+```
+
+---
+
+## Estimated Cost for 200 Reviews
+
+### Fresh account usage
+
+```text
+First 100 reviews = free
+Remaining 100 reviews × $0.003 = $0.30
+```
+
+Estimated cost:
+
+```text
+$0.30
+```
+
+### Free allowance already consumed
+
+```text
+200 × $0.003 = $0.60
+```
+
+Estimated cost:
+
+```text
+$0.60
+```
+
+---
+
+## Five-Domain Benchmark Estimate
+
+Benchmark design:
+
+```text
+5 domains × 200 reviews = 1,000 total reviews
+```
+
+### When first 100 reviews are still free
+
+```text
+Total requested usage: 1,000
+Free usage: 100
+Billable usage: 900
+
+900 × $0.003 = $2.70
+```
+
+### When the free tier was previously consumed
+
+```text
+1,000 × $0.003 = $3.00
+```
+
+Expected range:
+
+```text
+$2.70 to $3.00
+```
+
+The exact amount depends on previous monthly usage and the billing records shown in the Outscraper account.
+
+---
+
+## Pagination Cost Risk
+
+Each new `/trustpilot-reviews` request may create new billable usage.
+
+Example:
+
+```text
+limit=200, skip=0
+limit=200, skip=200
+limit=200, skip=400
+limit=200, skip=600
+limit=200, skip=800
+```
+
+These may represent five separate scraping requests.
+
+Polling the existing `results_location` checks the same task result and should not be treated as a new Trustpilot scraping request.
+
+The benchmark must not repeatedly submit the same page.
+
+---
+
+## Empty-Result Usage
+
+The official Trustpilot endpoint documentation states that a query returning no reviews may still consume usage equivalent to one review.
+
+Empty queries must therefore be included in:
+
+- usage logs
+- error reports
+- cost calculations
+
+---
+
+## Measured Benchmark Cost
+
+The final cost must be verified using actual account evidence.
+
+Save:
+
+- balance before the run
+- balance after the run
+- request history
+- usage shown per request
+- billing history
+- invoices, if applicable
+- free-tier usage remaining
+- duplicate or failed requests that were charged
+
+---
+
+## Cost Per 1,000 Successful Unique Reviews
+
+Use:
+
+```text
+Cost per 1,000 successful reviews
+=
+Total measured cost
+÷ Total successful unique reviews
+× 1,000
+```
+
+Example:
+
+```text
+Measured cost: $3.00
+Unique successful reviews: 999
+
+$3.00 ÷ 999 × 1,000
+= approximately $3.003
+```
+
+The calculated normalized cost does not change the actual number of reviews retrieved.
+
+---
+
+## Estimated vs Measured Cost
+
+Keep these separate:
+
+### Estimated cost
+
+Calculated using the published pricing page.
+
+### Measured cost
+
+Confirmed through actual Outscraper billing or usage evidence.
+
+The final report must clearly label both values.
+
+---
+
+## Pricing Evidence Required
+
+Save:
+
+- official pricing-page reference
+- account balance before testing
+- account balance after testing
+- usage history
+- billing-history screenshot
+- request IDs
+- usage per request
+- free-tier usage status
+- actual charged amount
+- failed-request charges
+- empty-result charges
+- duplicate-request charges
+
+---
+
+## Current Pricing Status
+
+| Requirement | Status |
+|---|---|
+| First 100 reviews | Published as free |
+| Usage from 101 to 50,000 | $3 per 1,000 reviews |
+| Usage above 50,000 | $1 per 1,000 reviews |
+| Estimated fresh 1K cost | $2.70 |
+| Estimated 1K cost after free tier | $3.00 |
+| Actual remaining free allowance | Pending account verification |
+| Actual measured benchmark cost | Pending benchmark |
+| Failed-request billing | Pending verification |
+| Empty-result billing | Documented as at least one review of usage |
+| Pagination-request billing | Pending billing verification |
+

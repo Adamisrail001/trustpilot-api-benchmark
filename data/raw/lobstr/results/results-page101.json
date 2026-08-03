@@ -1,0 +1,15 @@
+{
+  "page": 101,
+  "fetched_at": "2026-07-29T10:59:54.536Z",
+  "response": {
+    "total_results": 1000,
+    "limit": 10,
+    "page": 101,
+    "total_pages": 100,
+    "result_from": 1001,
+    "result_to": 1000,
+    "data": [],
+    "next": null,
+    "previous": "https://api.lobstr.io/v1/results?page=100&limit=100&run=4c2e07bd3b9b4c9386661edb8ef58174"
+  }
+}

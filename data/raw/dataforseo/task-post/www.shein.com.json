@@ -1,0 +1,53 @@
+{
+  "domain": "www.shein.com",
+  "tag": "benchmark-www.shein.com-2026-07-21T11-50-13-551Z",
+  "requested_at": "2026-07-21T11:50:16.224Z",
+  "request": {
+    "depth": 200,
+    "sort_by": "recency",
+    "priority": 1
+  },
+  "latency_ms": 275,
+  "attempts": 1,
+  "response": {
+    "version": "0.1.20260717",
+    "status_code": 20000,
+    "status_message": "Ok.",
+    "time": "0.1184 sec.",
+    "cost": 0.0075,
+    "tasks_count": 1,
+    "tasks_error": 0,
+    "tasks": [
+      {
+        "id": "07211450-2117-0358-0000-dddcb7ebacdb",
+        "status_code": 20100,
+        "status_message": "Task Created.",
+        "time": "0.0184 sec.",
+        "cost": 0.0075,
+        "result_count": 0,
+        "path": [
+          "v3",
+          "business_data",
+          "trustpilot",
+          "reviews",
+          "task_post"
+        ],
+        "data": {
+          "api": "business_data",
+          "function": "reviews",
+          "se": "trustpilot",
+          "domain": "www.shein.com",
+          "depth": 200,
+          "sort_by": "recency",
+          "priority": 1,
+          "tag": "benchmark-www.shein.com-2026-07-21T11-50-13-551Z",
+          "language_name": "English",
+          "language_code": "en",
+          "device": "desktop",
+          "os": "windows"
+        },
+        "result": null
+      }
+    ]
+  }
+}

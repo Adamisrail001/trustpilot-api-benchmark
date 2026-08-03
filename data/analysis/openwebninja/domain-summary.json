@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-07-29T08:57:57.597Z",
+  "label": "full",
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 0,
+    "valid_records": 0,
+    "unique_valid_reviews": 0,
+    "duplicate_records": 0,
+    "domains_with_shortfall": [
+      "www.thepearlsource.com",
+      "www.shein.com",
+      "temu.com",
+      "www.aliexpress.com",
+      "thehalara.com"
+    ],
+    "overall_success_rate_percent": 0,
+    "total_requests_made": 5,
+    "outcome": "partial"
+  },
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "pages_fetched": 0,
+      "pagination_detail": [],
+      "stop_reason": "fetch_failed",
+      "raw_items": 0,
+      "valid_items": 0,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "pages_fetched": 0,
+      "pagination_detail": [],
+      "stop_reason": "fetch_failed",
+      "raw_items": 0,
+      "valid_items": 0,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "pages_fetched": 0,
+      "pagination_detail": [],
+      "stop_reason": "fetch_failed",
+      "raw_items": 0,
+      "valid_items": 0,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "pages_fetched": 0,
+      "pagination_detail": [],
+      "stop_reason": "fetch_failed",
+      "raw_items": 0,
+      "valid_items": 0,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "pages_fetched": 0,
+      "pagination_detail": [],
+      "stop_reason": "fetch_failed",
+      "raw_items": 0,
+      "valid_items": 0,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    }
+  ]
+}

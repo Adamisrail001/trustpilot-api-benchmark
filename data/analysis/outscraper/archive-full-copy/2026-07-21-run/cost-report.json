@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-07-21T13:27:51.819Z",
+  "total_usage_reviews_raw": 1000,
+  "calculated_cost_scenario_fresh_account_usd": 2.7,
+  "calculated_cost_scenario_free_tier_used_usd": 3,
+  "measured_cost_usd": null,
+  "note": "calculated_* figures come from applying the published pricing tiers (docs/outscraper-pricing.md) to the measured raw usage count. measured_cost_usd is intentionally null - Outscraper does not document an endpoint that returns account balance or per-request billed cost, so true measured cost requires manually checking the Outscraper billing dashboard before/after this run."
+}

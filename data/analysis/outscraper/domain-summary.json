@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-07-29T08:05:08.693Z",
+  "label": "full",
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 1000,
+    "valid_records": 1000,
+    "unique_valid_reviews": 1000,
+    "duplicate_records": 0,
+    "domains_with_shortfall": [],
+    "overall_success_rate_percent": 100,
+    "outcome": "completed"
+  },
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "pages_fetched": 1,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "skip": 0,
+          "raw_count": 200,
+          "shape_warning": null
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "pages_fetched": 1,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "skip": 0,
+          "raw_count": 200,
+          "shape_warning": null
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "pages_fetched": 1,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "skip": 0,
+          "raw_count": 200,
+          "shape_warning": null
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "pages_fetched": 1,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "skip": 0,
+          "raw_count": 200,
+          "shape_warning": null
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "pages_fetched": 1,
+      "pagination_detail": [
+        {
+          "page": 1,
+          "skip": 0,
+          "raw_count": 200,
+          "shape_warning": null
+        }
+      ],
+      "stop_reason": "target_reached",
+      "raw_items": 200,
+      "valid_items": 200,
+      "missing_field_counts": {},
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    }
+  ]
+}

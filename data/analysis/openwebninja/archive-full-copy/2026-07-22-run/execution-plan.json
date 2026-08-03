@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-07-22T08:09:40.211Z",
+  "base_url": "https://api.openwebninja.com/trustpilot-company-and-reviews",
+  "endpoint": "GET /company-reviews",
+  "auth_header": "x-api-key: <OPENWEBNINJA_API_KEY> (value never logged)",
+  "params_per_request": {
+    "company_domain": "<domain>",
+    "page": "1..10",
+    "sort": "recency"
+  },
+  "reviews_per_page": 20,
+  "max_pages_without_cookie": 10,
+  "domains": [
+    {
+      "business_name": "The Pearl Source",
+      "domain": "www.thepearlsource.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "SHEIN",
+      "domain": "www.shein.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Temu",
+      "domain": "temu.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "AliExpress",
+      "domain": "www.aliexpress.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Halara",
+      "domain": "thehalara.com",
+      "target_reviews": 200
+    }
+  ],
+  "expected_requests": 50,
+  "quota_check": "No API quota endpoint exists (confirmed - not in the documented endpoint list). 'run' mode requires OPENWEBNINJA_QUOTA_REMAINING (from the dashboard) >= 60.",
+  "estimated_cost": {
+    "free_marginal_usd": 0,
+    "pro_allocated_usd": 0.125,
+    "ultra_allocated_usd": 0.075,
+    "mega_allocated_usd": 0.0375,
+    "pay_as_you_go_usd": 0.25,
+    "note": "for 50 requests, from docs/openwebninja/openwebninja-pricing.md rate card"
+  }
+}

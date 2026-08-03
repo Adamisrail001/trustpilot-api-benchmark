@@ -1,0 +1,15 @@
+{
+  "domain": "temu.com",
+  "page": 1,
+  "skip": 0,
+  "limit": 200,
+  "requested_at": "2026-07-29T08:02:14.430Z",
+  "request_url": "https://api.outscraper.com/trustpilot-reviews?query=temu.com&limit=200&skip=0&languages=all&sort=recency&async=true",
+  "latency_ms": 2500,
+  "attempts": 1,
+  "response": {
+    "status": "Pending",
+    "id": "a-fa8779b1-f75c-4301-92ec-5e1a8aebd6b3",
+    "results_location": "https://api.outscraper.cloud/requests/a-fa8779b1-f75c-4301-92ec-5e1a8aebd6b3"
+  }
+}

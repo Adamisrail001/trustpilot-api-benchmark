@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-07-22T12:08:45.000Z",
+  "account_plan": "free",
+  "super_admin_status_exposed_by_api": false,
+  "credits_available": 0,
+  "credits_consumed_this_cycle": 20,
+  "credits_consumed_by_this_run_attempt": 0,
+  "note": "credits_available=0 and credits_consumed=20 are unchanged from before this attempt, confirmed via a fresh read-only GET /v1/user/balance call. This attempt consumed zero credits because no Run was ever created (blocked at squid configuration, an HTTP 400 validation error unrelated to billing). The account plan field returned by the API is 'free' - the API does not expose any 'Super Admin' flag or field; that status was not independently confirmed via any documented endpoint and is marked Pending, not assumed."
+}

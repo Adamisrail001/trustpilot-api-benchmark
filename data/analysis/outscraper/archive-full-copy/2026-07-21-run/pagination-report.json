@@ -1,0 +1,67 @@
+[
+  {
+    "domain": "www.thepearlsource.com",
+    "pages_fetched": 1,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "skip": 0,
+        "raw_count": 200,
+        "shape_warning": null
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "www.shein.com",
+    "pages_fetched": 1,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "skip": 0,
+        "raw_count": 200,
+        "shape_warning": null
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "temu.com",
+    "pages_fetched": 1,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "skip": 0,
+        "raw_count": 200,
+        "shape_warning": null
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "www.aliexpress.com",
+    "pages_fetched": 1,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "skip": 0,
+        "raw_count": 200,
+        "shape_warning": null
+      }
+    ],
+    "stop_reason": "target_reached"
+  },
+  {
+    "domain": "thehalara.com",
+    "pages_fetched": 1,
+    "pagination_detail": [
+      {
+        "page": 1,
+        "skip": 0,
+        "raw_count": 200,
+        "shape_warning": null
+      }
+    ],
+    "stop_reason": "target_reached"
+  }
+]

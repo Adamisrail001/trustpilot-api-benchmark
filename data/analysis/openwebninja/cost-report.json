@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-29T08:57:57.599Z",
+  "total_requests_made": 5,
+  "note": "OpenWeb Ninja has no documented account/usage/quota API endpoint, so remaining quota and measured $ cost cannot be verified programmatically. total_requests_made is the only directly measured usage figure from this run; converting it to a dollar cost requires the account's active plan (see docs/openwebninja/openwebninja-pricing.md rate card) and dashboard quota evidence, both Pending manual confirmation.",
+  "estimated_cost_by_plan": {
+    "free_marginal_usd": 0,
+    "pro_allocated_usd": 0.0125,
+    "ultra_allocated_usd": 0.0075,
+    "mega_allocated_usd": 0.0037,
+    "pay_as_you_go_usd": 0.025
+  },
+  "measured_cost_usd": null
+}

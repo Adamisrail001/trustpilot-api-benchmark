@@ -1,0 +1,10 @@
+{
+  "domain": "www.shein.com",
+  "page": 6,
+  "requested_at": "2026-07-22T08:30:49.285Z",
+  "request_url": "https://api.openwebninja.com/trustpilot-company-and-reviews/company-reviews?company_domain=www.shein.com&page=6&sort=recency",
+  "latency_ms": 1611,
+  "attempts": 1,
+  "ok": true,
+  "status": 200
+}

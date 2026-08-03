@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-22T12:08:30.000Z",
+  "run_id": null,
+  "run_created": false,
+  "stage_reached": "squid_configuration",
+  "stage_failed": "update_squid",
+  "blocker": {
+    "http_status": 400,
+    "lobstr_error_type": "DuplicateSquid",
+    "message": "A squid with the specified name already exists.",
+    "attempted_squid_id": "8d9e0b80d6d2481283c138104caf022d",
+    "attempted_name": "Trustpilot API Benchmark - Lobstr",
+    "conflicting_squid_id": "5644e83e28ce412c9370da2bc46fcd31",
+    "conflicting_squid_current_name": "Trustpilot API Benchmark - Lobstr",
+    "conflicting_squid_note": "This is the original contaminated squid from the invalid first Lobstr run. It was never deleted or renamed on the Lobstr platform itself - only local repository evidence was cleaned up in the prior cleanup task, which explicitly did not contact the Lobstr API."
+  },
+  "poll_history": [],
+  "domains": [
+    { "domain": "www.thepearlsource.com", "shortfall": 200 },
+    { "domain": "www.shein.com", "shortfall": 200 },
+    { "domain": "temu.com", "shortfall": 200 },
+    { "domain": "www.aliexpress.com", "shortfall": 200 },
+    { "domain": "thehalara.com", "shortfall": 200 }
+  ]
+}

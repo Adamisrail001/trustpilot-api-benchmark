@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-29T10:35:46.698Z",
+  "run_id": "vGkarueu1qSVSVbBV",
+  "dataset_id": "qZlB8BBUHfRWuiv0o",
+  "final_status": "SUCCEEDED",
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "shortfall": 200
+    },
+    {
+      "domain": "www.shein.com",
+      "shortfall": 0
+    },
+    {
+      "domain": "temu.com",
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "shortfall": 0
+    },
+    {
+      "domain": "thehalara.com",
+      "shortfall": 0
+    }
+  ]
+}

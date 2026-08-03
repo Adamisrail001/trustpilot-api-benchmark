@@ -1,0 +1,690 @@
+{
+  "benchmark_start": "2026-07-29T10:56:14.484Z",
+  "benchmark_end": "2026-07-29T10:59:55.006Z",
+  "wall_clock_ms": 220530,
+  "per_request": [
+    {
+      "phase": "poll_run",
+      "ms": 483,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 983,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1905,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 936,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1921,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1030,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1937,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 936,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 2015,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 952,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1921,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 937,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1718,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1984,
+      "attempts": 1
+    },
+    {
+      "phase": "poll_run",
+      "ms": 1984,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 1,
+      "ms": 905,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 2,
+      "ms": 719,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 3,
+      "ms": 610,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 4,
+      "ms": 922,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 5,
+      "ms": 515,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 6,
+      "ms": 671,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 7,
+      "ms": 953,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 8,
+      "ms": 656,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 9,
+      "ms": 750,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 10,
+      "ms": 500,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 11,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 12,
+      "ms": 703,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 13,
+      "ms": 719,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 14,
+      "ms": 655,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 15,
+      "ms": 1078,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 16,
+      "ms": 609,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 17,
+      "ms": 562,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 18,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 19,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 20,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 21,
+      "ms": 687,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 22,
+      "ms": 561,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 23,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 24,
+      "ms": 2063,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 25,
+      "ms": 750,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 26,
+      "ms": 719,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 27,
+      "ms": 609,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 28,
+      "ms": 562,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 29,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 30,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 31,
+      "ms": 609,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 32,
+      "ms": 1233,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 33,
+      "ms": 546,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 34,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 35,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 36,
+      "ms": 546,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 37,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 38,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 39,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 40,
+      "ms": 1000,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 41,
+      "ms": 610,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 42,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 43,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 44,
+      "ms": 639,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 45,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 46,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 47,
+      "ms": 2045,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 48,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 49,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 50,
+      "ms": 594,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 51,
+      "ms": 594,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 52,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 53,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 54,
+      "ms": 594,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 55,
+      "ms": 1077,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 56,
+      "ms": 703,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 57,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 58,
+      "ms": 579,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 59,
+      "ms": 562,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 60,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 61,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 62,
+      "ms": 594,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 63,
+      "ms": 1202,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 64,
+      "ms": 532,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 65,
+      "ms": 592,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 66,
+      "ms": 579,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 67,
+      "ms": 562,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 68,
+      "ms": 577,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 69,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 70,
+      "ms": 1546,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 71,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 72,
+      "ms": 561,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 73,
+      "ms": 563,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 74,
+      "ms": 625,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 75,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 76,
+      "ms": 578,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 77,
+      "ms": 1000,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 78,
+      "ms": 2062,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 79,
+      "ms": 545,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 80,
+      "ms": 593,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 81,
+      "ms": 531,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 82,
+      "ms": 483,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 83,
+      "ms": 1953,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 84,
+      "ms": 484,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 85,
+      "ms": 515,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 86,
+      "ms": 453,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 87,
+      "ms": 969,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 88,
+      "ms": 594,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 89,
+      "ms": 469,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 90,
+      "ms": 452,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 91,
+      "ms": 469,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 92,
+      "ms": 468,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 93,
+      "ms": 1139,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 94,
+      "ms": 516,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 95,
+      "ms": 467,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 96,
+      "ms": 484,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 97,
+      "ms": 469,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 98,
+      "ms": 1234,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 99,
+      "ms": 500,
+      "attempts": 1
+    },
+    {
+      "phase": "get_results",
+      "page": 100,
+      "ms": 608,
+      "attempts": 2
+    },
+    {
+      "phase": "get_results",
+      "page": 101,
+      "ms": 469,
+      "attempts": 1
+    }
+  ],
+  "median_latency_ms": 594,
+  "p95_latency_ms": 1984
+}

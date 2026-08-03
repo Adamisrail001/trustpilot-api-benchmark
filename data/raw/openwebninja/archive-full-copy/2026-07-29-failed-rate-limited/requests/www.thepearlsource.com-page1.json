@@ -1,0 +1,10 @@
+{
+  "domain": "www.thepearlsource.com",
+  "page": 1,
+  "requested_at": "2026-07-29T08:24:57.534Z",
+  "request_url": "https://api.openwebninja.com/trustpilot-company-and-reviews/company-reviews?company_domain=www.thepearlsource.com&page=1&sort=recency",
+  "latency_ms": 1031,
+  "attempts": 4,
+  "ok": false,
+  "status": 429
+}

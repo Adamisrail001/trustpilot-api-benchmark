@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-07-22T11:14:11.115Z",
+  "label": "full",
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 800,
+    "unattributed_records": 0,
+    "valid_records": 800,
+    "unique_valid_reviews": 798,
+    "duplicate_records": 2,
+    "domains_with_shortfall": [
+      "www.shein.com",
+      "www.aliexpress.com",
+      "thehalara.com"
+    ],
+    "overall_success_rate_percent": 79.8,
+    "run_id": "AL74CUwNDfUDkRINC",
+    "dataset_id": "6C7upbw3gTTxze0Wd",
+    "run_status": "SUCCEEDED",
+    "outcome": "partial"
+  },
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "raw_items": 0,
+      "valid_items": 0,
+      "unique_valid_reviews": 0,
+      "shortfall": 200
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 199,
+      "shortfall": 1
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 199,
+      "shortfall": 1
+    }
+  ],
+  "missing_field_counts": {}
+}

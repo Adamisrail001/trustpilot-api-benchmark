@@ -1,0 +1,69 @@
+Lobstr.io Trustpilot Reviews benchmark - fresh live run
+Run date: 2026-07-29
+Script executed: scripts/lobstr_benchmark.py run (unmodified, CONFIRM_PAID_RUN=yes)
+Crawler: b3362ab52c6fab3d8897af79cbba380e (reused from .env, confirmed Trustpilot crawler)
+Squid: 8d9e0b80d6d2481283c138104caf022d (reused from .env - the confirmed CLEAN squid,
+  not the historically contaminated one)
+
+run_start_utc=2026-07-29T10:56:14.128Z
+[crawler] reusing LOBSTR_CRAWLER_ID from .env: b3362ab52c6fab3d8897af79cbba380e
+[squid] reusing LOBSTR_SQUID_ID from .env: 8d9e0b80d6d2481283c138104caf022d
+[tasks] created 5/5 domain tasks (duplicated_count=0)
+[run] started ONE paid run: 4c2e07bd3b9b4c9386661edb8ef58174
+
+Poll history (status/total_results/unique, every ~9-10s):
+  10:56:19  pending   0/0
+  10:56:28  running   20/20
+  10:56:38  running   135/135
+  10:56:47  running   197/198
+  10:56:57  running   305/306
+  10:57:06  running   369/369
+  10:57:16  running   440/440
+  10:57:25  running   530/531
+  10:57:35  running   639/640
+  10:57:44  running   729/729
+  10:57:54  running   800/801
+  10:58:03  running   860/860
+  10:58:12  running   938/938
+  10:58:22  running   1000/1000
+  10:58:32  done      1000/1000
+
+Results pagination: 101 pages fetched (10 items/page, RESULTS_PAGE_LIMIT
+requested was 100 but the API effectively caps pages at 10 regardless -
+matches the documented behavior noted in the script's own comments). Page
+101 returned 0 items, confirming exhaustion (stop_reason: no_next_page).
+7 HTTP 429 "Request was throttled" events occurred during results
+pagination (context: get_results_next, all at attempt 1) - each was
+retried automatically by the client and every page ultimately succeeded;
+final total_results (1000) matches the run's own reported total exactly,
+confirming no data was lost to these rate-limit events.
+
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 1000,
+  "unattributed_records": 0,
+  "valid_records": 1000,
+  "unique_valid_reviews": 1000,
+  "duplicate_records": 0,
+  "domains_with_shortfall": [],
+  "overall_success_rate_percent": 100.0,
+  "run_status": "done",
+  "run_succeeded": true,
+  "outcome": "completed"
+}
+run_end_utc=2026-07-29T10:59:56.090Z
+
+Per-domain: all 5 domains (www.thepearlsource.com, www.shein.com, temu.com,
+www.aliexpress.com, thehalara.com) returned exactly 200/200 raw, valid, and
+unique reviews each - a clean, complete run, matching the historical
+2026-07-22 run's outcome exactly.
+
+Credits: balance_before consumed=0 -> balance_after consumed=1000 (measured
+delta: 1000, matches run_reported_credit_used=1000 exactly). This is a
+cleaner cost signal than the historical run, whose before/after consumed
+values were identical (1020/1020, likely a daily-reset-boundary quirk) -
+this run's before/after straddled the account's daily reset cleanly,
+giving a real, non-zero measured credits-consumed figure for the first
+time. See data/analysis/lobstr/cost-report.json and
+data/raw/lobstr/credits-{before,after}.json.

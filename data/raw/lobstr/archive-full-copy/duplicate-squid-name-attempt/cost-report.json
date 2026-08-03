@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-07-22T12:08:50.000Z",
+  "advertised_rate_usd_per_1000_reviews": 0.5,
+  "estimated_cost_usd_for_1000": 0.5,
+  "run_reported_credit_used": null,
+  "credits_consumed_this_attempt": 0,
+  "measured_cost_usd": 0,
+  "note": "No Run was created this attempt (blocked at squid configuration before any billable action), so the measured cost for THIS attempt is genuinely $0 - not Pending, not estimated. This does not reflect the cost of a completed benchmark, which has not yet occurred. The account's underlying credit balance (available=0, consumed=20 from the prior contaminated run) is unchanged."
+}

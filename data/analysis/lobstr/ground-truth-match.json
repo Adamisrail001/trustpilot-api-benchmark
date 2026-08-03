@@ -1,0 +1,1857 @@
+{
+  "summary": {
+    "generated_at": "2026-07-29T11:02:29.508Z",
+    "ground_truth_rows": 20,
+    "matched_rows": 20,
+    "unmatched_rows": 0,
+    "api_items_available": 200,
+    "field_accuracy": [
+      {
+        "field": "author_name",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "author_country",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "author_reviews_count",
+        "match": 18,
+        "mismatch": 2,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 90
+      },
+      {
+        "field": "rating",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "review_title",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "review_text",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "review_date_absolute",
+        "match": 0,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 20,
+        "accuracy_percent": null
+      },
+      {
+        "field": "experience_date",
+        "match": 0,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 20,
+        "accuracy_percent": null
+      },
+      {
+        "field": "review_type_invited_status",
+        "match": 19,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 1,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "useful_count",
+        "match": 20,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "company_replied",
+        "match": 16,
+        "mismatch": 4,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 0,
+        "accuracy_percent": 80
+      },
+      {
+        "field": "owner_reply",
+        "match": 14,
+        "mismatch": 0,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 6,
+        "accuracy_percent": 100
+      },
+      {
+        "field": "owner_reply_date",
+        "match": 0,
+        "mismatch": 14,
+        "not_returned_by_api": 0,
+        "ground_truth_unavailable": 6,
+        "accuracy_percent": 0
+      }
+    ]
+  },
+  "rows": [
+    {
+      "ground_truth_author": "Linda B",
+      "ground_truth_title": "The Hanadama Pearl earrings",
+      "matched": true,
+      "matched_api_review_url": "6a5eab67673db7c0e3922f0a",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5eab67673db7c0e3922f0a",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Linda B",
+          "api": "Linda B",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 2,
+          "api": 2,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "The Hanadama Pearl earrings",
+          "api": "The Hanadama Pearl earrings ",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "The Hanadama Pearl Stud earrings I ordered are so beautiful. I have been wearing them since they arrived. The luster on them is remarkable and the 8.5mm size is perfect.",
+          "api": "The Hanadama Pearl Stud earrings I ordered are so beautiful.  I have been wearing them since they arrived.  The luster on them is remarkable and the 8.5mm size is perfect.  ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-20T23:12:39Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-16T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": true,
+          "status": "mismatch"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": "We're so happy to hear you've been enjoying your Hanadama Pearl Stud Earrings. It's great to know you're so pleased with their remarkable luster and 8.5mm size. We hope you continue to enjoy wearing them.",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": "2026-07-22T02:12:27Z",
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Human Sun",
+      "ground_truth_title": "First time customer…",
+      "matched": true,
+      "matched_api_review_url": "6a5d904b8d8cb8d39b5a1799",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5d904b8d8cb8d39b5a1799",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Human Sun",
+          "api": "Human Sun",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 6,
+          "api": 6,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "First time customer…",
+          "api": "First time customer…",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "As a first time customer with The Pearl Source, I am extremely pleased and impressed with the product and the company. The shipping was quick, which was even more impressive. I look forward to shopping with The Pearl Source in the future.",
+          "api": "As a first time customer with The Pearl Source, I am extremely pleased and impressed with the product and the company.  The shipping was quick, which was even more impressive.  I look forward to shopping with The Pearl Source in the future.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-20T03:04:43Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-15T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": true,
+          "status": "mismatch"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": "Thank you for sharing your experience. We're so pleased to hear your first purchase with The Pearl Source left such a positive impression and that your order arrived quickly. We truly appreciate your feedback.",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": "2026-07-22T02:13:56Z",
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Sharon R.",
+      "ground_truth_title": "Quality Pearls",
+      "matched": true,
+      "matched_api_review_url": "6a5d8b97feb1621e3c0c29fb",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5d8b97feb1621e3c0c29fb",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Sharon R.",
+          "api": "Sharon R.",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 8,
+          "api": 10,
+          "status": "mismatch"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Quality Pearls",
+          "api": "Quality Pearls",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "The Pearl Source is a lovely company. They’ll communicate through email or phone if you need them. I ordered the chain station necklace on line, 16 inches, and the Akoya pearls have a lovely luster. The dainty gold chain glistens. I am so happy with it.",
+          "api": "The Pearl Source is a lovely company. They’ll communicate through email or phone if you need them. I ordered the chain station necklace on line, 16 inches, and the Akoya pearls have a lovely luster. The dainty gold chain glistens. I am so happy with it.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-20T02:44:39Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-11T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": true,
+          "status": "mismatch"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": "Thank you for your feedback. We're happy to know you had a positive experience with our team and that you're so pleased with your Chain Station Necklace. We truly appreciate you taking the time to share your experience.",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": "2026-07-22T02:15:50Z",
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "MW",
+      "ground_truth_title": "Great service",
+      "matched": true,
+      "matched_api_review_url": "6a5d536b81959fbde31f1503",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5d536b81959fbde31f1503",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "MW",
+          "api": "MW",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Great service",
+          "api": "Great service",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Great service, I had a question and asked via web chat. Was helped right away",
+          "api": "Great service, I had a question and asked via web chat. Was helped right away",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-19T22:44:59Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-18T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": true,
+          "status": "mismatch"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": "Thank you for your feedback. We're glad our web chat team was able to answer your question right away. Knowing you had a positive experience means a great deal to us.",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": "2026-07-22T02:17:30Z",
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Stephen B",
+      "ground_truth_title": "Excellent service from ordering to delivery",
+      "matched": true,
+      "matched_api_review_url": "6a5cbee7d15cfd51e3c65e6b",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5cbee7d15cfd51e3c65e6b",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Stephen B",
+          "api": "Stephen B",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "GB",
+          "api": "GB",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 14,
+          "api": 14,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Excellent service from ordering to delivery",
+          "api": "Excellent service from ordering to delivery ",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Superb service delivery from LA USA to UK in less than a week. Brilliant\nThe product is perfect and will make an ideal birthday present to match the pearl neclace I bought in May 2026 for our 30th wedding anniversary.\nThank you",
+          "api": "Superb service delivery from LA USA to UK in less than a week. Brilliant\nThe product is perfect and will make an ideal birthday present to match the pearl neclace I bought in May 2026 for our 30th wedding anniversary. \nThank you ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-19T12:11:19Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-18T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for taking the time to share your experience. We're delighted to hear your order arrived in the UK so quickly and that your new piece is the perfect match for the pearl necklace you purchased for your 30th wedding anniversary. We truly appreciate your continued support.",
+          "api": "Thank you for taking the time to share your experience. We're delighted to hear your order arrived in the UK so quickly and that your new piece is the perfect match for the pearl necklace you purchased for your 30th wedding anniversary. We truly appreciate your continued support.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "1 days ago",
+          "api": "2026-07-19T20:58:42Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Cheryl Morin",
+      "ground_truth_title": "Beautiful Pearls",
+      "matched": true,
+      "matched_api_review_url": "6a5bd97d5eb610b7a756a5b7",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bd97d5eb610b7a756a5b7",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Cheryl Morin",
+          "api": "Cheryl Morin",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Beautiful Pearls",
+          "api": "Beautiful Pearls",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "The variety of choices made it easy to find that special pearl that touches your heart. I purchased a pendant and was so pleased that I then ordered a pair of pearl earrings to match. They are both beautiful. I was hesitant purchasing online; however, I couldn't be more pleased and definitely recommend The Pearl Source!",
+          "api": "The variety of choices made it easy to find that special pearl that touches your heart. I purchased a pendant and was so pleased that I then ordered a pair of pearl earrings to match. They are both beautiful. I was hesitant purchasing online; however, I couldn't be more pleased and definitely recommend The Pearl Source!",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T19:52:29Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-14T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Knowing that you came back for a matching pair of earrings after purchasing your pendant truly means a great deal to us. Thank you for your recommendation and for choosing The Pearl Source.",
+          "api": "Knowing that you came back for a matching pair of earrings after purchasing your pendant truly means a great deal to us. Thank you for your recommendation and for choosing The Pearl Source.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "Updated 1 days ago",
+          "api": "2026-07-19T21:05:36Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Benjamin Moore fan",
+      "ground_truth_title": "Fast delivery",
+      "matched": true,
+      "matched_api_review_url": "6a5bd380d4163bbd91fd6b7e",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bd380d4163bbd91fd6b7e",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Benjamin Moore fan",
+          "api": "Benjamin Moore fan",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 3,
+          "api": 3,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Fast delivery",
+          "api": "Fast delivery",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Fast delivery, beautiful packaging. Great luster to AAA pearl. Love this unusual setting, just enough to set the pearl off enough to notice compared to plain stud.",
+          "api": "Fast delivery, beautiful packaging. Great luster to AAA pearl. Love this unusual setting, just enough to set the pearl off enough to notice compared to plain stud.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T19:26:56Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-17T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your review. We're delighted to hear your order arrived quickly and beautifully packaged. We hope you enjoy wearing your earrings.",
+          "api": "Thank you for your review. We're delighted to hear your order arrived quickly and beautifully packaged. We hope you enjoy wearing your earrings.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "1 days ago",
+          "api": "2026-07-19T21:08:55Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Malinda Justice",
+      "ground_truth_title": "Obsessed with pearls",
+      "matched": true,
+      "matched_api_review_url": "6a5bcd8276d99984532cc115",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bcd8276d99984532cc115",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Malinda Justice",
+          "api": "Malinda Justice",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Obsessed with pearls",
+          "api": "Obsessed with pearls",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "My new pearls are absolutely beautiful. I received them quickly. I have made 3 purchases and the service and quality were amazing",
+          "api": "My new pearls are absolutely beautiful.  I received them quickly.  I have made 3 purchases and the service and quality were amazing ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T19:01:22Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-10T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your review. We're delighted to hear your pearls arrived quickly and that you've been pleased with both the quality and service. We're especially grateful for your continued trust and support.",
+          "api": "Thank you for your review. We're delighted to hear your pearls arrived quickly and that you've been pleased with both the quality and service. We're especially grateful for your continued trust and support.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "1 days ago",
+          "api": "2026-07-19T21:11:02Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "customer",
+      "ground_truth_title": "I can’t say enough…",
+      "matched": true,
+      "matched_api_review_url": "6a5bcbcc3f8b8d2c994156ca",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bcbcc3f8b8d2c994156ca",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "customer",
+          "api": "customer",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 3,
+          "api": 3,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "I can’t say enough…",
+          "api": "I can’t say enough…",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "I can’t say enough about the people at Pearl Source. My wife’s beloved pearls were lost and they were willing to help me find the best replacement possible—super responsive and empathetic to our situation. I can’t say enough.",
+          "api": "I can’t say enough about the people at Pearl Source. My wife’s beloved pearls were lost and they were willing to help me find the best replacement possible—super responsive and empathetic to our situation. I can’t say enough. ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T18:54:04Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-09T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your thoughtful review. We're grateful our team was able to help you find the best replacement for your wife's pearls. Your kind words about their responsiveness and care truly mean a great deal to us.",
+          "api": "Thank you for your thoughtful review. We're grateful our team was able to help you find the best replacement for your wife's pearls. Your kind words about their responsiveness and care truly mean a great deal to us.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "1 days ago",
+          "api": "2026-07-19T21:13:46Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Robert Walsh",
+      "ground_truth_title": "Lived the pearls.",
+      "matched": true,
+      "matched_api_review_url": "6a5bc470664ff294de6efbc1",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bc470664ff294de6efbc1",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Robert Walsh",
+          "api": "Robert Walsh",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Lived the pearls.",
+          "api": "Lived the pearls. ",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Easy to order items. Received items as scheduled. The pearls looked great, she really liked them. Great quality.",
+          "api": "Easy to order items. Received items as scheduled. The pearls looked great, she really liked them. Great quality. ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T18:22:40Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-10T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "We're so glad to hear the ordering process was easy and your items arrived as scheduled. Thank you for taking the time to share your experience and for choosing The Pearl Source.",
+          "api": "We're so glad to hear the ordering process was easy and your items arrived as scheduled. Thank you for taking the time to share your experience and for choosing The Pearl Source.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T18:29:49Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Ivan Schrock",
+      "ground_truth_title": "Everything was great from start to…",
+      "matched": true,
+      "matched_api_review_url": "6a5bc368b18736d9c5d3faba",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bc368b18736d9c5d3faba",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Ivan Schrock",
+          "api": "Ivan Schrock",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Everything was great from start to…",
+          "api": "Everything was great from start to…",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Everything was great from start to finish! My wife of 30yrs loved her pearls.",
+          "api": "Everything was great from start to finish!  My wife of 30yrs loved her pearls.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T18:18:16Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-09T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for sharing your experience. It's wonderful to hear everything went smoothly and that your wife loves her pearls. We appreciate your feedback.",
+          "api": "Thank you for sharing your experience. It's wonderful to hear everything went smoothly and that your wife loves her pearls. We appreciate your feedback.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T18:31:56Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "ML",
+      "ground_truth_title": "beautiful, quality pearls",
+      "matched": true,
+      "matched_api_review_url": "6a5bc29d50cc2fdd2d4e2701",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5bc29d50cc2fdd2d4e2701",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "ML",
+          "api": "ML",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "beautiful, quality pearls",
+          "api": "beautiful, quality pearls",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "shopping experience was effortless, and the quality of the pearls excellent!",
+          "api": "shopping experience was effortless, and the quality of the pearls excellent!",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-18T18:14:53Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-09T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your kind feedback. We're delighted to hear the shopping process was seamless and that you were pleased with the quality of your pearls. We truly appreciate you taking the time to share your experience.",
+          "api": "Thank you for your kind feedback. We're delighted to hear the shopping process was seamless and that you were pleased with the quality of your pearls. We truly appreciate you taking the time to share your experience.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T18:35:19Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Chris Kowalewski",
+      "ground_truth_title": "Great service",
+      "matched": true,
+      "matched_api_review_url": "6a5a8245b0399c3b3162be83",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5a8245b0399c3b3162be83",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Chris Kowalewski",
+          "api": "Chris  Kowalewski",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Great service",
+          "api": "Great service",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Great service, very easy!! Excellent high quality products!! Thank you!",
+          "api": "Great service, very easy!!  Excellent high quality products!! Thank you!",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-17T19:28:05Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-09T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "We're so pleased to hear that you had such an easy experience with us and that the quality of your purchase met your expectations. Thank you for your thoughtful feedback, and we truly appreciate you taking the time to share it.",
+          "api": "We're so pleased to hear that you had such an easy experience with us and that the quality of your purchase met your expectations. Thank you for your thoughtful feedback, and we truly appreciate you taking the time to share it.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T00:52:59Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Pete Brayton",
+      "ground_truth_title": "They had what I was looking for at the…",
+      "matched": true,
+      "matched_api_review_url": "6a5a6e18e260bc057e2241ef",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5a6e18e260bc057e2241ef",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Pete Brayton",
+          "api": "Pete Brayton",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "They had what I was looking for at the…",
+          "api": "They had what I was looking for at the…",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "They had what I was looking for at the price I wanted to pay.",
+          "api": "They had what I was looking for at the price I wanted to pay.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-17T18:02:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-16T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "We're delighted to hear you found the piece you were looking for and had a positive shopping experience with us. Thank you for sharing your feedback.",
+          "api": "We're delighted to hear you found the piece you were looking for and had a positive shopping experience with us. Thank you for sharing your feedback.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T00:54:25Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Charles MacKinnon",
+      "ground_truth_title": "Pearls were perfect",
+      "matched": true,
+      "matched_api_review_url": "6a5a3410efd36134cd134c7a",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5a3410efd36134cd134c7a",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Charles MacKinnon",
+          "api": "Charles MacKinnon",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "GB",
+          "api": "GB",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 6,
+          "api": 6,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Pearls were perfect",
+          "api": "Pearls were perfect",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Pearls were perfect. My wife loved them",
+          "api": "Pearls were perfect. My wife loved them",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-17T13:54:24Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-16T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Knowing your wife loved the pearls means a great deal to us. We're grateful you took the time to leave a review.",
+          "api": "Knowing your wife loved the pearls means a great deal to us. We're grateful you took the time to leave a review.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "3 days ago",
+          "api": "2026-07-18T00:56:37Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Anca",
+      "ground_truth_title": "Stunning",
+      "matched": true,
+      "matched_api_review_url": "6a599c64159c799c6ef44540",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a599c64159c799c6ef44540",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Anca",
+          "api": "Anca",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Stunning",
+          "api": "Stunning",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "I am absolutely thrilled with my Tahitian pearl pendant. It looks luxurious, elegant and incredibly unique. The pendant arrived on time, in a beautiful box with certification of authenticity. If you're considering a Tahitian pearl pendant , I can confidently say this one exceeded my expectations in every way.",
+          "api": "I am absolutely thrilled with my Tahitian pearl pendant. It looks luxurious, elegant and incredibly unique. The pendant arrived on time, in a beautiful box with certification of authenticity. If you're considering a Tahitian pearl pendant , I can confidently say this one exceeded my expectations in every way.   ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-17T03:07:16Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-14T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": null,
+          "api": "Not invited",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your thoughtful review. It's wonderful to know your Tahitian pearl pendant exceeded your expectations and that it arrived on time, beautifully presented, with its certificate of authenticity. We truly appreciate you taking the time to share your experience.",
+          "api": "Thank you for your thoughtful review. It's wonderful to know your Tahitian pearl pendant exceeded your expectations and that it arrived on time, beautifully presented, with its certificate of authenticity. We truly appreciate you taking the time to share your experience.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "4 days ago",
+          "api": "2026-07-17T03:39:26Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "Janice",
+      "ground_truth_title": "Fabulous Experience",
+      "matched": true,
+      "matched_api_review_url": "6a5979aa946477edbc7b0b29",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a5979aa946477edbc7b0b29",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "Janice",
+          "api": "Janice",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Fabulous Experience",
+          "api": "Fabulous Experience ",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "I love the pearls I ordered for my future daughter-in-law. They arrived on time and in a gorgeous display box. She loved them. They are beautiful. Well worth the cost.",
+          "api": "I love the pearls I ordered for my future daughter-in-law. They arrived on time and in a gorgeous display box. She loved them. They are beautiful. Well worth the cost. ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-17T00:39:06Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-15T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your wonderful review. It's so nice to know the pearls made such a special gift for your future daughter-in-law and arrived on time in a beautiful presentation box. We're grateful you chose The Pearl Source for such a meaningful gift.",
+          "api": "Thank you for your wonderful review. It's so nice to know the pearls made such a special gift for your future daughter-in-law and arrived on time in a beautiful presentation box. We're grateful you chose The Pearl Source for such a meaningful gift.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "4 days ago",
+          "api": "2026-07-17T03:48:40Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "MR KEARNEY",
+      "ground_truth_title": "Helpful and good quality 👌",
+      "matched": true,
+      "matched_api_review_url": "6a58c172f566e87aac055f75",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a58c172f566e87aac055f75",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "MR KEARNEY",
+          "api": "MR KEARNEY",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "GB",
+          "api": "GB",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 4,
+          "api": 5,
+          "status": "mismatch"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 5,
+          "api": 5,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Helpful and good quality 👌",
+          "api": "Helpful  and good quality 👌",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Helpful and good quality 👌",
+          "api": "Helpful  and good quality 👌 ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-16T11:33:06Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-15T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": true,
+          "api": true,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": "Thank you for your kind review. It's great to know you were happy with both the quality of your pearls and the service you received. We appreciate you taking the time to share your feedback.",
+          "api": "Thank you for your kind review. It's great to know you were happy with both the quality of your pearls and the service you received. We appreciate you taking the time to share your feedback.",
+          "status": "match"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": "4 days ago",
+          "api": "2026-07-17T03:49:57Z",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "K Spence",
+      "ground_truth_title": "Placed my order using PayPal",
+      "matched": true,
+      "matched_api_review_url": "6a580d7dbccf03f8526533dc",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a580d7dbccf03f8526533dc",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "K Spence",
+          "api": "K Spence",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 1,
+          "api": 1,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Placed my order using PayPal",
+          "api": "Placed my order using PayPal",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Placed my order using PayPal, and when my order hadn't arrived a week later I called Pearl Source... They had no record of my order, despite having received an order number and already being charged through PayPal. I was asked to reverse the transaction with PayPal and place my order once more, because I couldn't cite the exact necklace and options to equal the amount I was charged. The customer service rep I spoke with was very polite, but the company's position and process for handling their own issues was disheartening. Ultimately I did receive the necklace, but wished the \"AAAA\" product was a little... More, for the hassle.",
+          "api": "Placed my order using PayPal, and when my order hadn't arrived a week later I called Pearl Source... They had no record of my order, despite having received an order number and already being charged through PayPal.  I was asked to reverse the transaction with PayPal and place my order once more, because I couldn't cite the exact necklace and options to equal the amount I was charged.  The customer service rep I spoke with was very polite, but the company's position and process for handling their own issues was disheartening. Ultimately I did receive the necklace, but wished the \"AAAA\" product was a little... More, for the hassle. ",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-15T22:45:17Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-14T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": false,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": null,
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": null,
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    },
+    {
+      "ground_truth_author": "John Kocum",
+      "ground_truth_title": "Purchase Review",
+      "matched": true,
+      "matched_api_review_url": "6a57dcb172de25aede3a2f49",
+      "matched_api_review_link": "https://www.trustpilot.com/reviews/6a57dcb172de25aede3a2f49",
+      "fields": [
+        {
+          "field": "author_name",
+          "ground_truth": "John Kocum",
+          "api": "John Kocum",
+          "status": "match"
+        },
+        {
+          "field": "author_country",
+          "ground_truth": "US",
+          "api": "US",
+          "status": "match"
+        },
+        {
+          "field": "author_reviews_count",
+          "ground_truth": 3,
+          "api": 3,
+          "status": "match"
+        },
+        {
+          "field": "rating",
+          "ground_truth": 2,
+          "api": 2,
+          "status": "match"
+        },
+        {
+          "field": "review_title",
+          "ground_truth": "Purchase Review",
+          "api": "Purchase Review",
+          "status": "match"
+        },
+        {
+          "field": "review_text",
+          "ground_truth": "Good afternoon,\n\nI recently received the pearl earrings I ordered for my daughter. To ensure I had made a good purchase, I took them to a respected family-owned jeweler in Bethesda, Maryland, that has been in business for more than 70 years.\n\nAfter examining the earrings, they shared that while the pearls were of acceptable quality, they were not exceptional. They also noted that the pearls appeared to be approximately 8mm, even though I specifically requested the larger size within the advertised range (8.5mm).\n\nWhen I asked about value, they estimated that, without the branding, packaging, marketing, and online presence, the earrings would likely retail in the $350–$400 range. I even considered purchasing a pair from them and returning yours. However, the jeweler candidly advised that the time and effort involved in making the return likely would not be worth the difference. I appreciated their honesty, particularly since it meant they did not make a sale.\n\nNeedless to say, I was disappointed to hear this assessment and equally disappointed with the product I received. I find it difficult to believe that no one has raised similar concerns in the past, although I understand I have no way of knowing.\n\nI wanted to share this feedback in the hope that you will review the quality and sizing of the pearls being sold, as the product I received did not meet the expectations created by your descriptions.",
+          "api": "Good afternoon,\n\nI recently received the pearl earrings I ordered for my daughter. To ensure I had made a good purchase, I took them to a respected family-owned jeweler in Bethesda, Maryland, that has been in business for more than 70 years.\n\nAfter examining the earrings, they shared that while the pearls were of acceptable quality, they were not exceptional. They also noted that the pearls appeared to be approximately 8mm, even though I specifically requested the larger size within the advertised range (8.5mm).\n\nWhen I asked about value, they estimated that, without the branding, packaging, marketing, and online presence, the earrings would likely retail in the $350–$400 range. I even considered purchasing a pair from them and returning yours. However, the jeweler candidly advised that the time and effort involved in making the return likely would not be worth the difference. I appreciated their honesty, particularly since it meant they did not make a sale.\n\nNeedless to say, I was disappointed to hear this assessment and equally disappointed with the product I received. I find it difficult to believe that no one has raised similar concerns in the past, although I understand I have no way of knowing.\n\nI wanted to share this feedback in the hope that you will review the quality and sizing of the pearls being sold, as the product I received did not meet the expectations created by your descriptions.",
+          "status": "match"
+        },
+        {
+          "field": "review_date_absolute",
+          "ground_truth": null,
+          "api": "2026-07-15T19:17:05Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "experience_date",
+          "ground_truth": null,
+          "api": "2026-07-14T22:00:00Z",
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "review_type_invited_status",
+          "ground_truth": "Invited",
+          "api": "Invited",
+          "status": "match"
+        },
+        {
+          "field": "useful_count",
+          "ground_truth": 0,
+          "api": 0,
+          "status": "match"
+        },
+        {
+          "field": "company_replied",
+          "ground_truth": false,
+          "api": false,
+          "status": "match"
+        },
+        {
+          "field": "owner_reply",
+          "ground_truth": null,
+          "api": null,
+          "status": "ground_truth_unavailable"
+        },
+        {
+          "field": "owner_reply_date",
+          "ground_truth": null,
+          "api": null,
+          "status": "ground_truth_unavailable"
+        }
+      ]
+    }
+  ]
+}

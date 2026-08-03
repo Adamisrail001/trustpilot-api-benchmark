@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-07-29T10:59:55.117Z",
+  "label": "full",
+  "run_id": "4c2e07bd3b9b4c9386661edb8ef58174",
+  "totals": {
+    "requested_reviews": 1000,
+    "total_raw_records": 1000,
+    "unattributed_records": 0,
+    "valid_records": 1000,
+    "unique_valid_reviews": 1000,
+    "duplicate_records": 0,
+    "domains_with_shortfall": [],
+    "overall_success_rate_percent": 100.0,
+    "run_status": "done",
+    "run_succeeded": true,
+    "outcome": "completed"
+  },
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "task_id": "edb32c4dd8cd780d0a91f33df2669dc2",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "task_id": "0125f07c58297f0576f8e5dbc46ee759",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "task_id": "36f28a6570f733f895a0ab4677de160e",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "task_id": "960b12dceafe96d57a746011d984b572",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "task_id": "e495dfee55cddb14dce1e26f4f7606be",
+      "raw_items": 200,
+      "valid_items": 200,
+      "unique_valid_reviews": 200,
+      "shortfall": 0
+    }
+  ],
+  "missing_field_counts": {}
+}

@@ -1,0 +1,90 @@
+{
+  "target": "Trustpilot reviews - 5 e-commerce domains benchmarked (www.thepearlsource.com, www.shein.com, temu.com, www.aliexpress.com, thehalara.com), ~200 reviews/domain requested per provider (~1,000 target per provider); pooled per-provider corpus compared as one dataset",
+  "platform": "Trustpilot reviews (5-domain benchmark)",
+
+  "mode": "full",
+  "skip_dimensions": [],
+
+  "equivalence_level": "B",
+
+  "baseline": "auto",
+
+  "verdict": null,
+
+  "id_field": "trustpilot_review_id",
+
+  "common_record_id": "6a5c542a7653275b3e2ec634",
+
+  "accuracy_sample_size": 40,
+
+  "volatile_fields": ["author_review_count", "helpful_votes", "owner_reply_text", "owner_reply_date"],
+
+  "records_expected": null,
+
+  "exclude_paths": ["domain", "dedupe_key", "dedupe_key_type", "native_id", "rank_absolute", "trustpilot_review_id"],
+
+  "genuine_null_fields": [],
+
+  "scrapers": [
+    {
+      "name": "apify",
+      "json": "apify.json",
+      "csv": "apify.csv",
+      "id_field": "trustpilot_review_id",
+      "is_api": false,
+      "captured_at": "2026-07-29T10:29:04.475Z"
+    },
+    {
+      "name": "lobstr",
+      "json": "lobstr.json",
+      "csv": "lobstr.csv",
+      "id_field": "trustpilot_review_id",
+      "is_api": false,
+      "captured_at": "2026-07-29T10:56:14.484Z"
+    },
+    {
+      "name": "outscraper",
+      "json": "outscraper.json",
+      "csv": "outscraper.csv",
+      "id_field": "trustpilot_review_id",
+      "is_api": false,
+      "captured_at": "2026-07-29T07:59:24.301Z"
+    },
+    {
+      "name": "dataforseo",
+      "json": "dataforseo.json",
+      "csv": "dataforseo.csv",
+      "id_field": "trustpilot_review_id",
+      "is_api": false,
+      "captured_at": "2026-07-21T11:50:13.555Z"
+    },
+    {
+      "name": "openwebninja",
+      "json": "openwebninja.json",
+      "csv": "openwebninja.csv",
+      "id_field": "trustpilot_review_id",
+      "is_api": false,
+      "captured_at": "2026-07-22T08:29:33.331Z"
+    }
+  ],
+
+  "fields": [
+    { "canonical": "rating", "paths": { "apify": "rating", "lobstr": "rating_value", "outscraper": "review_rating", "dataforseo": "rating", "openwebninja": "review_rating" } },
+    { "canonical": "review_title", "paths": { "apify": "title", "lobstr": "review_headline", "outscraper": "review_title", "dataforseo": "title", "openwebninja": "review_title" } },
+    { "canonical": "review_text", "paths": { "apify": "text", "lobstr": "review_body", "outscraper": "review_text", "dataforseo": "review_text", "openwebninja": "review_text" } },
+    { "canonical": "review_date", "paths": { "apify": "publishedDate", "lobstr": "date_published", "outscraper": "review_datetime_utc", "dataforseo": "timestamp", "openwebninja": "review_time" } },
+    { "canonical": "experience_date", "paths": { "apify": "experienceDate", "lobstr": null, "outscraper": null, "dataforseo": null, "openwebninja": "review_experienced_time" } },
+    { "canonical": "review_url", "paths": { "apify": "reviewUrl", "lobstr": "review_url", "outscraper": null, "dataforseo": "url", "openwebninja": null } },
+    { "canonical": "language", "paths": { "apify": "language", "lobstr": null, "outscraper": null, "dataforseo": "language", "openwebninja": null } },
+    { "canonical": "review_verified", "paths": { "apify": "isVerified", "lobstr": "is_review_verified", "outscraper": "review_verified", "dataforseo": "verified", "openwebninja": "review_is_verified" } },
+    { "canonical": "author_verified", "paths": { "apify": null, "lobstr": "is_author_verified", "outscraper": null, "dataforseo": null, "openwebninja": "consumer_is_verified" } },
+    { "canonical": "author_name", "paths": { "apify": "authorName", "lobstr": "author_name", "outscraper": "author_title", "dataforseo": "author_name", "openwebninja": "consumer_name" } },
+    { "canonical": "author_id", "paths": { "apify": "authorId", "lobstr": "author_id", "outscraper": "author_id", "dataforseo": null, "openwebninja": "consumer_id" } },
+    { "canonical": "author_country", "paths": { "apify": "country", "lobstr": "consumer_country_code", "outscraper": "author_country_code", "dataforseo": null, "openwebninja": "consumer_country" } },
+    { "canonical": "author_review_count", "volatile": true, "paths": { "apify": "authorReviewCount", "lobstr": "number_of_reviews", "outscraper": "author_reviews_number", "dataforseo": null, "openwebninja": "consumer_review_count" } },
+    { "canonical": "helpful_votes", "volatile": true, "paths": { "apify": "likes", "lobstr": null, "outscraper": null, "dataforseo": null, "openwebninja": "review_likes" } },
+    { "canonical": "review_source", "paths": { "apify": "source", "lobstr": null, "outscraper": null, "dataforseo": null, "openwebninja": null } },
+    { "canonical": "owner_reply_text", "volatile": true, "paths": { "apify": "replyMessage", "lobstr": "owner_reply", "outscraper": "owner_answer", "dataforseo": "responses[].text", "openwebninja": "reply_text" } },
+    { "canonical": "owner_reply_date", "volatile": true, "paths": { "apify": "replyPublishedDate", "lobstr": "owner_reply_date", "outscraper": "owner_answer_date", "dataforseo": "responses[].timestamp", "openwebninja": null } }
+  ]
+}

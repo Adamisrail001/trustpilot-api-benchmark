@@ -1,0 +1,30 @@
+[submit] www.thepearlsource.com: task 07211450-2117-0358-0000-be4f52a532ca created (cost=0.0075).
+[submit] www.shein.com: task 07211450-2117-0358-0000-dddcb7ebacdb created (cost=0.0075).
+[submit] temu.com: task 07211450-2117-0358-0000-8b72f8f48833 created (cost=0.0075).
+[submit] www.aliexpress.com: task 07211450-2117-0358-0000-c8f93938123d created (cost=0.0075).
+[submit] thehalara.com: task 07211450-2117-0358-0000-84fa9ff0af90 created (cost=0.0075).
+[poll] waiting on: www.thepearlsource.com, www.shein.com, temu.com, www.aliexpress.com, thehalara.com (elapsed 0s)
+[poll] waiting on: www.thepearlsource.com, www.shein.com, temu.com, www.aliexpress.com, thehalara.com (elapsed 32s)
+[poll] waiting on: www.thepearlsource.com, www.shein.com, temu.com, www.aliexpress.com, thehalara.com (elapsed 64s)
+[get] www.thepearlsource.com: result saved.
+[poll] waiting on: www.shein.com, temu.com, www.aliexpress.com, thehalara.com (elapsed 96s)
+[get] www.shein.com: result saved.
+[get] thehalara.com: result saved.
+[poll] waiting on: temu.com, www.aliexpress.com (elapsed 129s)
+[get] temu.com: result saved.
+[get] www.aliexpress.com: result saved.
+--- RUN COMPLETE ---
+{
+  "requested_reviews": 1000,
+  "total_raw_records": 1000,
+  "valid_records": 1000,
+  "unique_valid_reviews": 999,
+  "duplicate_records": 1,
+  "domains_with_shortfall": [
+    "temu.com"
+  ],
+  "data_validity_rate": 1,
+  "duplicate_rate": 0.001,
+  "overall_success_rate_percent": 99.9,
+  "outcome": "partial"
+}

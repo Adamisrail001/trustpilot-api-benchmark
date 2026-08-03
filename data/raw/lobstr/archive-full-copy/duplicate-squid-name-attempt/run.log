@@ -1,0 +1,3 @@
+[crawler] reusing LOBSTR_CRAWLER_ID from .env: b3362ab52c6fab3d8897af79cbba380e
+[squid] reusing LOBSTR_SQUID_ID from .env: 8d9e0b80d6d2481283c138104caf022d
+FATAL: Invalid request (HTTP 400)

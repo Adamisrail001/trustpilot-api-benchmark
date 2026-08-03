@@ -1,0 +1,132 @@
+{
+  "summary": {
+    "generated_at": "2026-07-29T08:47:48.192Z",
+    "ground_truth_rows": 20,
+    "matched_rows": 0,
+    "unmatched_rows": 20,
+    "api_items_available": 0,
+    "field_accuracy": []
+  },
+  "rows": [
+    {
+      "ground_truth_author": "Linda B",
+      "ground_truth_title": "The Hanadama Pearl earrings",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Human Sun",
+      "ground_truth_title": "First time customer…",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Sharon R.",
+      "ground_truth_title": "Quality Pearls",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "MW",
+      "ground_truth_title": "Great service",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Stephen B",
+      "ground_truth_title": "Excellent service from ordering to delivery",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Cheryl Morin",
+      "ground_truth_title": "Beautiful Pearls",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Benjamin Moore fan",
+      "ground_truth_title": "Fast delivery",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Malinda Justice",
+      "ground_truth_title": "Obsessed with pearls",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "customer",
+      "ground_truth_title": "I can’t say enough…",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Robert Walsh",
+      "ground_truth_title": "Lived the pearls.",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Ivan Schrock",
+      "ground_truth_title": "Everything was great from start to…",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "ML",
+      "ground_truth_title": "beautiful, quality pearls",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Chris Kowalewski",
+      "ground_truth_title": "Great service",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Pete Brayton",
+      "ground_truth_title": "They had what I was looking for at the…",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Charles MacKinnon",
+      "ground_truth_title": "Pearls were perfect",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Anca",
+      "ground_truth_title": "Stunning",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "Janice",
+      "ground_truth_title": "Fabulous Experience",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "MR KEARNEY",
+      "ground_truth_title": "Helpful and good quality 👌",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "K Spence",
+      "ground_truth_title": "Placed my order using PayPal",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    },
+    {
+      "ground_truth_author": "John Kocum",
+      "ground_truth_title": "Purchase Review",
+      "matched": false,
+      "reason": "no_api_item_with_matching_author_found"
+    }
+  ]
+}

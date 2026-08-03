@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-07-22T12:08:11.254Z",
+  "base_url": "https://api.lobstr.io/v1",
+  "auth_header": "Authorization: Token <LOBSTR_API_KEY> (value never logged)",
+  "domains": [
+    {
+      "business_name": "The Pearl Source",
+      "domain": "www.thepearlsource.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "SHEIN",
+      "domain": "www.shein.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Temu",
+      "domain": "temu.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "AliExpress",
+      "domain": "www.aliexpress.com",
+      "target_reviews": 200
+    },
+    {
+      "business_name": "Halara",
+      "domain": "thehalara.com",
+      "target_reviews": 200
+    }
+  ],
+  "workflow": [
+    "discover or load crawler",
+    "find or create squid",
+    "configure squid",
+    "add 5 domain tasks (idempotent)",
+    "start ONE run (idempotent)",
+    "poll same run id to terminal",
+    "paginate /v1/results to exhaustion",
+    "dedupe + validate + report"
+  ],
+  "estimated_cost": {
+    "advertised_rate_usd_per_1000": 0.5,
+    "estimated_usd_for_1000": 0.5,
+    "note": "advertised marketing rate, not account-specific measured cost"
+  }
+}

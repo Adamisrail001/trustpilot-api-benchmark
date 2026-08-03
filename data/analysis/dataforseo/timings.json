@@ -1,0 +1,69 @@
+{
+  "benchmark_start": "2026-07-21T11:50:13.555Z",
+  "benchmark_end": "2026-07-21T11:52:59.068Z",
+  "wall_clock_ms": 165513,
+  "per_request": [
+    {
+      "phase": "task_post",
+      "domain": "www.thepearlsource.com",
+      "ms": 2378,
+      "attempts": 1
+    },
+    {
+      "phase": "task_post",
+      "domain": "www.shein.com",
+      "ms": 275,
+      "attempts": 1
+    },
+    {
+      "phase": "task_post",
+      "domain": "temu.com",
+      "ms": 196,
+      "attempts": 1
+    },
+    {
+      "phase": "task_post",
+      "domain": "www.aliexpress.com",
+      "ms": 433,
+      "attempts": 1
+    },
+    {
+      "phase": "task_post",
+      "domain": "thehalara.com",
+      "ms": 335,
+      "attempts": 1
+    },
+    {
+      "phase": "task_get",
+      "domain": "www.thepearlsource.com",
+      "ms": 437,
+      "attempts": 1
+    },
+    {
+      "phase": "task_get",
+      "domain": "www.shein.com",
+      "ms": 467,
+      "attempts": 1
+    },
+    {
+      "phase": "task_get",
+      "domain": "thehalara.com",
+      "ms": 179,
+      "attempts": 1
+    },
+    {
+      "phase": "task_get",
+      "domain": "temu.com",
+      "ms": 404,
+      "attempts": 1
+    },
+    {
+      "phase": "task_get",
+      "domain": "www.aliexpress.com",
+      "ms": 361,
+      "attempts": 1
+    }
+  ],
+  "median_latency_ms": 404,
+  "p95_latency_ms": 2378
+}
