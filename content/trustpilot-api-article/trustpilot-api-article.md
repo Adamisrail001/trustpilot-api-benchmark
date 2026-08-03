@@ -29,7 +29,7 @@ Scraping Trustpilot reviews at scale is the actual problem. Most self-serve APIs
 
 The ones that don't fail outright cap out around 200 reviews per business, no pagination, nothing you can do about it. A "reliable" API can return a `SUCCEEDED` status and quietly hand back zero of what you asked for, and you won't know unless you count them yourself.
 
-So I ran the same benchmark against all 5 self-serve Trustpilot APIs I could get live access to within 48 hours: same 5 businesses, same review target, every request and response logged, to find the one that actually scales past that wall. Full test scripts and raw results: [github.com/lobstr-io/trustpilot-api-benchmark](https://github.com/lobstr-io/trustpilot-api-benchmark).
+So I ran the same benchmark against all 5 self-serve Trustpilot APIs I could get live access to within 48 hours: same 5 businesses, same review target, every request and response logged, to find the one that actually scales past that wall. Full test scripts and raw results: [github.com/Adamisrail001/trustpilot-api-benchmark](https://github.com/Adamisrail001/trustpilot-api-benchmark).
 
 ## Why not use the official Trustpilot API?
 
@@ -343,7 +343,7 @@ Lobstr's Trustpilot Reviews Scraper finished at 100% with 0 duplicates and the o
 
 Before comparing any third-party API on performance, it's worth understanding why Trustpilot's own official APIs, including the cross-business Data Solutions API, aren't on this list at all. It isn't about data scope; the Data Solutions API can technically pull reviews across businesses. It's about access: none of Trustpilot's official routes offer instant self-serve signup.
 
-| | Self-serve signup | Access path | On this list? |
+| API / route | Self-serve signup | Access path | On this list? |
 |---|---|---|---|
 | Trustpilot Business Units / Product / Service Reviews API | No | Trustpilot for Business account + API module approval | No, excluded pre-benchmark (E1) |
 | Trustpilot Data Solutions API | No | API key, gated behind waitlist + sales approval | No, excluded pre-benchmark (E1) |
@@ -363,7 +363,7 @@ If you run the business being reviewed and want invitations, widgets, or your ow
 DataForSEO's measured $0.03754 per 1,000 reviews is the cheapest confirmed number in this benchmark. Lobstr's confirmed rate is $1 per 1,000 reviews, a real measured figure, not an estimate, though still well above DataForSEO's. Outscraper's estimated $2.70 to $3.00 per 1,000 is 72 to 80 times DataForSEO's figure for the identical job. OpenWeb Ninja's real rate for this account's plan tier is unknown, and its most recent run returned nothing to amortize any cost against anyway.
 
 **Can I reproduce these results?**
-Partially, and the gaps are explicit rather than hidden. The scripts and raw logs for all 5 providers exist in this project and were run live against real accounts, including the verification rerun that changed the Apify and OpenWeb Ninja findings above. Check the test script and raw results here: [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo) · [Outscraper script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/outscraper_benchmark.py) · [Outscraper results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/outscraper) · [OpenWeb Ninja script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/openwebninja_benchmark.py) · [OpenWeb Ninja results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/openwebninja) · [Apify script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/apify_benchmark.py) · [Apify results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/apify) · [Lobstr script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/lobstr_benchmark.py) · [Lobstr results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/lobstr)
+Partially, and the gaps are explicit rather than hidden. The scripts and raw logs for all 5 providers exist in this project and were run live against real accounts, including the verification rerun that changed the Apify and OpenWeb Ninja findings above. Check the test script and raw results here: [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo) · [Outscraper script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/outscraper_benchmark.py) · [Outscraper results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/outscraper) · [OpenWeb Ninja script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/openwebninja_benchmark.py) · [OpenWeb Ninja results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/openwebninja) · [Apify script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/apify_benchmark.py) · [Apify results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/apify) · [Lobstr script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/lobstr_benchmark.py) · [Lobstr results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/lobstr)
 
 **Can any of these pull more than 200 reviews for one business?**
 Not confirmed for any of them; that depth was never tested. DataForSEO is the one exception where "no" is a proven fact rather than an untested gap: its endpoint has no pagination parameter of any kind.
@@ -404,43 +404,43 @@ DataForSEO (G2: 3.8 to 4.2/5 depending on the comparison page, 12 to 13 reviews,
 > - **How it was tested:** 5 domains, one `task_post` + `task_get` pair each, real API keys, run twice (original pass and a live verification rerun before publishing).
 > - **Findings:** 999 of 1,000 unique reviews returned, 0 retries, 0 errors on either run. The only blemish: `temu.com` returned the same review twice inside its own response, a server-side duplicate, not a client-side failure.
 > - **Verdict:** as clean as this benchmark saw twice in a row; the sole deduction is a provider-side duplicate, not a real error.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 2: Data Quality & Completeness — 1.45/2.0**
 > - **How it was tested:** results cross-checked against the 20-row manually-verified ground-truth sample for `www.thepearlsource.com`, plus the pooled `/datacompare` field-fill check across all 5 businesses.
 > - **Findings:** 84.6% ground-truth field coverage (11 of 13 fields; `review_type` and `useful_count` don't exist in the schema at all), zero mismatches on the fields it does capture. Pooled fill rate 0.61, the narrowest of the four compared, with `author_id`, `author_country`, `author_review_count`, `helpful_votes`, and `review_source` entirely unfilled.
 > - **Verdict:** accurate but narrow; what it returns, it gets right, it just returns less than the others.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 3: Cost Efficiency — 1.35/1.5**
 > - **How it was tested:** summed the API's own `cost` field across all 5 `task_post` calls.
 > - **Findings:** $0.0375 total measured cost for 999 unique reviews, $0.03754 per 1,000, the cheapest measured figure of the five.
 > - **Verdict:** cheapest measured cost in this benchmark by a wide margin, real billing data, not a rate-card estimate.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 4: Speed & Throughput — 1.32/1.5**
 > - **How it was tested:** wall-clock and per-call latency logged across all 10 calls (5 `task_post` + 5 `task_get`).
 > - **Findings:** 165,513 ms total wall-clock (fastest of the five), 404 ms median latency (fastest), 2,378 ms p95.
 > - **Verdict:** fastest in the benchmark, though DataForSEO's own documented worst-case SLA is "up to 45 minutes," so this is a best-case result, not a guarantee.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 5: Scalability — 0.60/1.2**
 > - **How it was tested:** checked the official docs for `page`, `offset`, `skip`, or `cursor` parameters, and reviewed the run's own execution plan.
 > - **Findings:** no pagination parameter exists for this endpoint at all, and `pagination_confirmed: false` in the run's own execution plan. 200 reviews per business is a documented, current wall.
 > - **Verdict:** the only proven, not just untested, hard ceiling in this benchmark.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 6: Developer Experience — 0.73/1.0**
 > - **How it was tested:** first live request through to a working result, no prior familiarity with the API.
 > - **Findings:** zero debugging required across two separate runs, docs matched live behavior exactly; docs give curl examples only, no SDK tested.
 > - **Verdict:** the cleanest integration of the five.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 > **Criterion 7: Input Flexibility & Coverage — 0.25/0.8**
 > - **How it was tested:** reviewed the `task_post` request schema and docs for batching or enrichment endpoints.
 > - **Findings:** accepts only a single `domain` string per task, no batching, no array input, no enrichment endpoints found.
 > - **Verdict:** the narrowest input surface of the five, one domain per task, no way to batch.
-> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
 
 ## Getting started with DataForSEO
 
@@ -597,4 +597,4 @@ Store: [lobstr.io/store/trustpilot-reviews-scraper](https://www.lobstr.io/store/
 
 What's most uncertain after this benchmark isn't the numbers themselves, it's how much a single clean run should be trusted at all: two of the five providers told a materially different story the second time I checked. Apify's silent zero-result gap moved from SHEIN to the one business with ground truth. OpenWeb Ninja went from the best reliability score in the field to a complete, twice-repeated failure. If I were choosing today, I'd start with DataForSEO for anything cost-sensitive and within its 200-review ceiling, reach for Lobstr where complete, cleanly-recovered output at any depth matters more than shaving cents off the bill, and I'd rerun any of the five myself against my own Trustpilot URLs before trusting a one-time benchmark, mine included, as a production guarantee.
 
-Check the test scripts and raw results here: [github.com/lobstr-io/trustpilot-api-benchmark](https://github.com/lobstr-io/trustpilot-api-benchmark) · [methodology](https://github.com/lobstr-io/trustpilot-api-benchmark/blob/main/criteria.md) · [ground truth sample](https://github.com/lobstr-io/trustpilot-api-benchmark/tree/main/data/raw/ground-truth). If you want help building a Trustpilot monitoring pipeline around whichever option fits your depth and budget, find me on [LinkedIn](https://pk.linkedin.com/in/shehriar-ahmad-awan).
+Check the test scripts and raw results here: [github.com/Adamisrail001/trustpilot-api-benchmark](https://github.com/Adamisrail001/trustpilot-api-benchmark) · [methodology](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/criteria.md) · [ground truth sample](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/raw/ground-truth). If you want help building a Trustpilot monitoring pipeline around whichever option fits your depth and budget, find me on [LinkedIn](https://pk.linkedin.com/in/shehriar-ahmad-awan).
