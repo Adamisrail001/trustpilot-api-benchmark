@@ -1,0 +1,606 @@
+0a1,605
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+>         "depth": 200,
+>         "domain": "www.thepearlsource.com",
+>         "priority": 1
+>         "sort_by": "recency",
+>         "squid": "YOUR_SQUID_ID",
+>         "tasks": [{"url": "https://www.trustpilot.com/review/www.thepearlsource.com"}]
+>       "cost": 0.0075,
+>       "id": "07211450-2117-0358-0000-be4f52a532ca",
+>       "result_count": 0
+>       "status_code": 20100,
+>       "status_message": "Task Created.",
+>       { "review_text": "...", "rating": { "value": 5 }, "timestamp": "2026-07-19 06:35:54 +00:00" }
+>     "https://api.dataforseo.com/v3/business_data/trustpilot/reviews/task_post",
+>     "https://api.lobstr.io/v1/squids/YOUR_SQUID_ID/start-run",
+>     "https://api.lobstr.io/v1/tasks",
+>     "items": [
+>     "rating": { "value": 4.8 },
+>     "reviews_count": 17558,
+>     "title": "The Pearl Source",
+>     ]
+>     {
+>     }
+>     }
+>     }]
+>     headers={"Authorization": f"Basic {auth}"},
+>     headers=headers
+>     headers=headers,
+>     json=[{
+>     json={
+>   "company_name": "The Pearl Source",
+>   "company_page_url": "https://www.trustpilot.com/review/www.thepearlsource.com"
+>   "consumerEmail": "customer@example.com",
+>   "consumerName": "Jane Doe",
+>   "date_published": "2026-07-19T06:35:54",
+>   "locale": "en-US"
+>   "rating_value": 5,
+>   "referenceId": "order-1234",
+>   "result": [{
+>   "review_body": "...",
+>   "stars": 5.0,
+>   "status_code": 20000,
+>   "status_message": "Ok.",
+>   "tasks": [
+>   ]
+>   }]
+> - **A `SUCCEEDED` run status meant "the Actor finished," not "the requested data arrived."** Apify's run for the one business with ground truth came back completely empty with no error signal anywhere in the evidence
+> - **A documented parameter isn't the same as a live one.** Lobstr's documented `/v1/results` page limit of 100 was silently served as 10 regardless of what was requested, turning a 10-page retrieval into 100 pages
+> - **Apify** (5.75/10) - richest field coverage, but silently returned 0/200 on the ground-truth business
+> - **DataForSEO** (7.55/10) - cheapest measured cost, fastest run, but hard-capped at 200 reviews/business with no way to paginate past it
+> - **DataForSEO's pooled fill rate (0.61) is the narrowest of the four compared**: `author_id`, `author_country`, `author_review_count`, `helpful_votes`, and `review_source` are entirely unfilled in the exported data, on top of the already-documented missing `review_type` and `useful_count` fields
+> - **Estimated from a published rate card, not measured**: Outscraper, $2.70 to $3.00 per 1,000 (the range depends on whether the account's free-tier allotment was already used)
+> - **Lobstr** (7.25/10) - no per-business review cap, 100% completion, cleanest rate-limit recovery, confirmed at $1 per 1,000 reviews
+> - **Lobstr's field-level "mismatches" against the baseline are almost entirely format differences, not wrong data**: `review_date` differs by what looks like a 2-hour timezone offset, and `review_url` returns a bare review ID instead of a full URL. Neither is an accuracy problem so much as a normalization one
+> - **Loud failure beat silent failure, but total failure beat both.** OpenWeb Ninja's 429 error bodies were clear and well-structured, and its retry logic worked exactly as designed. The account's actual rate limit was still severe enough to defeat it entirely, twice
+> - **Measured, confirmed rate**: Lobstr, 1,000 credits for 1,000 reviews (a clean 1:1 ratio confirmed by both the Run object's `credit_used` field and a real before/after balance delta), at a confirmed $1 per 1,000 credits
+> - **Measured, from the provider's own billing field**: DataForSEO ($0.03754/1K) and Apify ($0.5812/1K)
+> - **OpenWeb Ninja** (2.3/10) - returned 0/1,000 reviews when I reran it to confirm the numbers
+> - **OpenWeb Ninja's pooled accuracy was the cleanest of the five** in its original successful capture: 1 mismatch across 252 fields compared, and that one difference was a byte-for-byte identical review text flagged only by a hidden formatting artifact. That figure describes the pre-failure export, not the current zero-output state
+> - **Outscraper and OpenWeb Ninja's pooled export never populates `review_url`** (fill rate 0.0 for that field across the full corpus), a gap the smaller 20-row ground-truth check didn't surface for Outscraper specifically
+> - **Outscraper** (7.06/10) - zero data-quality mismatches, but the priciest by far (estimated)
+> - **Pricing that looks like one number becomes three on closer inspection.** Outscraper's $2.70 to $3.00 is a calculation from a public rate card, not a bill. OpenWeb Ninja's account sits on a plan tier that isn't even one of the four the company publishes rates for
+> - **Private endpoints** (your own private review data, invitations, anything writing back to your account) require full OAuth 2.0: Authorization Code or Client Credentials grant, an access token that expires after 100 hours, a refresh token good for 30 days
+> - **Public endpoints** (Business Units profile info, public reviews, review summaries) authenticate with a simple `apikey` header, no OAuth required
+> - **Rechecking a result before publishing it is worth doing.** Two of the five providers' headline stories changed materially between an earlier evidence pass and the live rerun performed for this article: Apify's zero-result business moved, and OpenWeb Ninja went from the best reliability score of the five to a complete failure
+> - **Unconfirmed, no successful output to amortize against**: OpenWeb Ninja's account is on a "Basic" plan that isn't one of the four published tiers, so no confirmed per-review rate exists for it at all, and the most recent run returned 0 successful reviews regardless
+> - The method: 5 APIs, the same 5 Trustpilot businesses, ~200 reviews/business, scored on 7 weighted criteria, every run logged and rechecked before publishing
+> - The pain: the cheapest, fastest API in this benchmark has a hard 200-reviews-per-business ceiling with no pagination parameter at all... the one documented limitation in this test, and Lobstr is the only one of the five with no such cap
+> ![/datacompare pooled fill-rate table across all 5 providers, baseline Apify](https://d37gzvgyugjozl.cloudfront.net/thumbnail_datacompare_fill_rate_table_d8c4280191.png?updatedAt=2026-07-31T10%3A59%3A13.395Z)
+> ![Apify run-state.json showing a SUCCEEDED status with a 200-review shortfall on www.thepearlsource.com](https://d37gzvgyugjozl.cloudfront.net/thumbnail_apify_run_state_succeeded_2f7304e96c.png?updatedAt=2026-07-31T10%3A45%3A38.334Z)
+> ![Apify's output table for an 800-review run showing full field coverage: reviewId, author, rating, review text, published date, country, language, verification level, and review URL](https://d37gzvgyugjozl.cloudfront.net/thumbnail_apify_evedense2_4b253e2991.png?updatedAt=2026-07-31T11%3A03%3A19.025Z)
+> ![Apify's Trustpilot Reviews Scraper run history showing three runs at 800, 1,000, and 800 results for $0.46, $0.58, and $0.46](https://d37gzvgyugjozl.cloudfront.net/thumbnail_apify_evedense_651e33010c.png?updatedAt=2026-07-31T10%3A49%3A53.866Z)
+> ![DataForSEO cost-report.json showing $0.03754 per 1,000 successful reviews](https://d37gzvgyugjozl.cloudfront.net/thumbnail_dataforseo_cost_report_26fde1f751.png?updatedAt=2026-07-31T11%3A06%3A05.252Z)
+> ![DataForSEO task dashboard showing all 5 domain tasks completed with $0.0075 cost per task and 3-6 minute turnaround times](https://d37gzvgyugjozl.cloudfront.net/thumbnail_dataforseo_evedense_23aa034bb7.png?updatedAt=2026-07-31T11%3A07%3A47.864Z)
+> ![DataForSEO task_get response for thehalara.com showing 200 items returned with rating and review array fields](https://d37gzvgyugjozl.cloudfront.net/thumbnail_dataforseo_evedense2_5da578eb41.png?updatedAt=2026-07-31T11%3A08%3A46.927Z)
+> ![Lobstr credits-before.json and credits-after.json showing a 0-to-1000 consumed delta matching the Run object's credit_used field](https://d37gzvgyugjozl.cloudfront.net/thumbnail_lobstr_credits_before_after_dc99468b01.png?updatedAt=2026-07-31T10%3A49%3A01.977Z)
+> ![Lobstr pagination-report.json showing the documented limit=100 silently served as 10](https://d37gzvgyugjozl.cloudfront.net/thumbnail_lobstr_limit_10_vs_100_e2550650d9.png?updatedAt=2026-07-31T11%3A09%3A51.155Z)
+> ![Lobstr's Credits Usage dashboard showing 2,000 total credits consumed across 2 runs at 1,000 credits each](https://d37gzvgyugjozl.cloudfront.net/thumbnail_lobster_evedense2_e0f37d901d.png?updatedAt=2026-07-31T11%3A04%3A14.717Z)
+> ![Lobstr's run history showing three completed runs, each returning 1,000 of 1,000 unique results for 1,000 credits](https://d37gzvgyugjozl.cloudfront.net/thumbnail_lobster_evedense_fcea974188.png?updatedAt=2026-07-31T11%3A12%3A33.888Z)
+> ![OpenWeb Ninja account dashboard showing the Basic plan at 160% quota used, 0 of 100 requests remaining](https://d37gzvgyugjozl.cloudfront.net/thumbnail_openwebninja_evedense_b5bfe5d2d9.png?updatedAt=2026-07-31T10%3A51%3A06.708Z)
+> ![OpenWeb Ninja error-log.json showing HTTP 429 errors exhausted across all 5 domains in both attempt waves](https://d37gzvgyugjozl.cloudfront.net/thumbnail_openwebninja_429_error_log_43c9603252.png?updatedAt=2026-07-31T10%3A52%3A09.070Z)
+> ![OpenWeb Ninja result.csv showing an empty output with 0 reviews across all 5 domains](https://d37gzvgyugjozl.cloudfront.net/thumbnail_openwebninja_evedense2_c8760d8d7c.png?updatedAt=2026-07-31T10%3A53%3A15.234Z)
+> ![Outscraper billing line item showing 3,200 Trustpilot reviews at $0.003 per unit, consistent with the $2.70-$3.00 per 1,000 rate-card estimate](https://d37gzvgyugjozl.cloudfront.net/thumbnail_outscraper_evedense_de5a4bd41d.png?updatedAt=2026-07-31T10%3A54%3A28.899Z)
+> ![Outscraper result.csv showing all 5 domains returning their full 200-review target with 0 duplicates](https://d37gzvgyugjozl.cloudfront.net/thumbnail_outscraper_evedense2_a98cb04ba5.png?updatedAt=2026-07-31T10%3A47%3A39.742Z)
+> # 1. Add a task to your squid
+> # 2. Start the run
+> # Best Trustpilot Reviews API for Scraping Data at Scale [2026 Benchmark]
+> ## 15-second summary
+> ## Best Trustpilot API: DataForSEO
+> ## Best Trustpilot APIs by use case
+> ## Concept explainer: the self-serve access gate
+> ## Conclusion
+> ## Does Trustpilot have an official API?
+> ## FAQ
+> ## Getting started with DataForSEO
+> ## How I tested
+> ## Introduction
+> ## Runners-up: full benchmark results
+> ## The internal (hidden) API
+> ## Why would you need a Trustpilot API?
+> ### Cost
+> ### Data quality
+> ### Developer experience
+> ### Discovering Trustpilot's internal endpoint
+> ### Eliminations
+> ### Extended benchmark data
+> ### Getting started with Lobstr
+> ### How to access Trustpilot's API?
+> ### How to use Trustpilot's official API?
+> ### Lobstr: Best for Complete, Cleanly-Recovered Output
+> ### Outscraper: Best for Validated Data Accuracy
+> ### Reliability
+> ### Scalability
+> ### Speed
+> ### Surprises and problems found during testing
+> ### The pivot: third-party Trustpilot review scraping APIs
+> ### What actually happened
+> ### What Trustpilot's official APIs actually offer
+> )
+> )
+> ).json()
+> **[DataForSEO](https://docs.dataforseo.com/v3/business_data-trustpilot-reviews-task_post/) scores highest overall in this benchmark, 7.55/10**, on the strength of a real measured cost of $0.03754 per 1,000 reviews, the fastest total run, and zero errors across two separate checks of its evidence. The honest caveat: its 200-reviews-per-business ceiling is confirmed, not just untested, so anyone needing deeper single-business history needs a different tool regardless of price. Lobstr (7.25/10) is a genuinely close second, and the one provider that proved it can hit a real rate limit and recover from every instance of it, at a confirmed $1 per 1,000 reviews, pricier than DataForSEO and Apify but still well under Outscraper's estimate. The scoring rubric it's measured against is owned by its own company, a disclosure worth keeping in mind rather than dismissing.
+> **Apify** (G2: 4.7/5, 534 reviews, [g2.com/sellers/apify](https://www.g2.com/sellers/apify)) returned the richest field set of any provider where its data actually landed, including the only populated `owner_reply_date` field in the pooled comparison. What it beats the top three at is raw field breadth. What undermines that strength is the same run's biggest problem: `www.thepearlsource.com`, the one business this benchmark can verify against, came back with 0 of 200 reviews and a `SUCCEEDED` status with no explanation anywhere in the evidence.
+> **Apify's `desired concurrency 1`** is a real, documented value from the run's own status message, not an inference; whether `maxReviewsPerCompany=0` really means "unlimited," as documented, was never tested.
+> **Apify's client had real, working retry and error-classification logic that was never actually exercised**, because the one real failure this benchmark hit produced no error to classify. That's the whole problem with the ground-truth-business gap: good error handling doesn't help if nothing ever tells the client there's an error to handle.
+> **Apify's failure is the harder one to trust around**, because nothing in the evidence surfaced it. `www.thepearlsource.com` returned 0 of 200 reviews with a `SUCCEEDED` status and a clean-sounding status message. A dashboard built on Apify's own REST signals would show a green run with an 80% shortfall baked in and no visible reason why.
+> **Apify's headline failure moved to a worse business when I reran it to confirm the number.** An earlier pass of this benchmark's evidence pinned Apify's silent zero-result gap on `www.shein.com`. When I reran the identical Actor call before publishing, that's not what the fresh, billed, live run shows.
+> **Apify's total was 402,134 ms (about 6 min 42 s)** across 34 status-poll and dataset-fetch calls, but that duration produced only 800 of the 1,000 requested reviews, so duration-per-successful-review is worse than the raw number suggests.
+> **Can any of these pull more than 200 reviews for one business?**
+> **Can I reproduce these results?**
+> **DataForSEO and Outscraper completed cleanly with real errors to show for it: none.** That's a fine outcome, but zero errors in one run isn't the same as proven error-handling; neither provider had a failure to recover from.
+> **DataForSEO and Outscraper were the cleanest integrations of the five**, no debugging required, first request through. Outscraper's docs go a step further, proactively flagging gotchas like the `skip`-must-be-a-multiple-of-20 requirement before you hit it yourself.
+> **DataForSEO had the fastest total wall-clock time (165,513 ms, about 2 min 46 s) and the fastest median latency (404 ms)** of the five, on just 10 total calls. Its own documented worst-case SLA is "up to 45 minutes," so this is a best-case result under whatever queue conditions existed at run time, not a guaranteed number.
+> **DataForSEO has the only proven (not just untested) ceiling in this benchmark**: no `page`, `offset`, `skip`, or `cursor` parameter exists for this endpoint in the official docs, and `pagination_confirmed: false` in this run's own execution plan. 200 reviews per business is a documented, current wall, not a gap nobody happened to probe.
+> **DataForSEO ran clean, twice, without me even trying to make that happen.** 5 `task_post` calls, 5 `task_get` calls, 0 retries, 0 errors. The only real hiccup: `temu.com` returned the same review twice inside its own response, a server-side duplicate that cost 1 review out of 1,000 (999 unique). Nothing about DataForSEO's story changed between the original run and the verification pass.
+> **DataForSEO's $0.03754 per 1,000 is the cheapest measured figure of the five**, not the cheapest advertised rate, a real distinction: Outscraper's estimated $2.70 to $3.00 is roughly 72 to 80 times higher for the identical benchmark, but that comparison is a measured number against a rate-card estimate, not two measured numbers against each other.
+> **Embed your own rating** (Business Units API, public, `apikey` header):
+> **Is scraping Trustpilot reviews legal?**
+> **Is the scoring here neutral?**
+> **Lobstr is the one provider that hit a real, naturally-occurring problem and recovered from all of it.** 7 confirmed HTTP 429s during result retrieval, each one succeeding on the immediate retry, 0 records lost, and a fully corrected 1,000-of-1,000 final count.
+> **Lobstr is the only provider with real, naturally-occurring rate-limit evidence that recovered cleanly**: 7 confirmed 429s against the documented "2 requests/second" limit on `/v1/results`, all during ordinary sequential pagination, not a deliberate stress test, and all recovered on the first retry.
+> **Lobstr required two real fixes before the benchmark completed end-to-end.** One was the benchmark script's own bug (unconditionally sending a `name` field, colliding with an old squid), not a Lobstr platform issue. Two were genuine documentation-vs-live-behavior gaps: the documented `limit` of up to 100 on `/v1/results` is silently served as 10 regardless of what's requested, and result items carry no `task` field at all, so attributing a review to the business it came from requires falling back to `company_page_url`.
+> **Lobstr** (Capterra: 5/5, small review sample, exact count not independently confirmed in this pass, [capterra.com/p/10018837/lobstr/reviews](https://www.capterra.com/p/10018837/lobstr/reviews/), checked 2026-07-30) is a no-code cloud scraping platform with 50+ ready-made scrapers, and its Trustpilot Reviews Scraper is the runner-up here at 7.25/10. It finished at 100% completion with 0 duplicates, the only provider in this benchmark that hit a real, naturally-occurring rate limit (7 confirmed HTTP 429s on `/v1/results`) and recovered from every one of them on the first retry. Pricing is confirmed, not estimated: $1 per 1,000 reviews, pricier than DataForSEO's $0.03754 and Apify's $0.5812, but far under Outscraper's $2.70 to $3.00 estimate. What it beats DataForSEO at: no confirmed per-business review ceiling, against DataForSEO's proven 200-review wall. The catch: the documented `limit` of 100 on `/v1/results` is silently served as 10, turning a 10-page retrieval into 100.
+> **Lobstr's fresh verification run produced a cleaner picture than the original**: one combined window from run start to final result retrieval measuring 220,530 ms (about 3 min 41 s), with a 594 ms median and 1,984 ms p95 across the 101 result-page fetches, both the fastest per-request latencies after DataForSEO.
+> **Lobstr's story got a little better on the recheck, and its bookkeeping got fully confirmed.** The original run needed two real fixes: a `DuplicateSquid` HTTP 400 from the benchmark script unconditionally sending a `name` field on an existing squid (a bug in the test harness, not Lobstr's platform), and a documented `limit` of 100 on `/v1/results` that the live API silently served as 10 regardless of what was requested. That meant paginating through 100 pages instead of 10 to collect 1,000 reviews, but both issues were root-caused and fixed.
+> **Official API or a scraping API, which should I use?**
+> **OpenWeb Ninja is the biggest surprise in this whole benchmark, and not a good one.** An earlier pass recorded a clean run: 1,000 of 1,000 reviews, one HTTP 500 that recovered on retry, the highest reliability and developer-experience scores of the five. When I reran the exact same benchmark to verify those numbers before publishing, it failed completely.
+> **OpenWeb Ninja now also has real rate-limit evidence, but it's a warning sign instead of a good one**: this account hit sustained 429s on `company-reviews` and its own retry/backoff logic could not recover from them, twice. That's a materially different scalability signal than "untested."
+> **OpenWeb Ninja** (G2: 4.8/5, 3 reviews, [g2.com/products/openweb-ninja/reviews](https://www.g2.com/products/openweb-ninja/reviews)) has the broadest official SDK language coverage of the five (Shell, Ruby, Node.js, PHP, Python) and ran a disclosed pre-flight quota check before spending real quota, something no other provider demonstrated. It also produced the cleanest data-accuracy result of the five in its original successful capture. None of that changes what its most recent, verified run actually did: 0 of 1,000 reviews returned, after exhausting retries against sustained rate limiting, twice.
+> **OpenWeb Ninja, in its current verified state, is the least reliable of the five by a wide margin.** Its failures were at least loud (structured 429 error bodies, clear retry-exhaustion logging), which is a real point in its favor over Apify's silence. But loud and total is still total: 0 of 1,000 requested reviews came back.
+> **OpenWeb Ninja's documentation requires a rendered browser to view correctly** (a plain HTTP fetch of the docs page returns only the page shell), a real, concrete friction point. On the credit side, it's also the only provider that ran a disclosed pre-flight quota check before spending real quota, a genuine positive no other provider demonstrated. Neither of those facts changes what happened on the most recent run: sustained 429s that its own retry logic couldn't clear.
+> **OpenWeb Ninja's most recent attempt took roughly 37 minutes across two separate waves of retries and returned nothing.** There's no meaningful median/p95 to report for a run that never completed a single successful page fetch.
+> **Outscraper also held up.** 100% completion, 0 duplicates, 0 errors, every domain hitting its 200-review target on page 1. Its own documentation was the pleasant surprise here: it proactively flags real gotchas most vendors leave you to discover the hard way, like `skip` needing to be a multiple of 20, and a roughly 4-hour result-expiration window.
+> **Outscraper** (G2: 4.8/5, 15+ reviews, [g2.com/products/outscraper](https://www.g2.com/products/outscraper/reviews)) is the cleanest data of the five: zero field-level mismatches against ground truth, and documentation that proactively flags real gotchas before you hit them. What it beats everyone else at is trustworthiness of the numbers themselves; nothing here needed a second look. What it loses on is price: an estimated $2.70 to $3.00 per 1,000 reviews is roughly 72 to 80 times DataForSEO's measured figure for the same job, and its rate limits aren't documented at all, which is a worse transparency position than DataForSEO's explicit (if restrictive) published numbers.
+> **Outscraper's fresh run also came in faster than the historical figure**: 344,297 ms total (about 5 min 44 s) against 89 submit-and-poll requests, median 1,094 ms, p95 2,500 ms.
+> **Outscraper's rate limits remain undocumented entirely** ("not documented at all," per its own scorecard notes), which is a worse transparency position than DataForSEO's explicit, published numbers even though neither was actually tested against.
+> **Performance per criterion**
+> **Progress tracking:** poll the run object's `total_results`/`total_unique_results` fields, which climb in real time as the crawl proceeds. **Attribution note:** result items carry no `task` field, so if you're running multiple businesses in one squid, match on `company_page_url` instead. **Automation:** `export_unique_results` and CSV/JSON export are built in; wire the export webhook or scheduled pull into Sheets/S3 rather than polling manually once you're past prototyping.
+> **Progress tracking:** this endpoint is task-based, not a long-running job; there's no separate progress percentage, just poll-until-ready. **Automation:** pipe `all-reviews.json`/`.csv` output into whatever downstream sync you use (Sheets, S3, a scheduled cron); DataForSEO's own SLA for standard priority is "up to 45 minutes," so build retries and timeouts around that ceiling, not the ~2 min 46 s this benchmark happened to see.
+> **Pros and cons**
+> **Pull another business's reviews** (Data Solutions API, waitlist-gated, `apikey` header):
+> **Pull your own product reviews** (Product Reviews API, public):
+> **Pull your own service reviews** (Service Reviews API, public):
+> **Scorecard** (7.55/10, band: Strong, minor trade-offs)
+> **Send a review invitation** (Invitations API, private, OAuth Bearer token):
+> **Verdict:** the official API is the right tool if you run the business being reviewed and want invitations, widgets, or your own review data in a dashboard. It's the wrong tool the moment you need someone else's Trustpilot data on a self-serve timeline, which is exactly the gap the five third-party APIs in this benchmark are built to fill.
+> **What does this actually cost at scale?**
+> **Why it's not a real option at scale.** The `buildId` in that URL isn't static, it's pulled from the page's own `__NEXT_DATA__` script and changes with every Trustpilot deploy, so nothing about this endpoint can be hardcoded; every run has to re-extract it first. It's undocumented and unsupported, sitting outside Trustpilot's published Terms of Use (the same "no express permission" clause covered in the FAQ below), so it carries the same legal exposure as scraping the rendered page directly, none of the protection an approved API key gives you. And it's the first thing Trustpilot's own anti-bot measures are tuned to catch once volume goes up. Fine for a one-off pull, not something to build a monitoring pipeline on.
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```
+> ```json
+> ```json
+> ```json
+> ```python
+> ```python
+> `run-state.json` and `domain-summary.json` from the current run both put the empty result on **`www.thepearlsource.com`**, the one business this whole benchmark has a manually-verified ground-truth sample for, not SHEIN. SHEIN, Temu, AliExpress, and Halara all returned their full 200 in this run; The Pearl Source returned 0, with the Actor reporting `"Crawled 5/5 pages, 0 failed requests, desired concurrency 1"` and a terminal `SUCCEEDED` status. There was no error, no retry, and no partial-response flag anywhere in the evidence to say why.
+> {
+> {
+> {
+> {
+> | "Useful" vote count | Yes | Separate endpoint only (`/v1/reviews/{reviewId}/likes`), not bundled with the review |
+> | API / route | Self-serve signup | Access path | On this list? |
+> | API | Criterion failed | Reason | Evidence |
+> | API | Pricing | Type | Benchmark score | Best for | Main limitation |
+> | API | Score | Top strength | Main weakness |
+> | Apify | 1,000 | 800 / 800 | 80% | 0 logged (silent zero-result on the ground-truth business) |
+> | Apify | 402,134 ms | n/a (async polling) | n/a | Async Actor run + polling |
+> | Apify | 5.75/10 | Broadest field coverage where data lands | Silent 0/200 on the ground-truth business |
+> | Apify | Measured $0.5812/1K | Third-party, async Actor run | 5.75/10 | Broadest field coverage where data lands | Silently returned 0/200 reviews for one business, no error signal |
+> | Apify | Measured (API `usageTotalUsd` field) | $0.5812 |
+> | Benchmark score | 7.55/10 | 7.06/10 | 2.3/10 | 5.75/10 | 7.25/10 |
+> | Best for | Cheapest clean run, fast turnaround | Zero data-quality mismatches | Not recommended in current state | Broadest field coverage where data lands | Complete output, cleanest retry handling |
+> | Cheapest measured cost of the five ($0.03754/1K) | Hard 200-reviews-per-business ceiling, no pagination parameter exists |
+> | Company reply text + date | Yes | Yes |
+> | Complete output with the cleanest retry handling | Lobstr | 100% final completion, and the only provider that hit real rate limits and recovered from every one of them |
+> | Confirmed hard ceiling beyond 200/business | Yes, no pagination parameter exists | Not tested | Not tested | Not tested | Not tested |
+> | Cost Efficiency | 1.35/1.5 | ★★★★★ |
+> | Cost Efficiency | 1.5 | Cost per 1K successful records, billing fairness, free tier, pricing transparency |
+> | Criteria | DataForSEO | Outscraper | OpenWeb Ninja | Apify | Lobstr |
+> | Criterion | Score | Rating |
+> | Criterion | Weight | What it measures |
+> | Customer email / order reference | No, never shown | Private endpoint only, OAuth-gated, not on the public one |
+> | Data Quality & Completeness | 1.45/2.0 | ★★★★ |
+> | Data Quality & Completeness | 2.0 | Field coverage vs ground truth, accuracy, schema consistency, freshness |
+> | DataForSEO | 1,000 | 1,000 / 999 | 99.9% | 0 (1 internal server-side duplicate) |
+> | DataForSEO | 165,513 ms | 404 ms | 2,378 ms | Sync task/result, 10 calls |
+> | DataForSEO | Measured $0.03754/1K | Third-party, sync task/result | 7.55/10 | Cheapest clean run, fast turnaround | Hard 200-reviews-per-business ceiling, no pagination |
+> | DataForSEO | Measured (API `cost` field) | $0.03754 |
+> | DataForSEO, Outscraper, OpenWeb Ninja, Apify, Lobstr | Yes | API key or token, live within minutes | Yes, all 5 tested live |
+> | Developer Experience | 0.73/1.0 | ★★★★ |
+> | Developer Experience | 1.0 | Time-to-first-request, docs quality, SDKs, error clarity |
+> | Docs matched live behavior exactly, no surprises | Missing `review_type` and `useful_count` fields entirely |
+> | Fastest total run and fastest median latency | Accepts only a single `domain` string, no batching, no array input |
+> | Field | Visible on the Trustpilot page | Official public API |
+> | Free tier / trial credits | Not confirmed in this project's evidence | first 100 reviews/period free | Published Free tier exists | Free-tier pricing documented | Tested account itself was on Lobstr's free plan |
+> | Ground-truth field coverage (thepearlsource, 13-field checklist) | 84.6% | 92.3% | Not applicable (0 records returned) | 0/20 matched (no records for that business this run) | 92.3% |
+> | Input Flexibility & Coverage | 0.25/0.8 | ★★ |
+> | Input Flexibility & Coverage | 0.8 | Accepted input types, endpoint breadth, enrichment endpoints |
+> | Lobstr | 1,000 | 1,000 / 1,000 (final) | 100% | 7x HTTP 429 (all recovered) + 1 archived setup-stage HTTP 400 (benchmark-script bug) |
+> | Lobstr | 220,530 ms (run + retrieval, combined) | 594 ms | 1,984 ms | Async run + sequential retrieval |
+> | Lobstr | 7.25/10 | Complete output, cleanest rate-limit recovery | Confirmed $1/1,000, pricier than Apify/DataForSEO |
+> | Lobstr | Confirmed $1/1K | Third-party, async run + retrieval | 7.25/10 | Complete output, cleanest retry handling | Pricier than Apify/DataForSEO |
+> | Lobstr | Measured, confirmed rate | $1.00 (1,000 credits at $1/1,000) |
+> | Lowest measured cost | DataForSEO | $0.03754/1,000, a real billing figure, and the fastest total run |
+> | Main limitation | Hard 200-reviews-per-business ceiling, no pagination | Priciest of the five, rate limits undocumented | Returned 0/1,000 reviews on rerun, retries exhausted | Silently returned 0/200 reviews for one business, no error signal | Pricier than Apify/DataForSEO, `limit` param silently capped |
+> | Median latency (measured) | 404 ms | 1,094 ms | Not applicable (no successful request) | Not applicable (async model) | 594 ms |
+> | OpenWeb Ninja | ~37 min across 2 attempt waves, 0 completions | n/a | n/a | Sync, sequential, retries exhausted |
+> | OpenWeb Ninja | 1,000 | 0 / 0 | 0% | Sustained HTTP 429s, retries exhausted, 2 separate attempt waves |
+> | OpenWeb Ninja | 2.3/10 | Clear, well-structured error bodies | Returned 0/1,000 reviews on the verified rerun |
+> | OpenWeb Ninja | Tiered plans, account's real "Basic" rate unconfirmed | Third-party, sync page-by-page | 2.3/10 | Not recommended in current state | Returned 0/1,000 reviews on rerun, retries exhausted |
+> | OpenWeb Ninja | Unconfirmed plan rate, 0 successful reviews in latest run | Not computable |
+> | Outscraper | 1,000 | 1,000 / 1,000 | 100% | 0 |
+> | Outscraper | 344,297 ms | 1,094 ms | 2,500 ms | Async submit + poll |
+> | Outscraper | 7.06/10 | Zero data-quality mismatches | By far the most expensive (estimated) |
+> | Outscraper | Estimated $2.70-$3.00/1K (not measured) | Third-party, async submit + poll | 7.06/10 | Zero data-quality mismatches | Priciest of the five, rate limits undocumented |
+> | Outscraper | Estimated from published rate card | $2.70 to $3.00 (not measured) |
+> | Pooled fill rate (`/datacompare`, 16 fields, 5-domain export) | 0.61 | 0.68 | 0.75 (pre-failure capture) | 1.00 (baseline) | 0.75 |
+> | Pricing | $0.00075/20 reviews (measured: $0.03754/1K) | Estimated $2.70 to $3.00/1K (not measured) | Tiered plans, account's real "Basic" rate unconfirmed | $0.005/run + $0.000575/review (measured: $0.5812/1K) | Confirmed $1/1K |
+> | Production integration where a single vendor's rate limit could silently stall a job | Avoid OpenWeb Ninja for now | Its most recent verified run couldn't clear its own account's rate limit at all |
+> | Pros | Cons |
+> | Provider | Cost evidence tier | Cost per 1,000 |
+> | Provider | Requested | Raw/unique returned (latest verified run) | Completion | Real errors this run |
+> | Provider | Total wall-clock | Median latency | p95 latency | Execution model |
+> | Real rate-limit evidence hit | No (0 events) | No (0 events; limits undocumented) | Yes, retries exhausted, unrecovered | No (0 events) | Yes, 7 events, all recovered |
+> | Review date | Yes | Yes |
+> | Review text | Yes | Yes |
+> | Reviewer country/location | Yes | Yes |
+> | Reviewer display name | Yes | Yes |
+> | Reviewer's own review count | Yes | Not documented on this endpoint |
+> | Reviews returned this run | 999/1,000 | 1,000/1,000 | 0/1,000 | 800/1,000 | 1,000/1,000 |
+> | Scalability | 0.60/1.2 | ★★★ |
+> | Scalability | 1.2 | Rate limits/concurrency, degradation at 10x volume, volume caps |
+> | Small-scale or one-off lookups within the documented ceiling | DataForSEO | 200 reviews/business is a hard, known limit, not a surprise you discover later |
+> | Speed & Throughput | 1.32/1.5 | ★★★★★ |
+> | Speed & Throughput | 1.5 | Median/p95 latency, wall-clock for the full batch, async availability |
+> | Star rating | Yes | Yes |
+> | Success Rate & Reliability | 1.85/2.0 | ★★★★★ |
+> | Success Rate & Reliability | 2.0 | Completion rate, empty/partial responses, error handling, stability |
+> | Support contacted during this benchmark | No | No | No | No | No |
+> | Total wall-clock (this run) | 165,513 ms | 344,297 ms | ~37 min, 0 completions | 402,134 ms | 220,530 ms |
+> | Trustpilot Business Units / Product / Service Reviews API | No | Trustpilot for Business account + API module approval | No, excluded pre-benchmark (E1) |
+> | Trustpilot Data Solutions API | No | API key, gated behind waitlist + sales approval | No, excluded pre-benchmark (E1) |
+> | Trustpilot Official API (+ Data Solutions) | Not published (demo/waitlist-gated) | Official, mixed public/OAuth | NA, excluded pre-benchmark (E1) | Own review/reply data, invitations, widgets | No self-serve access within 48 hours |
+> | Trustpilot Official API (Business Units / Product Reviews / Service Reviews + Data Solutions) | E1, no self-serve access | Neither the standard Business API nor the cross-business Data Solutions API offers instant self-serve signup; both require Trustpilot-side approval or a waitlist before a working key exists | [developers.trustpilot.com](https://developers.trustpilot.com/introduction) |
+> | Type | Third-party, sync task/result | Third-party, async submit + poll | Third-party, sync page-by-page | Third-party, async Actor run | Third-party, async run + retrieval |
+> | Use case | Provider | Why |
+> | User rating (sourced) | 3.8 to 4.2/5 (G2) | 4.8/5 (G2) | 4.8/5 (G2) | 4.7/5 (G2) | 5/5 (Capterra) |
+> | Verified/invited badge | Yes | Yes (verification status) |
+> | Zero data-quality mismatches on the validated sample | Outscraper | The only provider with no field-level discrepancies against ground truth, if the ~3x cost premium is acceptable |
+> | Zero errors, zero debugging required across two separate runs | No SDK tested, docs give curl examples only |
+> |---|---:|---:|---:|---|
+> |---|---:|---|
+> |---|---:|---|---:|---|
+> |---|---:|---|---|
+> |---|---|
+> |---|---|---:|
+> |---|---|---|
+> |---|---|---|
+> |---|---|---|
+> |---|---|---|---|
+> |---|---|---|---|
+> |---|---|---|---|---|---|
+> |---|---|---|---|---|---|
+> }
+> }
+> }
+> }
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **CTA:** Click here to access the detailed testing report → [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo)
+> > - **Findings:** $0.0375 total measured cost for 999 unique reviews, $0.03754 per 1,000, the cheapest measured figure of the five.
+> > - **Findings:** 165,513 ms total wall-clock (fastest of the five), 404 ms median latency (fastest), 2,378 ms p95.
+> > - **Findings:** 84.6% ground-truth field coverage (11 of 13 fields; `review_type` and `useful_count` don't exist in the schema at all), zero mismatches on the fields it does capture. Pooled fill rate 0.61, the narrowest of the four compared, with `author_id`, `author_country`, `author_review_count`, `helpful_votes`, and `review_source` entirely unfilled.
+> > - **Findings:** 999 of 1,000 unique reviews returned, 0 retries, 0 errors on either run. The only blemish: `temu.com` returned the same review twice inside its own response, a server-side duplicate, not a client-side failure.
+> > - **Findings:** accepts only a single `domain` string per task, no batching, no array input, no enrichment endpoints found.
+> > - **Findings:** no pagination parameter exists for this endpoint at all, and `pagination_confirmed: false` in the run's own execution plan. 200 reviews per business is a documented, current wall.
+> > - **Findings:** zero debugging required across two separate runs, docs matched live behavior exactly; docs give curl examples only, no SDK tested.
+> > - **How it was tested:** 5 domains, one `task_post` + `task_get` pair each, real API keys, run twice (original pass and a live verification rerun before publishing).
+> > - **How it was tested:** checked the official docs for `page`, `offset`, `skip`, or `cursor` parameters, and reviewed the run's own execution plan.
+> > - **How it was tested:** first live request through to a working result, no prior familiarity with the API.
+> > - **How it was tested:** results cross-checked against the 20-row manually-verified ground-truth sample for `www.thepearlsource.com`, plus the pooled `/datacompare` field-fill check across all 5 businesses.
+> > - **How it was tested:** reviewed the `task_post` request schema and docs for batching or enrichment endpoints.
+> > - **How it was tested:** summed the API's own `cost` field across all 5 `task_post` calls.
+> > - **How it was tested:** wall-clock and per-call latency logged across all 10 calls (5 `task_post` + 5 `task_get`).
+> > - **Verdict:** accurate but narrow; what it returns, it gets right, it just returns less than the others.
+> > - **Verdict:** as clean as this benchmark saw twice in a row; the sole deduction is a provider-side duplicate, not a real error.
+> > - **Verdict:** cheapest measured cost in this benchmark by a wide margin, real billing data, not a rate-card estimate.
+> > - **Verdict:** fastest in the benchmark, though DataForSEO's own documented worst-case SLA is "up to 45 minutes," so this is a best-case result, not a guarantee.
+> > - **Verdict:** the cleanest integration of the five.
+> > - **Verdict:** the narrowest input surface of the five, one domain per task, no way to batch.
+> > - **Verdict:** the only proven, not just untested, hard ceiling in this benchmark.
+> > **Criterion 1: Success Rate & Reliability (1.85/2.0)**
+> > **Criterion 2: Data Quality & Completeness (1.45/2.0)**
+> > **Criterion 3: Cost Efficiency (1.35/1.5)**
+> > **Criterion 4: Speed & Throughput (1.32/1.5)**
+> > **Criterion 5: Scalability (0.60/1.2)**
+> > **Criterion 6: Developer Experience (0.73/1.0)**
+> > **Criterion 7: Input Flexibility & Coverage (0.25/0.8)**
+> > **DataForSEO is the best Trustpilot API here**: cheapest measured cost ($0.03754/1,000), fastest run, zero errors... its 200-review cap was never actually tested past that depth. **Lobstr is the runner-up**: no confirmed cap, but priced at $1/1,000 versus DataForSEO's $0.03754, and a slower run.
+> A successful submission returns a task ID and a `20100 "Task Created."` status:
+> apikey: YOUR_API_KEY
+> apikey: YOUR_API_KEY
+> apikey: YOUR_API_KEY
+> apikey: YOUR_API_KEY
+> Assuming you clear that wall, here's what each endpoint looks like in practice, per use case. (Requests and response shapes below are built from Trustpilot's own documented parameters and fields; this benchmark never obtained a working key, official or Data Solutions, so none of it was live-tested.)
+> auth = b64encode(b"YOUR_LOGIN:YOUR_PASSWORD").decode()
+> Authorization: Bearer YOUR_ACCESS_TOKEN
+> Before comparing any third-party API on performance, it's worth understanding why Trustpilot's own official APIs, including the cross-business Data Solutions API, aren't on this list at all. It isn't about data scope; the Data Solutions API can technically pull reviews across businesses. It's about access: none of Trustpilot's official routes offer instant self-serve signup.
+> Beyond the ground-truth check, a fuller field-level comparison (`/datacompare`, run against the pooled export from all 5 businesses, using Apify's own returned corpus as the reference baseline) surfaces a few things the ground-truth sample alone didn't catch. Two caveats travel with it: the capture window between providers spans about 191 hours, large enough that this comparison's own methodology demotes completeness and freshness scoring to not-applicable and restricts accuracy checks to fields that don't naturally drift over time; and the baseline (Apify) was auto-selected for having the most fields, which is disclosed here rather than treated as neutral.
+> Businesses pull Trustpilot data to track their own rating and review volume over time, benchmark a competitor's reputation before a pitch or acquisition call, or feed review text into a sentiment or keyword pipeline for product feedback. Agencies and SaaS tools use it to power review widgets, alerting, and reporting dashboards for clients who don't want to check Trustpilot by hand. Anyone monitoring more than a handful of businesses, or anyone who needs someone else's reviews rather than their own, runs into the access and scale problems covered next.
+> Check the test scripts and raw results here: [github.com/Adamisrail001/trustpilot-api-benchmark](https://github.com/Adamisrail001/trustpilot-api-benchmark) · [methodology](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/criteria.md) · [ground truth sample](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/raw/ground-truth). If you want help building a Trustpilot monitoring pipeline around whichever option fits your depth and budget, find me on [LinkedIn](https://pk.linkedin.com/in/shehriar-ahmad-awan).
+> DataForSEO (G2: 3.8 to 4.2/5 depending on the comparison page, 12 to 13 reviews, [g2.com/compare/ahrefs-vs-dataforseo](https://www.g2.com/compare/ahrefs-vs-dataforseo), checked 2026-07-30) is a pay-per-task SEO/business-data API, and its Trustpilot reviews endpoint was the cleanest, cheapest performer of the five in this benchmark, both in the original run and on recheck.
+> DataForSEO uses HTTP Basic Auth: a base64-encoded `login:password` pair sent as an `Authorization: Basic` header.
+> DataForSEO's measured $0.03754 per 1,000 reviews is the cheapest confirmed number in this benchmark. Lobstr's confirmed rate is $1 per 1,000 reviews, a real measured figure, not an estimate, though still well above DataForSEO's. Outscraper's estimated $2.70 to $3.00 per 1,000 is 72 to 80 times DataForSEO's figure for the identical job. OpenWeb Ninja's real rate for this account's plan tier is unknown, and its most recent run returned nothing to amortize any cost against anyway.
+> Disclosed, not neutral by default. The rubric this article scores against is owned by lobstr.io's own content team, and Lobstr is one of the five providers scored against it. No specific finding here was suppressed or reframed in Lobstr's favor as far as this audit could tell, but that ownership fact belongs in the open, not buried in a footnote.
+> Docs (checked 2026-07-31): [developers.trustpilot.com](https://developers.trustpilot.com/) · [Authentication overview](https://developers.trustpilot.com/authentication/) · [Business Units API](https://developers.trustpilot.com/business-units-api) · [Data Solutions API](https://developers.trustpilot.com/data-solutions-api/)
+> Docs: [docs.dataforseo.com](https://docs.dataforseo.com/v3/business_data-trustpilot-reviews-task_post/)
+> Even for your own business, the public reviews endpoint doesn't hand back everything the rendered review page shows:
+> Every route starts the same way: a Trustpilot for Business account with **API module access**, requested through [business.trustpilot.com/request-demo](https://business.trustpilot.com/request-demo). Trustpilot's own onboarding docs don't describe a self-serve signup form or a published price, just a demo-request gate. Once that's granted, your API Key (Client ID) and Secret live under the Integrations tab of your account.
+> Everything in this article is really answering one question: given that the official route isn't self-serve, which third-party API is actually worth paying for.
+> Execution models differ enough here that a single "fastest" column would flatten real differences. DataForSEO and OpenWeb Ninja are synchronous request-per-page designs; Apify and Outscraper are async submit-then-poll; Lobstr is an async run followed by a separate sequential retrieval phase.
+> Five other tools came up during earlier research for this project: Browsable, Bright Data, ScraperAPI, Scrappa, and PullAPI. I went looking for the specific reason each one was screened out before the live benchmark, and could not find one. There is no discovery shortlist, no elimination note, and not even a mention of those five names anywhere in this project's documentation. Rather than invent an E1 to E6 reason to fill that gap, I'm stating it plainly: **these tools were identified during research but never carried into the live benchmark, and the available project evidence does not support a complete elimination rationale for any of them.**
+> Four different evidence tiers show up here, and collapsing them into one column would misrepresent all four.
+> from base64 import b64encode
+> From there, access splits into two tiers:
+> GET https://api.trustpilot.com/v1/business-units/{businessUnitId}/profileinfo
+> GET https://api.trustpilot.com/v1/product-reviews/business-units/{businessUnitId}/reviews?sku=YOUR_SKU
+> GET https://api.trustpilot.com/v1/reviews/latest?count=20&language=en
+> GET https://datasolutions.trustpilot.com/v1/business-units/search?query=thepearlsource
+> Ground truth exists for exactly one business, `www.thepearlsource.com`, a manually-verified 20-row sample. Nothing below extends to SHEIN, Temu, AliExpress, or Halara, and Apify's ground-truth check in the current verified run returned 0 of 20 matched rows simply because Apify returned no data for that business this time.
+> headers = {"Authorization": "Token YOUR_TOKEN"}
+> Here are my findings, and a detailed review per API that made the cut, next.
+> I benchmarked 5 Trustpilot review APIs on the same businesses. DataForSEO won on cost and speed; two others broke on a rerun.
+> I tested all the APIs against the following criteria, and gave them scores:
+> If you run the business being reviewed and want invitations, widgets, or your own review data, the official API is the right tool and doesn't require scraping anything. The moment you need another business's reviews on a self-serve timeline, the official routes are excluded by their own access model (see the eliminations table above), which is why this benchmark exists.
+> import requests
+> import requests
+> Lobstr uses token auth: `Authorization: Token {your_token}`.
+> Lobstr's credit accounting also turned out better than an earlier internal check claimed. That check said the before/after balance snapshots showed "no real delta." Opening the actual files myself: `credits-before.json` shows `consumed: 0`, `credits-after.json` shows `consumed: 1000`. That's a clean, real, 1-for-1 delta, independently confirming the Run object's own `credit_used: 1000` field. Two independent pieces of raw evidence agree, not zero.
+> Lobstr's Trustpilot Reviews Scraper finished at 100% with 0 duplicates and the only real, naturally-occurring rate-limit recovery in the whole benchmark. The cost is confirmed at $1 per 1,000 reviews: pricier than Apify's $0.5812 and well above DataForSEO's $0.03754, but still far below Outscraper's estimated $2.70 to $3.00. [lobstr.io/store/trustpilot-reviews-scraper](https://www.lobstr.io/store/trustpilot-reviews-scraper#cta-link)
+> Most of the APIs that came up during research for this project were disqualified for not meeting the stated benchmarks, before a single live test ever ran. Only 5 made the final cut: self-serve access, a working key within 48 hours, and an endpoint that actually returns Trustpilot review data. Each of those 5 ran against the same fixed input, `www.thepearlsource.com`, `www.shein.com`, `temu.com`, `www.aliexpress.com`, `thehalara.com`, targeting 200 reviews each, 1,000 per provider, one script template adapted per provider's own auth and request shape, every request, response, timing, and cost logged.
+> None of the five had an SDK actually tested (only raw HTTP), and no provider's support channel was contacted during this benchmark, so support responsiveness is not rated for any of them.
+> None of the five was pushed past 200 reviews from one business, tested under real concurrency, or run at 10x volume. Everything below is what happened at the one depth actually tested, not a production-scale claim.
+> Not confirmed for any of them; that depth was never tested. DataForSEO is the one exception where "no" is a proven fact rather than an untested gap: its endpoint has no pagination parameter of any kind.
+> On the ground-truth sample itself: Outscraper had zero field-level mismatches on any comparable field, the cleanest result of the five where ground truth exists. DataForSEO's schema is narrower (missing `review_type` and `useful_count` entirely) but had zero mismatches on the fields it does capture. Lobstr's only ground-truth discrepancy was a same-day reply-timing difference on 4 of 20 reviews, independently corroborated by two other providers checking the same 4 authors, which reads as a freshness artifact rather than an extraction error.
+> Outscraper is the only provider in this benchmark with zero field-level mismatches against the ground-truth sample, and its docs proactively flag gotchas like the `skip`-must-be-a-multiple-of-20 requirement before you hit them yourself. Its aggregate score is 7.06/10, driven mainly by the cleanest Data Quality & Completeness result of the five. Pricing is the trade-off: an estimated $2.70 to $3.00 per 1,000 reviews, 72 to 80 times DataForSEO's measured cost for the identical job. [g2.com/products/outscraper](https://www.g2.com/products/outscraper/reviews)
+> Partially, and the gaps are explicit rather than hidden. The scripts and raw logs for all 5 providers exist in this project and were run live against real accounts, including the verification rerun that changed the Apify and OpenWeb Ninja findings above. Check the test script and raw results here: [DataForSEO script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/dataforseo_benchmark.py) · [DataForSEO results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/dataforseo) · [Outscraper script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/outscraper_benchmark.py) · [Outscraper results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/outscraper) · [OpenWeb Ninja script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/openwebninja_benchmark.py) · [OpenWeb Ninja results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/openwebninja) · [Apify script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/apify_benchmark.py) · [Apify results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/apify) · [Lobstr script](https://github.com/Adamisrail001/trustpilot-api-benchmark/blob/main/scripts/lobstr_benchmark.py) · [Lobstr results](https://github.com/Adamisrail001/trustpilot-api-benchmark/tree/main/data/reports/lobstr)
+> Poll `tasks_ready` (documented at 20 calls/minute) until the task shows up, then fetch it from `task_get/{id}`:
+> Poll run status until `"status": "done"`, then page through results (the documented `limit` parameter goes up to 100, but expect it to actually cap at 10 regardless of what you request, so plan for roughly 10x the page count you'd otherwise budget for):
+> POST https://invitations-api.trustpilot.com/v1/private/business-units/{businessUnitId}/email-invitations
+> print(response.json())
+> requests.post(
+> response = requests.post(
+> Returns company name, contact info, address, description, social links, and verification status. No review-level data.
+> Returns matching business unit IDs, display names, country codes, TrustScore, and review counts; a second call, `GET /v1/business-units/{id}/reviews`, pulls that business's actual review text. This is the one official endpoint built for exactly this benchmark's use case, someone else's reviews, not your own. It just isn't reachable inside a 48-hour self-serve window, which is why the official API was excluded during pre-screening, before any live test ran against the five third-party APIs below.
+> Returns review ID, star rating, content, creation date, and consumer name, filtered by SKU or product URL.
+> Returns the review ID, star rating, text, consumer display name, and language for each of the most recent reviews.
+> run = requests.post(
+> Scraping Trustpilot reviews at scale is the actual problem. Most self-serve APIs won't tell you that until you're mid-run.
+> So I ran the same benchmark against all 5 self-serve Trustpilot APIs I could get live access to within 48 hours: same 5 businesses, same review target, every request and response logged, to find the one that actually scales past that wall. Full test scripts and raw results: [github.com/Adamisrail001/trustpilot-api-benchmark](https://github.com/Adamisrail001/trustpilot-api-benchmark).
+> Store: [lobstr.io/store/trustpilot-reviews-scraper](https://www.lobstr.io/store/trustpilot-reviews-scraper#cta-link)
+> That last one is the only official route built for a competitor-monitoring use case. The rest are for a business managing its own review presence: embedding a rating widget, pulling your own reviews into a CRM, replying to reviews, or inviting a customer to leave one. None of them let you point at a competitor's storefront and pull their reviews at scale, and none of them were designed to.
+> That leaves the option this benchmark actually tests: a purpose-built API that handles the anti-bot cat-and-mouse for you. I tested all the ones I could find live and self-serve within 48 hours.
+> That's the wall this benchmark's own E1 criterion (no self-serve access within 48 hours) can't get past: not the data these APIs are able to return, but the demo call and/or waitlist standing between "I want a key" and "I have a key." No working access was obtained here for that reason, not because anything broke mid-benchmark.
+> The **Data Solutions API**, the one cross-business option, sits behind its own separate gate: register on [Trustpilot's Data Solutions waitlist](https://business.trustpilot.com/datasolutions#join-the-waitlist), wait for a sales rep to reach out, then generate an API key from the Data Solutions web app once your account exists. No instant key, no self-serve dashboard signup, at any tier.
+> The account's retry logic is real and well-structured (clear JSON error bodies, a working backoff loop) but it could not out-wait whatever rate limit this account tripped. The clean data-quality numbers discussed below are real, but they describe the original successful capture, not the state this provider is in as of the most recent, verified attempt.
+> The fresh `error-log.json` shows wave after wave of HTTP 429 "Too Many Requests" responses on the `company-reviews` endpoint, each one retried up to 4 times with exponential backoff, and every single one of those retries exhausted without success. The fresh `domain-summary.json` confirms it: `total_raw_records: 0`, `unique_valid_reviews: 0`, all 5 businesses showing a full 200-review shortfall, `overall_success_rate_percent: 0`. Two separate waves of attempts, roughly 37 minutes apart, both ended the same way, and `outputs/openwebninja/all-reviews.json` on disk right now is a literal empty array.
+> The limitation that matters here isn't what these APIs can technically return, it's who's allowed to ask for it, and how fast. Covered next.
+> The ones that don't fail outright cap out around 200 reviews per business, no pagination, nothing you can do about it. A "reliable" API can return a `SUCCEEDED` status and quietly hand back zero of what you asked for, and you won't know unless you count them yourself.
+> The practical consequence is worse than a swapped domain name: because the failure landed on the one business with ground truth, Apify's own ground-truth check in this run returned **0 of 20 matched rows**, simply because there was no data to check against. Total cost was still measured cleanly at $0.465 for the run ($0.5812 per 1,000 successful reviews), and duplicates dropped to 0 (all 800 returned reviews were unique this time, versus 2 near-miss duplicates in the earlier pass). The lesson holds regardless of which business it lands on: **a `SUCCEEDED` run status and a "0 failed requests" message did not mean the requested dataset was complete.**
+> This is the part that doesn't show up in a features table, and it's also where a fresh verification pass I ran before publishing changed two of the five stories materially.
+> Triggers an email invite from Trustpilot's own template; a separate endpoint generates a shareable invitation link instead of sending an email directly.
+> Trustpilot's Terms of Use for Consumers explicitly prohibit it: Section 4 states you must not "carry out in any way... any text mining, data mining or web scraping of our platform for any purpose without our express permission," and separately names AI training. The Business Terms carry the same restriction under a different section number. Under US law specifically, hiQ Labs v. LinkedIn (9th Circuit) held that scraping publicly-viewable data doesn't violate the CFAA's unauthorized-access clause, but that case still ended in hiQ paying LinkedIn $500,000 and being permanently barred from scraping, on breach-of-contract and trespass grounds. **The practical read: a platform's own Terms of Use can create real legal exposure even where the CFAA doesn't apply**, regardless of which API or scraper you use to collect the data. This covers US case law only; no EU or French precedent was researched for Trustpilot specifically. Sources: [Trustpilot Terms of Use for Consumers](https://corporate.trustpilot.com/legal/for-reviewers/terms-of-use-for-consumers/feb-2025) · [Apify: hiQ v. LinkedIn case law](https://blog.apify.com/hiq-v-linkedin/)
+> Two caveats travel with every score below: no provider was tested past 200 reviews from a single business, under real concurrency, or at 10x volume, so nothing here is a production-scale claim; and the scoring rubric is headed "Owner: lobstr.io content team" in its own source file, with Lobstr one of the five scored against it, a disclosure that belongs in the open rather than a footnote. Ground truth (a manually-verified 20-row sample) exists for exactly 1 of the 5 businesses, `www.thepearlsource.com`.
+> What changed on the verification pass: an earlier internal audit logged 59 HTTP 429 "Throttled" events during this run's result-retrieval phase. Rerunning the identical retrieval against `/v1/results` this time around, direct inspection of the fresh raw log shows only **7** confirmed 429s, every one of them recovered on the immediate retry with 0 records lost.
+> What's most uncertain after this benchmark isn't the numbers themselves, it's how much a single clean run should be trusted at all: two of the five providers told a materially different story the second time I checked. Apify's silent zero-result gap moved from SHEIN to the one business with ground truth. OpenWeb Ninja went from the best reliability score in the field to a complete, twice-repeated failure. If I were choosing today, I'd start with DataForSEO for anything cost-sensitive and within its 200-review ceiling, reach for Lobstr where complete, cleanly-recovered output at any depth matters more than shaving cents off the bill, and I'd rerun any of the five myself against my own Trustpilot URLs before trusting a one-time benchmark, mine included, as a production guarantee.
+> Yes, several. Trustpilot's for-business platform exposes half a dozen APIs under one umbrella: the **Business Units API** (a business's own rating, review count, distribution, and public profile info), the **Service Reviews API** and **Product Reviews API** (retrieving and managing reviews tied to your own service or product catalog), the **Invitations API** (triggering review-request emails after a purchase), and the **Data Solutions API** - a separate, less-known product that returns business profiles and review data across *any* business on Trustpilot, not just your own.
+> Yes, there is one. Trustpilot's site runs on Next.js, and its review pages load data from an internal endpoint: `https://www.trustpilot.com/_next/data/{buildId}/review/{business}.json`. No authentication needed, just a browser-shaped request, and it returns clean review JSON instead of rendered HTML, [documented by third-party scraping guides](https://scrapfly.io/blog/posts/how-to-scrape-trustpilot-com-reviews) since Trustpilot never published it itself.

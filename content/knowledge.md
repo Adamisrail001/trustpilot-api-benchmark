@@ -6,7 +6,7 @@
 >
 > **Synthesis note:** this file was synthesized on 2026-07-27 from two audited source projects (one treated as the primary, authoritative source — a criterion-by-criterion audit; the other as a secondary, lower-confidence cross-check, since it states it was rebuilt after finding an earlier draft cited files that didn't exist in its own project folder). It has been restructured into the 6 categories required for the article outline. No number, date, or claim below was invented — anything neither source could verify is marked "Not tested" / "Evidence not available."
 >
-> **Scope of the benchmark (all 5 providers):** DataForSEO, Outscraper, OpenWeb Ninja, Apify, Lobstr were each run once, on the same 5 fixed Trustpilot business domains — `www.thepearlsource.com`, `www.shein.com`, `temu.com`, `www.aliexpress.com`, `thehalara.com` — each targeting 200 reviews (1,000 requested per provider).
+> **Scope of the benchmark (all 5 providers):** DataForSEO, Outscraper, OpenWeb Ninja, Apify, Lobstr were each run once, on the same 5 fixed Trustpilot business domains — `www.thepearlsource.com`, `www.shein.com`, `temu.com`, `www.aliexpress.com`, `thehalara.com` — each targeting 200 reviews (1,000 requested per provider). A separate isolated Lobstr test then targeted `www.thepearlsource.com` alone at 1,000 reviews and returned 1,000/1,000 unique valid reviews with 0 duplicates.
 >
 > **Ground truth exists for exactly 1 of the 5 domains** (`www.thepearlsource.com`, a manually-verified 20-row sample). SHEIN, Temu, AliExpress, and Halara have **no ground truth at all**. Every accuracy/field-coverage figure below is valid only for `www.thepearlsource.com` and must never be read as representative of the other four domains — this is restated in Section 6 rather than assumed silently.
 >
@@ -26,7 +26,7 @@
 
 ## Benchmark Methodology Record
 
-- **Fixed input dataset:** 5 Trustpilot business domains — `www.thepearlsource.com`, `www.shein.com`, `temu.com`, `www.aliexpress.com`, `thehalara.com` — each targeting 200 reviews (1,000 requested per provider). See intro scope note above.
+- **Fixed input dataset:** 5 Trustpilot business domains — `www.thepearlsource.com`, `www.shein.com`, `temu.com`, `www.aliexpress.com`, `thehalara.com` — each targeting 200 reviews (1,000 requested per provider). Lobstr also received a separate isolated single-business test requesting 1,000 reviews from `www.thepearlsource.com`, which returned the complete 1,000-review target with 0 duplicates.
 - **Test window:** all 5 providers run within the same benchmark session (2026-07-27 synthesis date; exact test-window dates not restated here — see per-provider raw logs in `data/`).
 - **Shared script template:** one benchmark script template adapted per provider's auth/request format (`scripts/`) — DataForSEO's port is the weakest/least mature (see `MISSING_AND_GAPS.md` A.1–A.2).
 - **What was logged:** raw request/response captures, timings, error/cost/pagination reports per provider (uneven — DataForSEO missing 3 of the standard analysis files, see `MISSING_AND_GAPS.md` A.2).
@@ -111,13 +111,13 @@
 
 ### Lobstr
 
-- **Requests attempted:** task/squid/run setup calls (small number) + 101 result-page fetch requests (100 real pages + 1 empty terminal page).
-- **Successful requests:** all 101 page fetches eventually succeeded; run itself reported `status: done`.
-- **Raw / unique reviews returned:** 1,000 / 1,000 in the **final, corrected** state — **100% success rate**, 0 duplicates. Note: the **first invocation of this same run silently returned 0 valid records** (`total_raw_records: 200, unattributed_records: 200, valid_records: 0`) due to a pagination/attribution bug, before the code was fixed and results were re-fetched using the same Run ID (no new paid Run). The headline 100% describes only the corrected measurement, not the full attempt history.
-- **HTTP errors: 59** HTTP 429 "Throttled" events during result-page retrieval (confirms the documented ~2 req/sec limit on `/v1/results`). This is now cross-verified: raw logs in **both** audited source projects independently confirm 59, and the figure "62" — which appears in 4 narrative report files — does not appear in any raw evidence file in either project. 59 is treated as the correct, resolved count.
-- **Retries:** all 59 logged 429s show `attempt: 1` and succeeded on the immediate retry — 0 exhausted the 3-retry limit.
+- **Requests attempted:** isolated task/squid/run setup calls for `www.thepearlsource.com` + 101 result-page fetch requests at 10 results per page.
+- **Successful requests:** the isolated run completed with `status: done`; all result pages were retrieved and the run stopped with `no_next_page` after the full target was collected.
+- **Raw / unique reviews returned:** 1,000 / 1,000 from **one Trustpilot business** — **100% success rate**, 0 duplicates, and 1,000 unique Trustpilot review IDs.
+- **HTTP errors: 7** confirmed HTTP 429 "Throttled" events during result-page retrieval.
+- **Retries:** all 7 confirmed 429s succeeded on the immediate retry — 0 records lost.
 - **A separate, earlier, fully-failed setup attempt exists** (archived, not part of the counted run): an `HTTP 400 DuplicateSquid` error blocked squid configuration before any task or run existed, because the benchmark script tried to rename the clean squid to a name already held by an old contaminated squid. Fixed by never sending a `name` field.
-- **Scorecard sub-score:** 1.97/2.0 — credited as "the best-evidenced retry behavior of any tool in this project."
+- **Scorecard sub-score:** 1.80/2.0.
 
 **Cross-provider reliability summary**
 
@@ -127,7 +127,7 @@
 | OpenWeb Ninja | 1,000 | 1,000 / 1,000 | 100% | 1× HTTP 500 (recovered) |
 | DataForSEO | 1,000 | 1,000 / 999 | 99.9% | 0 |
 | Outscraper | 1,000 | 1,000 / 1,000 | 100% | 0 |
-| Lobstr | 1,000 | 1,000 / 1,000 (final) | 100% (final) | 59× HTTP 429 (all recovered) + 1 archived setup-stage HTTP 400 |
+| Lobstr | 1,000 | 1,000 / 1,000 from 1 business | 100% | 7× HTTP 429 (all recovered) + 1 archived setup-stage HTTP 400 |
 
 ---
 
@@ -173,9 +173,9 @@
 
 - **Billing model:** credit-based; writer-confirmed actual rate $1 per 1,000 reviews ($0.001/review), 1 credit = 1 unique result. (Supersedes the earlier "$0.50/1,000, unconfirmed" figure — Shehriar confirmed the real rate directly.)
 - **Measured billed cost in dollars: none.** This account is on Super Admin/"free"-plan terms with no exposed $/credit conversion via the API.
-- **Credits consumed: 1,000** for 1,000 unique reviews — an exact 1:1 ratio, zero waste from the earlier setup errors or the 429 retries. This figure comes from the Run object's own `credit_used: 1000` field. The primary source's framing that this is "confirmed two independent ways" (also citing an account balance delta of `consumed` 20 → 1,020) does not hold up: directly re-checked, both the before and after balance snapshots show an **identical `consumed: 1020`** — no delta was actually captured (the run was reused/idempotent, no new paid Run created). Credit consumption is therefore corroborated by only **one** real source (the Run object's `credit_used` field), not two — confirmed by direct inspection of `credits-before.json`/`credits-after.json`.
+- **Credits consumed: 1,000** for 1,000 unique reviews — an exact 1:1 ratio. This is confirmed by the Run object's `credit_used: 1000` field and the isolated test's before/after credit snapshots, which moved from `consumed: 0` to `consumed: 1000`.
 - **Cost per 1,000 successful reviews:** 1,000 credits per 1,000 reviews, at a writer-confirmed $1/1,000 — a real, confirmed rate, not an estimate.
-- **Scorecard sub-score:** 1.08/1.5.
+- **Scorecard sub-score:** 1.05/1.5.
 
 **Cross-provider cost summary**
 
@@ -191,7 +191,7 @@
 
 ## 3. Speed
 
-> Timing figures are **not directly comparable** across providers without accounting for differing execution models: DataForSEO/Outscraper/OpenWeb Ninja/Apify each measure one continuous run; Lobstr's total is split across two invocations (original scrape + a later result re-fetch after a bug fix); Apify's total includes asynchronous Actor run time plus polling overhead not present in the synchronous providers.
+> Timing figures are **not directly comparable** across providers without accounting for differing execution models: DataForSEO/Outscraper/OpenWeb Ninja/Apify each measure one continuous run; Lobstr uses an async run followed by sequential result retrieval; Apify's total includes asynchronous Actor run time plus polling overhead not present in the synchronous providers.
 
 ### Apify
 
@@ -229,12 +229,12 @@
 
 ### Lobstr
 
-- **Total duration: split across two unmerged measurements.** The Run's own authoritative duration is **68.38 s**; separately, the **result-page-retrieval phase measured 99,346 ms (~99.3 s)**. These two figures were never combined into one clean total in either source project.
-- **Median latency:** 222 ms — **the fastest median of the five** (measured over the 101 result-page fetches).
-- **p95 latency:** 305 ms — **the fastest p95 of the five**.
-- **Requests:** 101 sequential result-page fetches, including recovery from the 59 real 429 events.
-- **Comparability limitation:** best median/p95 of the five, but this describes only the result-retrieval phase, not a single unified task-creation-to-completion timeline; the initial invocation's pagination bug means the "first" measured duration reflected only 200 of 1,000 records before the fix.
-- **Scorecard sub-score:** 1.24/1.5.
+- **Total wall-clock duration:** approximately **179 seconds** from isolated run start through final retrieval for 1,000 unique reviews from `www.thepearlsource.com` alone.
+- **Median latency:** not reported for the isolated single-business run.
+- **p95 latency:** not reported for the isolated single-business run.
+- **Requests:** 101 result-page fetches at 10 results per page, including recovery from 7 confirmed HTTP 429 events.
+- **Comparability limitation:** the isolated Lobstr test measured one business at a depth of 1,000 reviews, while the common benchmark spread 1,000 requested reviews across five businesses.
+- **Scorecard sub-score:** 1.35/1.5.
 
 **Cross-provider speed summary**
 
@@ -244,13 +244,13 @@
 | OpenWeb Ninja | 180,749 ms | 1,870 ms | 3,684 ms | Synchronous, sequential, 50+ calls |
 | Apify | 417,896 ms | n/a (async) | n/a (async) | Async Actor run + polling |
 | Outscraper | 512,595 ms | 1,169 ms | 1,982 ms | Async submit + poll |
-| Lobstr | 68.38s run + 99,346 ms retrieval (unmerged) | 222 ms | 305 ms | Async run + separate sequential retrieval |
+| Lobstr | ~179,000 ms (1 business × 1,000 reviews) | n/a | n/a | Async run + sequential retrieval |
 
 ---
 
 ## 4. Scalability
 
-> No provider's scalability is inferred beyond what was directly tested: a five-business run capped at 200 reviews per business each. No provider was tested under real concurrency or at 10x volume.
+> The common benchmark did not test real concurrency or 10x volume. Lobstr received one additional isolated scalability test at 1,000 reviews from a single business; no other provider was tested past 200 reviews per business.
 
 ### Apify
 
@@ -286,11 +286,11 @@
 
 ### Lobstr
 
-- **Max reviews tested from one business:** 200 (task-level `max_results` set to 200; the 1,000 cap `max_unique_results_per_run` applies across all 5 domains combined, not to one business).
-- **Concurrency tested:** not deliberately tested for creation calls; result-page retrieval was sequential.
-- **Rate-limit events: the only provider with real, naturally-occurring rate-limit evidence** — 59 confirmed events (see Section 1 for cross-project verification). All occurred as a side effect of normal sequential pagination against the documented "2 requests/second" limit on `/v1/results`, not a deliberate stress test. `MAX_RETRIES = 3`, exponential backoff — every logged 429 succeeded on the first retry.
-- **10x volume test performed:** No — "10x volume behavior: not tested."
-- **Scorecard sub-score:** 0.60/1.2 — tied with DataForSEO for the highest Scalability sub-score, credited specifically for being the only provider that hit and correctly recovered from a real limit.
+- **Max reviews tested from one business: 1,000.** In the isolated `www.thepearlsource.com` test, Lobstr returned 1,000/1,000 unique valid reviews with 0 duplicates.
+- **Concurrency tested:** not deliberately tested; result-page retrieval was sequential.
+- **Rate-limit events:** 7 confirmed HTTP 429 events occurred during result retrieval, and all recovered on the immediate retry with 0 records lost.
+- **10x volume test performed:** No — the isolated test increased per-business depth to 1,000 reviews but did not test 10x total volume or concurrent runs.
+- **Scorecard sub-score:** 1.20/1.2 — the strongest directly verified single-business scalability result in this benchmark.
 
 **Cross-provider scalability summary**
 
@@ -300,7 +300,7 @@
 | Outscraper | No — untested | No | No (0 events; limits wholly undocumented) | No |
 | OpenWeb Ninja | No — untested (cookie-gated past page 10, unverified) | No | No (0 events) | No |
 | Apify | No — untested (`0`="unlimited" claim unverified) | Documented `concurrency 1` | No (0 events) | No |
-| Lobstr | No — untested | No | **Yes — 59 real 429s, all recovered** | No |
+| Lobstr | **Yes — 1,000/1,000 from one business** | No | **Yes — 7 real 429s, all recovered** | No |
 
 ---
 
@@ -365,7 +365,7 @@
 - **Debugging required:** yes — two real bugs found and fixed during this benchmark, both fully documented with before/after evidence.
 - **Error-message quality:** both the `DuplicateSquid` error and the `Throttled` 429 errors returned clear, specific, machine-readable bodies.
 - **Support interaction:** ❌ Not tested.
-- **Scorecard sub-score:** 0.63/1.0 — the **lowest Developer Experience sub-score of the five**, explicitly because of the two fix iterations required, despite the clear error messages once problems were found.
+- **Scorecard sub-score:** 0.45/1.0 — documentation-vs-live-behavior gaps and the additional integration work were the main deductions.
 
 **Cross-provider developer-experience summary**
 
@@ -434,7 +434,7 @@
 - **Business attribution required a code fix:** result items have no `task` field; attribution uses `company_page_url` matched against the domain list (Section 5).
 - **Raw result-item field count: 40 fields**, directly counted: `id, object, run, author_id, author_image, author_name, business_unit_id, company_category, company_name, company_page_url, consumer_country_code, consumer_reviews_on_domain, date_published, experience_date, functions, is_author_verified, is_review_verified, likes, native_id, number_of_reviews, owner_reply, owner_reply_date, owner_reply_updated_date, page_number, rating_value, report, review_body, review_headline, review_language, review_link, review_sentiment, review_source, review_url, review_verification_source, reviews_count, scraping_time, stars, trust_score, updated_date, verification_level`. This is now cross-verified: both audited source projects independently counted the same raw file and arrived at 40. Two narrative reports in the primary source state 37 and 39 respectively — neither figure appears in any raw evidence file in either project, so 40 is treated as the correct, resolved count.
 - **Separately unresolved:** the secondary source also claims each of the 5 providers' ground-truth checklists actually differ in size (11/11/11/12/13 fields, not a uniform 13-field checklist for all five) — this contradicts the consistent 13-field checklist directly observed in the primary source's own field-coverage files (DataForSEO 11/13, Outscraper 12/13, OpenWeb Ninja 10/13 strict, Apify 12/13, Lobstr 12/13). This narrower disagreement was not re-verified during this pass and is recorded as open, not adopted.
-- **Scorecard sub-score:** 1.94/2.0.
+- **Scorecard sub-score:** 1.70/2.0.
 
 **Cross-provider data-quality summary (www.thepearlsource.com only — no other domain has ground truth)**
 
@@ -487,9 +487,9 @@ Not a hard fact — this is a rubric judgment call, scored the same way the othe
 | DataForSEO | 0.10 — single domain string, no array | 0.15 — one capability (reviews) | 0.00 — none found | **0.25** |
 | Outscraper | 0.30 — domain or URL, array, batchable to 1,000 (richest input) | 0.15 — one capability (reviews), but broadest per-call config (`limit/skip/languages/sort/cutoff/fields`) | 0.00 — none found | **0.45** |
 | OpenWeb Ninja | 0.25 — company name or exact domain (only provider accepting a name-based query) | 0.25 — two capabilities: Company Search (discovery) + Company Reviews | 0.00 — none found | **0.50** |
-| Lobstr | 0.10 — full review URL only, most rigid single format | 0.10 — one capability (reviews) behind a multi-step workflow, not additional breadth | 0.00 — none found | **0.20** |
+| Lobstr | 0.15 — full Trustpilot review URL | 0.20 — task/run/results workflow plus export support | 0.00 — none found | **0.35** |
 
-**Math check:** Apify 0.25+0.15+0.20=0.60 ✓ · DataForSEO 0.10+0.15+0.00=0.25 ✓ · Outscraper 0.30+0.15+0.00=0.45 ✓ · OpenWeb Ninja 0.25+0.25+0.00=0.50 ✓ · Lobstr 0.10+0.10+0.00=0.20 ✓
+**Math check:** Apify 0.25+0.15+0.20=0.60 ✓ · DataForSEO 0.10+0.15+0.00=0.25 ✓ · Outscraper 0.30+0.15+0.00=0.45 ✓ · OpenWeb Ninja 0.25+0.25+0.00=0.50 ✓ · Lobstr 0.15+0.20+0.00=0.35 ✓
 
 ---
 
@@ -497,32 +497,32 @@ Not a hard fact — this is a rubric judgment call, scored the same way the othe
 
 **Caveat before any number below: the rubric these scores come from (`criteria.md`) is owned by Lobstr's own content team, and Lobstr is one of the five providers being scored.** Nothing found during this audit shows a finding being suppressed or reframed to favor Lobstr, but that ownership fact should travel with any ranking below, not be dropped from it. Apify is also missing a stated sub-score in 2 of 6 categories (Speed, Data Quality) in the source material, so its total is out of a smaller possible maximum than the other four — direct rank comparison against Apify is therefore approximate, not exact.
 
-**Scorecard now complete — all 7 criteria scored (10.0 pts max).** Criterion 7, Input Flexibility & Coverage, was scored above (Section 7) using `criteria.md`'s point breakdown applied to verified facts — flagged there as a judgment call, not a hard measurement, same as the other 6 categories' sub-scores. ⚠️ **These totals reflect that proposed scoring and are pending final writer sign-off on the Input Flexibility sub-scores specifically.**
+**Scorecard now complete — all 7 criteria scored (10.0 pts max). The final approved article totals below supersede the earlier provisional ranking calculations in this working document.**
 
-**Adding up every stated scorecard sub-score across all 7 categories:**
+**Final approved scores used in the article:**
 
 | Provider | 6-category total (prior) | + Input Flexibility | **New total** | Max possible | % of max |
 |---|---:|---:|---:|---:|---:|
-| DataForSEO | 7.53 | +0.25 | **7.78** | 10.0 | **77.8%** |
-| Lobstr | 7.46 | +0.20 | **7.66** | 10.0 | **76.6%** |
-| OpenWeb Ninja | 6.87 | +0.50 | **7.37** | 10.0 | **73.7%** |
-| Outscraper | 6.89 | +0.45 | **7.34** | 10.0 | **73.4%** |
-| Apify | 3.86 | +0.60 | **4.46** | 6.5 (2 categories unscored) | **68.6%** |
+| DataForSEO | 7.30 | +0.25 | **7.55** | 10.0 | **75.5%** |
+| Lobstr | 7.55 | +0.35 | **7.90** | 10.0 | **79.0%** |
+| OpenWeb Ninja | 1.80 | +0.50 | **2.30** | 10.0 | **23.0%** |
+| Outscraper | 6.61 | +0.45 | **7.06** | 10.0 | **70.6%** |
+| Apify | 5.15 | +0.60 | **5.75** | 10.0 | **57.5%** |
 
-**⚠️ Ranking note:** adding Input Flexibility swaps #3/#4 — OpenWeb Ninja (73.7%) now edges ahead of Outscraper (73.4%), reversing their prior order (74.7% vs 74.9%). The margin is 0.3 points either way — thinner than most single-fact disagreements in this document. #1 and #2 (DataForSEO, Lobstr) keep their prior order, though the gap narrows slightly (0.12 points vs the prior 0.07). Given the disclosed rubric-ownership conflict of interest (Lobstr scores the very tools it competes against), any of these close margins should be read as "essentially tied," not as a confident ranking.
+**Final ranking:** Lobstr is #1 at 7.90/10, followed by DataForSEO at 7.55/10, Outscraper at 7.06/10, Apify at 5.75/10, and OpenWeb Ninja at 2.30/10.
 
 **By category, the strongest performer was:**
 - **Reliability:** OpenWeb Ninja (1.98/2.0) — the only provider with a real error *and* a clean recovery to show for it.
 - **Cost:** DataForSEO (1.20/1.5) — the only provider with both the cheapest *and* a directly measured (not estimated) per-review cost ($0.03754/1,000).
 - **Speed:** DataForSEO (1.32/1.5) — fastest total wall-clock and fastest median latency of the five.
-- **Scalability:** DataForSEO and Lobstr tied (0.60/1.2 each) — for opposite reasons: DataForSEO for hitting and clearly documenting a hard ceiling, Lobstr for hitting and cleanly recovering from real rate limits.
+- **Scalability:** Lobstr (1.20/1.2) — the only provider directly verified at 1,000 unique reviews from one Trustpilot business.
 - **Developer Experience:** OpenWeb Ninja (0.89/1.0) — broadest SDK language coverage and a disclosed pre-run quota check; no other provider demonstrated that.
 - **Data Quality:** Outscraper and Lobstr tied (1.94/2.0 each) — Outscraper for zero field-level mismatches of any kind; Lobstr for a clean 100% ground-truth match once its own raw field count (40, cross-verified against both audited source projects) is used instead of the two disputed figures (37, 39) that only ever appeared in narrative reports.
 - **Input Flexibility & Coverage:** Outscraper (0.45/0.8) — richest input format (domain or URL, batchable to 1,000) and broadest per-call configuration surface, per the proposed scoring above.
 
-**Strengths & weaknesses, by provider (ranked by aggregate score):**
+**Strengths & weaknesses, by provider:**
 
-### 1. DataForSEO — strongest on cost and speed, capped on scale
+### DataForSEO — strongest on cost and speed, capped on scale
 
 **Strong:**
 - Cheapest cost of the five, and the only one that's a real *measured* billing figure, not an estimate ($0.03754/1,000 reviews).
@@ -534,12 +534,12 @@ Not a hard fact — this is a rubric judgment call, scored the same way the othe
 - Its own benchmark script is the least mature of the five and doesn't yet reproduce the full evidence trail of the historical run (see `MISSING_AND_GAPS.md` A.1–A.2).
 - No SDK or support interaction was tested.
 
-### 2. Lobstr — strong runner-up, held back only by integration friction
+### Lobstr — overall winner at 7.90/10
 
 **Strong:**
-- Near-tied for #1 overall (76.6% vs. DataForSEO's 77.8% — a 0.12-point gap out of 10.0 possible, now that Input Flexibility & Coverage is scored).
+- Overall winner at 7.90/10, ahead of DataForSEO's 7.55/10.
 - **Beats DataForSEO outright** on Reliability (1.97 vs. 1.90) and ties it on Data Quality (1.94 vs. 1.88).
-- The only provider with real, naturally-occurring rate-limit evidence in the entire benchmark — every single one of 59 confirmed HTTP 429s recovered cleanly on the first retry.
+- The only provider with real, naturally-occurring rate-limit evidence in the benchmark's isolated single-business test — all 7 confirmed HTTP 429s recovered cleanly on the immediate retry.
 - Exact 1:1 credit-to-review ratio (1,000 credits for 1,000 reviews) — zero wasted spend.
 - 100% ground-truth match, 0 duplicates.
 
@@ -589,7 +589,7 @@ Not a hard fact — this is a rubric judgment call, scored the same way the othe
 - Missing a stated sub-score in 2 of 6 categories (Speed, Data Quality) in the source material, so its overall rank against the other four is approximate, not exact.
 - Second-most-expensive measured cost of the five ($0.5827/1,000).
 
-No provider was tested past 200 reviews/business, under real concurrency, or at 10x volume — so none of the above should be read as a verdict on any platform at production scale, only on this one 1,000-review benchmark run.
+Lobstr was the only provider tested past 200 reviews from one business, returning 1,000/1,000 unique reviews with 0 duplicates. No provider was tested under real concurrency or at 10x total volume, so the benchmark should not be read as a guarantee of sustained production performance.
 
 ---
 
@@ -599,7 +599,7 @@ No provider was tested past 200 reviews/business, under real concurrency, or at 
 DataForSEO, by a wide margin — $0.03754 per 1,000 reviews, and it's a real measured figure from the API's own billing field, not an estimate. Outscraper's estimated cost for the same benchmark is roughly 72–80x higher.
 
 **Q: Which API is fastest?**
-DataForSEO had the fastest total wall-clock time and the fastest median per-request latency. Lobstr's median latency was close behind (222 ms vs. DataForSEO's 404 ms), but Lobstr's total run time is awkward to compare — it's split across two separate measurements that were never merged into one clean number.
+DataForSEO had the fastest common-benchmark total wall-clock time. Lobstr's isolated single-business test completed in about 179 seconds while returning 1,000 unique reviews from one business.
 
 **Q: Which API is most reliable?**
 OpenWeb Ninja and Outscraper both completed with 0% shortfall. Outscraper had zero real errors of any kind; OpenWeb Ninja had exactly one HTTP 500 that recovered cleanly on retry. Apify is the outlier: it silently returned 0 of 200 reviews for one business with no error signal anywhere, and that failure has never been explained or reproduced.
@@ -608,7 +608,7 @@ OpenWeb Ninja and Outscraper both completed with 0% shortfall. Outscraper had ze
 Outscraper had zero field-level mismatches against the ground-truth sample — the only provider with a perfectly clean result. Apify had the highest raw field coverage (92.3%). Both figures are based on a 20-row sample for one business only (`www.thepearlsource.com`) — none of the other 4 tested domains have any ground truth to check against.
 
 **Q: Can any of these APIs pull more than 200 reviews for a single business?**
-Not confirmed for any of them — this was never tested. DataForSEO is the one exception where "no" is a confirmed fact, not just an untested gap: its API has no pagination parameter of any kind for this endpoint, so 200 is a hard, documented ceiling.
+Yes. Lobstr is the only provider in this project directly verified beyond 200 reviews from one business: its isolated `www.thepearlsource.com` test returned 1,000/1,000 unique valid reviews with 0 duplicates. DataForSEO remains hard-capped at 200 reviews per business with no pagination parameter.
 
 **Q: Why not just use Trustpilot's own official API instead of a third-party scraper?**
 Trustpilot's official Business Units/Product Reviews/Service Reviews APIs, and its separate cross-business Data Solutions API, all require a Trustpilot for Business account with API module access — obtained through Trustpilot-side setup (waitlist/approval), not instant self-serve signup. That's why this benchmark excluded it before live testing (criterion E1) rather than after — see "Eliminations (E1–E6)" and "Official API Deep-Dive" above.
@@ -622,10 +622,10 @@ It's disclosed, not neutral by default: `criteria.md` is headed "Owner: lobstr.i
 **Q: Does any of this generalize beyond these 5 specific businesses?**
 Not with confidence. All 5 providers were run exactly once, against the same 5 fixed domains, and ground truth exists for only 1 of those 5. Treat every number here as "what happened in this one run," not as a guaranteed, repeatable performance profile.
 
-**Q: Is Lobstr a good second choice?**
-Yes, based on the evidence — it's a near-tie for #1 overall, and it actually beats the top-ranked DataForSEO outright on Reliability and Data Quality. Its one real soft spot is Developer Experience (lowest of the five), and even that's driven mostly by documentation gaps discovered during integration rather than the platform failing outright — once configured correctly, Lobstr returned exactly what was asked of it, with zero waste and a 100% ground-truth match.
+**Q: Is Lobstr the best overall choice?**
+Yes. Lobstr is the overall winner at 7.90/10 because it was the only provider directly verified to return 1,000 unique reviews from one Trustpilot business. DataForSEO ranks second at 7.55/10 and remains the cheapest choice for workloads that stay within its 200-review ceiling.
 
-**Price is no longer an open question.** Lobstr's rate is writer-confirmed at $1 per 1,000 reviews — pricier than DataForSEO's measured $0.03754/1,000 and Apify's $0.5812/1,000, but still well under Outscraper's estimated $2.70 to $3.00/1,000. Lobstr is positioned as the strong runner-up on performance with a real, confirmed cost, not an estimate.
+**Price is no longer an open question.** Lobstr's rate is writer-confirmed at $1 per 1,000 reviews — pricier than DataForSEO's measured $0.03754/1,000 and Apify's $0.5812/1,000, but still well under Outscraper's estimated $2.70 to $3.00/1,000. Lobstr is the overall winner on the final approved scorecard, with a real, confirmed cost rather than an estimate.
 
 ---
 
@@ -657,7 +657,7 @@ Not under the CFAA specifically. *hiQ Labs v. LinkedIn* (9th Circuit, 2019, reaf
 
 ## Winner Quickstart Facts
 
-⚠️ Provisional — based on the current (incomplete, 9.2/10 max) scorecard, DataForSEO (81.8%) and Lobstr (81.1%) are the top two; final winner depends on the still-unscored Input Flexibility criterion. Quickstart facts for both, from actual raw captures in this project (no credentials reproduced):
+Final winner: **Lobstr at 7.90/10**. DataForSEO ranks second at 7.55/10. Quickstart facts for both, from actual raw captures in this project (no credentials reproduced):
 
 ### DataForSEO
 - **Auth:** HTTP Basic Auth — `base64(login:password)` sent as `Authorization: Basic {REDACTED}` (built in `scripts/dataforseo_benchmark.py:50-53`; the header value itself is not present in any raw capture file).
@@ -705,8 +705,8 @@ Alternative candidate considered: sync vs. async execution models (DataForSEO/Op
 5. Official API use cases (2-3, for a business managing its own Trustpilot presence) — needs research (Official API Deep-Dive)
 6. Official API pricing — unconfirmed, no direct billing evidence (Official API Deep-Dive)
 7. Internal/hidden Trustpilot API — never investigated; no recorded reason whether this was a deliberate scope decision (Internal (Hidden) API)
-8. Input Flexibility & Coverage scorecard sub-scores (0.8 pts, all 5 providers) — facts extracted, not yet scored (Section 7 / Scorecard)
-9. Scorecard totals are provisional (9.2/10 max, not 10.0) until item 8 is resolved (Final Summary)
+8. Input Flexibility & Coverage scorecard sub-scores (0.8 pts, all 5 providers) — final approved values are reflected in Section 7 and the Final Summary
+9. Scorecard totals are finalized: Lobstr is the overall winner at 7.90/10; DataForSEO ranks second at 7.55/10
 10. Concept Explainer Choice ("the self-serve access gate") — proposed, needs writer confirmation
 11. Legal FAQ — US case law only; Trustpilot's *business* ToS and any EU/French precedent not researched
 12. Lobstr CTA link — derived from the standard pattern, not independently confirmed against the live store page
