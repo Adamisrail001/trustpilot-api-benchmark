@@ -610,6 +610,8 @@ Outscraper had zero field-level mismatches against the ground-truth sample — t
 **Q: Can any of these APIs pull more than 200 reviews for a single business?**
 Yes. Lobstr is the only provider in this project directly verified beyond 200 reviews from one business: its isolated `www.thepearlsource.com` test returned 1,000/1,000 unique valid reviews with 0 duplicates. DataForSEO remains hard-capped at 200 reviews per business with no pagination parameter.
 
+**Follow-up round — same "1 business, 1,000 reviews" test repeated against all five providers:** lobstr.io returned 1,000/1,000 reviews from `www.thepearlsource.com`, 0 duplicates — the only provider that succeeded. Apify returned 0 reviews from both `www.thepearlsource.com` and `www.shein.com`; the second test reported "Crawled 0/1 pages." Outscraper was silently capped at 200 reviews despite the 1,000-review request. DataForSEO rejected depth above 200 during validation. OpenWeb Ninja failed and returned an "unknown error." lobstr.io was the only provider that successfully returned 1,000 reviews from one business.
+
 **Q: Why not just use Trustpilot's own official API instead of a third-party scraper?**
 Trustpilot's official Business Units/Product Reviews/Service Reviews APIs, and its separate cross-business Data Solutions API, all require a Trustpilot for Business account with API module access — obtained through Trustpilot-side setup (waitlist/approval), not instant self-serve signup. That's why this benchmark excluded it before live testing (criterion E1) rather than after — see "Eliminations (E1–E6)" and "Official API Deep-Dive" above.
 

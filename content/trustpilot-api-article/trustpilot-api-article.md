@@ -63,9 +63,9 @@ From there, access splits into two tiers:
 - **Public endpoints** (Business Units profile info, public reviews, review summaries) authenticate with a simple `apikey` header, no OAuth required
 - **Private endpoints** (your own private review data, invitations, anything writing back to your account) require full OAuth 2.0: Authorization Code or Client Credentials grant, an access token that expires after 100 hours, a refresh token good for 30 days
 
-The **Data Solutions API**, the one cross-business option, sits behind its own separate gate: register on [Trustpilot's Data Solutions waitlist](https://business.trustpilot.com/datasolutions#join-the-waitlist), wait for a sales rep to reach out, then generate an API key from the Data Solutions web app once your account exists. No instant key, no self-serve dashboard signup, at any tier.
+The **Data Solutions API**, the one cross-business option, sits behind its own separate gate: submit a contact request on [Trustpilot's Data Solutions page](https://business.trustpilot.com/datasolutions), wait for a sales rep to reach out, then generate an API key from the Data Solutions web app once your account exists. No instant key, no self-serve dashboard signup, at any tier.
 
-That's the wall this benchmark's own E1 criterion (no self-serve access within 48 hours) can't get past: not the data these APIs are able to return, but the demo call and/or waitlist standing between "I want a key" and "I have a key." No working access was obtained here for that reason, not because anything broke mid-benchmark.
+That's the wall this benchmark's own E1 criterion (no self-serve access within 48 hours) can't get past: not the data these APIs are able to return, but the demo call and/or sales contact form standing between "I want a key" and "I have a key." Every official route requires business verification and access approval before a key is issued, which is why none of it was live-tested here, not because anything broke mid-benchmark.
 
 **How to use it:** assuming you clear that wall, here's what each endpoint looks like in practice, per use case. (Requests and response shapes below are built from Trustpilot's own documented parameters and fields; this benchmark never obtained a working key, official or Data Solutions, so none of it was live-tested.)
 
@@ -112,7 +112,7 @@ curl -X POST "https://invitations-api.trustpilot.com/v1/private/business-units/{
 
 Triggers an email invite from Trustpilot's own template; a separate endpoint generates a shareable invitation link instead of sending an email directly.
 
-**Pull another business's reviews** (Data Solutions API, waitlist-gated, `apikey` header):
+**Pull another business's reviews** (Data Solutions API, sales-gated, `apikey` header):
 
 ```bash
 curl "https://datasolutions.trustpilot.com/v1/business-units/search?query=thepearlsource" \
@@ -368,7 +368,7 @@ Before comparing any third-party API on performance, it's worth understanding wh
 | API / route | Self-serve signup | Access path | On this list? |
 |---|---|---|---|
 | Trustpilot Business Units / Product / Service Reviews API | No | Trustpilot for Business account + API module approval | No, excluded pre-benchmark (E1) |
-| Trustpilot Data Solutions API | No | API key, gated behind waitlist + sales approval | No, excluded pre-benchmark (E1) |
+| Trustpilot Data Solutions API | No | API key, gated behind sales contact + approval | No, excluded pre-benchmark (E1) |
 | DataForSEO, Outscraper, OpenWeb Ninja, Apify, lobstr.io | Yes | API key or token, live within minutes | Yes, all 5 tested live |
 
 Everything in this article is really answering one question: given that the official route isn't self-serve, which third-party API is actually worth paying for.
@@ -389,6 +389,8 @@ Partially, and the gaps are explicit rather than hidden. The scripts and raw log
 
 **Can any of these pull more than 200 reviews for one business?**
 Yes: lobstr.io was directly tested in a new isolated run against `www.thepearlsource.com` alone and returned 1,000/1,000 unique valid reviews from that one business, with 0 duplicates. The run consumed exactly 1,000 credits, completed in about 179 seconds, and stopped with `no_next_page` after collecting the full target. DataForSEO cannot do this because its endpoint has no pagination parameter and is hard-capped at 200 reviews per business. Outscraper returned 1,000 reviews across five businesses in the common benchmark, not 1,000 from one business.
+
+A follow-up round repeated the same "1 business, 1,000 reviews" test against all five providers. lobstr.io again returned 1,000/1,000 reviews from `www.thepearlsource.com`, 0 duplicates. Apify returned 0 reviews on two separate attempts, against `www.thepearlsource.com` and then `www.shein.com`, where the run reported "Crawled 0/1 pages." Outscraper was silently capped at 200 reviews despite the 1,000-review request. DataForSEO rejected depth above 200 during validation. OpenWeb Ninja failed and returned an "unknown error." lobstr.io was the only provider that successfully returned 1,000 reviews from one business.
 
 **Is the scoring here neutral?**
 Disclosed, not neutral by default. The rubric this article scores against is owned by lobstr.io's own content team, and lobstr.io is one of the five providers scored against it. No specific finding here was suppressed or reframed in lobstr.io's favor as far as this audit could tell, but that ownership fact belongs in the open, not buried in a footnote.
