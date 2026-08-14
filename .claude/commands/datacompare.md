@@ -10,7 +10,7 @@ The arithmetic is done by `datacompare.py` (deterministic, reproducible). The ju
 
 ## Step 1: Facts + spec
 
-Read `data-comparison-model.md` (repo root) once. It is the authoritative spec for every metric, mode, and rule the script implements; this command only orchestrates it. For evergreen brand facts read `facts.md`. Do not load `instructions/` or `*_samples/`.
+Read `IMPORTANT/methodology.md` once. It is the authoritative spec for every metric, mode, and rule the script implements; this command only orchestrates it. For evergreen brand facts read `facts.md`. Do not load `instructions/` or `*_samples/`.
 
 Never invent, speculate, or fill gaps. If a required input is missing (see §2), list exactly what's missing and ask Shehriar for that one thing. Judgment scores you assign (accuracy, normalization, freshness) must trace to the script's diffs/pre-checks or to something Shehriar or the live page confirmed, never to a guess.
 

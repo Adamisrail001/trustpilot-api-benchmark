@@ -10,12 +10,12 @@ concrete next step.
 ## A. Against the original brief
 
 1. **DataForSEO has no production-parity script.** The ported
-   `scripts/dataforseo_benchmark.py` writes one combined JSON file, not the
+   `SCRIPTS/dataforseo/benchmark.py` writes one combined JSON file, not the
    per-domain `task-post`/`task-get` captures or the
    `domain-summary`/`duplicate-report`/`cost-report` outputs the other 4
    providers produce. **To do:** rewrite it using `apify_benchmark.py` as a
    structural template, keeping DataForSEO's actual request/response shape
-   (confirmed in `data/raw/dataforseo/`).
+   (confirmed in `DATA/dataforseo/raw/`).
 
 2. **DataForSEO is missing 3 analysis files** every other provider has:
    `cost-report.json`, `error-log.json`, `pagination-report.json`. **To do:**
@@ -35,7 +35,7 @@ concrete next step.
 5. **No documented rationale for choosing these 5 APIs** over the
    discovered-but-untested Trustpilot Official API (which tied for the highest
    discovery-source coverage) or the other discovered tools. **To do:** either
-   test the Official API and the others against `criteria.md`, or write a
+   test the Official API and the others against `IMPORTANT/criteria.md`, or write a
    short rationale for the exclusion.
 
 6. **No MCP references exist anywhere** for `api_docs_mcps.txt`'s "mcps" half —
@@ -55,7 +55,7 @@ concrete next step.
    has no free endpoint to test at all. But no script has created a *new* paid
    run/task, and every live test so far resolved on a single page. **To do:**
    run each script with real credentials when ready to spend, and compare the
-   fresh `outputs/<provider>/` against `data/*/<provider>/` for consistency.
+   fresh `outputs/<provider>/` against `DATA/<provider>/` for consistency.
 
 ---
 
@@ -92,7 +92,7 @@ concrete next step.
    either project, only in specific narrative report files. `knowledge.md`
    §1/§6 have been updated accordingly. **Outscraper's polling-request count
    (~120 vs. 84) remains open** — recount directly from
-   `data/analysis/outscraper/timings.json` to settle it, then correct
+   `DATA/outscraper/analysis/timings.json` to settle it, then correct
    `knowledge.md` §1/§3.
 
 6. **Apify's `www.shein.com` returned 0/200 reviews with zero error signal**
