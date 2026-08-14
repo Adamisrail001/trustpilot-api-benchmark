@@ -13,10 +13,10 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-GT_PATH = ROOT / "data" / "raw" / "ground-truth" / "thepearlsource-sample.json"
-ALL_REVIEWS_PATH = ROOT / "data" / "exports" / "apify" / "all-reviews.json"
-OUT_PATH = ROOT / "data" / "analysis" / "apify" / "ground-truth-match.json"
+ROOT = Path(__file__).resolve().parent.parent.parent
+GT_PATH = ROOT / "DATA" / "ground-truth" / "thepearlsource-sample.json"
+ALL_REVIEWS_PATH = ROOT / "DATA" / "apify" / "exports" / "all-reviews.json"
+OUT_PATH = ROOT / "DATA" / "apify" / "analysis" / "ground-truth-match.json"
 
 _WHITESPACE_RE = re.compile(r"\s+")
 _TRAILING_ELLIPSIS_RE = re.compile(r"[…]+$")

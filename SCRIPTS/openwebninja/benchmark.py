@@ -38,11 +38,12 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.openwebninja_client import create_client, AuthOrQuotaError, InvalidRequestError
 from lib.dedupe import dedupe
 from lib.csv_utils import to_csv
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 OUT_DIR = ROOT / "outputs" / "openwebninja"
 REQUESTS_DIR = OUT_DIR / "raw" / "requests"
 RESULTS_DIR = OUT_DIR / "raw" / "results"
@@ -481,7 +482,7 @@ def run_preflight():
     load_api_key()
     ensure_dirs([OUT_DIR, REQUESTS_DIR, RESULTS_DIR, ERRORS_DIR])
 
-    gt_path = ROOT / "data" / "raw" / "ground-truth" / "thepearlsource-sample.json"
+    gt_path = ROOT / "DATA" / "ground-truth" / "thepearlsource-sample.json"
     requests_that_will_be_made = [
         f"GET /company-reviews?company_domain={d['domain']}&page={i + 1}&sort=recency"
         for d in domains

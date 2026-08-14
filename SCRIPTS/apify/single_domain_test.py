@@ -31,12 +31,12 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.apify_client import ApifyClient, AuthOrBillingError, InvalidRequestError
 from lib.dedupe import dedupe
 from lib.csv_utils import to_csv
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 OUT_DIR = ROOT / "outputs" / "apify-single-domain-test"
 REQUESTS_DIR = OUT_DIR / "raw" / "requests"
 RUNS_DIR = OUT_DIR / "raw" / "runs"

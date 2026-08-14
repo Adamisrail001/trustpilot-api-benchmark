@@ -20,10 +20,10 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-GT_PATH = ROOT / "data" / "raw" / "ground-truth" / "thepearlsource-sample.json"
-API_PATH = ROOT / "data" / "raw" / "dataforseo" / "task-get" / "www.thepearlsource.com.json"
-OUT_PATH = ROOT / "data" / "analysis" / "dataforseo" / "ground-truth-match.json"
+ROOT = Path(__file__).resolve().parent.parent.parent
+GT_PATH = ROOT / "DATA" / "ground-truth" / "thepearlsource-sample.json"
+API_PATH = ROOT / "DATA" / "dataforseo" / "raw" / "task-get" / "www.thepearlsource.com.json"
+OUT_PATH = ROOT / "DATA" / "dataforseo" / "analysis" / "ground-truth-match.json"
 
 _WHITESPACE_RE = re.compile(r"\s+")
 _TRAILING_ELLIPSIS_RE = re.compile(r"[…]+$")

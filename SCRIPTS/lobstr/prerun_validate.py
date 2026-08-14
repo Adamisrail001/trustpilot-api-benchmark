@@ -9,9 +9,10 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.lobstr_client import create_client
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 CLEAN_SQUID = "8d9e0b80d6d2481283c138104caf022d"
 CONTAMINATED_SQUID = "5644e83e28ce412c9370da2bc46fcd31"
 

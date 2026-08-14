@@ -15,10 +15,10 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-GT_PATH = ROOT / "data" / "raw" / "ground-truth" / "thepearlsource-sample.json"
-RESULTS_DIR = ROOT / "data" / "raw" / "lobstr" / "results"
-OUT_PATH = ROOT / "data" / "analysis" / "lobstr" / "ground-truth-match.json"
+ROOT = Path(__file__).resolve().parent.parent.parent
+GT_PATH = ROOT / "DATA" / "ground-truth" / "thepearlsource-sample.json"
+RESULTS_DIR = ROOT / "DATA" / "lobstr" / "raw" / "results"
+OUT_PATH = ROOT / "DATA" / "lobstr" / "analysis" / "ground-truth-match.json"
 
 
 def now_iso():

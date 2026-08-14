@@ -37,14 +37,14 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.env import load_env, require_env
 from lib.dedupe import dedupe
 from lib.csv_utils import to_csv
 
 load_env()
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 OUT_DIR = ROOT / "outputs" / "dataforseo-single-domain-test"
 REQUESTS_DIR = OUT_DIR / "raw" / "requests"
 ERRORS_DIR = OUT_DIR / "errors"

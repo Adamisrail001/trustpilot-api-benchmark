@@ -43,12 +43,13 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.outscraper_client import create_client, AuthOrBillingError, InvalidParametersError
 from lib.dedupe import build_review_key, dedupe
 from lib.csv_utils import to_csv
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-ROOT = SCRIPT_DIR.parent
+ROOT = SCRIPT_DIR.parent.parent
 OUT_DIR = ROOT / "outputs" / "outscraper"
 REQUESTS_DIR = OUT_DIR / "raw" / "requests"
 RESULTS_DIR = OUT_DIR / "raw" / "results"

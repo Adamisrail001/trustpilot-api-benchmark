@@ -35,8 +35,10 @@ import json
 import time
 import urllib.error
 import urllib.request
+import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.env import load_env, require_env
 from lib.domains import DOMAINS, TARGET_REVIEWS_PER_BUSINESS, sleep
 
@@ -122,7 +124,7 @@ def main():
             }
         )
 
-    out_dir = SCRIPT_DIR.parent / "outputs" / "dataforseo"
+    out_dir = SCRIPT_DIR.parent.parent / "outputs" / "dataforseo"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "dataforseo-results.json"
     with open(out_path, "w", encoding="utf-8", newline="") as f:
