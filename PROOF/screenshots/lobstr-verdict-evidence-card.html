@@ -1,0 +1,123 @@
+<title>lobstr.io — Why It Wins, With the Raw Data</title>
+<style>
+  :root {
+    --page: #f9f9f7;
+    --surface: #ffffff;
+    --ink: #16191f;
+    --ink-dim: #52514e;
+    --ink-muted: #898781;
+    --line: #e1e0d9;
+    --accent: #2a78d6;
+    --accent-deep: #184f95;
+    --accent-wash: #eaf2fb;
+    --code-bg: #14171c;
+    --code-ink: #d7dbe0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #f2f2f0; --ink-dim: #c3c2b7; --ink-muted: #898781;
+      --line: #2c2c2a; --accent: #7fb8d6; --accent-deep: #cde2fb; --accent-wash: #17222c;
+      --code-bg: #0b0d10; --code-ink: #d7dbe0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f2f2f0; --ink-dim: #c3c2b7; --ink-muted: #898781;
+    --line: #2c2c2a; --accent: #7fb8d6; --accent-deep: #cde2fb; --accent-wash: #17222c;
+    --code-bg: #0b0d10; --code-ink: #d7dbe0;
+  }
+  :root[data-theme="light"] {
+    --page: #f9f9f7; --surface: #ffffff; --ink: #16191f; --ink-dim: #52514e; --ink-muted: #898781;
+    --line: #e1e0d9; --accent: #2a78d6; --accent-deep: #184f95; --accent-wash: #eaf2fb;
+    --code-bg: #14171c; --code-ink: #d7dbe0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--page); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 780px; margin: 0 auto; padding: 2.5rem 1.25rem 3.5rem;
+  }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--accent-wash); color: var(--accent-deep);
+    font-size: 0.76rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+    padding: 0.35rem 0.7rem; border-radius: 999px;
+    margin: 1.6rem 0 0 1.8rem;
+  }
+  h1 {
+    font-size: 1.42rem; line-height: 1.3; font-weight: 800; letter-spacing: -0.015em;
+    margin: 1rem 1.8rem 1.5rem; text-wrap: balance;
+  }
+  h1 span { color: var(--accent); }
+
+  pre {
+    background: var(--code-bg); color: var(--code-ink);
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.74rem; line-height: 1.55;
+    padding: 0.7rem 0.85rem; border-radius: 8px;
+    margin: 0.6rem 0 0; overflow-x: auto; white-space: pre;
+  }
+  .str { color: #c9a978; } .num { color: #9fca9f; }
+  .src { font-size: 0.68rem; color: var(--ink-muted); margin-top: 0.4rem; font-family: ui-monospace, "SF Mono", Consolas, monospace; }
+
+  .hero { margin: 0 1.2rem 1.1rem; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%); border-radius: 12px; padding: 1.5rem 1.6rem 1.6rem; color: #fff; }
+  .hero .value { font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .hero .label { font-size: 0.9rem; font-weight: 600; margin-top: 0.4rem; opacity: 0.95; }
+  .hero pre { background: rgba(0,0,0,0.28); color: #eef4fb; }
+  .hero .src { color: rgba(255,255,255,0.75); }
+  .hero .str { color: #ffe3ad; } .hero .num { color: #d4f5e2; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin: 0 1.2rem 1.6rem; border-radius: 12px; overflow: hidden; }
+  @media (max-width: 620px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat { background: var(--surface); padding: 1rem 1rem 1.1rem; }
+  .stat .value { font-size: 1.3rem; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+  .stat .label { font-size: 0.78rem; font-weight: 600; color: var(--ink-dim); margin-top: 0.2rem; }
+</style>
+
+<div class="card">
+  <div class="hero" style="margin-top:1.2rem;">
+    <div class="value">2,000 / 2,000</div>
+    <div class="label">Unique reviews pulled from one business, 0 duplicates</div>
+    <pre>{
+  <span class="str">"domain"</span>: <span class="str">"www.thepearlsource.com"</span>,
+  <span class="str">"target_reviews_requested"</span>: <span class="num">2000</span>,
+  <span class="str">"total_unique_valid_reviews"</span>: <span class="num">2000</span>,
+  <span class="str">"total_duplicates"</span>: <span class="num">0</span>,
+  <span class="str">"exceeded_200_reviews_from_one_business"</span>: <span class="num">true</span>
+}</pre>
+    <div class="src">outputs/lobstr-single-domain-test/summary.json &middot; verified 2026-08-13</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="value">20 / 20</div>
+      <div class="label">Ground-truth rows matched</div>
+      <pre>{
+  <span class="str">"ground_truth_rows"</span>: <span class="num">20</span>,
+  <span class="str">"matched_rows"</span>: <span class="num">20</span>,
+  <span class="str">"unmatched_rows"</span>: <span class="num">0</span>
+}</pre>
+      <div class="src">data/lobstr/analysis/ground-truth-match.json</div>
+    </div>
+    <div class="stat">
+      <div class="value">7 / 7</div>
+      <div class="label">Rate limits recovered</div>
+      <pre>{
+  <span class="str">"phase"</span>: <span class="str">"get_results"</span>,
+  <span class="str">"page"</span>: <span class="num">83</span>,
+  <span class="str">"attempts"</span>: <span class="num">2</span>
+}</pre>
+      <div class="src">data/lobstr/analysis/timings.json &middot; 7 of 101 pages, all succeeded on retry 2</div>
+    </div>
+    <div class="stat">
+      <div class="value">1 : 1</div>
+      <div class="label">Credit-to-review ratio</div>
+      <pre>{
+  <span class="str">"consumed"</span>: <span class="num">0</span> &rarr; <span class="num">2000</span>
+}</pre>
+      <div class="src">outputs/lobstr-single-domain-test/credits-before.json, credits-after.json</div>
+    </div>
+  </div>
+</div>

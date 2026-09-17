@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-09-04T10:18:48.084Z",
+  "squid_id": "31973027bc6f482da84b6927647de4d5",
+  "task_ids": {
+    "www.thepearlsource.com": "42399e00dc5feefe72e29909a286b301",
+    "www.shein.com": "6d851b2fa6da8cd6c85ce3d3210f89e1",
+    "temu.com": "dfba0cc5001ae6fb945badc9acfa56a9",
+    "www.aliexpress.com": "eb6502896f4f20b8ad1d3b89c4ce17b5",
+    "thehalara.com": "9462cddad8c002f189b3ba4d0fc6c579"
+  },
+  "run_id": "b1c51b843e6448b89421775ffe368bc3",
+  "target_per_domain": 1000,
+  "total_target_reviews": 5000,
+  "max_results_confirmed_after_configure": 1000,
+  "max_unique_results_per_run_confirmed_after_configure": 5000,
+  "run_status": "done",
+  "run_succeeded": true,
+  "run_reported_total_results": 5001,
+  "run_reported_total_unique_results": 5000,
+  "run_reported_credit_used": 5000,
+  "total_raw_items_fetched": 5000,
+  "unattributed_records": 0,
+  "total_unique_valid_reviews": 5000,
+  "total_duplicates": 0,
+  "domains": [
+    {
+      "domain": "www.thepearlsource.com",
+      "business_name": "The Pearl Source",
+      "task_id": "42399e00dc5feefe72e29909a286b301",
+      "raw_items": 1000,
+      "valid_items": 1000,
+      "unique_valid_reviews": 1000,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.shein.com",
+      "business_name": "SHEIN",
+      "task_id": "6d851b2fa6da8cd6c85ce3d3210f89e1",
+      "raw_items": 1000,
+      "valid_items": 1000,
+      "unique_valid_reviews": 1000,
+      "shortfall": 0
+    },
+    {
+      "domain": "temu.com",
+      "business_name": "Temu",
+      "task_id": "dfba0cc5001ae6fb945badc9acfa56a9",
+      "raw_items": 1000,
+      "valid_items": 1000,
+      "unique_valid_reviews": 1000,
+      "shortfall": 0
+    },
+    {
+      "domain": "www.aliexpress.com",
+      "business_name": "AliExpress",
+      "task_id": "eb6502896f4f20b8ad1d3b89c4ce17b5",
+      "raw_items": 1000,
+      "valid_items": 1000,
+      "unique_valid_reviews": 1000,
+      "shortfall": 0
+    },
+    {
+      "domain": "thehalara.com",
+      "business_name": "Halara",
+      "task_id": "9462cddad8c002f189b3ba4d0fc6c579",
+      "raw_items": 1000,
+      "valid_items": 1000,
+      "unique_valid_reviews": 1000,
+      "shortfall": 0
+    }
+  ],
+  "all_domains_hit_target": true,
+  "wall_clock_ms": 398593,
+  "credits_consumed_measured": 5000,
+  "pagination_stop_reason": "no_next_page"
+}

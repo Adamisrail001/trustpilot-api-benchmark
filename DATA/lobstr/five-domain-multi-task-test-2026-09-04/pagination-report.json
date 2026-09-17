@@ -1,0 +1,42 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "count": 1000,
+      "total_results": 5000,
+      "total_pages": 5
+    },
+    {
+      "page": 2,
+      "count": 1000,
+      "total_results": 5000,
+      "total_pages": 5
+    },
+    {
+      "page": 3,
+      "count": 1000,
+      "total_results": 5000,
+      "total_pages": 5
+    },
+    {
+      "page": 4,
+      "count": 1000,
+      "total_results": 5000,
+      "total_pages": 5
+    },
+    {
+      "page": 5,
+      "count": 1000,
+      "total_results": 5000,
+      "total_pages": 5
+    },
+    {
+      "page": 6,
+      "count": 0,
+      "total_results": 5000,
+      "total_pages": 5
+    }
+  ],
+  "stop_reason": "no_next_page",
+  "unattributed_results": 0
+}

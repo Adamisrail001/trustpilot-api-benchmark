@@ -1,0 +1,429 @@
+{
+  "run_id": "b1c51b843e6448b89421775ffe368bc3",
+  "poll_history": [
+    {
+      "polled_at": "2026-09-04T10:12:13.829Z",
+      "status": "pending",
+      "is_done": null,
+      "total_results": 0,
+      "total_unique_results": 0,
+      "credit_used": 0
+    },
+    {
+      "polled_at": "2026-09-04T10:12:22.690Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 60,
+      "total_unique_results": 60,
+      "credit_used": 60
+    },
+    {
+      "polled_at": "2026-09-04T10:12:31.167Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 181,
+      "total_unique_results": 181,
+      "credit_used": 181
+    },
+    {
+      "polled_at": "2026-09-04T10:12:39.678Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 320,
+      "total_unique_results": 320,
+      "credit_used": 320
+    },
+    {
+      "polled_at": "2026-09-04T10:12:48.160Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 439,
+      "total_unique_results": 439,
+      "credit_used": 439
+    },
+    {
+      "polled_at": "2026-09-04T10:12:56.726Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 560,
+      "total_unique_results": 560,
+      "credit_used": 560
+    },
+    {
+      "polled_at": "2026-09-04T10:13:05.246Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 662,
+      "total_unique_results": 663,
+      "credit_used": 663
+    },
+    {
+      "polled_at": "2026-09-04T10:13:13.792Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 784,
+      "total_unique_results": 785,
+      "credit_used": 784
+    },
+    {
+      "polled_at": "2026-09-04T10:13:22.324Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 920,
+      "total_unique_results": 920,
+      "credit_used": 920
+    },
+    {
+      "polled_at": "2026-09-04T10:13:30.935Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1043,
+      "total_unique_results": 1043,
+      "credit_used": 1043
+    },
+    {
+      "polled_at": "2026-09-04T10:13:39.444Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1166,
+      "total_unique_results": 1166,
+      "credit_used": 1166
+    },
+    {
+      "polled_at": "2026-09-04T10:13:47.994Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1260,
+      "total_unique_results": 1260,
+      "credit_used": 1260
+    },
+    {
+      "polled_at": "2026-09-04T10:13:56.472Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1385,
+      "total_unique_results": 1385,
+      "credit_used": 1385
+    },
+    {
+      "polled_at": "2026-09-04T10:14:05.030Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1520,
+      "total_unique_results": 1520,
+      "credit_used": 1520
+    },
+    {
+      "polled_at": "2026-09-04T10:14:13.526Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1653,
+      "total_unique_results": 1653,
+      "credit_used": 1653
+    },
+    {
+      "polled_at": "2026-09-04T10:14:22.035Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1773,
+      "total_unique_results": 1773,
+      "credit_used": 1773
+    },
+    {
+      "polled_at": "2026-09-04T10:14:30.562Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 1904,
+      "total_unique_results": 1905,
+      "credit_used": 1904
+    },
+    {
+      "polled_at": "2026-09-04T10:14:39.408Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2028,
+      "total_unique_results": 2029,
+      "credit_used": 2028
+    },
+    {
+      "polled_at": "2026-09-04T10:14:48.106Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2153,
+      "total_unique_results": 2154,
+      "credit_used": 2154
+    },
+    {
+      "polled_at": "2026-09-04T10:14:56.597Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2275,
+      "total_unique_results": 2276,
+      "credit_used": 2275
+    },
+    {
+      "polled_at": "2026-09-04T10:15:05.148Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2396,
+      "total_unique_results": 2396,
+      "credit_used": 2396
+    },
+    {
+      "polled_at": "2026-09-04T10:15:13.651Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2492,
+      "total_unique_results": 2493,
+      "credit_used": 2493
+    },
+    {
+      "polled_at": "2026-09-04T10:15:22.140Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2594,
+      "total_unique_results": 2594,
+      "credit_used": 2594
+    },
+    {
+      "polled_at": "2026-09-04T10:15:30.910Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2689,
+      "total_unique_results": 2689,
+      "credit_used": 2689
+    },
+    {
+      "polled_at": "2026-09-04T10:15:39.831Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2800,
+      "total_unique_results": 2800,
+      "credit_used": 2800
+    },
+    {
+      "polled_at": "2026-09-04T10:15:48.334Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 2928,
+      "total_unique_results": 2929,
+      "credit_used": 2928
+    },
+    {
+      "polled_at": "2026-09-04T10:15:56.847Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3040,
+      "total_unique_results": 3040,
+      "credit_used": 3040
+    },
+    {
+      "polled_at": "2026-09-04T10:16:05.465Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3144,
+      "total_unique_results": 3144,
+      "credit_used": 3144
+    },
+    {
+      "polled_at": "2026-09-04T10:16:13.977Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3266,
+      "total_unique_results": 3267,
+      "credit_used": 3266
+    },
+    {
+      "polled_at": "2026-09-04T10:16:22.459Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3380,
+      "total_unique_results": 3381,
+      "credit_used": 3380
+    },
+    {
+      "polled_at": "2026-09-04T10:16:31.093Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3497,
+      "total_unique_results": 3497,
+      "credit_used": 3497
+    },
+    {
+      "polled_at": "2026-09-04T10:16:39.680Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3611,
+      "total_unique_results": 3611,
+      "credit_used": 3611
+    },
+    {
+      "polled_at": "2026-09-04T10:16:48.181Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3741,
+      "total_unique_results": 3742,
+      "credit_used": 3742
+    },
+    {
+      "polled_at": "2026-09-04T10:16:56.890Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3861,
+      "total_unique_results": 3861,
+      "credit_used": 3861
+    },
+    {
+      "polled_at": "2026-09-04T10:17:05.692Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 3961,
+      "total_unique_results": 3961,
+      "credit_used": 3961
+    },
+    {
+      "polled_at": "2026-09-04T10:17:14.299Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4068,
+      "total_unique_results": 4069,
+      "credit_used": 4069
+    },
+    {
+      "polled_at": "2026-09-04T10:17:22.782Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4160,
+      "total_unique_results": 4160,
+      "credit_used": 4160
+    },
+    {
+      "polled_at": "2026-09-04T10:17:31.759Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4300,
+      "total_unique_results": 4300,
+      "credit_used": 4300
+    },
+    {
+      "polled_at": "2026-09-04T10:17:40.292Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4436,
+      "total_unique_results": 4437,
+      "credit_used": 4436
+    },
+    {
+      "polled_at": "2026-09-04T10:17:48.833Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4559,
+      "total_unique_results": 4559,
+      "credit_used": 4559
+    },
+    {
+      "polled_at": "2026-09-04T10:17:57.340Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4660,
+      "total_unique_results": 4659,
+      "credit_used": 4659
+    },
+    {
+      "polled_at": "2026-09-04T10:18:05.945Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4795,
+      "total_unique_results": 4794,
+      "credit_used": 4794
+    },
+    {
+      "polled_at": "2026-09-04T10:18:14.549Z",
+      "status": "running",
+      "is_done": null,
+      "total_results": 4920,
+      "total_unique_results": 4919,
+      "credit_used": 4919
+    },
+    {
+      "polled_at": "2026-09-04T10:18:23.042Z",
+      "status": "uploading",
+      "is_done": null,
+      "total_results": 5001,
+      "total_unique_results": 5000,
+      "credit_used": 5000
+    },
+    {
+      "polled_at": "2026-09-04T10:18:31.930Z",
+      "status": "done",
+      "is_done": null,
+      "total_results": 5001,
+      "total_unique_results": 5000,
+      "credit_used": 5000
+    }
+  ],
+  "final": {
+    "id": "b1c51b843e6448b89421775ffe368bc3",
+    "object": "run",
+    "created_at": "2026-09-04T10:18:19.297548",
+    "started_at": "2026-09-04T10:12:12.136246",
+    "next_launch_at": null,
+    "ended_at": "2026-09-04T10:18:19.400965",
+    "duration": 321.49589999999966,
+    "credit_used": 5000,
+    "origin": "user",
+    "status": "done",
+    "export_time": "2026-09-04T10:18:24.252910",
+    "export_done": true,
+    "email_verification": null,
+    "mail_done": null,
+    "mail_time": null,
+    "total_emails": 0,
+    "total_results": 5001,
+    "total_unique_results": 5000,
+    "crawler_id": "b3362ab52c6fab3d8897af79cbba380e",
+    "done_reason": "tasks_done",
+    "done_reason_desc": null,
+    "shared": false,
+    "squid": "31973027bc6f482da84b6927647de4d5",
+    "functions": {},
+    "attributes": [
+      "review_url",
+      "author_name",
+      "author_id",
+      "author_image",
+      "date_published",
+      "review_headline",
+      "review_body",
+      "review_language",
+      "rating_value",
+      "verification_level",
+      "number_of_reviews",
+      "consumer_country_code",
+      "experience_date",
+      "likes",
+      "report",
+      "review_source",
+      "is_author_verified",
+      "is_review_verified",
+      "owner_reply",
+      "owner_reply_date",
+      "updated_date",
+      "consumer_reviews_on_domain",
+      "reviews_count",
+      "trust_score",
+      "stars",
+      "review_link",
+      "business_unit_id",
+      "review_verification_source",
+      "review_sentiment",
+      "owner_reply_updated_date",
+      "company_name",
+      "company_category",
+      "company_page_url",
+      "page_number",
+      "scraping_time"
+    ],
+    "accounts": []
+  }
+}

@@ -38,8 +38,8 @@ ENV_PATH = ROOT / ".env"
 
 TARGET_PER_DOMAIN = 200
 TARGET_TOTAL = 1000
-RESULTS_PAGE_LIMIT = 100  # requested; the live API was observed capping the effective page size at 10 regardless
-MAX_RESULT_PAGES = 150  # safety cap; empirically 1,000 results paginate at 10/page = 100 pages on this account, not the ~10 pages a limit=100 would have implied
+RESULTS_PAGE_SIZE = 1000  # real page-size param is `page_size`, not `limit` - see data/lobstr/analysis/page_size-parameter-correction.md; verified working up to 1000/page
+MAX_RESULT_PAGES = 150  # safety cap; generous now that page_size=1000 needs ~1 page per 1,000 results instead of 100
 POLL_INTERVAL_MS = 8_000
 MAX_POLL_WAIT_MS = 40 * 60_000  # generous vs. the advertised ~200 reviews/min
 
@@ -629,7 +629,7 @@ def fetch_all_results(client, run_id, latencies, results_dir):
         if use_next_url:
             res = client["getResultsByUrl"](use_next_url)
         else:
-            res = client["getResults"](run=run_id, page=current_page, limit=RESULTS_PAGE_LIMIT)
+            res = client["getResults"](run=run_id, page=current_page, page_size=RESULTS_PAGE_SIZE)
         latencies.append({"phase": "get_results", "page": current_page, "ms": res["latencyMs"], "attempts": res["attempts"]})
 
         write_json(results_dir / f"results-page{current_page}.json", {"page": current_page, "fetched_at": now_iso(), "response": res["json"]})

@@ -1,0 +1,32 @@
+{
+  "requested_at": "2026-09-04T10:12:10.579Z",
+  "request": {
+    "crawler": "b3362ab52c6fab3d8897af79cbba380e",
+    "name": "Trustpilot Multi-Task 5x1000 Test - 2026-09-04T10:12:10.034Z"
+  },
+  "response": {
+    "id": "31973027bc6f482da84b6927647de4d5",
+    "account": [],
+    "concurrency": 1,
+    "crawler": "b3362ab52c6fab3d8897af79cbba380e",
+    "created_at": "2026-09-04T10:12:09Z",
+    "is_active": true,
+    "name": "Trustpilot Multi-Task 5x1000 Test - 2026-09-04T10:12:10.034Z",
+    "params": {
+      "max_unique_results_per_run": null,
+      "max_results": null,
+      "stars": "all",
+      "language": "All languages",
+      "replies": false,
+      "verified": false,
+      "topics": null,
+      "search": null,
+      "fetch_since": null,
+      "fetch_since_timezone": null,
+      "hours_back": null,
+      "start_page": 1
+    },
+    "schedule": null,
+    "to_complete": false
+  }
+}

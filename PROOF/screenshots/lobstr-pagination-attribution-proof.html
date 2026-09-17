@@ -1,0 +1,111 @@
+<title>Lobstr — Pagination Limit &amp; Missing Task-Field Evidence</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --ink: #16191f; --ink-dim: #5b6270; --line: #dfe3e9;
+    --code-bg: #14171c; --code-ink: #d7dbe0; --code-ln: #4b5563;
+    --bad: #b23b3b; --bad-bg: #fbecec; --ok: #1f8a5f; --ok-bg: #e9f6f0; --accent: #2f6f8f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216; --surface: #171b21; --ink: #e7e9ec; --ink-dim: #9aa2ad; --line: #2a2f37;
+      --code-bg: #0b0d10; --code-ink: #d7dbe0; --code-ln: #565e6a;
+      --bad: #e28787; --bad-bg: #2a1717; --ok: #6fcf9e; --ok-bg: #12261d; --accent: #7fb8d6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1216; --surface: #171b21; --ink: #e7e9ec; --ink-dim: #9aa2ad; --line: #2a2f37;
+    --code-bg: #0b0d10; --code-ink: #d7dbe0; --code-ln: #565e6a;
+    --bad: #e28787; --bad-bg: #2a1717; --ok: #6fcf9e; --ok-bg: #12261d; --accent: #7fb8d6;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --surface: #ffffff; --ink: #16191f; --ink-dim: #5b6270; --line: #dfe3e9;
+    --code-bg: #14171c; --code-ink: #d7dbe0; --code-ln: #4b5563;
+    --bad: #b23b3b; --bad-bg: #fbecec; --ok: #1f8a5f; --ok-bg: #e9f6f0; --accent: #2f6f8f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Segoe UI", "IBM Plex Sans", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; line-height: 1.6;
+  }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; margin: 0 0 0.6rem; }
+  h1 { font-size: 1.5rem; line-height: 1.3; margin: 0 0 0.5rem; text-wrap: balance; }
+  .dek { color: var(--ink-dim); font-size: 0.95rem; margin: 0 0 2.2rem; max-width: 62ch; }
+  h2 { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; margin: 2.6rem 0 1rem; }
+  .source-line { font-size: 0.82rem; color: var(--ink-dim); margin: 0 0 0.9rem; }
+  .source-line b { color: var(--ink); font-weight: 600; }
+  code { font-family: ui-monospace, "SF Mono", Consolas, monospace; background: rgba(127,127,127,0.14); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.88em; }
+
+  .finding-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 0.5rem; }
+  @media (max-width: 600px) { .finding-grid { grid-template-columns: 1fr; } }
+  .finding-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; }
+  .finding-card .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 0.4rem; }
+  .finding-card .value { font-size: 1.2rem; font-weight: 700; }
+  .value.bad { color: var(--bad); }
+  .value.ok { color: var(--ok); }
+
+  pre { background: var(--code-bg); color: var(--code-ink); padding: 1.1rem 1.2rem; border-radius: 10px; overflow-x: auto; font-size: 0.82rem; line-height: 1.65; font-family: ui-monospace, "SF Mono", Consolas, monospace; margin: 0; }
+  .code-file { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.78rem; color: var(--ink-dim); margin: 0 0 0.5rem; }
+  .ln { color: var(--code-ln); user-select: none; display: inline-block; width: 2.2em; }
+  .kw { color: #7fb8d6; } .str { color: #c9a978; } .num { color: #9fca9f; }
+  mark.hl-bad { background: none; color: var(--bad); font-weight: 700; }
+  mark.hl-ok { background: none; color: var(--ok); font-weight: 700; }
+
+  .callout { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 0.9rem 1.1rem; border-radius: 6px; font-size: 0.87rem; color: var(--ink-dim); margin-top: 1rem; }
+  .callout b { color: var(--ink); }
+</style>
+
+<p class="eyebrow">lobstr.io · Trustpilot API benchmark · evidence</p>
+<h1>Lobstr — pagination limit &amp; missing task-field</h1>
+<p class="dek">Two documentation-vs-behavior gaps found on <code>/v1/results</code>: the documented page limit is silently downgraded, and result items carry no field for direct source attribution.</p>
+
+<div class="finding-grid">
+  <div class="finding-card">
+    <div class="label">Documented page limit</div>
+    <div class="value">100</div>
+  </div>
+  <div class="finding-card">
+    <div class="label">Actually served</div>
+    <div class="value bad">10</div>
+  </div>
+</div>
+
+<h2>1. Documented limit vs. served limit</h2>
+<p class="source-line">Docs: <b>api_docs_mcps.txt:2530, 2567–2571</b> &middot; Request/response: <b>data/lobstr/raw/results/results-page1.json</b> &middot; Cross-check: <b>data/lobstr/analysis/pagination-report.json</b> (all 100 pages, count:10 each)</p>
+
+<div class="code-file"><span>Documentation example request</span><span>api_docs_mcps.txt:2530</span></div>
+<pre><span class="kw">GET</span> /v1/results?run=ACTUAL_RUN_ID&amp;page=1&amp;limit=<mark class="hl-ok">100</mark>
+
+<span class="ln"></span><span style="color:#9098a3">"The maximum documented results-page limit is: 100"</span> <span style="color:#565e6a">— api_docs_mcps.txt:2567–2571</span></pre>
+
+<div class="code-file" style="margin-top:1.1rem;"><span>Actual response</span><span>data/lobstr/raw/results/results-page1.json</span></div>
+<pre><span class="ln">1</span>{
+<span class="ln">2</span>  <span class="str">"total_results"</span>: <span class="num">1000</span>,
+<span class="ln">3</span>  <span class="str">"limit"</span>: <mark class="hl-bad">10</mark>,
+<span class="ln">4</span>  <span class="str">"page"</span>: <span class="num">1</span>,
+<span class="ln">5</span>  <span class="str">"total_pages"</span>: <span class="num">100</span>,
+<span class="ln">6</span>  <span class="str">"result_from"</span>: <span class="num">1</span>,
+<span class="ln">7</span>  <span class="str">"result_to"</span>: <mark class="hl-bad">10</mark>,
+<span class="ln">8</span>  <span class="str">"data"</span>: [ <span style="color:#9098a3">/* 10 review objects */</span> ]
+<span class="ln">9</span>}</pre>
+
+<div class="callout"><b>Confirmed across the full run, not a one-off:</b> <code>pagination-report.json</code> shows <code>count: 10</code> on every one of 100 pages needed to retrieve 1,000 results (<code>total_pages: 100</code>) — the request asked for <code>limit=100</code> (the client's own default, see <code>scripts/lib/lobstr_client.py:215</code>), and the server silently served 10 regardless, requiring 10&times; the number of HTTP calls the documented limit implies.</div>
+
+<h2>2. No task field for source attribution</h2>
+<p class="source-line">Same response, full item schema: <b>data/lobstr/raw/results/results-page1.json:11–53</b></p>
+
+<div class="code-file"><span>Result item fields present</span><span>results-page1.json, item id 11313</span></div>
+<pre><span class="ln"> </span>{
+<span class="ln"> </span>  <span class="str">"id"</span>: <span class="num">11313</span>,
+<span class="ln"> </span>  <span class="str">"object"</span>: <span class="str">"result"</span>,
+<span class="ln"> </span>  <span class="str">"run"</span>: <span class="str">"4c2e07bd3b9b4c9386661edb8ef58174"</span>,
+<span class="ln"> </span>  <span class="str">"business_unit_id"</span>: <span class="str">"4be2ffa600006400050873c2"</span>,
+<span class="ln"> </span>  <span class="str">"company_name"</span>: <span class="str">"The Pearl Source"</span>,
+<span class="ln"> </span>  <span class="str">"company_page_url"</span>: <span class="str">"https://www.trustpilot.com/review/www.thepearlsource.com"</span>,
+<span class="ln"> </span>  <span class="str">"review_url"</span>: <span class="str">"6a6083012bbe4c893e5ec3d3"</span>,
+<span class="ln"> </span>  <span class="str">"...": "17 more fields, none named "</span><mark class="hl-bad">"task"</mark>
+<span class="ln"> </span>}</pre>
+
+<div class="callout">The item carries a <code>run</code> ID (which task-run produced it) but <b>no <code>task</code> field</b> (which input/business it belongs to) — undocumented. When a single run covers multiple businesses (as this benchmark's 5-domain run did), attributing a result back to its source domain requires falling back to matching <code>company_page_url</code> against the input domain list, not a documented, direct field lookup.</div>
+
+<div class="callout" style="margin-top:0.8rem;"><b>Scope note:</b> both gaps are documentation-vs-behavior mismatches on Lobstr's own API, not benchmark-harness bugs — see <code>IMPORTANT/knowledge.md:393–394</code> for the sourced write-up these screenshots back.</div>

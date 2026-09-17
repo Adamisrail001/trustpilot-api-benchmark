@@ -1,26 +1,37 @@
-"""Standalone, isolated live test: how many reviews can lobstr.io's Trustpilot
-Reviews Scraper actually return from ONE business when max_results is raised
-well past the 200 value used in the published 5-domain benchmark?
+"""Standalone, isolated live test: put all 5 benchmark businesses into ONE
+squid as 5 tasks, raise max_results/max_unique_results_per_run well past the
+200 value used in the published 5-domain benchmark, and start a SINGLE run
+that collects newest reviews for all 5 at once.
 
-This is intentionally a SEPARATE script from lobstr_benchmark.py:
+This exists to answer a specific positioning question: instead of citing two
+separate numbers (1,000/1,000 standard run + 2,000/2,000 single-domain
+scalability test), can lobstr.io pull a bigger, single-run total (up to
+5 x target_per_domain, e.g. 5,000) across multiple businesses in one squid?
+
+This is intentionally a SEPARATE script from benchmark.py and
+single_domain_test.py:
 - It creates its own brand-new, dedicated squid (never reuses
   LOBSTR_SQUID_ID from .env), so it cannot touch or contaminate the squid/
-  results behind the published benchmark article.
-- It writes to its own output directory (outputs/lobstr-single-domain-test/),
-  never into outputs/lobstr/.
+  results behind the published benchmark article or the single-domain test.
+- It writes to its own output directory
+  (outputs/lobstr-five-domain-multi-task-test/), never into outputs/lobstr/
+  or outputs/lobstr-single-domain-test/.
 - It never writes to .env.
 
 It reuses the same credentials (LOBSTR_API_KEY) and the same confirmed
-Trustpilot crawler (LOBSTR_CRAWLER_ID) as the main benchmark, read-only.
+Trustpilot crawler (LOBSTR_CRAWLER_ID) as the main benchmark, read-only, and
+reads the 5 businesses from benchmark-domains.json, read-only.
 
 Usage:
-  CONFIRM_PAID_RUN=yes python scripts/lobstr_single_domain_test.py [domain] [target]
+  CONFIRM_PAID_RUN=yes python scripts/lobstr/five_domain_multi_task_test.py [target_per_domain]
 
-  domain  defaults to www.thepearlsource.com
-  target  defaults to 1000 (max_results / max_unique_results_per_run for this one task)
+  target_per_domain  defaults to 1000 (max_results / max_unique_results_per_run
+                      PER TASK; max_unique_results_per_run on the squid is set
+                      to target_per_domain * 5 so the run-level cap doesn't
+                      choke off later tasks once earlier ones are full)
 
 This is a REAL paid run against the live lobstr.io API. Requires
-CONFIRM_PAID_RUN=yes to proceed, same safeguard as the main benchmark script.
+CONFIRM_PAID_RUN=yes to proceed, same safeguard as the other two scripts.
 """
 import json
 import os
@@ -36,16 +47,17 @@ from lib.dedupe import dedupe
 from lib.csv_utils import to_csv
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-OUT_DIR = ROOT / "outputs" / "lobstr-single-domain-test"
+OUT_DIR = ROOT / "outputs" / "lobstr-five-domain-multi-task-test"
 REQUESTS_DIR = OUT_DIR / "raw" / "requests"
 RESULTS_DIR = OUT_DIR / "raw" / "results"
 ERRORS_DIR = OUT_DIR / "errors"
 ENV_PATH = ROOT / ".env"
+DOMAINS_PATH = ROOT / "benchmark-domains.json"
 
-RESULTS_PAGE_SIZE = 1000  # real page-size param is `page_size`, not `limit` - see data/lobstr/analysis/page_size-parameter-correction.md; verified working up to 1000/page
-MAX_RESULT_PAGES = 200  # safety cap, generous for a 1,000+ target at ~10/page
+RESULTS_PAGE_SIZE = 1000  # real page-size param is `page_size`, not `limit` - see data/lobstr/analysis/page_size-parameter-correction.md
+MAX_RESULT_PAGES = 200  # safety cap, generous for a 5,000+ target at 1000/page
 POLL_INTERVAL_MS = 8_000
-MAX_POLL_WAIT_MS = 60 * 60_000  # 60 min - generous for a single-business deep pull
+MAX_POLL_WAIT_MS = 90 * 60_000  # generous - 5x the per-business volume of the single-domain test
 
 
 def now_iso():
@@ -102,6 +114,16 @@ def load_api_key():
     return key
 
 
+def load_domains():
+    if not DOMAINS_PATH.exists():
+        raise Exception("benchmark-domains.json not found.")
+    parsed = json.loads(DOMAINS_PATH.read_text(encoding="utf-8"))
+    if not isinstance(parsed, list) or len(parsed) != 5:
+        found = len(parsed) if isinstance(parsed, list) else type(parsed).__name__
+        raise Exception(f"benchmark-domains.json must contain exactly 5 entries, found {found}.")
+    return parsed
+
+
 def task_url_for_domain(domain):
     return f"https://www.trustpilot.com/review/{domain}"
 
@@ -136,30 +158,31 @@ def discover_crawler_id(client):
 
 
 def create_dedicated_squid(client, crawler_id):
-    name = f"Trustpilot Single-Domain Test - {now_iso()}"
+    name = f"Trustpilot Multi-Task 5x1000 Test - {now_iso()}"
     created = client["createSquid"](crawler=crawler_id, name=name)
     write_json(REQUESTS_DIR / "squid-create.json", {"requested_at": now_iso(), "request": {"crawler": crawler_id, "name": name}, "response": created["json"]})
     if not created["ok"] or not jg(created["json"], "id"):
         raise Exception(f"createSquid failed: HTTP {created['status']}")
-    print(f"[squid] created NEW dedicated squid (isolated from the main benchmark): \"{name}\" ({created['json']['id']})")
+    print(f"[squid] created NEW dedicated squid (isolated from the main benchmark and the single-domain test): \"{name}\" ({created['json']['id']})")
     return created["json"]["id"]
 
 
-def configure_squid(client, squid_id, target_reviews):
+def configure_squid(client, squid_id, target_per_domain, domain_count):
     details = client["getSquidDetails"](squid_id)
     write_json(REQUESTS_DIR / "squid-details-before-configure.json", {"checked_at": now_iso(), "response": details["json"]})
     params_before = jg(details["json"], "params") or {}
 
     new_params = dict(params_before)
     notes = []
+    run_cap = target_per_domain * domain_count
     if "max_results" in new_params:
-        new_params["max_results"] = target_reviews
-        notes.append(f"max_results: {params_before.get('max_results')} -> {target_reviews}")
+        new_params["max_results"] = target_per_domain
+        notes.append(f"max_results (per task): {params_before.get('max_results')} -> {target_per_domain}")
     else:
         notes.append("max_results key not present in default params - left untouched (Pending).")
     if "max_unique_results_per_run" in new_params:
-        new_params["max_unique_results_per_run"] = target_reviews
-        notes.append(f"max_unique_results_per_run: {params_before.get('max_unique_results_per_run')} -> {target_reviews}")
+        new_params["max_unique_results_per_run"] = run_cap
+        notes.append(f"max_unique_results_per_run (whole run, {domain_count} tasks): {params_before.get('max_unique_results_per_run')} -> {run_cap}")
     else:
         notes.append("max_unique_results_per_run key not present in default params - left untouched (Pending).")
 
@@ -181,14 +204,20 @@ def configure_squid(client, squid_id, target_reviews):
     return {"params_before": params_before, "params_after": params_after, "notes": notes}
 
 
-def add_task(client, squid_id, domain):
-    res = client["addTasks"](squid_id, [{"url": task_url_for_domain(domain)}])
-    write_json(REQUESTS_DIR / "tasks.json", {"requested_at": now_iso(), "response": res["json"]})
+def add_tasks(client, squid_id, domains):
+    tasks_payload = [{"url": task_url_for_domain(d["domain"])} for d in domains]
+    res = client["addTasks"](squid_id, tasks_payload)
+    write_json(REQUESTS_DIR / "tasks.json", {"requested_at": now_iso(), "request": tasks_payload, "response": res["json"]})
     if not res["ok"]:
         raise Exception(f"addTasks failed: HTTP {res['status']}")
-    tasks = jg(res["json"], "tasks") or []
-    task = next((t for t in tasks if jg(t.get("params"), "url") == task_url_for_domain(domain)), None)
-    return jg(task, "id") if task else None
+    task_map = {}
+    for d in domains:
+        url = task_url_for_domain(d["domain"])
+        match = next((t for t in (jg(res["json"], "tasks") or []) if jg(t.get("params"), "url") == url), None)
+        if match:
+            task_map[d["domain"]] = match["id"]
+    print(f"[tasks] created {len(task_map)}/{len(domains)} domain tasks in ONE squid (duplicated_count={jg(res['json'], 'duplicated_count')}).")
+    return task_map
 
 
 def start_run(client, squid_id):
@@ -196,7 +225,7 @@ def start_run(client, squid_id):
     if not res["ok"] or not jg(res["json"], "id"):
         raise Exception(f"startRun failed: HTTP {res['status']}")
     write_json(REQUESTS_DIR / "run-start.json", {"requested_at": now_iso(), "response": res["json"]})
-    print(f"[run] started ONE paid run: {res['json']['id']}")
+    print(f"[run] started ONE paid run covering all 5 tasks: {res['json']['id']}")
     return res["json"]["id"]
 
 
@@ -272,6 +301,7 @@ def fetch_all_results(client, run_id, latencies):
 
 _BARE_ID_RE = re.compile(r"^[a-f0-9]{16,32}$", re.I)
 _IN_URL_ID_RE = re.compile(r"reviews/([a-f0-9]{16,32})", re.I)
+_COMPANY_PAGE_URL_RE = re.compile(r"trustpilot\.com/review/([^/?#]+)", re.I)
 
 
 def extract_trustpilot_review_id(review_url_or_link):
@@ -297,6 +327,32 @@ def normalize_review_for_dedupe(item):
     }
 
 
+# Confirmed live shape (see benchmark.py): result items carry no `task` field
+# at all in this Actor's output. Domain attribution must use
+# `company_page_url` - required here since ALL 5 domains share one run.
+def normalize_domain_for_match(d):
+    return re.sub(r"^www\.", "", (d or "").strip().lower())
+
+
+def extract_domain_from_company_page_url(company_page_url):
+    if not company_page_url:
+        return None
+    match = _COMPANY_PAGE_URL_RE.search(company_page_url)
+    return match.group(1) if match else None
+
+
+def attribute_domain(item, task_id_to_domain, domain_by_normalized):
+    task = item.get("task")
+    if task and task_id_to_domain.get(task):
+        return task_id_to_domain[task]
+    extracted = extract_domain_from_company_page_url(item.get("company_page_url"))
+    if extracted:
+        canonical = domain_by_normalized.get(normalize_domain_for_match(extracted))
+        if canonical:
+            return canonical
+    return None
+
+
 def is_valid_review(item):
     has_id = bool(item.get("review_url")) or bool(item.get("id"))
     has_rating = item.get("rating_value") is not None or item.get("stars") is not None
@@ -311,16 +367,16 @@ def main():
         print("Refusing to run: set CONFIRM_PAID_RUN=yes to confirm you approve creating a real paid Lobstr.io run.", file=sys.stderr)
         sys.exit(1)
 
-    domain = sys.argv[1] if len(sys.argv) > 1 else "www.thepearlsource.com"
-    target_reviews = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
+    target_per_domain = int(sys.argv[1]) if len(sys.argv) > 1 else 1000
 
     ensure_dirs()
     api_key = load_api_key()
+    domains = load_domains()
     latencies = []
     benchmark_start = now_iso()
     benchmark_start_ms = time.monotonic()
 
-    client = create_client({"apiKey": api_key}, lambda event: append_error_event({"label": "single_domain_test", **event}))
+    client = create_client({"apiKey": api_key}, lambda event: append_error_event({"label": "five_domain_multi_task_test", **event}))
 
     balance_before = None
     try:
@@ -333,8 +389,10 @@ def main():
 
     crawler_id = discover_crawler_id(client)
     squid_id = create_dedicated_squid(client, crawler_id)
-    configure_result = configure_squid(client, squid_id, target_reviews)
-    task_id = add_task(client, squid_id, domain)
+    configure_result = configure_squid(client, squid_id, target_per_domain, len(domains))
+    domain_task_map = add_tasks(client, squid_id, domains)
+    task_id_to_domain = {task_id: domain for domain, task_id in domain_task_map.items()}
+    domain_by_normalized = {normalize_domain_for_match(d["domain"]): d["domain"] for d in domains}
 
     run_id = None
     final_run = None
@@ -366,19 +424,44 @@ def main():
     except Exception as err:
         append_error_event({"type": "balance_after_failed", "message": str(err)})
 
-    valid_entries = []
-    missing_tally = {}
+    all_entries = []
+    domain_raw = {}
+    domain_valid = {}
+    unattributed = 0
     for item in all_items:
+        domain = attribute_domain(item, task_id_to_domain, domain_by_normalized)
+        if not domain:
+            unattributed += 1
+            continue
+        domain_raw[domain] = domain_raw.get(domain, 0) + 1
         if is_valid_review(item):
-            valid_entries.append({"domain": domain, "review": normalize_review_for_dedupe(item), "raw": item})
+            domain_valid[domain] = domain_valid.get(domain, 0) + 1
+            all_entries.append({"domain": domain, "review": normalize_review_for_dedupe(item), "raw": item})
 
-    dedupe_result = dedupe(valid_entries)
+    dedupe_result = dedupe(all_entries)
     unique = dedupe_result["unique"]
     duplicates = dedupe_result["duplicates"]
+    unique_by_domain = {}
+    for e in unique:
+        unique_by_domain[e["domain"]] = unique_by_domain.get(e["domain"], 0) + 1
+
+    domain_reports = []
+    for d in domains:
+        domain = d["domain"]
+        unique_count = unique_by_domain.get(domain, 0)
+        domain_reports.append({
+            "domain": domain,
+            "business_name": d.get("business_name"),
+            "task_id": domain_task_map.get(domain),
+            "raw_items": domain_raw.get(domain, 0),
+            "valid_items": domain_valid.get(domain, 0),
+            "unique_valid_reviews": unique_count,
+            "shortfall": max(0, target_per_domain - unique_count),
+        })
 
     flat_reviews = [
         {
-            "domain": domain,
+            "domain": e["domain"],
             "dedupe_key": e["dedupeKey"],
             "dedupe_key_type": e["dedupeKeyType"],
             "review_url": e["raw"].get("review_url"),
@@ -399,7 +482,7 @@ def main():
         newline="",
     )
     write_json(OUT_DIR / "duplicate-report.json", {"total_duplicates": len(duplicates), "entries": duplicates})
-    write_json(OUT_DIR / "pagination-report.json", {"pages": results["pages"], "stop_reason": results_stop_reason})
+    write_json(OUT_DIR / "pagination-report.json", {"pages": results["pages"], "stop_reason": results_stop_reason, "unattributed_results": unattributed})
 
     benchmark_end_ms = time.monotonic()
     credits_consumed = None
@@ -411,13 +494,16 @@ def main():
     ):
         credits_consumed = balance_after["consumed"] - balance_before["consumed"]
 
+    total_unique = len(unique)
+    total_target = target_per_domain * len(domains)
+
     summary = {
         "generated_at": now_iso(),
-        "domain": domain,
         "squid_id": squid_id,
-        "task_id": task_id,
+        "task_ids": domain_task_map,
         "run_id": run_id,
-        "target_reviews_requested": target_reviews,
+        "target_per_domain": target_per_domain,
+        "total_target_reviews": total_target,
         "max_results_confirmed_after_configure": configure_result["params_after"].get("max_results"),
         "max_unique_results_per_run_confirmed_after_configure": configure_result["params_after"].get("max_unique_results_per_run"),
         "run_status": jg(final_run, "status"),
@@ -426,16 +512,17 @@ def main():
         "run_reported_total_unique_results": jg(final_run, "total_unique_results"),
         "run_reported_credit_used": jg(final_run, "credit_used"),
         "total_raw_items_fetched": len(all_items),
-        "total_valid_items": len(valid_entries),
-        "total_unique_valid_reviews": len(unique),
+        "unattributed_records": unattributed,
+        "total_unique_valid_reviews": total_unique,
         "total_duplicates": len(duplicates),
-        "exceeded_200_reviews_from_one_business": len(unique) > 200,
+        "domains": domain_reports,
+        "all_domains_hit_target": all(r["shortfall"] == 0 for r in domain_reports),
         "wall_clock_ms": int((benchmark_end_ms - benchmark_start_ms) * 1000),
         "credits_consumed_measured": credits_consumed,
         "pagination_stop_reason": results_stop_reason,
     }
     write_json(OUT_DIR / "summary.json", summary)
-    print("--- SINGLE-DOMAIN TEST COMPLETE ---")
+    print("--- FIVE-DOMAIN MULTI-TASK TEST COMPLETE ---")
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
 

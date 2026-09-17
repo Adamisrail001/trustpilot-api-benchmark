@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-09-04T10:18:47.422Z",
+  "response": {
+    "id": "price_1RjenoAFM6jPN0aflzQwtH5H",
+    "object": "plan",
+    "available": 0,
+    "consumed": 5000,
+    "bonus_credit": 0,
+    "rollover_credit": 0,
+    "rollover_credit_expires_at": null,
+    "community_reward_credit": 0,
+    "community_reward_credit_expires_at": null,
+    "export_cap_lifted_until": null,
+    "interval": "daily",
+    "name": "free",
+    "used_slots": 224,
+    "has_unpaid_bill": {},
+    "total_available_slots": 1,
+    "reset_time": "2026-09-05T00:00:00"
+  }
+}

@@ -50,12 +50,14 @@ concrete next step.
    carried into the Python port unchanged. **To do:** add a real low-limit
    override for the smoke path, or fix the docstring to match actual behavior.
 
-8. **Live write-paths and multi-page pagination remain unverified.** Read-only
-   calls were confirmed live for Apify, DataForSEO, and Lobstr; OpenWeb Ninja
-   has no free endpoint to test at all. But no script has created a *new* paid
-   run/task, and every live test so far resolved on a single page. **To do:**
-   run each script with real credentials when ready to spend, and compare the
-   fresh `outputs/<provider>/` against `DATA/<provider>/` for consistency.
+8. **Live write-paths — partially resolved.** Lobstr (2026-08-13), and now
+   Outscraper and Apify (2026-08-19), have each had a real new paid run/task
+   created via their `single_domain_test.py` scripts, with fresh output
+   compared against the existing evidence for consistency. **Still open:**
+   every one of those live tests (including the two new ones) still resolved
+   on a single page/call — true multi-page pagination (e.g. Outscraper's
+   `skip=200,400,...`) remains unverified for all providers. OpenWeb Ninja
+   still has no working baseline call to test a write-path against at all.
 
 ---
 
@@ -71,11 +73,22 @@ concrete next step.
    `thepearlsource` only and must not be read as representative of the other
    4. **To do:** same as A.4.
 
-3. **Scalability is essentially untested for all 5 providers** — none was
-   pushed past 200 reviews/business or tested under real concurrency/10x load.
-   DataForSEO's 200-review ceiling is the only *confirmed* (not just untested)
-   limit. **To do:** run those tests and update `knowledge.md` §4 with real
-   results.
+3. **Scalability past 200/business — resolved for 4 of 5 providers, 2026-08-19.**
+   Lobstr (2026-08-13, 2,000/2,000), Apify (capped at exactly 200, `SUCCEEDED`/
+   `all_items_downloaded`), and Outscraper (capped at 200 on `limit=1000`, then
+   a same-day `skip=200` follow-up call confirmed zero reviews exist past
+   position 200 — genuine empty success, not an error) all have real,
+   confirmed results now; `knowledge.md` §4 has been updated with all three.
+   DataForSEO's ceiling was already confirmed via documentation. Outscraper and
+   Apify are now scored on an "untested" assumption for their Scalability
+   sub-score (0.30/1.2, 0.52/1.2) that no longer holds — flagged in
+   `knowledge.md` §4 as an open re-scoring question, not resolved there.
+   **Still open:**
+   (a) OpenWeb Ninja remains untested past 200 — its account can't currently
+   clear the 200-review baseline at all, so a scale test there would be moot
+   until that's fixed;
+   (b) none of the 5 providers has been tested under real concurrency or 10x
+   *total* volume across all domains — that part of this gap is unchanged.
 
 4. **Cost evidence tier varies by provider** — only Apify and DataForSEO have
    a real, API-reported billed-dollar figure; Outscraper's is a published-rate
@@ -105,3 +118,18 @@ concrete next step.
    (depends on A.1/A.2) — until a verified production-parity script exists,
    `knowledge.md`'s DataForSEO figures rest on evidence whose generating code
    is unconfirmed. **To do:** same as A.1.
+
+8. **`api_docs_mcps.txt`'s Apify section is missing a real input parameter:
+   `date`.** Checked live against `apify.com/automation-lab/trustpilot/input-schema`
+   (2026-08-24) — the Actor accepts a `date` preset filter (`last30days` /
+   `last3months` / `last6months` / `last12months` / empty for all dates),
+   alongside `sort: recency`. `api_docs_mcps.txt` (lines ~155-372) only
+   documents `companyUrls`, `maxReviewsPerCompany`, `sort`, and
+   `includeCompanyInfo` — `date` is absent entirely, and was never exercised
+   in any benchmark run. This means Apify's Input Flexibility score
+   (`knowledge.md` §7) was computed against an incomplete parameter list.
+   **To do:** re-check `date` against the live schema, confirm whether other
+   parameters were also missed, then re-score Apify's Input Flexibility
+   sub-criterion in `knowledge.md` §7 accordingly. Also worth checking
+   whether OpenWeb Ninja has an equivalent date filter — its docs page is
+   JS-rendered and couldn't be confirmed either way via a plain fetch.

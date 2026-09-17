@@ -212,8 +212,11 @@ def create_client(config, on_event=None):
     def get_run(run_id):
         return request("GET", f"{BASE_URL}/runs/{run_id}", context="get_run")
 
-    def get_results(run=None, squid=None, page=1, limit=100):
-        params = {"page": str(page), "limit": str(limit)}
+    def get_results(run=None, squid=None, page=1, page_size=100):
+        # `limit` is accepted by the API but does not control page size - it's
+        # silently ignored (see data/lobstr/analysis/page_size-parameter-correction.md).
+        # `page_size` is the real, working parameter.
+        params = {"page": str(page), "page_size": str(page_size)}
         if run:
             params["run"] = run
         if squid and not run:

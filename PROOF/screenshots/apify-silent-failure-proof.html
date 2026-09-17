@@ -1,0 +1,101 @@
+<title>Apify — Silent Failure Evidence</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --ink: #16191f; --ink-dim: #5b6270; --line: #dfe3e9;
+    --code-bg: #14171c; --code-ink: #d7dbe0; --accent: #b23b3b; --accent-wash: #fbecec;
+    --ok: #1f8a5f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1216; --surface: #171b21; --ink: #e7e9ec; --ink-dim: #9aa2ad; --line: #2a2f37;
+      --code-bg: #0b0d10; --code-ink: #d7dbe0; --accent: #e28787; --accent-wash: #2a1717; --ok: #6fcf9e; }
+  }
+  :root[data-theme="dark"] { --bg: #0f1216; --surface: #171b21; --ink: #e7e9ec; --ink-dim: #9aa2ad; --line: #2a2f37;
+    --code-bg: #0b0d10; --code-ink: #d7dbe0; --accent: #e28787; --accent-wash: #2a1717; --ok: #6fcf9e; }
+  :root[data-theme="light"] { --bg: #f7f8fa; --surface: #ffffff; --ink: #16191f; --ink-dim: #5b6270; --line: #dfe3e9;
+    --code-bg: #14171c; --code-ink: #d7dbe0; --accent: #b23b3b; --accent-wash: #fbecec; --ok: #1f8a5f; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; line-height: 1.6;
+  }
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; margin: 0 0 0.6rem; }
+  h1 { font-size: 1.45rem; line-height: 1.3; margin: 0 0 0.5rem; text-wrap: balance; }
+  .dek { color: var(--ink-dim); font-size: 0.94rem; margin: 0 0 2.2rem; max-width: 62ch; }
+  h2 { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; margin: 2.4rem 0 1rem; }
+  code { font-family: ui-monospace, "SF Mono", Consolas, monospace; background: rgba(127,127,127,0.14); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.88em; }
+
+  .clash { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.4rem; }
+  @media (max-width: 560px) { .clash { grid-template-columns: 1fr; } }
+  .clash-card { border-radius: 10px; padding: 1rem 1.1rem; }
+  .clash-card.good { background: var(--accent-wash); border: 1px solid var(--line); }
+  .clash-card .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 0.4rem; }
+  .clash-card .value { font-size: 1.4rem; font-weight: 800; }
+  .clash-card.status .value { color: var(--ok); }
+  .clash-card.reviews .value { color: var(--accent); }
+
+  pre { background: var(--code-bg); color: var(--code-ink); padding: 1rem 1.1rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; line-height: 1.6; font-family: ui-monospace, "SF Mono", Consolas, monospace; margin: 0.6rem 0 0; }
+  .str { color: #c9a978; } .num { color: #9fca9f; } .kw { color: #7fb8d6; }
+  .source-line { font-size: 0.8rem; color: var(--ink-dim); margin: 0.6rem 0 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.6rem; }
+  th, td { padding: 0.55rem 0.7rem; text-align: left; border-bottom: 1px solid var(--line); }
+  th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-dim); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  td.fail { color: var(--accent); font-weight: 700; }
+
+  .callout { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 0.9rem 1.1rem; border-radius: 6px; font-size: 0.87rem; color: var(--ink-dim); margin-top: 1rem; }
+  .callout b { color: var(--ink); }
+</style>
+
+<p class="eyebrow">Apify &middot; Trustpilot benchmark &middot; critical-problem evidence</p>
+<h1>Silent failures: SUCCEEDED with 0 reviews</h1>
+<p class="dek">A run's own top-level status says everything worked. One business inside that same run returned nothing &mdash; with no error, retry, or failure signal anywhere.</p>
+
+<div class="clash">
+  <div class="clash-card good status">
+    <div class="label">Run-level status</div>
+    <div class="value">SUCCEEDED</div>
+  </div>
+  <div class="clash-card good reviews">
+    <div class="label">Reviews for The Pearl Source</div>
+    <div class="value">0 of 200</div>
+  </div>
+</div>
+
+<h2>The contradiction, in the run's own files</h2>
+<p class="source-line">Source: <code>data/apify/raw/runs/run-final.json:10</code> + <code>data/apify/analysis/domain-summary.json</code></p>
+<pre><span class="str">"status"</span>: <span class="str">"SUCCEEDED"</span>   <span style="color:#6b7280">// run-final.json:10 — top-level run status</span>
+
+{
+  <span class="str">"domain"</span>: <span class="str">"www.thepearlsource.com"</span>,
+  <span class="str">"raw_items"</span>: <span class="num">0</span>,
+  <span class="str">"valid_items"</span>: <span class="num">0</span>,
+  <span class="str">"unique_valid_reviews"</span>: <span class="num">0</span>,
+  <span class="str">"shortfall"</span>: <span class="num">200</span>
+}   <span style="color:#6b7280">// domain-summary.json — same run, this business only</span></pre>
+
+<h2>No error signal anywhere</h2>
+<p class="source-line">Ground truth for this business (20 manually verified rows) confirms zero API items were available to match against:</p>
+<pre>{
+  <span class="str">"ground_truth_rows"</span>: <span class="num">20</span>,
+  <span class="str">"matched_rows"</span>: <span class="num">0</span>,
+  <span class="str">"unmatched_rows"</span>: <span class="num">20</span>,
+  <span class="str">"api_items_available"</span>: <span class="num">0</span>,
+  <span class="str">"field_accuracy"</span>: []
+}</pre>
+<div class="source-line">data/apify/analysis/ground-truth-match.json</div>
+
+<h2>Not a one-off &mdash; a different business every time</h2>
+<p class="source-line">Reproduced across 3 separate live runs, source: <code>IMPORTANT/knowledge.md</code> §1, cross-referenced against each run's own evidence files.</p>
+<table>
+  <thead><tr><th>Run</th><th>Business that silently returned 0</th><th>Success rate</th><th>Real errors logged</th></tr></thead>
+  <tbody>
+    <tr><td>Run 1</td><td class="fail">SHEIN</td><td>~80%</td><td>0</td></tr>
+    <tr><td>Run 2 (committed)</td><td class="fail">The Pearl Source</td><td>80%</td><td>0</td></tr>
+    <tr><td>Run 3</td><td class="fail">Halara</td><td>~82%</td><td>0</td></tr>
+  </tbody>
+</table>
+
+<div class="callout"><b>Why this matters:</b> if you only check <code>run.status === "SUCCEEDED"</code>, you'll ship a pipeline that silently drops an entire business's reviews with no exception thrown, no retry triggered, and no field in the response flagging it. The only way to catch it is an independent row-count check per business against what you requested &mdash; the platform's own success signal doesn't do it for you.</div>

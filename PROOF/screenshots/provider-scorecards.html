@@ -1,0 +1,300 @@
+<title>Provider Evidence Cards</title>
+<style>
+  :root {
+    --page: #f9f9f7; --surface: #ffffff; --ink: #16191f; --ink-dim: #52514e; --ink-muted: #898781;
+    --line: #e1e0d9; --code-bg: #14171c; --code-ink: #d7dbe0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --page: #0d0d0d; --surface: #1a1a19; --ink: #f2f2f0; --ink-dim: #c3c2b7; --ink-muted: #898781; --line: #2c2c2a; --code-bg: #0b0d10; --code-ink: #d7dbe0; }
+  }
+  :root[data-theme="dark"] { --page: #0d0d0d; --surface: #1a1a19; --ink: #f2f2f0; --ink-dim: #c3c2b7; --ink-muted: #898781; --line: #2c2c2a; --code-bg: #0b0d10; --code-ink: #d7dbe0; }
+  :root[data-theme="light"] { --page: #f9f9f7; --surface: #ffffff; --ink: #16191f; --ink-dim: #52514e; --ink-muted: #898781; --line: #e1e0d9; --code-bg: #14171c; --code-ink: #d7dbe0; }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--page); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .provider-name {
+    padding: 1.1rem 1.4rem 0;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted);
+  }
+
+  .split-row { display: grid; grid-template-columns: 1fr 1fr; }
+  .col:first-child { border-right: 1px solid var(--line); }
+  @media (max-width: 720px) {
+    .split-row { grid-template-columns: 1fr; }
+    .col:first-child { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+
+  pre {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 0.72rem; line-height: 1.5;
+    padding: 0.65rem 0.8rem; border-radius: 8px;
+    margin: 0.55rem 0 0; overflow-x: auto; white-space: pre;
+    background: var(--code-bg); color: var(--code-ink);
+  }
+  .str { color: #c9a978; } .num { color: #9fca9f; }
+  .src { font-size: 0.66rem; color: var(--ink-muted); margin-top: 0.35rem; font-family: ui-monospace, "SF Mono", Consolas, monospace; }
+
+  .hero { margin: 0.7rem 1rem 0.9rem; border-radius: 10px; padding: 1.2rem 1.3rem 1.3rem; color: #fff; }
+  .hero .value { font-size: 1.65rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+  .hero .label { font-size: 0.82rem; font-weight: 600; margin-top: 0.35rem; opacity: 0.95; }
+  .hero pre { background: rgba(0,0,0,0.28); color: #eef4fb; }
+  .hero .src { color: rgba(255,255,255,0.75); }
+  .hero .str { color: #ffe3ad; } .hero .num { color: #d4f5e2; }
+
+  .stat-stack { display: flex; flex-direction: column; gap: 1px; background: var(--line); margin: 0 1rem 1.1rem; border-radius: 10px; overflow: hidden; }
+  .stat { background: var(--surface); padding: 0.8rem 0.9rem 0.9rem; }
+  .stat .value { font-size: 1.05rem; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+  .stat .label { font-size: 0.72rem; font-weight: 600; color: var(--ink-dim); margin-top: 0.2rem; }
+
+  .lo-hero { background: linear-gradient(135deg, #2a78d6 0%, #184f95 100%); }
+  .df-hero { background: linear-gradient(135deg, #eb6834 0%, #a83d1a 100%); }
+  .os-hero { background: linear-gradient(135deg, #1baf7a 0%, #0d6b46 100%); }
+  .ap-hero { background: linear-gradient(135deg, #eda100 0%, #8a5a00 100%); }
+  .bad-hero { background: linear-gradient(135deg, #d03b3b 0%, #7a1f1f 100%); }
+</style>
+
+<!-- LOBSTR -->
+<div class="card">
+  <div class="provider-name">lobstr.io</div>
+  <div class="split-row">
+    <div class="col">
+      <div class="hero lo-hero">
+        <div class="value">2,000 / 2,000</div>
+        <div class="label">Only API confirmed past the 200-review wall, 0 duplicates</div>
+        <pre>{
+  <span class="str">"total_unique_valid_reviews"</span>: <span class="num">2000</span>,
+  <span class="str">"total_duplicates"</span>: <span class="num">0</span>
+}</pre>
+        <div class="src">outputs/lobstr-single-domain-test/summary.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">20 / 20</div>
+          <div class="label">Ground-truth rows matched</div>
+          <pre>{ <span class="str">"matched_rows"</span>: <span class="num">20</span> }</pre>
+          <div class="src">data/lobstr/analysis/ground-truth-match.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">7 / 7</div>
+          <div class="label">Rate limits recovered</div>
+          <pre>{ <span class="str">"attempts"</span>: <span class="num">2</span> }</pre>
+          <div class="src">data/lobstr/analysis/timings.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">1 : 1</div>
+          <div class="label">Credit-to-review ratio</div>
+          <pre>{ <span class="str">"consumed"</span>: <span class="num">0</span>&rarr;<span class="num">2000</span> }</pre>
+          <div class="src">credits-before/after.json</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hero bad-hero">
+        <div class="value">100 &rarr; served as 10</div>
+        <div class="label">Documented page limit silently downgraded 10&times;</div>
+        <pre>{
+  <span class="str">"limit"</span>: <span class="num">10</span>,
+  <span class="str">"total_pages"</span>: <span class="num">100</span>
+}</pre>
+        <div class="src">data/lobstr/raw/results/results-page1.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">0 fields</div>
+          <div class="label">No <code>task</code> field &mdash; attribution needs a <code>company_page_url</code> fallback</div>
+          <pre>{ <span class="str">"run"</span>: <span class="str">"4c2e07..."</span>, <span class="str">"task"</span>: <span class="num">undefined</span> }</pre>
+          <div class="src">results-page1.json &middot; item schema</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATAFORSEO -->
+<div class="card">
+  <div class="provider-name">DataForSEO</div>
+  <div class="split-row">
+    <div class="col">
+      <div class="hero df-hero">
+        <div class="value">$0.03754 / 1,000</div>
+        <div class="label">Cheapest measured cost of every provider tested</div>
+        <pre>{
+  <span class="str">"measured_total_cost_usd"</span>: <span class="num">0.0375</span>,
+  <span class="str">"cost_per_1000_successful_reviews_usd"</span>: <span class="num">0.03754</span>
+}</pre>
+        <div class="src">data/dataforseo/analysis/cost-report.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">999 / 1,000</div>
+          <div class="label">Unique reviews collected</div>
+          <pre>{ <span class="str">"overall_success_rate_percent"</span>: <span class="num">99.9</span> }</pre>
+          <div class="src">domain-summary.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">5 / 5</div>
+          <div class="label">Tasks returned Ok</div>
+          <pre>{ <span class="str">"task_status_message"</span>: <span class="str">"Ok."</span> }</pre>
+          <div class="src">domain-summary.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">0</div>
+          <div class="label">Missing-field occurrences</div>
+          <pre>{ <span class="str">"missing_field_counts"</span>: {} }</pre>
+          <div class="src">domain-summary.json</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hero bad-hero">
+        <div class="value">200 &mdash; hard stop</div>
+        <div class="label">No page, offset, skip, or cursor parameter exists at all</div>
+        <pre><span class="str">"...does not show an offset, skip,
+page, or cursor parameter."</span></pre>
+        <div class="src">api_docs_mcps.txt:1799</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">200 = 200</div>
+          <div class="label">Requested depth, returned items &mdash; every domain, same ceiling</div>
+          <pre>{ <span class="str">"requested_depth"</span>: <span class="num">200</span>, <span class="str">"items_returned"</span>: <span class="num">200</span> }</pre>
+          <div class="src">domain-summary.json &middot; all 5 domains</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTSCRAPER -->
+<div class="card">
+  <div class="provider-name">Outscraper</div>
+  <div class="split-row">
+    <div class="col">
+      <div class="hero os-hero">
+        <div class="value">1,000 / 1,000</div>
+        <div class="label">100% completion, 0 errors &mdash; reproduced on a live rerun</div>
+        <pre>{
+  <span class="str">"duplicate_records"</span>: <span class="num">0</span>,
+  <span class="str">"overall_success_rate_percent"</span>: <span class="num">100</span>
+}</pre>
+        <div class="src">data/outscraper/analysis/domain-summary.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">20 / 20</div>
+          <div class="label">Ground-truth rows matched</div>
+          <pre>{ <span class="str">"matched_rows"</span>: <span class="num">20</span> }</pre>
+          <div class="src">ground-truth-match.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">0</div>
+          <div class="label">Duplicates across 1,000</div>
+          <pre>{ <span class="str">"total_duplicates"</span>: <span class="num">0</span> }</pre>
+          <div class="src">duplicate-report.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">100%</div>
+          <div class="label">Helpful-votes field accuracy</div>
+          <pre>{ <span class="str">"field"</span>: <span class="str">"review_likes"</span> }</pre>
+          <div class="src">ground-truth-match.json</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hero bad-hero">
+        <div class="value">200 of 17,666</div>
+        <div class="label">Reviews reachable vs. reviews that actually exist</div>
+        <pre>{
+  <span class="str">"total_reviews"</span>: <span class="num">17666</span>,
+  <span class="str">"first_page_raw_count"</span>: <span class="num">200</span>
+}</pre>
+        <div class="src">outputs/outscraper-single-domain-test/summary.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">0 new</div>
+          <div class="label"><code>skip=200</code> follow-up, zero new uniques</div>
+          <pre>{ <span class="str">"page2_new_unique_vs_page1"</span>: <span class="num">0</span> }</pre>
+          <div class="src">skip200-followup.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">$2.70&ndash;$3.00</div>
+          <div class="label">Estimated only, no billing endpoint</div>
+          <pre>{ <span class="str">"measured_cost_usd"</span>: <span class="str">null</span> }</pre>
+          <div class="src">cost-report.json</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APIFY -->
+<div class="card">
+  <div class="provider-name">Apify</div>
+  <div class="split-row">
+    <div class="col">
+      <div class="hero ap-hero">
+        <div class="value">$0.5812 / 1,000</div>
+        <div class="label">Real measured billing, read from the run's own field</div>
+        <pre>{
+  <span class="str">"measured_total_cost_usd"</span>: <span class="num">0.465</span>,
+  <span class="str">"cost_per_1000_successful_reviews_usd"</span>: <span class="num">0.5812</span>
+}</pre>
+        <div class="src">data/apify/analysis/cost-report.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">5 in 1</div>
+          <div class="label">Businesses per run, array input</div>
+          <pre>{ <span class="str">"companyUrls"</span>: [<span class="num">5</span>] }</pre>
+          <div class="src">actor-input.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">3 codes</div>
+          <div class="label">Auth/billing errors classified</div>
+          <pre>(<span class="num">401</span>, <span class="num">403</span>, <span class="num">402</span>)</pre>
+          <div class="src">apify_client.py:138</div>
+        </div>
+        <div class="stat">
+          <div class="value">6 codes</div>
+          <div class="label">Retryable, automatic backoff</div>
+          <pre>{<span class="num">429</span>,<span class="num">500</span>..<span class="num">504</span>}</pre>
+          <div class="src">apify_client.py:29</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="hero bad-hero">
+        <div class="value">SUCCEEDED, 0 reviews</div>
+        <div class="label">A run can report success while one business gets nothing</div>
+        <pre>{
+  <span class="str">"run_status"</span>: <span class="str">"SUCCEEDED"</span>,
+  <span class="str">"raw_items"</span>: <span class="num">0</span>,
+  <span class="str">"shortfall"</span>: <span class="num">200</span>
+}</pre>
+        <div class="src">data/apify/analysis/domain-summary.json</div>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="value">0 / 20</div>
+          <div class="label">Ground-truth rows matched that run</div>
+          <pre>{ <span class="str">"api_items_available"</span>: <span class="num">0</span> }</pre>
+          <div class="src">ground-truth-match.json</div>
+        </div>
+        <div class="stat">
+          <div class="value">200 cap</div>
+          <div class="label">1,000 requested, all_items_downloaded at 200</div>
+          <pre>{ <span class="str">"pagination_stop_reason"</span>: <span class="str">"all_items_downloaded"</span> }</pre>
+          <div class="src">apify-single-domain-test/summary.json</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

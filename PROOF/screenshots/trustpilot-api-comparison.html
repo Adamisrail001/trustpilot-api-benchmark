@@ -1,0 +1,410 @@
+<title>Trustpilot Reviews API Benchmark — Visual Comparison</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --gridline: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --good: #0ca30c;
+
+    --s-lobstr: #2a78d6;
+    --s-dataforseo: #eb6834;
+    --s-apify: #1baf7a;
+    --s-apify-tone: #0f7a54;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --gridline: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --good: #0ca30c;
+
+      --s-lobstr: #3987e5;
+      --s-dataforseo: #d95926;
+      --s-apify: #199e70;
+      --s-apify-tone: #0d5a3f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface-1: #1a1a19; --page: #0d0d0d; --text-primary: #ffffff; --text-secondary: #c3c2b7;
+    --text-muted: #898781; --gridline: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+    --s-lobstr: #3987e5; --s-dataforseo: #d95926; --s-apify: #199e70; --s-apify-tone: #0d5a3f;
+  }
+  :root[data-theme="light"] {
+    --surface-1: #fcfcfb; --page: #f9f9f7; --text-primary: #0b0b0b; --text-secondary: #52514e;
+    --text-muted: #898781; --gridline: #e1e0d9; --baseline: #c3c2b7; --border: rgba(11,11,11,0.10);
+    --s-lobstr: #2a78d6; --s-dataforseo: #eb6834; --s-apify: #1baf7a; --s-apify-tone: #0f7a54;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.75rem 1.25rem 5rem;
+    line-height: 1.55;
+  }
+  .eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; margin: 0 0 0.7rem;
+  }
+  h1 { font-size: 1.7rem; line-height: 1.28; margin: 0 0 0.55rem; text-wrap: balance; letter-spacing: -0.01em; }
+  .dek { color: var(--text-secondary); font-size: 0.98rem; max-width: 66ch; margin: 0 0 2.4rem; }
+
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.6rem 1.7rem;
+  }
+  section { margin-bottom: 2.4rem; }
+  h2 { font-size: 1.05rem; margin: 0 0 0.2rem; letter-spacing: -0.005em; }
+  .section-note { font-size: 0.85rem; color: var(--text-muted); margin: 0 0 1.3rem; }
+
+  /* legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; margin: 0 0 1.4rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.83rem; color: var(--text-secondary); }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+
+  /* bar chart (horizontal) */
+  .bar-chart { display: flex; flex-direction: column; gap: 0.65rem; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr auto;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    border-radius: 6px;
+    padding: 0.15rem 0.3rem;
+  }
+  .bar-row:hover, .bar-row:focus-visible { background: var(--gridline); outline: none; }
+  .bar-name { font-size: 0.86rem; color: var(--text-secondary); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { position: relative; height: 22px; background: var(--gridline); border-radius: 4px; min-width: 0; }
+  .bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    height: 22px; max-height: 24px;
+    max-width: 100%;
+    border-radius: 4px 4px 4px 4px;
+    display: flex; align-items: center;
+  }
+  .bar-value {
+    font-size: 0.82rem; font-weight: 600; color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .bar-row[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute; left: 8.5rem; top: -1.9rem;
+    background: var(--text-primary); color: var(--surface-1);
+    font-size: 0.74rem; padding: 0.3rem 0.55rem; border-radius: 5px;
+    white-space: nowrap; opacity: 0; pointer-events: none;
+    transform: translateY(2px); transition: opacity 0.12s ease, transform 0.12s ease;
+    z-index: 2;
+    max-width: calc(100vw - 10rem);
+  }
+  .bar-row:hover[data-tip]::after, .bar-row:focus-visible[data-tip]::after { opacity: 1; transform: translateY(0); }
+
+  /* hero ranking chart bars slightly thicker */
+  .hero-chart .bar-track, .hero-chart .bar-fill { height: 24px; }
+  .hero-chart .bar-name { font-weight: 600; color: var(--text-primary); }
+
+  /* vertical bar chart (columns) */
+  .vbar-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    padding: 0 0.25rem;
+  }
+  .vbar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    max-width: 10rem;
+  }
+  .vbar-track {
+    width: 100%;
+    max-width: 5.5rem;
+    height: 170px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .vbar-fill {
+    position: relative;
+    width: 100%;
+    min-height: 6px;
+    border-radius: 6px 6px 3px 3px;
+  }
+  .vbar-fill[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute; bottom: calc(100% + 10px); left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--text-primary); color: var(--surface-1);
+    font-size: 0.74rem; padding: 0.35rem 0.6rem; border-radius: 5px;
+    white-space: normal; width: max-content; max-width: 13rem; text-align: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    z-index: 2;
+  }
+  .vbar-fill:hover[data-tip]::after, .vbar-fill:focus-visible[data-tip]::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+  /* tone-on-tone hatch: same hue as its base series, flags "different actor/config within this provider" without inventing a new competing color */
+  .vbar-fill--hatch {
+    background-image: repeating-linear-gradient(45deg, transparent 0px, transparent 5px, var(--s-apify-tone) 5px, var(--s-apify-tone) 8px);
+    background-color: var(--s-apify);
+  }
+  .vbar-labels { margin-top: 0.8rem; text-align: center; min-height: 3.4rem; }
+  .vbar-name { display: block; font-size: 0.86rem; font-weight: 600; color: var(--text-primary); }
+  .vbar-value { display: block; font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem; white-space: nowrap; }
+
+  /* small multiples grid */
+  .multiples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 620px) { .multiples-grid { grid-template-columns: 1fr; } }
+  .multiple-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.2rem 1.2rem; }
+  .multiple-card h3 { font-size: 0.88rem; margin: 0 0 0.15rem; }
+  .multiple-card .cat-max { font-size: 0.74rem; color: var(--text-muted); margin: 0 0 0.85rem; }
+  .multiple-card .bar-row { grid-template-columns: 5.6rem 1fr auto; }
+  .multiple-card .bar-track, .multiple-card .bar-fill { height: 16px; }
+  .multiple-card .bar-value { font-size: 0.76rem; }
+  .multiple-card .bar-name { font-size: 0.78rem; }
+  .multiple-card .bar-row[data-tip]::after { left: 5.6rem; top: -1.7rem; }
+  .chart-footnote { font-size: 0.8rem; color: var(--text-muted); margin: 0.8rem 0 0; }
+  .multiple-card .chart-footnote { font-size: 0.74rem; }
+
+  /* real-world table */
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; min-width: 560px; }
+  th, td { padding: 0.7rem 0.8rem; text-align: left; border-bottom: 1px solid var(--gridline); }
+  th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); font-weight: 600; }
+  td.num { font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  .provider-cell { display: flex; align-items: center; gap: 0.55rem; font-weight: 600; }
+  .qualifier { display: block; font-size: 0.74rem; font-weight: 400; color: var(--text-muted); margin-top: 0.1rem; }
+  .chip { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; padding: 0.22rem 0.55rem; border-radius: 999px; }
+  .chip-yes { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .chip-no { color: var(--text-secondary); background: var(--gridline); }
+
+  .caveats {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: var(--surface-1);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  .caveats ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+  .caveats li { margin-bottom: 0.4rem; }
+  .caveats b { color: var(--text-primary); }
+</style>
+
+<p class="eyebrow">lobstr.io &middot; Trustpilot Reviews API Benchmark</p>
+<h1>Which Trustpilot review API actually delivers?</h1>
+<p class="dek">Three providers, the same fixed methodology, measured head-to-head — ranked on what each one actually delivered, not a weighted score.</p>
+
+<section>
+  <div class="card">
+    <h2>Reviews per business</h2>
+    <p class="section-note">The number that decides this ranking above everything else: how many reviews you can actually pull from one Trustpilot business.</p>
+    <div class="vbar-chart" role="img" aria-label="Reviews collected per business: lobstr.io 2,000 verified with no cap found, DataForSEO 200 confirmed ceiling, Apify 200 confirmed ceiling">
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill" tabindex="0" data-tip="2,000/2,000 unique reviews verified, 0 duplicates &middot; no cap found" style="height:100%; background:var(--s-lobstr);"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">lobstr.io</span>
+          <span class="vbar-value">2,000+ &middot; no cap found</span>
+        </div>
+      </div>
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill" tabindex="0" data-tip="Confirmed hard ceiling &mdash; no page, offset, or skip parameter exists" style="height:10%; background:var(--s-dataforseo);"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">DataForSEO</span>
+          <span class="vbar-value">200 &middot; confirmed ceiling</span>
+        </div>
+      </div>
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill" tabindex="0" data-tip="Confirmed in tested configuration &mdash; requesting 1,000 still returned exactly 200" style="height:10%; background:var(--s-apify);"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">Apify</span>
+          <span class="vbar-value">200 &middot; confirmed ceiling</span>
+        </div>
+      </div>
+    </div>
+    <p class="chart-footnote" style="margin-top:1.25rem;">lobstr.io's column is drawn to scale against the other two — it collected 10&times; more from a single business in a live, verified test. DataForSEO and Apify both hit a hard 200-review-per-business wall with no documented way past it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Total reviews, 5 businesses, one run</h2>
+    <p class="section-note">What each provider actually fetched across the same 5 businesses in one run.</p>
+    <div class="vbar-chart" role="img" aria-label="Total reviews fetched across 5 businesses: lobstr.io 5,000 in one run, DataForSEO 999 capped by a 200/business ceiling, Apify (memo23 Actor, paid plan) 5,000 in a single run, faster than lobstr.io">
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill" tabindex="0" data-tip="5,000/5,000 unique reviews fetched, 0 duplicates, 0 errors &middot; 1 squid, 5 tasks, 1 run, target 1,000/business (2026-09-04)" style="height:100%; background:var(--s-lobstr);"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">lobstr.io</span>
+          <span class="vbar-value">5,000 fetched</span>
+        </div>
+      </div>
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill" tabindex="0" data-tip="999/1,000 actually fetched &mdash; capped at 200/business, a confirmed hard ceiling (no page/offset/skip parameter exists)" style="height:19.98%; background:var(--s-dataforseo);"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">DataForSEO</span>
+          <span class="vbar-value">999 fetched &middot; 200/business ceiling</span>
+        </div>
+      </div>
+      <div class="vbar-col">
+        <div class="vbar-track">
+          <div class="vbar-fill vbar-fill--hatch" tabindex="0" data-tip="5,000/5,000 unique reviews fetched, 0 duplicates &mdash; memo23 Actor, PAID Apify account only, 1 single run (5 startUrls at once), 182s &mdash; faster than lobstr.io. The same Actor/account/domain returned just 50/1,000 on a free plan 13 days earlier (2026-09-16)." style="height:100%;"></div>
+        </div>
+        <div class="vbar-labels">
+          <span class="vbar-name">Apify<br><span style="font-weight:400; color:var(--text-muted); font-size:0.78rem;">memo23 Actor, paid plan</span></span>
+          <span class="vbar-value">5,000 fetched &middot; 1 run, 3m 2s</span>
+        </div>
+      </div>
+    </div>
+    <p class="chart-footnote" style="margin-top:1.25rem;">lobstr.io: verified live (2026-09-04), 5 businesses as 5 tasks in one squid, one run, target 1,000/business — 5,000/5,000 fetched, 0 duplicates, 0 errors. DataForSEO: actual count from its own standard benchmark (target 200/business, 1,000 total) — independently confirmed hard-capped at exactly 200/business even when asked for more (see "Reviews per business" above), so 999 is effectively its ceiling, not a shortfall that a bigger ask would fix. Apify's hatched bar is <code>memo23/trustpilot-scraper-ppe</code>, run on an <b>upgraded, paid</b> Apify account (2026-09-16): 1 single run (all 5 businesses in one <code>startUrls</code> array), 5,000/5,000 fetched in 182s, 0 duplicates — matching lobstr.io's number and architecture, and actually faster, but not its cost or track record (the same Actor/account/domain returned only 50/1,000 on a free plan 13 days earlier; this is a third-party Actor, not the primary automation-lab Actor tested elsewhere on this page).</p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Completed reviews</h2>
+    <p class="section-note">Out of 1,000 requested, across the same 5 businesses. The raw outcome, not a score.</p>
+    <div class="bar-chart hero-chart" role="img" aria-label="Completed reviews out of 1,000 requested: lobstr.io 1,000, DataForSEO 999, Apify 800">
+      <div class="bar-row" tabindex="0" data-tip="1,000 / 1,000 (100%)">
+        <span class="bar-name">lobstr.io</span>
+        <div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--s-lobstr);"></div><span class="bar-value">1,000</span></div>
+      </div>
+      <div class="bar-row" tabindex="0" data-tip="999 / 1,000 (99.9%)">
+        <span class="bar-name">DataForSEO</span>
+        <div class="bar-track"><div class="bar-fill" style="width:99.9%; background:var(--s-dataforseo);"></div><span class="bar-value">999</span></div>
+      </div>
+      <div class="bar-row" tabindex="0" data-tip="800 / 1,000 (80%) &middot; silent-failure pattern">
+        <span class="bar-name">Apify</span>
+        <div class="bar-track"><div class="bar-fill" style="width:80%; background:var(--s-apify);"></div><span class="bar-value">800</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Real-world numbers</h2>
+  <p class="section-note">What each provider actually did in the benchmark run.</p>
+  <div class="table-scroll card" style="padding:0.4rem 0.6rem;">
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Completed</th>
+          <th>Cost / 1,000 reviews</th>
+          <th>Run time</th>
+          <th>Past 200/business?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="provider-cell"><span class="swatch" style="background:var(--s-lobstr)"></span>lobstr.io</td>
+          <td class="num">1,000 / 1,000 <span class="qualifier">100%</span></td>
+          <td class="num">$0.50<span class="qualifier">published rate &middot; 1:1 credit ratio measured</span></td>
+          <td class="num">3 min 41 s</td>
+          <td><span class="chip chip-yes">Yes</span><span class="qualifier">2,000/2,000 verified</span></td>
+        </tr>
+        <tr>
+          <td class="provider-cell"><span class="swatch" style="background:var(--s-dataforseo)"></span>DataForSEO</td>
+          <td class="num">999 / 1,000 <span class="qualifier">99.9%</span></td>
+          <td class="num">$0.03754<span class="qualifier">measured (billing field)</span></td>
+          <td class="num">2 min 46 s</td>
+          <td><span class="chip chip-no">No</span><span class="qualifier">confirmed 200 ceiling</span></td>
+        </tr>
+        <tr>
+          <td class="provider-cell"><span class="swatch" style="background:var(--s-apify)"></span>Apify</td>
+          <td class="num">800 / 1,000 <span class="qualifier">80%, silent-failure pattern</span></td>
+          <td class="num">$0.5812<span class="qualifier">measured (billing field)</span></td>
+          <td class="num">6 min 42 s</td>
+          <td><span class="chip chip-no">No</span><span class="qualifier">confirmed 200 ceiling</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Cost, speed, and data quality</h2>
+  <p class="section-note">Measured values, not sub-scores. Same provider, same color, everywhere on this page.</p>
+  <div class="legend">
+    <div class="legend-item"><span class="swatch" style="background:var(--s-lobstr)"></span>lobstr.io</div>
+    <div class="legend-item"><span class="swatch" style="background:var(--s-dataforseo)"></span>DataForSEO</div>
+    <div class="legend-item"><span class="swatch" style="background:var(--s-apify)"></span>Apify</div>
+  </div>
+
+  <div class="multiples-grid">
+
+    <div class="multiple-card">
+      <h3>Cost per 1,000 reviews</h3>
+      <p class="cat-max">measured $ &middot; lower is cheaper</p>
+      <div class="bar-chart">
+        <div class="bar-row" tabindex="0" data-tip="$0.03754"><span class="bar-name">DataForSEO</span><div class="bar-track"><div class="bar-fill" style="width:6.5%; background:var(--s-dataforseo);"></div><span class="bar-value">$0.03754</span></div></div>
+        <div class="bar-row" tabindex="0" data-tip="$0.50"><span class="bar-name">lobstr.io</span><div class="bar-track"><div class="bar-fill" style="width:86%; background:var(--s-lobstr);"></div><span class="bar-value">$0.50</span></div></div>
+        <div class="bar-row" tabindex="0" data-tip="$0.5812"><span class="bar-name">Apify</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--s-apify);"></div><span class="bar-value">$0.5812</span></div></div>
+      </div>
+    </div>
+
+    <div class="multiple-card">
+      <h3>Run time</h3>
+      <p class="cat-max">wall-clock for the benchmark run &middot; lower is faster</p>
+      <div class="bar-chart">
+        <div class="bar-row" tabindex="0" data-tip="2 min 46 s"><span class="bar-name">DataForSEO</span><div class="bar-track"><div class="bar-fill" style="width:41.3%; background:var(--s-dataforseo);"></div><span class="bar-value">2:46</span></div></div>
+        <div class="bar-row" tabindex="0" data-tip="3 min 41 s"><span class="bar-name">lobstr.io</span><div class="bar-track"><div class="bar-fill" style="width:55%; background:var(--s-lobstr);"></div><span class="bar-value">3:41</span></div></div>
+        <div class="bar-row" tabindex="0" data-tip="6 min 42 s &middot; for the 800 reviews actually returned"><span class="bar-name">Apify</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--s-apify);"></div><span class="bar-value">6:42</span></div></div>
+      </div>
+      <p class="chart-footnote">Apify's time is for the 800 reviews it actually returned, not the full 1,000 requested.</p>
+    </div>
+
+    <div class="multiple-card">
+      <h3>Field coverage</h3>
+      <p class="cat-max">% of 13 ground-truth fields matched &middot; higher is better</p>
+      <div class="bar-chart">
+        <div class="bar-row" tabindex="0" data-tip="92.3% &middot; tied-best"><span class="bar-name">lobstr.io</span><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--s-lobstr);"></div><span class="bar-value">92.3%</span></div></div>
+        <div class="bar-row" tabindex="0" data-tip="84.6%"><span class="bar-name">DataForSEO</span><div class="bar-track"><div class="bar-fill" style="width:91.7%; background:var(--s-dataforseo);"></div><span class="bar-value">84.6%</span></div></div>
+      </div>
+      <p class="chart-footnote">Apify isn't shown here — its field coverage swung from 92.3% to 0% across 3 live runs depending on a silent per-business failure, so it isn't a stable number. See caveats below.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="caveats">
+    <b>Reading this chart</b>
+    <ul>
+      <li>There's no weighted "overall score" here. lobstr.io was the only provider that could complete a full review-collection job (2,000/2,000 in a separate scalability test, 5,000/5,000 in a separate 5-business multi-task test), so scoring it against tools capped at 200 reviews per business on speed, cost, or scale wouldn't be an apples-to-apples comparison.</li>
+      <li>The 5,000-review figure is from a distinct live test (2026-09-04): 5 businesses added as tasks to one squid, one run, target raised to 1,000/business. Raw evidence: <code>data/lobstr/five-domain-multi-task-test-2026-09-04/</code> in the repo linked below.</li>
+      <li>Apify's data quality isn't a single number — a different business returned 0 reviews while still reporting <code>SUCCEEDED</code> in each of 3 live runs. Field coverage above reflects only the runs where the ground-truth business succeeded.</li>
+      <li>The hatched Apify bar in "Total reviews, 5 businesses, one run" is a <b>different Actor</b> (<code>memo23/trustpilot-scraper-ppe</code>, not <code>automation-lab/trustpilot</code>), tested on 2026-09-16 on an <b>upgraded, paid</b> Apify account. An initial test used 5 separate Actor runs out of caution (this Actor's multi-URL behavior was unconfirmed at the time); a same-day follow-up confirmed it also works in a single run with all 5 businesses at once — 182s, faster than lobstr.io's 398.6s for the identical volume. The same Actor returned only 50/1,000 on a free account 13 days earlier — it is not the Actor scored anywhere else on this page. Raw evidence: <code>outputs/apify-alt-actor-five-domain-bulk-test/</code> and <code>outputs/apify-alt-actor-single-run-multi-domain-test/</code> (gitignored; summarized in <code>knowledge.md</code>).</li>
+      <li>Outscraper and OpenWeb Ninja were also tested but aren't charted here — see the article's FAQ for how they performed.</li>
+      <li>Full methodology and raw evidence: <a href="https://github.com/Adamisrail001/trustpilot-api-benchmark">github.com/Adamisrail001/trustpilot-api-benchmark</a></li>
+    </ul>
+  </div>
+</section>

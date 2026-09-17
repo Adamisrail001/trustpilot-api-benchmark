@@ -1,0 +1,46 @@
+{
+  "requested_at": "2026-09-04T10:12:11.779Z",
+  "request_body": {
+    "is_active": true,
+    "to_complete": true,
+    "export_unique_results": false,
+    "no_line_breaks": false,
+    "params": {
+      "stars": "all",
+      "search": null,
+      "topics": null,
+      "replies": false,
+      "language": "All languages",
+      "verified": false,
+      "hours_back": null,
+      "start_page": 1,
+      "fetch_since": null,
+      "max_results": 1000,
+      "fetch_since_timezone": null,
+      "max_unique_results_per_run": 5000
+    }
+  },
+  "notes": [
+    "max_results (per task): None -> 1000",
+    "max_unique_results_per_run (whole run, 5 tasks): None -> 5000"
+  ],
+  "response": {
+    "no_line_breaks": false,
+    "params": {
+      "stars": "all",
+      "search": null,
+      "topics": null,
+      "replies": false,
+      "language": "All languages",
+      "verified": false,
+      "hours_back": null,
+      "start_page": 1,
+      "fetch_since": null,
+      "max_results": 1000,
+      "fetch_since_timezone": null,
+      "max_unique_results_per_run": 5000
+    },
+    "to_complete": true,
+    "export_unique_results": false
+  }
+}

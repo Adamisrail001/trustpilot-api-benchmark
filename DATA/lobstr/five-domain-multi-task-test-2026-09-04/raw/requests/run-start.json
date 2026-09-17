@@ -1,0 +1,28 @@
+{
+  "requested_at": "2026-09-04T10:12:13.345Z",
+  "response": {
+    "id": "b1c51b843e6448b89421775ffe368bc3",
+    "object": "run",
+    "squid": "31973027bc6f482da84b6927647de4d5",
+    "is_done": false,
+    "started_at": "2026-09-04T10:12:12Z",
+    "total_results": 0,
+    "total_unique_results": 0,
+    "next_launch_at": null,
+    "ended_at": null,
+    "duration": 0.0,
+    "credit_used": 0,
+    "origin": "user",
+    "force_launch": false,
+    "status": "pending",
+    "export_done": null,
+    "export_count": 0,
+    "export_time": null,
+    "email_done": null,
+    "email_time": null,
+    "created_at": "2026-09-04T10:12:12Z",
+    "done_reason": null,
+    "done_reason_desc": null,
+    "email_verification": null
+  }
+}
